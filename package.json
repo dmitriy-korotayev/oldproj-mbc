@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "",
+  "version": "0.0.0",
+  "license": "",
+  "license_description": "No license yet - read through, learn, but ask for permission",
+
+  "description": "",
+  "keywords": [
+    "middleman",
+    "grunt"
+  ],
+
+  "author": "Dmitriy Korotayev",
+
+  "main": "Gruntfile.coffee",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-middleman": "^0.1.2",
+    "jit-grunt": "^0.9.0"
+  }
+}

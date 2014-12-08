@@ -1,0 +1,71 @@
+article.home
+  section.intro
+    .items
+      - 3.times do
+        .item
+          .top
+            h1 Vispiemērotaka vieta Jūsu viznesa attīstībai
+            p  Jebkura veida un lieluma telpas vienā no lielākajuem biznesa centriem
+          .bottom
+            p
+              ' Ir pieejamas
+              strong> 22
+              | brivas telpas
+            = link_to 'Izvēlēties telpu', '#', class: 'button'
+  section.advantages
+    ul.items
+      li
+        i.infrastructure
+        span Biznesam piemērota vieta un infrastriktūra
+      li
+        i.auto
+        span Milzīga autostāvvieta Jums un Jūsu klientiem
+      li
+        i.professional
+        span Profesionālā atteiksme un atsaucīgums
+      li
+        i.handshake
+        span Iespēja sadarboties ar vairāk nekā 100 nominiekiem
+  section.numbers
+    ul.items
+      li
+        span> 11
+        | ēkas biznesam
+      li
+        span> 1000
+        | autostāvvietas
+      li
+        span>
+          ' 20000
+          sub m2
+        | ēkas biznesam
+      li
+        span> 100+
+        | nominieki
+  section.clients
+    h1 Attīsties kopā ar mūsu kientiem
+    ul.items
+      - {hilti: 'Hilti', yit: 'YIT', delfi: 'DELFI', tele2: 'TELE2',
+        vitra: 'Vitra', bostik: 'Bostik'}.each do |title,name|
+        li= link_to '#' do
+          = image_tag "clients/#{name}.png", alt: title
+  section.about
+    .image
+    .text
+      h1 Mūsu vērtības un vēsture
+      p= lorem.sentences 3
+      = link_to 'lasīt tālāk', '#'
+    .text
+      h1 MBC Attīstība
+      p= lorem.sentences 3
+      = link_to 'lasīt tālāk', '#'
+    .image
+  section.reviews
+    .items
+      - 5.times do
+        .person
+          .image
+          .name Jānis Bērziņš
+          .description Tele2 biroja vadītājs
+        .review
+          p "Attīstīta infrastruktūra ­ stāvvieta klientiem, ērta satiksme, vienkārša piegāde ar lielām loģistikas kravas automašīnām"

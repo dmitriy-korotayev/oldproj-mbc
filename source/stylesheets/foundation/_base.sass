@@ -1,0 +1,78 @@
+// *************************************
+//
+//   Base
+//   -> Tag-level and wrapper settings
+//
+// *************************************
+
+*
+  box-sizing: border-box
+html
+  height: 100%
+  color: $c-base
+  line-height: $b-lineHeight
+  font-family: $b-fontFamily
+  font-size: $b-fontSize
+body
+  height: 100%
+  font-size: 100%
+.wrapper
+  position: relative
+  margin: 0 auto
+  width: 100%
+  min-width: $b-minWidth
+  max-width: $b-maxWidth
+  min-height: 100%
+.popups
+  display: none
+
+
+  a 
+    text-decoration: none
+    color: #535353
+    &:hover 
+      color: #739dbc
+
+
+// -------------------------------------
+//   Block Content
+// -------------------------------------
+
+//ul, p
+//li
+
+// ----- Headings ----- //
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4
+  //font-family: $b-fontFamily-heading
+  font-weight: bold
+  line-height: 1.2
+h1, .h1
+  font-size: 200%
+h2, .h2
+  font-size: 150%
+h3, .h3
+  font-size: 125%
+h4, .h4
+  font-size: 110%
+
+
+// -------------------------------------
+//   Inline Content
+// -------------------------------------
+
+// ----- Links ----- //
+
+a
+  color: $c-link
+  text-decoration: none
+  &:hover,
+  &:focus
+    text-decoration: underline
+
+
+// ----- Images ----- //
+
+img
+  height: auto
+  max-width: 100%

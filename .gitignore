@@ -1,0 +1,31 @@
+### Middleman ###
+
+# 'middleman build' result
+/build
+
+# components
+/bower_components
+/node_modules
+# cache
+/.sass-cache
+/.cache
+
+# generated sprites
+/source/images/sprites/*-*.png
+
+# other files
+.DS_Store
+.directory
+
+### Project ###
+
+
+### Personal ###
+
+## Dmitriy Korotayev
+tmp
+trash
+/rel
+/.vimrc
+/*.zip
+/*.tar.gz

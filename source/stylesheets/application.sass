@@ -1,0 +1,73 @@
+// *************************************
+//
+//   Modified MVCSS v4.0.2 
+//   stylesheet structure
+//
+// *************************************
+
+// -------------------------------------
+//   Pre-requirements
+// -------------------------------------
+
+@import normalize-css
+
+// -------------------------------------
+//   Global includes
+// -------------------------------------
+
+@import foundation/globals
+
+// -------------------------------------
+//   Config-dependent requirements
+// -------------------------------------
+
+//.foundation
+  //@import 'foundation/scss/foundation/components/grid'
+
+
+// -------------------------------------
+//   Vendor
+// -------------------------------------
+
+//@import 'vendor/jquery.remodal'
+//@import 'vendor/select2'
+//@import 'jquery-ui/themes/base/datepicker'
+//@import 'jquery-ui/themes/base/slider'
+//@import 'vendor/jquery-ui-timepicker-addon'
+
+// -------------------------------------
+//   Structures
+// -------------------------------------
+
+//@import 'structures/buttons'
+//@import 'structures/form'
+//@import 'structures/carousel'
+//@import 'structures/sections'
+//@import 'structures/article'
+
+// -------------------------------------
+//   Components
+// -------------------------------------
+
+// General
+@import 'components/header'
+//@import 'components/home'
+//@import 'components/articles'
+//@import 'components/offer'
+@import 'components/footer'
+//@import 'components/popups'
+
+// -------------------------------------
+// Project structure / Extends
+// -------------------------------------
+
+header.main
+  @extend %header
+footer.main
+  @extend %footer
+
+
+// -------------------------------------
+// Inbox
+// -------------------------------------
+

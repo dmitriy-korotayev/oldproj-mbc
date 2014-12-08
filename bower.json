@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "null",
+  "version": "0.0.0",
+  "license": "",
+  "license_description": "No license yet - read through, learn, but ask for permission",
+
+  "description": "",
+
+  "authors": [
+    "Dmitriy Korotayev <korotayev.dmitriy@gmail.com>"
+  ],
+
+  "dependencies": {
+    "normalize-css": "~3.0.2",
+    "jquery": "~2.1.1",
+    "carouFredSel": "~6.2.1"
+  },
+  "devDependencies": {
+    "scut": "~1.0.1"
+  },
+
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

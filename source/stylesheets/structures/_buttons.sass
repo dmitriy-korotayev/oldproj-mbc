@@ -1,0 +1,75 @@
+// -buttons
+%button 
+  display: block
+  cursor: pointer
+  margin: 2px 0 10px
+
+  border: 1px solid #ccc
+  border-bottom-color: #bbb
+  border-radius: 5px
+
+  padding: 8px 14px 8px 14px
+
+  text-align: center
+  font-family: $b-fontFamily--cond
+  line-height: 16px
+  font-size: 16px
+  text-decoration: none
+
+  color: #fff
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.35)
+
+  box-shadow: rgba(51, 51, 51, 0.35) 0 0 2px
+
+  &:hover 
+    text-decoration: none
+    color: #fff
+
+    background-position: 0 -15px
+  &:active 
+    box-shadow: rgba(0,0,0,0.25) 0 2px 4px inset, rgba(0,0,0,0.05) 0 1px 2px
+
+  &.green 
+    border-color: #6fa907 #6fa907 #3f6004
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) fade-in(rgba(0,0,0,0.1), .15)
+
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25)
+
+    background-color: #6fa907
+    background-repeat: repeat-x
+    background-image: linear-gradient(#8fc233,#6fa907)
+  &.light-gray 
+    border-color: #c2c2c2 #c2c2c2 #9c9c9c
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) fade-in(rgba(0,0,0,0.1), .15)
+
+    color: #666666
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25)
+
+    background-color: #c2c2c2
+    background-repeat: repeat-x
+    background-image: linear-gradient(#e8e8e8, #c2c2c2)
+  &.light-blue 
+    border-color: #82afd0 #82afd0 #4a8bbb
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) fade-in(rgba(0,0,0,0.1), .15)
+
+    color: #fff
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25)
+
+    background-color: #82afd0
+    background-repeat: repeat-x
+    background-image: linear-gradient(#a7c7de, #82afd0)
+
+    &:hover 
+      color: #006391
+
+  //&.medium 
+    
+  &.xlarge 
+    border-radius: 6px
+
+    padding: 12px 17px 12px
+
+    line-height: normal
+    font-size: 18px
+    letter-spacing: 2px
+

@@ -1,0 +1,123 @@
+// *************************************
+//
+//   Helpers
+//   -> Extends, Functions, Mixins, Animations
+//
+// *************************************
+
+// -------------------------------------
+//   Functions
+// -------------------------------------
+
+// ----- Em ----- //
+// -> Converts pixel value to an em
+//
+// $target - the target pixel size
+// $context - the context font-size
+
+@function em($target, $context: $b-fontSize)
+  @if ($target == 0)
+    @return 0
+  @else
+    @return ($target / $context) * 1em
+
+
+// ----- Rem ----- //
+// -> Converts pixel value to a rem
+// $target - the target pixel size
+// $context - the context font-size
+
+@function rem($target, $context: $b-fontSize)
+  @return #{$target / $context}rem
+
+
+// ----- RPx ----- //
+// -> Converts rem value to a px
+// $target - the target rem size
+// $context - the context font-size
+
+@function rpx($target, $context: $b-fontSize)
+  @return #{$target * $context}
+
+
+// -------------------------------------
+//   Mixins
+// -------------------------------------
+
+// ----- Respond-to ----- //
+// -> Generates a media query
+//
+// $val - the breakpoint size
+// $query - the type of query ('min-width', 'max-width')
+// $media - the media type ('screen', 'print', etc.)
+// @content - the generated content within the mixin
+
+=respond-to($val, $query: max-width, $media: screen)
+  @media #{$media} and ($query: $val)
+    @content
+
+
+// ----- Better sprite ----- //
+// -> Generates a sprite from compass sprite map, automatically
+//    adding its width, height and possible negative margins
+// $map - sprite map variable
+// $sprite - sprite name
+// $parent-width - parent width for horizontal centering (optional)
+// $parent-height - parent height for vertical centering (optional)
+// $xoffset - horizontal offset in pixels (optional)
+// $yoffset - vertical offset in pixels (optional)
+// @content - additional content for the sprite container
+
+=bsprite($map, $sprite, $parent-width: nil, $parent-height: nil, $xoffset: 0px, $yoffset: 0px)
+  $width: image-width(sprite-file($map, $sprite))
+  $height: image-height(sprite-file($map, $sprite))
+
+  background-image: sprite-url($map)
+  background-position: sprite-position($map, $sprite)
+
+  @if $parent-width  != nil
+    margin-left: ($parent-width  - $width) / 2 + $xoffset
+  @if $parent-height != nil
+    margin-top:  ($parent-height - $height) / 2 - $yoffset
+    
+  width: $width
+  height: $height
+
+  @content
+
+
+// -------------------------------------
+//   Extends
+// -------------------------------------
+
+// ----- Debug ----- //
+
+.debug, %debug
+  background-color: pink !important
+
+
+// ----- Ellipsis ----- //
+
+.ellipsis, %ellipsis
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+
+// ----- Image Replacement ----- //
+
+.ir, %ir
+  background-color: transparent
+  border: 0
+  overflow: hidden
+  &::before
+    content: ''
+    display: block
+    width: 0
+    height: 150%
+
+
+// -------------------------------------
+//   Animations
+// -------------------------------------
+
