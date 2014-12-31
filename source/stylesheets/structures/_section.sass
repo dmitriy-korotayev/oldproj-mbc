@@ -1,0 +1,18 @@
+%section
+  background: $c-background
+  >h1
+    overflow: hidden
+    margin: 0
+    padding: .5em $b-padding-x .3em
+    text-align: center
+    font-size: 1.875em
+    font-weight: 300
+    +respond-to(tablet)
+      font-size: 3em
+    +respond-to(desktop)
+      padding-top: 1.375em
+      font-size: 3.5em
+  ul.items
+    @extend %scut-list-unstyled
+    @extend %scut-clearfix
+

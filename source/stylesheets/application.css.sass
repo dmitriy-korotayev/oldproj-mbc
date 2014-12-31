@@ -1,6 +1,6 @@
 // *************************************
 //
-//   Modified MVCSS v4.0.2 
+//   Modified MVCSS v4.0.2
 //   stylesheet structure
 //
 // *************************************
@@ -16,6 +16,7 @@
 // -------------------------------------
 
 @import foundation/globals
+@import foundation/base
 
 // -------------------------------------
 //   Config-dependent requirements
@@ -39,30 +40,33 @@
 //   Structures
 // -------------------------------------
 
-//@import 'structures/buttons'
-//@import 'structures/form'
-//@import 'structures/carousel'
-//@import 'structures/sections'
-//@import 'structures/article'
+@import structures/plugin_js-breakpoints
 
 // -------------------------------------
 //   Components
 // -------------------------------------
 
 // General
-@import 'components/header'
-//@import 'components/home'
-//@import 'components/articles'
-//@import 'components/offer'
-@import 'components/footer'
-//@import 'components/popups'
+@import components/sidebar
+@import components/header
+@import components/footer
 
 // -------------------------------------
 // Project structure / Extends
 // -------------------------------------
 
+html
+  +s-plugin_js-breakpoints
+  @extend %sidebar-global
+  @extend %header-global--headroom
+  @extend %footer-global
+aside.main
+  @extend %sidebar
 header.main
   @extend %header
+  @extend %header--headroom
+.wrapper>section.social
+  display: none
 footer.main
   @extend %footer
 

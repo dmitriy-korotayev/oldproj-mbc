@@ -6,30 +6,27 @@
 // *************************************
 
 // -------------------------------------
-//   @font-face
-// -------------------------------------
-
-+scut-font-face('dinpro', font-url('dinpro-light'),   300)
-+scut-font-face('dinpro', font-url('dinpro-regular'), 400)
-+scut-font-face('dinpro', font-url('dinpro-medium'),  500)
-+scut-font-face('dinpro', font-url('dinpro-bold'),    700)
-
-// -------------------------------------
-//   Variables
-// -------------------------------------
-
-// -------------------------------------
 //   Colors
 // -------------------------------------
 
 // ----- Palette ----- //
 
-// TODO
+$black:     #141414
+$gray:      #40d3c4
+$white:     #fff
+$blue:      #002f5f
+$blue-palette: (#002f5f #083d72 #124a82 #1f578f #2d659c #366da3 #4479ac #4f84b6 #5f91c1 #6a9ac8)
 
 // ----- General ----- //
 
-$c-base: #535353
-$c-link: #0053c9
+$c-base:          $black
+$c-base--i:       $white  // inverse
+$c-base--m:       $gray   // moderate/mild
+$c-background:    $white
+$c-background--h: $blue   // highlighted
+$c-background--h-palette: $blue-palette
+$c-background--i: $black  // inverse
+$c-link:          $c-base
 
 // ----- Components ----- //
 
@@ -39,32 +36,42 @@ $c-link: #0053c9
 //   Base
 // -------------------------------------
 
-// ----- Sprites ----- //
+// ----- Typography ----- //
 
-//$sm-common: sprite-map('sprites/common/*.png')
+$b-fontFamily: dinpro
+$b-fontSize: 16px
+$b-lineHeight: 1.5
 
 // ----- Borders & Box Shadow ----- //
 
-$b-borderWidth: 1px 
-$b-borderStyle: solid 
+$b-borderWidth: 1px
+$b-borderStyle: solid
 $b-border: $b-borderWidth $b-borderStyle $c-base
 $b-borderRadius: 3px
 $b-textShadow: 1px 1px 3px rgba($c-base,.25)
 $b-boxShadow: 0 2px 0 rgba($c-base, 0.25)
 
-// ----- Typography ----- //
-
-$b-fontFamily: Helvetica, Arial, sans-serif
-$b-fontFamily--narrow: 'PT Sans Narrow', 'PT Sans Narrow-local'
-$b-fontFamily--cond: 'Open Sans Condensed', 'Open Sans Condensed-local'
-$b-fontSize: 16px
-$b-lineHeight: 1.5
-
 // ----- Sizing ----- //
 
 $b-minWidth: em(320px)
 $b-maxWidth: em(2560px)
-$b-frameWidth: 1220px
+$b-maxWidth--frame: em(1000px)
+
+// ----- Breakpoints ----- //
+
+$b-b:   em(768px)  // tablets+
+$b-b-d: em(1024px) // desktops+
+$breakpoints: (tablet: $b-b, desktop: $b-b-d)
+
+// ----- Padding ----- //
+
+$b-padding-x: em(10px)
+$b-padding: 0 $b-padding-x
+
+// ----- Sprites ----- //
+
+$sm-common: sprite-map('sprites/common/*.png')
+$sm-home: sprite-map('sprites/home/*.png')
 
 // -------------------------------------
 //   Components
@@ -77,3 +84,4 @@ $b-frameWidth: 1220px
 // -------------------------------------
 
 // ...
+

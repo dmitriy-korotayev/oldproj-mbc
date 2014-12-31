@@ -1,0 +1,59 @@
+article.about
+  header
+    .image style="background-image: url(#{image_path('articles/about.jpg')})"
+    .text
+      h1 Par Mūkusalas biznesa centru
+      p Mūkusalas Biznesa Centrs ir lielākais biznesa centrs Rīgā ar kopējo iznomāto telpu platību 20,000 m2 apmērā. Mūkusalas Biznesa Centrs aizņem 5 hektāru lielu platību Daugavas kreisajā krastā, starp Mūkusalas un Jelgavas ielām. Uzņēmums nodrošina kvalitatīvu tehnisko infrastruktūru veiksmīgai biroju centra darbībai.
+      p Mūkusalas Biznesa centra pakalpojumus izmanto vairāk kā 70 uzņēmumi, kā nozīmīgākos minot, Tele2, Itella, Latvijas Pasts, Unicredit Līzings un LR Tiesu Administrācija.
+  section.services
+    h1 Pakalpojumi
+    ul.items
+      - ['Biroja telpu un noliktavu noma', 'Telpu apsaimniekošana',
+        'Telpu pārkārtošana un pārplānojums', 'Telpu remonts un apdare',
+        'Mēbeles Jūsu birojam'].each_with_index do |title, i|
+        li
+          .background style="background-image: url(#{image_path("about/services/#{i+1}.jpg")})"
+          span.title= title
+  section.advantages
+    ul.items
+      -{infrastructure: 'Biznesam piemērota vieta<br>un infrastruktūra',
+      car: 'Milzīga autostāvvieta<br>Jums un Jūsu klientiem',
+      professional: 'Profesionālā atteiksme<br>un atsaucīgums',
+      handshake: 'Iespēja sadarboties ar vairāk<br>nekā 100 nominiekiem',
+      room: 'Brīvs telpu plānojums',
+      buildings: '5 rekonstruētas ēkas',
+      camera: 'Ventilācija, kondicionēšana, videnovērošana',
+      measures: 'Telpas no 120 m2 līdz 2000 m2',
+      projector: 'Konferenču telpas un aprīkojums',
+      guard24: 'Diennakts apsardze un novērošana',
+      }.each do |c, text|
+        li
+          i class=c
+          span= text
+  section.about
+    = partial 'sections/about'
+  section.history
+    h1 Vēsture
+    .contents
+      ul.years
+        - %w(2014 2013 2012 2011 2010).each do |year|
+          li: a href="#"= year
+      .achievements
+        - %w(2014 2013 2012 2011 2010).each do |year|
+          - 3.times do |i|
+            .item
+              .date= "10.0#{i+1}.#{year}"
+              h2.title Uzbūvētā jaunā A klases
+              .description
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et
+      .timeline
+  section.statement
+    header
+      .background style="background-image=url(#{image_path("about/statement/1.jpg")})"
+      h1 MBC direktores uzruna
+      h2 Vārds Uzvārds
+    .contents
+      p "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+      = link_to 'Izvēlēties telpu', '#', class: 'button'
+  section.contact-us
+    = partial 'sections/contact-us'

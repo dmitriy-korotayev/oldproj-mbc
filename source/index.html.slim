@@ -1,11 +1,13 @@
 article.home
   section.intro
     .items
-      - 3.times do
+      - 3.times do |i|
         .item
+          .background style="background-image: url(#{image_path("home/intro/#{i+1}.jpg")})"
           .top
-            h1 Vispiemērotaka vieta Jūsu viznesa attīstībai
-            p  Jebkura veida un lieluma telpas vienā no lielākajuem biznesa centriem
+            .logo= image_tag 'logo--v.svg', alt: 'Logo'
+            h1 Vispiemērotaka vieta Jūsu biznesa attīstībai
+            p Jebkura veida un lieluma telpas<br>vienā no lielākajuem biznesa centriem
           .bottom
             p
               ' Ir pieejamas
@@ -14,58 +16,46 @@ article.home
             = link_to 'Izvēlēties telpu', '#', class: 'button'
   section.advantages
     ul.items
-      li
-        i.infrastructure
-        span Biznesam piemērota vieta un infrastriktūra
-      li
-        i.auto
-        span Milzīga autostāvvieta Jums un Jūsu klientiem
-      li
-        i.professional
-        span Profesionālā atteiksme un atsaucīgums
-      li
-        i.handshake
-        span Iespēja sadarboties ar vairāk nekā 100 nominiekiem
+      -{infrastructure: 'Biznesam piemērota vieta<br>un infrastruktūra',
+      car: 'Milzīga autostāvvieta<br>Jums un Jūsu klientiem',
+      professional: 'Profesionālā atteiksme<br>un atsaucīgums',
+      handshake: 'Iespēja sadarboties ar vairāk<br>nekā 100 nominiekiem',
+      }.each do |c, text|
+        li
+          i class=c
+          span= text
   section.numbers
     ul.items
       li
-        span> 11
-        | ēkas biznesam
+        span.number 11
+        span.text ēkas biznesam
       li
-        span> 1000
-        | autostāvvietas
+        span.number 1000
+        span.text autostāvvietas
       li
-        span>
-          ' 20000
-          sub m2
-        | ēkas biznesam
+        span.number
+          | 20000
+          sub  m2
+        span.text kopēja platība
       li
-        span> 100+
-        | nominieki
+        span.number 100+
+        span.text nominieki
   section.clients
-    h1 Attīsties kopā ar mūsu kientiem
+    h1 Attīsties kopā ar mūsu klientiem
     ul.items
       - {hilti: 'Hilti', yit: 'YIT', delfi: 'DELFI', tele2: 'TELE2',
-        vitra: 'Vitra', bostik: 'Bostik'}.each do |title,name|
+        vitra: 'Vitra', bostik: 'Bostik'}.each do |name,title|
         li= link_to '#' do
-          = image_tag "clients/#{name}.png", alt: title
+          = image_tag "sections/clients/#{name}.png", alt: title
   section.about
-    .image
-    .text
-      h1 Mūsu vērtības un vēsture
-      p= lorem.sentences 3
-      = link_to 'lasīt tālāk', '#'
-    .text
-      h1 MBC Attīstība
-      p= lorem.sentences 3
-      = link_to 'lasīt tālāk', '#'
-    .image
+    = partial 'sections/about'
   section.reviews
+    h1 Atsauksmes
     .items
-      - 5.times do
-        .person
-          .image
-          .name Jānis Bērziņš
-          .description Tele2 biroja vadītājs
-        .review
-          p "Attīstīta infrastruktūra ­ stāvvieta klientiem, ērta satiksme, vienkārša piegāde ar lielām loģistikas kravas automašīnām"
+      - 5.times do |i|
+        .item
+          = image_tag 'home/reviews/1.jpg'
+          h2.name Jānis Bērziņš,
+          h3.description Tele2 biroja vadītājs
+          .review
+            p "Attīstīta infrastruktūra ­ stāvvieta klientiem, ērta satiksme, vienkārša piegāde ar lielām loģistikas kravas automašīnām"

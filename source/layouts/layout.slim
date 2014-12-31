@@ -23,20 +23,23 @@ html
     = javascript_include_tag path if javascript_exists? path
 
   body
+    = partial :shared
     /[if lte IE 8]
       .outdated
-        You are using an
-        strong outdated
-        browser. Please
-        a href="http://browsehappy.com/" upgrade your browser
-        to improve your experience.
+        ' You are using an
+        strong> outdated
+        ' browser. Please
+        a> href="http://browsehappy.com/" upgrade your browser
+        | to improve your experience.
+
+    aside.main= partial :sidebar
 
     .wrapper
       header.main
         = partial :header
-
       =yield
-
+      section.social
+        = partial 'sections/social'
       footer.main
         = partial :footer
 

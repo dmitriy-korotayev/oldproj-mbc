@@ -1,0 +1,13 @@
+- content_for :links do
+  - {\
+      spaces: 'Ēkas un telpas',
+      location: 'Ātrašanas vieta un infrastruktūra',
+      clients: 'Nominieki',
+      news: 'Jaunumi',
+      about: 'Par MBC',
+    }.each do |name,title|
+    = link_to title, "#{name}.html", title: title
+
+- content_for :languages do
+  - %w(LV RU EN).each do |language|
+    = link_to language, '#', alt: language

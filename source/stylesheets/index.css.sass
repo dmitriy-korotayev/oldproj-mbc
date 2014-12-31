@@ -1,0 +1,498 @@
+@import foundation/globals
+@import slick.js/slick/slick
+
+// -------------------------------------
+//   Structures
+// -------------------------------------
+
+
+// -------------------------------------
+//   Components
+// -------------------------------------
+
+=section-intro-tablet
+  height: 550px
+  text-align: left
+  .item .top
+    margin: 70px auto 0
+    max-width: $b-maxWidth--frame * .6
+    overflow: hidden
+    .logo
+      display: block
+      float: left
+      width: 26.75%
+      height: 158px // est. h1 2 lines + p 2 lines
+      padding-left: 3%
+      img
+        max-height: 100%
+    h1, p
+      margin-left: 26.75%
+    h1
+      margin-top: -.25em
+      font-size: 2.5em
+    p
+      margin-top: .75em
+      font-size: 1.5em
+  .item .bottom
+    $height: 82px
+    margin: 100px auto 0
+    max-width: $b-maxWidth--frame * .895
+    height: $height
+    overflow: hidden
+    p
+      float: left
+      width: 47%
+      font-size: 1.625em
+      height: $height
+      line-height: $height*.75
+      strong
+        margin: 0 .125em
+    a.button
+      float: right
+      margin: 0 6.5% 0 2.5%
+      border-width: 5px
+      width: 44%
+      height: 100%
+      line-height: $height - 10px
+      font-size: 2.125em
+      font-weight: 500
+
+=section-advantages-tablet
+  height: 270px
+  ul.items, li
+    height: 100%
+  li
+    width: 25%
+    float: left
+    &:nth-child(n)
+      &:before, &:after
+        height: $s-border-sloppy-height--tablet
+        top: -$s-border-sloppy-height--tablet
+    &:nth-child(1), &:nth-child(n+4) // 1,4,5,6,7,8 - no sloppy border
+      &:before
+        width: 100%
+        background: inherit
+      &:after
+        display: none
+    &:nth-child(2)
+      &:before
+        width: 100%
+      &:after
+        display: none
+    &:nth-child(3)
+      &:before
+        display: none
+      &:after
+        width: 100%
+  li span
+    margin-top: 1.75em
+    line-height: 1.375
+    font-size: 1.25em
+  i
+    margin-top: 23px
+    @each $i in (infrastructure car professional handshake)
+      &.#{$i}:after
+        +bsprite($sm-home, "advantages-#{$i}-desktop")
+
+=section-numbers-tablet
+  +border-sloppy--hide
+  li
+    width: 25%
+    height: 75px
+    padding-top: 4px
+    &:after
+      top: 15px
+    &:nth-child(4n+2):after
+      display: block
+    span.number
+      font-size: 3.25em
+
+=section-clients-tablet
+  +border-sloppy($c-background--i)
+  +border-sloppy--mirrored($c-background--i)
+  +border-sloppy--inside
+  &:before, &:after
+    width: 25%
+  &:before
+    left: 25%
+  &:after
+    right: 25%
+
+
+  height: 360px
+  padding-top: $s-border-sloppy-height--tablet
+  ul.items
+    +carousel-arrows
+    margin-top: 65px
+    padding: 0 50px
+    text-align: center
+  li
+    display: inline-block
+    float: none
+    margin: 0 30px
+    width: auto
+    img
+      display: inline-block
+
+=section-about-tablet
+  +border-sloppy($c-background--i, both, top)
+  +border-sloppy--mirrored($c-background--i, both, top)
+  +border-sloppy--inside(top)
+  &:before, &:after
+    display: none
+
+
+  background: none
+  height: 450px
+  padding-bottom: 0
+  .items, .items>div, .items .image .background
+    height: 100%
+  .items
+    padding-bottom: 0
+  $item-width: 25%
+  .items>div
+    width: $item-width
+  .items .image, .items .text
+    &:nth-child(n)
+      top: 0
+      &:before, &:after
+        display: none
+  .items .text
+    padding: $s-border-sloppy-height--tablet $item-width*.1 0 $item-width*.08
+    &:nth-child(2)
+      $background: nth($c-background--h-palette, 1)
+      background: $background
+      &:before
+        display: block
+      +border-sloppy($c-background, left, top)
+      +border-sloppy--mirrored($c-background, left, top)
+      +border-sloppy--inside(top)
+      +border-sloppy($background, right, bottom)
+    &:nth-child(3)
+      $background: nth($c-background--h-palette, 6)
+      background: $background
+      &:before
+        display: block
+      +border-sloppy($c-background, right, top)
+      +border-sloppy--mirrored($c-background, right, top)
+      +border-sloppy--inside(top)
+      +border-sloppy($background, left, bottom)
+    h1
+      margin-top: .875em
+      font-size: 1.75em
+      font-weight: 300
+      line-height: 1.125
+    p
+      margin-top: 1.55em
+      height: 1em * 1.375 * 10 // lines
+      overflow: hidden
+      line-height: 1.375
+      font-size: 1em
+    a
+      margin-top: 1em
+      font-size: 1em
+      font-weight: normal
+
+=section-reviews-tablet
+  padding-top: 30px
+  $item-width: empx($b-maxWidth--frame * 1.2 / 3)
+  .items
+    margin: 15px auto 0
+    text-align: center
+    +carousel-arrows-centered($item-width, -20px)
+  .item
+    display: inline-block
+    width: $item-width
+    padding: 0 40px
+    h2.name
+      margin-top: .3em
+      font-size: 1.375em
+    h3.description
+      font-size: 1.25em
+    .review
+      margin-top: .875em
+    .review p
+      margin: 0 auto
+      width: 300px
+      line-height: 1.675
+      text-align: justify
+      font-size: 1em
+
+
+%section-intro
+  overflow: hidden
+  height: 360px
+  text-align: center
+  .items
+    height: 100%
+  .item
+    position: relative
+    overflow: hidden
+    height: 100%
+    padding: $b-padding
+    background: $c-background--h
+    color: $c-base--i
+    .background
+      +scut-absolute(0 0 0 0)
+      opacity: .6
+      background-position: center center
+      background-size: cover
+    .top, .bottom
+      position: relative
+    .top
+      height: 205px
+      .logo
+        display: none
+      h1
+        margin: .45em 0 0
+        line-height: 1.15
+        font-size: 1.625em
+      p
+        margin: .6em 0 0
+        font-size: .95em
+        line-height: 1.35
+    .bottom
+      p
+        margin: 0
+        font-size: 1.2em
+        strong
+          font-size: 2.25em
+      a.button
+        display: block
+        margin: 0 16px
+        border: 3px solid $c-base--m
+        height: 56px
+        line-height: 50px
+        background: rgba($c-background--i, .4)
+        color: $c-base--m
+        text-align: center
+        text-transform: uppercase
+        font-size: 1.5em
+        &:hover
+          text-decoration: none
+          background: rgba($c-background--i, .7)
+
+  +respond-to(tablet)
+    +section-intro-tablet
+  +respond-to(desktop)
+    height: 815px
+    .item .bottom
+      margin-top: 375px
+
+%section-advantages
+  text-align: center
+  color: $c-base--i
+  li
+    padding: 12px 20px 20px
+    // fill
+    $palette: 1 2 4 6
+    @for $i from 1 through length($palette)
+      $color: nth($c-background--h-palette, nth($palette, $i))
+      &:nth-child(#{$i})
+        background-color: $color
+        +border-sloppy($color)
+    span
+      display: block
+      margin-top: .75em
+      line-height: 1.125
+  i
+    display: block
+    @each $i in (infrastructure car professional handshake)
+      &.#{$i}:after
+        display: block
+        margin: 0 auto
+        +bsprite($sm-home, "advantages-#{$i}")
+        content: ''
+  +respond-to(tablet)
+    +section-advantages-tablet
+  +respond-to(desktop)
+    li span
+      font-size: 1.625em
+      text-decoration: underline
+
+%section-numbers
+  +border-sloppy($c-background--i)
+  background: $c-background--i
+  padding-bottom: 10px
+  color: $c-base--i
+  text-align: center
+  li
+    position: relative
+    float: left
+    margin: 10px 0 12px
+    padding: 2px 5px
+    width: 50%
+    height: 64px
+    line-height: 1
+    &:after
+      +scut-absolute(0 0 n n)
+      transform: rotate(15deg)
+      display: block
+      width: 1px
+      height: 64px
+      background: rgba($c-base--i, .20)
+      content: ''
+    &:nth-child(2n):after
+      display: none
+    span
+      display: block
+      overflow: hidden
+      height: 1em
+    span.number
+      font-size: 2.375em
+      font-weight: 300
+      sub
+        bottom: 0
+        font-size: .5em
+    span.text
+      margin-top: .25em
+  +respond-to(tablet)
+    +section-numbers-tablet
+
+%section-clients
+  +border-sloppy($c-background)
+  text-align: center
+  padding: 5px $b-padding-x 20px
+  li
+    float: left
+    width: 50%
+    height: 55px
+    line-height: 55px
+    img
+      vertical-align: middle
+  +respond-to(tablet)
+    +section-clients-tablet
+  +respond-to(desktop)
+    height: 410px
+
+%section-about
+  +border-sloppy($c-base--i)
+  +border-sloppy--mirrored($c-base--i)
+  +border-sloppy--inside
+  background: $c-background--h
+  color: $c-base--i
+  padding-bottom: $s-border-sloppy-height
+  .items
+    @extend %scut-clearfix
+    padding-bottom: $s-border-sloppy-height*2
+  .items>div
+    position: relative
+    float: left
+    width: 50%
+    height: 244px
+  .items .image
+    .background
+      width: 100%
+      height: 244px + $s-border-sloppy-height*3
+      background-size: cover
+    &:nth-child(1)
+      position: static
+  .items .text
+    z-index: 1
+    top: $s-border-sloppy-height
+    padding: 8px $b-padding-x 5px 16px
+    background: $c-background--h
+    &:nth-child(2n)
+      +border-sloppy($c-background--h, right)
+      +border-sloppy($c-background--h, left, bottom)
+    &:nth-child(2n+1)
+      top: $s-border-sloppy-height*2
+      +border-sloppy($c-background--h, left)
+    h1
+      overflow: hidden
+      margin: 0
+      height: 2em * 1.2
+      font-size: 1.25em
+      font-weight: normal
+    p
+      overflow: hidden
+      margin-bottom: .875em
+      height: 8em * 1.3
+      line-height: 1.35
+      font-size: .825em
+    a
+      display: block
+      float: left
+      border-bottom: 1px solid $c-base--i
+      color: $c-base--i
+      font-size: .8em
+      font-weight: 700
+      line-height: 1
+      &:hover
+        border-bottom: none
+  +respond-to(tablet)
+    +section-about-tablet
+  +respond-to(desktop)
+    height: 515px
+    .items .text h1
+      font-size: 2.5em
+
+%section-reviews
+  +border-sloppy($c-background)
+  $item-width: 200px
+  .items
+    @extend %carousel-arrows
+    +carousel-arrows-centered($item-width, 20px)
+    margin-bottom: 0
+    height: 320px + 12px
+    overflow: hidden // temporary
+    padding: 12px $b-padding-x 0
+    .slick-slide img
+      display: inline-block
+  .item
+    width: 200px
+    margin: 0 60px
+    text-align: center
+    opacity: .2
+    transition: opacity 1s
+    &.slick-active
+      opacity: 1
+    img
+      width: 90px
+      height: 90px
+    h2.name
+      margin: .4em 0 0
+      overflow: hidden
+      height: 1.25em
+      text-transform: uppercase
+      font-size: 1.25em
+      font-weight: 700
+    h3.description
+      margin: 0
+      overflow: hidden
+      height: 1.125em
+      font-size: 1.125em
+      font-weight: 300
+    .review
+      overflow: hidden
+      margin: .75em 0 0
+      height: .875em * 1.45 * 8 // 8 lines
+    .review p
+      margin: 0
+      line-height: 1.45
+      text-align: justify
+      font-size: .875em
+  +respond-to(tablet)
+    +section-reviews-tablet
+  +respond-to(desktop)
+    padding-top: 0
+    &:before, &:after
+      display: none
+
+
+// -------------------------------------
+// Project structure / Extends
+// -------------------------------------
+
+article.home
+  section
+    @extend %section
+  @each $section in (intro advantages numbers clients about reviews)
+    section.#{$section}
+      @extend %section-#{$section}
+
+
+// -------------------------------------
+// Inbox
+// -------------------------------------
+

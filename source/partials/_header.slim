@@ -1,34 +1,16 @@
-aside
+.inner
+  .sidebar-toggle: a href="#"
+
   .logo
     = link_to 'index.html' do
-      = image_tag 'logo.png', alt: 'Logo'
+      = image_tag 'logo.svg', alt: 'Logo'
   nav
-    = yield_content :header_links
-  .languages
-    = yield_content :header_languages
-  .desktop
-    = link_to 'WWW versija', '#'
-
-.sidebar-toggle > a href="#"
-
-.logo
-  = link_to 'index.html' do
-    = image_tag 'logo.png', alt: 'Logo'
-nav
-  = yield_content :header_links
-.language
-  = yield_content :header_languages
-.contacts
-  address Rīga, Mūkusala 41B
-  .phone
-    a href="tel:+371267845845" +371 267-845-845
-
-
-- content_for :header_links do
-  - ['Ēkas un telpas', 'Ātrašanas vieta un infrastruktūra',
-    'Nominieki', 'Jaunumi', 'Par MBC'].each do |title|
-    = link_to title, '#', title: title
-
-- content_for :header_languages do
-  - %w(LV RU EN).each do |language|
-    = link_to language, '#', alt: language
+    = yield_content :links
+  .contacts
+    address Rīga, Mūkusala 41B
+    .phone
+      a href="tel:+371267845845"
+        ' +371
+        strong 267-845-845
+  .language
+    = yield_content :languages

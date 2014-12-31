@@ -1,0 +1,5 @@
+@import js-breakpoints/breakpoints.scss
+=s-plugin_js-breakpoints
+  @each $name,$breakpoint in $breakpoints
+    +respond-to($name)
+      +defineBreakpoint("#{$name}")

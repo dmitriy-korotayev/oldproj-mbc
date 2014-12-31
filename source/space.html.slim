@@ -1,0 +1,37 @@
+article.space
+  header
+    = image_tag 'articles/space.jpg'
+    .text
+      h1 Ēka 3
+      p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  section.numbers
+    ul.items
+      li
+        span.number 1000
+        span.text autostāvvietas
+      li
+        span.number
+          | 20000
+          sub  m2
+        span.text kopēja platība
+      li
+        span.number 100+
+        span.text nominieki
+  section.advantages
+    ul.items
+      -{infrastructure: 'Biznesam piemērota vieta<br>un infrastruktūra',
+      room: 'Brīvs telpu plānojums',
+      guard24: 'Diennakts apsardze un novērošana',
+      camera: 'Ventilācija, kondicionēšana, videnovērošana',
+      projector: 'Konferenču telpas un aprīkojums',
+      }.each do |c, text|
+        li
+          i class=c
+          span= text
+    = link_to 'Izvēlēties telpu', '#', class: 'button'
+    .social
+      a.like  href="#"
+      a.share href="#"
+      a.send  href="#" Sūtīt draugam
+  section.contact-us
+    = partial 'sections/contact-us'

@@ -1,0 +1,54 @@
+article.spaces
+  header
+    = image_tag 'articles/spaces.jpg'
+    .text
+      h1 Visspiemērotākas telpas biznesa attīstībai
+      p Mūkusalas Biznesa Centrs ir lielākais biznesa centrs Rīgā ar kopējo iznomāto telpu platību 20,000 m2 apmērā. Mūkusalas Biznesa Centrs aizņem 5 hektāru lielu platību Daugavas kreisajā krastā, starp Mūkusalas un Jelgavas ielām. Uzņēmums nodrošina kvalitatīvu tehnisko infrastruktūru veiksmīgai biroju centra darbībai.
+  section.spaces
+    h1
+      ' Brīvas telpas
+      strong (22)
+    .filter
+      select name="filter" id="filter"
+        option value="0" disabled=true selected=true Radīt Ēkas
+        option value="1" Value 1
+        option value="2" Value 2
+        option value="3" Value 3
+      select name="filter" id="filter"
+        option value="0" disabled=true selected=true Sakārtot
+        option value="1" Value 1
+        option value="2" Value 2
+        option value="3" Value 3
+    .items
+      - 5.times do |i|
+        .item
+          = image_tag "spaces/1.jpg"
+          ul.info
+            li.area
+              .number 200
+              .unit
+                ' m
+                sup 2
+            li.price
+              .number 8
+              .unit
+                ' &euro;/m
+                sup 2
+            li.building
+              .number 2
+              .unit ēka
+          ul.extra
+            li
+              .number 3
+              .text stāvs
+            li
+              .number 7
+              .text autostāvvieta
+            li
+              .check
+              .text mēbeles
+            li
+              .check
+              .text pārlukošana
+  section.contact-us
+    = partial 'sections/contact-us'

@@ -1,0 +1,9 @@
+.logo
+  = link_to 'index.html' do
+    = image_tag 'logo.svg', alt: 'Logo'
+nav
+  = yield_content :links
+.languages
+  = yield_content :languages
+.desktop
+  = link_to 'WWW versija', '#'

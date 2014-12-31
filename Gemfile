@@ -4,10 +4,10 @@ source 'http://rubygems.org'
 
 ### General ###
 
-gem 'middleman',            '~>3.3.6'
+gem 'middleman',            '~>3.3.7'
 
 gem 'slim'
-gem 'susy'
+#gem 'susy'
 
 gem 'middleman-livereload', '~> 3.1.0'
 gem 'middleman-autoprefixer'

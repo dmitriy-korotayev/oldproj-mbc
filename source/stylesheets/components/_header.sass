@@ -1,20 +1,114 @@
+$height: 70px
+$background: $c-background--i
 %header
+  background: $background
+  width: 100%
+  height: $height
+  padding: $b-padding
+  &, a
+    color: $c-base--i
+  .inner
+    margin: 0 auto
+    max-width: $b-maxWidth--frame
+    height: 100%
+  .sidebar-toggle, .logo
+    float: left
+    height: 100%
+  .sidebar-toggle
+    margin-right: 20px
+    width: 34px
+    line-height: $height
+    a
+      display: inline-block
+      vertical-align: middle
+      margin-top: -2px
+      +bsprite($sm-common, 'header-sidebar-toggle')
+  .logo
+    padding-top: 12px
+    padding-bottom: 8px
+    height: 100%
+    img
+      height: 100%
+  nav, .language
+    display: none
+  .contacts
+    float: right
+    margin-top: 16px
+    text-align: right
+    font-size: .75em
+    address
+      font-style: normal
+      line-height: 1.2
+      border-bottom: 1px solid currentColor
+    .phone
+      margin-top: 8px
+  +respond-to(desktop)
+    .sidebar-toggle
+      display: none
+    .logo
+      width: 11.5%
+      padding-top: 8px
+      padding-bottom: 10px
+    nav
+      $height: $height * .975
+      display: block
+      float: left
+      margin: 0 1.5%
+      width: 64%
+      height: $height
+      overflow: hidden
+      line-height: $height
+      a
+        display: inline-block
+        margin: 0 .5em
+        height: 100%
+        font-weight: 700
+    .contacts
+      float: left
+      +scut-margin(n .25%)
+      width: 12.5%
+      >*
+        float: left
+        font-size: 1.1em
+      .phone
+        margin-top: 5px
+    .language
+      display: block
+      position: relative
+      float: right
+      margin: $height*.3 2% 0 1%
+      border: 1px solid $c-background
+      background: $c-background--i
+      width: 5.5%
+      $height: $height * .42
+      height: $height
+      $height: $height - 2px
+      overflow: hidden
+      &:after
+        display: block
+        +scut-absolute($height*.35 17% n n)
+        +bsprite($sm-common, 'header-language-arrow')
+        content: ''
+      &:hover
+        height: auto
+      a
+        display: block
+        height: $height
+        padding: 0 45% 0 16.25%
+        line-height: $height
+        font-size: .9em
+
+
+%header--headroom
+  transition: top .5s
+  z-index: 10
   position: fixed
   top: 0
   left: 0
-  z-index: 10
-  box-shadow: rgba(80,80,80,0.75) 0 0px 6px 2px
-  background: #739dbc
-  width: 100%
-  min-width: 1024px
-  height: 70px
-  padding: 0 10px 0 20px
-  .sidebar-toggle
-    float: left
-    height: 100%
-  .logo
-    float: left
-    height: 100%
-    img
-      margin-top: 2px
-      height: 36px
+  &.headroom--unpinned
+    top: -$height
+
+%header-global--headroom
+  .wrapper
+    padding-top: 70px
+    background: $background

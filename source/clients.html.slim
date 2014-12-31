@@ -1,0 +1,25 @@
+article.clients
+  header
+    = image_tag 'articles/clients.jpg'
+    .text
+      h1 Mūsu nominieki
+      p Vairāk nekā miljons iedzīvotāju ir izvēlējušies Tele2 kā savu mobilo sakaru pakalpojumu sniedzēju, padarot Tele2 par vadošo mobilo sakaru operatoru Latvijā balss klientu skaita ziņā.
+  section.clients
+    .filter
+      select name="filter" id="filter"
+        option value="0" disabled=true selected=true Filtrēt
+        option value="1" Value 1
+        option value="2" Value 2
+        option value="3" Value 3
+      input type="text" name="search" id="search" placeholder="Meklēt" value=""
+    .items
+      - {hilti: 'Hilti', yit: 'YIT', delfi: 'DELFI', tele2: 'TELE2',
+        vitra: 'Vitra', bostik: 'Bostik'}.each do |name,title|
+        .item
+          = image_tag "sections/clients/#{name}.png", alt: title
+          = link_to title, '#'
+          .description Mobilo sakaru pakalpojumi
+          address Mukusalas 41b
+          a.phone href="tel:37120020000" +371 200 200 00
+  section.contact-us
+    = partial 'sections/contact-us'

@@ -1,0 +1,23 @@
+=carousel-arrows($side: 0px)
+  .slick-prev
+    left: $side
+    +bsprite($sm-common, 'carousel-arrow-left', nil, 100%)
+  .slick-next
+    right: $side
+    +bsprite($sm-common, 'carousel-arrow-right', nil, 100%)
+  +respond-to(desktop)
+    .slick-prev
+      +bsprite($sm-common, 'carousel-arrow-left--desktop', nil, 100%)
+    .slick-next
+      +bsprite($sm-common, 'carousel-arrow-right--desktop', nil, 100%)
+%carousel-arrows
+  +carousel-arrows
+=carousel-arrows-centered($item-width, $offset)
+  .slick-prev
+    left: auto
+    right: 50%
+    margin-right: $item-width/2 + $offset
+  .slick-next
+    left: 50%
+    right: auto
+    margin-left:  $item-width/2 + $offset

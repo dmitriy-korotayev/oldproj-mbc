@@ -1,9 +1,20 @@
 // *************************************
 //
 //   Base
-//   -> Tag-level and wrapper settings
+//   -> Font includes,
+//      tag-level and wrapper settings
 //
 // *************************************
+
+// -------------------------------------
+//   Fonts
+// -------------------------------------
+
+$font-path: '../fonts'
++scut-font-face('dinpro', "#{$font-path}/dinpro-light"  , 300)
++scut-font-face('dinpro', "#{$font-path}/dinpro-regular", 400)
++scut-font-face('dinpro', "#{$font-path}/dinpro-medium" , 500)
++scut-font-face('dinpro', "#{$font-path}/dinpro-bold"   , 700)
 
 *
   box-sizing: border-box
@@ -23,15 +34,8 @@ body
   min-width: $b-minWidth
   max-width: $b-maxWidth
   min-height: 100%
-.popups
+.modals
   display: none
-
-
-  a 
-    text-decoration: none
-    color: #535353
-    &:hover 
-      color: #739dbc
 
 
 // -------------------------------------

@@ -1,45 +1,40 @@
+$height: 70px
 %footer
   position: absolute
-  right: 0
   bottom: 0
-  left: 0
 
-  height: 45px
-  padding: 10px 25px 10px 40px
+  background: $c-background--i
+  width: 100%
+  height: $height
+  padding: 10px 0
 
-  color: #fff
-  line-height: 25px
-  font-family: $b-fontFamily--cond
+  color: $c-base--i
+  line-height: $height - 10px*2
+  text-align: center
   font-size: .9em
   font-weight: 700
+  nav
+    display: none
+  +respond-to(desktop)
+    .inner
+      margin: 0 auto
+      max-width: $b-maxWidth--frame
+    .copyright, nav
+      float: left
+      font-size: 1.125em
+      font-weight: normal
+    .copyright
+      width: 30%
+      text-align: left
+    nav
+      display: block
+      width: 70%
+      text-align: right
+      a
+        margin-left: 1em
+        color: inherit
 
-  background: #739DBC
-  *
-    float: left
-  nav.pages 
-    margin-left: 20px
-    a 
-      margin-right: 10px
-      font-transform: uppercase
-      color: #fff
-      &:hover 
-        color: #069
-  .social
-    float: right
-    line-height: 25px
-    span 
-      display: block
-      float: left
-      margin-right: 15px
-      font-transform: uppercase
-    a 
-      display: block
-      float: left
-      margin-right: 10px
-      width: 25px
-      height: 25px
-      background: image-url('layout/footer/follow/links.png')
-    a.twitter 
-      background-position: -199px -90px
-    a.facebook 
-      background-position: -50px -90px
+%footer-global
+  .wrapper
+    padding-bottom: $height
+

@@ -1,0 +1,47 @@
+$width: 270px
+%sidebar
+  +scut-fixed(0 n 0 0)
+  background: $c-background--i
+  width: $width
+  padding-left: 25px
+  &, a
+    color: $c-base--i
+
+
+  transition: all .5s
+  transform: translate(-$width, 0)
+  &.active
+    transform: translate(0,0)
+  .logo
+    margin-top: 24px
+    height: 54px
+    img
+      height: 100%
+  nav
+    margin-top: 21px
+  nav a
+    display: block
+    margin-top: 1.3em
+    line-height: 1.125
+    font-size: 1.25em
+  .languages
+    text-align: left
+    margin-top: 25px
+    a
+      display: inline-block
+      border: 1px solid $c-background
+      margin-right: 20px
+      padding: 0 15px
+      line-height: 33px - 2px
+      font-size: 1.2em
+  .desktop
+    display: none
+
+  +respond-to(desktop)
+    display: none
+
+%sidebar-global
+  .wrapper
+    transition: transform .5s
+  body.sidebar-active .wrapper
+    transform: translate($width, 0)

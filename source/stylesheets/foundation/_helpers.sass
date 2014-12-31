@@ -31,13 +31,16 @@
   @return #{$target / $context}rem
 
 
-// ----- RPx ----- //
-// -> Converts rem value to a px
+// ----- px ----- //
+// -> Converts rem/em value to a px
 // $target - the target rem size
 // $context - the context font-size
 
-@function rpx($target, $context: $b-fontSize)
+@function px($target, $context: $b-fontSize)
   @return #{$target * $context}
+
+@function empx($target, $context: $b-fontSize)
+  @return $target / 1em * $context
 
 
 // -------------------------------------
@@ -52,9 +55,10 @@
 // $media - the media type ('screen', 'print', etc.)
 // @content - the generated content within the mixin
 
-=respond-to($val, $query: max-width, $media: screen)
-  @media #{$media} and ($query: $val)
-    @content
+// Deprecated in favor of breakpoint-sass
+//=respond-to($val, $query: max-width, $media: screen)
+  //@media #{$media} and ($query: $val)
+    //@content
 
 
 // ----- Better sprite ----- //
@@ -75,11 +79,18 @@
   background-image: sprite-url($map)
   background-position: sprite-position($map, $sprite)
 
-  @if $parent-width  != nil
+  @if $parent-width  == 100%
+    left: 50%
+    margin-left: -($width/2) + $xoffset
+  @else if $parent-width  != nil
     margin-left: ($parent-width  - $width) / 2 + $xoffset
-  @if $parent-height != nil
+
+  @if $parent-height == 100%
+    top: 50%
+    margin-top: -($height/2) + $xoffset
+  @else if $parent-height != nil
     margin-top:  ($parent-height - $height) / 2 - $yoffset
-    
+
   width: $width
   height: $height
 
@@ -92,13 +103,14 @@
 
 // ----- Debug ----- //
 
-.debug, %debug
-  background-color: pink !important
+$c-debug: pink
+%debug
+  background-color: $c-debug !important
 
 
 // ----- Ellipsis ----- //
 
-.ellipsis, %ellipsis
+%ellipsis
   overflow: hidden
   text-overflow: ellipsis
   white-space: nowrap
@@ -106,7 +118,7 @@
 
 // ----- Image Replacement ----- //
 
-.ir, %ir
+%ir
   background-color: transparent
   border: 0
   overflow: hidden
