@@ -57,43 +57,6 @@
       font-size: 2.125em
       font-weight: 500
 
-=section-advantages-tablet
-  height: 270px
-  ul.items, li
-    height: 100%
-  li
-    width: 25%
-    float: left
-    &:nth-child(n)
-      &:before, &:after
-        height: $s-border-sloppy-height--tablet
-        top: -$s-border-sloppy-height--tablet
-    &:nth-child(1), &:nth-child(n+4) // 1,4,5,6,7,8 - no sloppy border
-      &:before
-        width: 100%
-        background: inherit
-      &:after
-        display: none
-    &:nth-child(2)
-      &:before
-        width: 100%
-      &:after
-        display: none
-    &:nth-child(3)
-      &:before
-        display: none
-      &:after
-        width: 100%
-  li span
-    margin-top: 1.75em
-    line-height: 1.375
-    font-size: 1.25em
-  i
-    margin-top: 23px
-    @each $i in (infrastructure car professional handshake)
-      &.#{$i}:after
-        +bsprite($sm-home, "advantages-#{$i}-desktop")
-
 =section-numbers-tablet
   +border-sloppy--hide
   li
@@ -133,65 +96,6 @@
     width: auto
     img
       display: inline-block
-
-=section-about-tablet
-  +border-sloppy($c-background--i, both, top)
-  +border-sloppy--mirrored($c-background--i, both, top)
-  +border-sloppy--inside(top)
-  &:before, &:after
-    display: none
-
-
-  background: none
-  height: 450px
-  padding-bottom: 0
-  .items, .items>div, .items .image .background
-    height: 100%
-  .items
-    padding-bottom: 0
-  $item-width: 25%
-  .items>div
-    width: $item-width
-  .items .image, .items .text
-    &:nth-child(n)
-      top: 0
-      &:before, &:after
-        display: none
-  .items .text
-    padding: $s-border-sloppy-height--tablet $item-width*.1 0 $item-width*.08
-    &:nth-child(2)
-      $background: nth($c-background--h-palette, 1)
-      background: $background
-      &:before
-        display: block
-      +border-sloppy($c-background, left, top)
-      +border-sloppy--mirrored($c-background, left, top)
-      +border-sloppy--inside(top)
-      +border-sloppy($background, right, bottom)
-    &:nth-child(3)
-      $background: nth($c-background--h-palette, 6)
-      background: $background
-      &:before
-        display: block
-      +border-sloppy($c-background, right, top)
-      +border-sloppy--mirrored($c-background, right, top)
-      +border-sloppy--inside(top)
-      +border-sloppy($background, left, bottom)
-    h1
-      margin-top: .875em
-      font-size: 1.75em
-      font-weight: 300
-      line-height: 1.125
-    p
-      margin-top: 1.55em
-      height: 1em * 1.375 * 10 // lines
-      overflow: hidden
-      line-height: 1.375
-      font-size: 1em
-    a
-      margin-top: 1em
-      font-size: 1em
-      font-weight: normal
 
 =section-reviews-tablet
   padding-top: 30px
@@ -258,19 +162,8 @@
         strong
           font-size: 2.25em
       a.button
-        display: block
         margin: 0 16px
-        border: 3px solid $c-base--m
-        height: 56px
-        line-height: 50px
-        background: rgba($c-background--i, .4)
-        color: $c-base--m
-        text-align: center
-        text-transform: uppercase
-        font-size: 1.5em
-        &:hover
-          text-decoration: none
-          background: rgba($c-background--i, .7)
+        @extend %button
 
   +respond-to(tablet)
     +section-intro-tablet
@@ -279,37 +172,11 @@
     .item .bottom
       margin-top: 375px
 
-%section-advantages
-  text-align: center
-  color: $c-base--i
+%section-advantages-custom
   li
-    padding: 12px 20px 20px
-    // fill
-    $palette: 1 2 4 6
-    @for $i from 1 through length($palette)
-      $color: nth($c-background--h-palette, nth($palette, $i))
-      &:nth-child(#{$i})
-        background-color: $color
-        +border-sloppy($color)
-    span
-      display: block
-      margin-top: .75em
-      line-height: 1.125
-  i
     display: block
-    @each $i in (infrastructure car professional handshake)
-      &.#{$i}:after
-        display: block
-        margin: 0 auto
-        +bsprite($sm-home, "advantages-#{$i}")
-        content: ''
-  +respond-to(tablet)
-    +section-advantages-tablet
-  +respond-to(desktop)
-    li span
-      font-size: 1.625em
-      text-decoration: underline
-
+    // make it work with tablet
+    //+section-advantages-list-fill(1 2 4 6)
 %section-numbers
   +border-sloppy($c-background--i)
   background: $c-background--i
@@ -364,68 +231,6 @@
     +section-clients-tablet
   +respond-to(desktop)
     height: 410px
-
-%section-about
-  +border-sloppy($c-base--i)
-  +border-sloppy--mirrored($c-base--i)
-  +border-sloppy--inside
-  background: $c-background--h
-  color: $c-base--i
-  padding-bottom: $s-border-sloppy-height
-  .items
-    @extend %scut-clearfix
-    padding-bottom: $s-border-sloppy-height*2
-  .items>div
-    position: relative
-    float: left
-    width: 50%
-    height: 244px
-  .items .image
-    .background
-      width: 100%
-      height: 244px + $s-border-sloppy-height*3
-      background-size: cover
-    &:nth-child(1)
-      position: static
-  .items .text
-    z-index: 1
-    top: $s-border-sloppy-height
-    padding: 8px $b-padding-x 5px 16px
-    background: $c-background--h
-    &:nth-child(2n)
-      +border-sloppy($c-background--h, right)
-      +border-sloppy($c-background--h, left, bottom)
-    &:nth-child(2n+1)
-      top: $s-border-sloppy-height*2
-      +border-sloppy($c-background--h, left)
-    h1
-      overflow: hidden
-      margin: 0
-      height: 2em * 1.2
-      font-size: 1.25em
-      font-weight: normal
-    p
-      overflow: hidden
-      margin-bottom: .875em
-      height: 8em * 1.3
-      line-height: 1.35
-      font-size: .825em
-    a
-      display: block
-      float: left
-      border-bottom: 1px solid $c-base--i
-      color: $c-base--i
-      font-size: .8em
-      font-weight: 700
-      line-height: 1
-      &:hover
-        border-bottom: none
-  +respond-to(tablet)
-    +section-about-tablet
-  +respond-to(desktop)
-    height: 515px
-    .items .text h1
-      font-size: 2.5em
 
 %section-reviews
   +border-sloppy($c-background)
@@ -490,6 +295,8 @@ article.home
   @each $section in (intro advantages numbers clients about reviews)
     section.#{$section}
       @extend %section-#{$section}
+  section.advantages
+    @extend %section-advantages-custom
 
 
 // -------------------------------------

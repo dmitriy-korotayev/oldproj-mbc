@@ -15,17 +15,18 @@ article.about
           .background style="background-image: url(#{image_path("about/services/#{i+1}.jpg")})"
           span.title= title
   section.advantages
+    h1 Kāpēc izvēlēties Mūkusalas biznesa centru?
     ul.items
-      -{infrastructure: 'Biznesam piemērota vieta<br>un infrastruktūra',
-      car: 'Milzīga autostāvvieta<br>Jums un Jūsu klientiem',
+      -{car: 'Milzīga autostāvvieta<br>Jums un Jūsu klientiem',
+      infrastructure: 'Biznesam piemērota vieta<br>un infrastruktūra',
       professional: 'Profesionālā atteiksme<br>un atsaucīgums',
       handshake: 'Iespēja sadarboties ar vairāk<br>nekā 100 nominiekiem',
-      room: 'Brīvs telpu plānojums',
-      buildings: '5 rekonstruētas ēkas',
+      room: 'Brīvs telpu<br>plānojums',
+      buildings: '5 rekonstruētas<br>ēkas',
       camera: 'Ventilācija, kondicionēšana, videnovērošana',
-      measures: 'Telpas no 120 m2 līdz 2000 m2',
-      projector: 'Konferenču telpas un aprīkojums',
-      guard24: 'Diennakts apsardze un novērošana',
+      measures: 'Telpas no 120 m2<br>līdz 2000 m2',
+      projector: 'Konferenču telpas<br>un aprīkojums',
+      guard24: 'Diennakts apsardze<br>un novērošana',
       }.each do |c, text|
         li
           i class=c
@@ -37,21 +38,22 @@ article.about
     .contents
       ul.years
         - %w(2014 2013 2012 2011 2010).each do |year|
-          li: a href="#"= year
-      .achievements
-        - %w(2014 2013 2012 2011 2010).each do |year|
-          - 3.times do |i|
-            .item
-              .date= "10.0#{i+1}.#{year}"
-              h2.title Uzbūvētā jaunā A klases
-              .description
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et
-      .timeline
+          li class=(year=='2014' ? 'active' : '') : a href="#" ="#{year}."
+      .frame
+        .achievements
+          - %w(2014 2013 2012 2011 2010).each do |year|
+            - 3.times do |i|
+              .item
+                .date= "10.0#{i+9}.#{year}"
+                h2.title Uzbūvētā jaunā A klases 15 000 m2 ēka
+                .description
+                  p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et
+        .timeline
   section.statement
     header
-      .background style="background-image=url(#{image_path("about/statement/1.jpg")})"
+      .background style="background-image: url(#{image_path("about/statement/1.jpg")})"
       h1 MBC direktores uzruna
-      h2 Vārds Uzvārds
+      h2 Vārds<br>Uzvārds
     .contents
       p "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
       = link_to 'Izvēlēties telpu', '#', class: 'button'

@@ -13,7 +13,6 @@
 %header
   .image
     min-height: 140px
-    background: $c-debug no-repeat center center
     background-size: cover
   .text
     background: $c-background
@@ -29,32 +28,164 @@
       padding: 0 $b-padding-x*1.25 0 $b-padding-x
       line-height: 1.45
       font-size: .95em
+
 %section-services
+  border-top: 1px solid $c-background--m
   background: $c-background
   ul.items
     margin-top: 10px
   li
+    position: relative
     $height: 120px
-    background: $c-debug
+    $offset: 13px
+    margin-top: -$offset
     height: $height
-    line-height: $height
+    line-height: $height - $offset*2
     text-align: center
     font-size: 1.5em
-  li span.title
-    display: inline-block
-    vertical-align: middle
-    line-height: 1.25
-    font-weight: 700
-%section-advantages
-  display: none
-%section-about
-  display: none
+    &:first-child
+      margin-top: 0
+      +border-sloppy($c-background)
+      +border-sloppy--mirrored($c-background)
+      +border-sloppy--inside
+    &:last-child
+      +border-sloppy($c-background, both, top)
+      +border-sloppy--inside(both, top)
+      &:before, &:after
+        top: auto
+        bottom: 0
+    .background
+      +scut-absolute(0 0 0 0)
+      background-size: cover
+    .background:after
+      +scut-absolute(0 0 0 0)
+      background: #000
+      opacity: .2
+      content: ''
+    span.title
+      display: inline-block
+      position: relative
+      vertical-align: middle
+      padding: 0 $b-padding-x * 1.75
+      color: $c-base--i
+      line-height: 1.1
+      font-weight: 700
+
+%section-advantages-custom
+  >h1
+    padding-top: 1.125em
+  ul
+    $color: nth($c-background--h-palette, 10)
+    +border-sloppy($color) // last
+    +border-sloppy--mirrored($color)
+    &:before, &:after
+      z-index: 9
+      top: auto
+      bottom: -13px
+
 %section-history
-  display: none
+  padding-bottom: 10px
+  +border-sloppy($c-background)
+  >h1
+    padding-top: .75em
+  ul.years
+    @extend %scut-list-unstyled
+    margin-top: 16px
+    text-align: center
+  ul.years li
+    display: inline-block
+    margin-left: .05em
+    padding: 0 .375em
+    font-size: 1.0625em
+    font-weight: 500
+    letter-spacing: .025em
+    &:first-child
+      margin-left: 0
+    &:hover, &.active
+      background: $c-background--h
+      a
+        color: $c-base--i
+  $achievements-padding-top: 20px
+  $achievement-item-height: 240px
+  $timeline-height: 100px
+  .frame
+    position: relative
+    margin-top: 20px
+    border-top: 1px solid $c-background--m
+    height: $achievements-padding-top + $achievement-item-height + $timeline-height
+    overflow: hidden
+  .achievements
+    +scut-absolute(0 n n 0)
+    padding-top: $achievements-padding-top
+    width: 1000px
+    height: $achievements-padding-top + $achievement-item-height
+    overflow: hidden
+  .achievements .item
+    float: left
+    margin: 0 4px 0 8px
+    border: 2px solid $c-background--hm
+    width: 250px
+    height: $achievement-item-height
+    padding: 3px 5px 3px 12px
+    .date
+      font-size: .9em
+      color: $c-base--m
+    h2.title
+      margin: .375em 0 0
+      font-size: 1.25em
+      font-weight: 400
+    .description
+      line-height: 1.25
+      font-size: .875em
+      font-weight: 500
+      p:first-child
+        margin-top: .625em
+  .timeline
+    +scut-absolute($achievements-padding-top+$achievement-item-height n n 0)
+    width: 1000px
+    height: $timeline-height
+
 %section-statement
-  display: none
-%section-contact-us
-  display: none
+  +border-sloppy($c-background)
+  +border-sloppy--mirrored($c-background)
+  +border-sloppy--inside
+  color: $c-base--i
+  header
+    position: relative
+    height: 195px
+    overflow: hidden
+    .background
+      +scut-absolute(0 0 0 0)
+    >*
+      position: relative
+    h1
+      margin-top: 23px
+      text-align: center
+      font-size: 1.25em
+      font-weight: normal
+    h2
+      margin: 75px 0 0 125px
+      line-height: 1.3
+      font-weight: normal
+      font-size: 1.25em
+      text-transform: uppercase
+  .contents
+    +border-sloppy($c-background--h)
+    background: $c-background--h
+    padding: 0 $b-padding-x 28px
+    p
+      line-height: 1.375
+      font-size: .875em
+      font-weight: 500
+      letter-spacing: -.01em
+      &:first-child
+        margin-top: 0
+        padding-top: .6em
+    a.button
+      margin: 18px 16px 0
+      @extend %button
+      font-weight: 500
+
 
 
 // -------------------------------------
@@ -69,6 +200,8 @@ article.about
   @each $section in (services advantages about history statement contact-us)
     section.#{$section}
       @extend %section-#{$section}
+  section.advantages
+    @extend %section-advantages-custom
 
 
 // -------------------------------------

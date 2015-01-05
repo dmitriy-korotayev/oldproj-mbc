@@ -23,6 +23,7 @@ html
     = javascript_include_tag path if javascript_exists? path
 
   body
+    = partial :facebook
     = partial :shared
     /[if lte IE 8]
       .outdated
