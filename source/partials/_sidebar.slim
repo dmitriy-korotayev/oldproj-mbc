@@ -1,9 +1,17 @@
 .logo
   = link_to 'index.html' do
     = image_tag 'logo.svg', alt: 'Logo'
-nav
-  = yield_content :links
 .languages
   = yield_content :languages
-.desktop
+nav
+  = yield_content :links
+.contacts
+  address Rīga, Mūkusala 41B
+  .phone
+    a href="tel:+371267845845"
+      ' +371
+      strong 267-845-845
+  .email
+    a href="mailto:evija@mbcpital.lv" evija@mbcpital.lv
+.desktop-toggle
   = link_to 'WWW versija', '#'

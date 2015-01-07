@@ -10,4 +10,4 @@
 
 - content_for :languages do
   - %w(LV RU EN).each do |language|
-    = link_to language, '#', alt: language
+    = link_to language, '#', alt: language, class: (language=='LV' ? 'active' : nil)

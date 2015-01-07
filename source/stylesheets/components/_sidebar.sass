@@ -3,7 +3,7 @@ $width: 270px
   +scut-fixed(0 n 0 0)
   background: $c-background--i
   width: $width
-  padding-left: 25px
+  padding: 0 25px
   &, a
     color: $c-base--i
 
@@ -17,25 +17,48 @@ $width: 270px
     height: 54px
     img
       height: 100%
+  nav, .contacts, .desktop-toggle
+    margin-top: 12px
+    border-top: 1px solid $c-background
   nav
-    margin-top: 21px
+    margin-bottom: -8px
   nav a
     display: block
-    margin-top: 1.3em
+    margin: 1em 0 1.3em 0
     line-height: 1.125
     font-size: 1.25em
   .languages
     text-align: left
-    margin-top: 25px
-    a
-      display: inline-block
+    margin-top: 18px
+  .languages a
+    display: inline-block
+    margin: 0 15px
+    width: 53px
+    line-height: 33px - 2px
+    text-align: center
+    font-size: 1.2em
+    &:hover, &.active
       border: 1px solid $c-background
-      margin-right: 20px
-      padding: 0 15px
-      line-height: 33px - 2px
-      font-size: 1.2em
-  .desktop
+    &:nth-child(3n-2) // 1,4,7
+      margin: 0 15px 0 0
+    &:nth-child(3n)   // 3,6,9
+      margin: 0 0 0 16px
+  .contacts
+    padding-top: 10px
+    line-height: 1.75
+    font-weight: 500
+    address
+      text-decoration: underline
+      font-style: normal
+    .email
+      margin-top: -.1em
+      font-size: 1.1em
+  .desktop-toggle
     display: none
+    margin-top: 18px
+    padding-top: 10px
+    font-size: 1.25em
+    font-weight: 500
 
   +respond-to(desktop)
     display: none
