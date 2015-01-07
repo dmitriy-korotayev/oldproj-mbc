@@ -8,7 +8,7 @@ article.home
             .logo= image_tag 'logo--v.svg', alt: 'Logo'
             h1 Vispiemērotaka vieta Jūsu biznesa attīstībai
             p Jebkura veida un lieluma telpas<br>vienā no lielākajuem biznesa centriem
-          .bottom
+          .bottom-container: .bottom
             p
               ' Ir pieejamas
               strong> 22
@@ -47,8 +47,8 @@ article.home
         vitra: 'Vitra', bostik: 'Bostik'}.each do |name,title|
         li= link_to '#' do
           = image_tag "sections/clients/#{name}.png", alt: title
-  section.about
-    = partial 'sections/about'
+  section.services
+    = partial 'sections/services'
   section.reviews
     h1 Atsauksmes
     .items

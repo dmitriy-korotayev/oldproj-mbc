@@ -1,5 +1,5 @@
 @import foundation/globals
-@import slick.js/slick/slick
+@import vendor/slick
 
 // -------------------------------------
 //   Structures
@@ -10,8 +10,9 @@
 //   Components
 // -------------------------------------
 
-=section-intro-tablet
-  height: 550px
+=section-intro--tablet
+  position: relative
+  min-height: 550px
   text-align: left
   .item .top
     margin: 70px auto 0
@@ -33,9 +34,11 @@
     p
       margin-top: .75em
       font-size: 1.5em
+  .item .bottom-container
+    +scut-absolute(n 0 0 0)
   .item .bottom
     $height: 82px
-    margin: 100px auto 0
+    margin: 100px auto 70px
     max-width: $b-maxWidth--frame * .895
     height: $height
     overflow: hidden
@@ -57,7 +60,7 @@
       font-size: 2.125em
       font-weight: 500
 
-=section-numbers-tablet
+=section-numbers--tablet
   +border-sloppy--hide
   li
     width: 25%
@@ -70,8 +73,8 @@
     span.number
       font-size: 3.25em
 
-=section-clients-tablet
-  +border-sloppy($c-background--i)
+=section-clients--tablet
+  +border-sloppy($c-background--i, $responsive: true)
   +border-sloppy--mirrored($c-background--i)
   +border-sloppy--inside
   &:before, &:after
@@ -97,7 +100,7 @@
     img
       display: inline-block
 
-=section-reviews-tablet
+=section-reviews--tablet
   padding-top: 30px
   $item-width: empx($b-maxWidth--frame * 1.2 / 3)
   .items
@@ -127,7 +130,8 @@
   overflow: hidden
   height: 360px
   text-align: center
-  .items
+  +carousel-arrows--i(5%)
+  .items, .slick-list, .slick-track
     height: 100%
   .item
     position: relative
@@ -166,17 +170,13 @@
         @extend %button
 
   +respond-to(tablet)
-    +section-intro-tablet
-  +respond-to(desktop)
-    height: 815px
-    .item .bottom
-      margin-top: 375px
+    +section-intro--tablet
 
 %section-advantages-custom
+  ul.items
+    +section-advantages-list(4)
   li
-    display: block
-    // make it work with tablet
-    //+section-advantages-list-fill(1 2 4 6)
+    +section-advantages-list-fill(1 2 4 6, 4)
 %section-numbers
   +border-sloppy($c-background--i)
   background: $c-background--i
@@ -214,7 +214,7 @@
     span.text
       margin-top: .25em
   +respond-to(tablet)
-    +section-numbers-tablet
+    +section-numbers--tablet
 
 %section-clients
   +border-sloppy($c-background)
@@ -228,12 +228,13 @@
     img
       vertical-align: middle
   +respond-to(tablet)
-    +section-clients-tablet
+    +section-clients--tablet
   +respond-to(desktop)
     height: 410px
 
 %section-reviews
   +border-sloppy($c-background)
+    z-index: auto
   $item-width: 200px
   .items
     @extend %carousel-arrows
@@ -278,7 +279,7 @@
       text-align: justify
       font-size: .875em
   +respond-to(tablet)
-    +section-reviews-tablet
+    +section-reviews--tablet
   +respond-to(desktop)
     padding-top: 0
     &:before, &:after
@@ -292,7 +293,7 @@
 article.home
   section
     @extend %section
-  @each $section in (intro advantages numbers clients about reviews)
+  @each $section in (intro advantages numbers clients services reviews)
     section.#{$section}
       @extend %section-#{$section}
   section.advantages

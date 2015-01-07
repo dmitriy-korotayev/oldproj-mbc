@@ -5,8 +5,17 @@ $s-border-sloppy-gradient-offset--tablet: 2%  // 30px=2%, like 50%,50%->49%,51% 
 $s-border-sloppy-default-side-x: both
 $s-border-sloppy-default-side-y: top
 
+%border-sloppy-base-container
+  position: relative
 =border-sloppy-base-container
   position: relative
+%border-sloppy-base
+  display: block
+  position: absolute
+  z-index: 7
+  width: 100%
+  content: ''
+
 =border-sloppy-base
   display: block
   position: absolute
@@ -14,14 +23,13 @@ $s-border-sloppy-default-side-y: top
   width: 100%
   content: ''
 
-=border-sloppy-background($bgcolor, $to: right, $to-y: top, $height: nil)
-  $height: $s-border-sloppy-height
-  $gradient-offset: $s-border-sloppy-gradient-offset/2
+=border-sloppy-background($bgcolor, $to: right, $to-y: top, $gradient-offset: nil, $gradient-offset--tablet: nil, $already-responsive: false)
+  $gradient-offset: if($already-responsive, $gradient-offset--tablet/2, $gradient-offset/2)
   background: linear-gradient(to $to $to-y, $bgcolor 50%-$gradient-offset, transparent 50+$gradient-offset)
-  +respond-to(tablet)
-    $height: $s-border-sloppy-height--tablet
-    $gradient-offset: $s-border-sloppy-gradient-offset--tablet/2
-    background: linear-gradient(to $to $to-y, $bgcolor 50%-$gradient-offset, transparent 50+$gradient-offset)
+  @if $already-responsive == false
+    +respond-to(tablet)
+      $gradient-offset: $gradient-offset--tablet/2
+      background: linear-gradient(to $to $to-y, $bgcolor 50%-$gradient-offset, transparent 50+$gradient-offset)
 
 
 @function border-position($side-x, $side-y)
@@ -37,12 +45,14 @@ $s-border-sloppy-default-side-y: top
   @return map-get($opposites, $thing)
 
 
-=border-sloppy($bgcolor: nil, $side-x: $s-border-sloppy-default-side-x, $side-y: $s-border-sloppy-default-side-y, $override: nil, $height: $s-border-sloppy-height, $height--tablet: $s-border-sloppy-height--tablet)
+=border-sloppy($bgcolor: nil, $side-x: $s-border-sloppy-default-side-x, $side-y: $s-border-sloppy-default-side-y, $height: $s-border-sloppy-height, $height--tablet: $s-border-sloppy-height--tablet, $responsive: false, $gradient-offset: $s-border-sloppy-gradient-offset, $gradient-offset--tablet: $s-border-sloppy-gradient-offset--tablet)
+  // container
   +border-sloppy-base-container
 
   // &:before, &:after, both
   $position: border-position($side-x, $side-y)
   #{$position}
+    // base
     +border-sloppy-base
     // size
     height: $height
@@ -56,39 +66,42 @@ $s-border-sloppy-default-side-y: top
       #{$side-y}: -$height--tablet
     @if $side-x == left
       left: 0
-      +border-sloppy-background($bgcolor, right, $side-y)
+      +border-sloppy-background($bgcolor, right, $side-y, $gradient-offset, $gradient-offset--tablet, $responsive)
     @if $side-x == right
       right: 0
-      +border-sloppy-background($bgcolor, left, $side-y)
+      +border-sloppy-background($bgcolor, left, $side-y, $gradient-offset, $gradient-offset--tablet, $responsive)
     // reset
     @if $side-y == bottom
       top: auto
     @if $side-y == top
       bottom: auto
+
   @if $side-x == both
     // position, gradient
     &:before
       left: 0
-      +border-sloppy-background($bgcolor, right, $side-y)
+      +border-sloppy-background($bgcolor, right, $side-y, $gradient-offset, $gradient-offset--tablet, $responsive)
     &:after
       right: 0
-      +border-sloppy-background($bgcolor, left, $side-y)
+      +border-sloppy-background($bgcolor, left, $side-y, $gradient-offset, $gradient-offset--tablet, $responsive)
+
+  // content
+  #{$position}
+    @content
 
 
-  @content
-
-=border-sloppy--mirrored($bgcolor: nil, $side-x: $s-border-sloppy-default-side-x, $side-y: $s-border-sloppy-default-side-y)
+=border-sloppy--mirrored($bgcolor: nil, $side-x: $s-border-sloppy-default-side-x, $side-y: $s-border-sloppy-default-side-y, $height: $s-border-sloppy-height, $height--tablet: $s-border-sloppy-height--tablet, $responsive: false, $gradient-offset: $s-border-sloppy-gradient-offset, $gradient-offset--tablet: $s-border-sloppy-gradient-offset--tablet)
   $gradient-offset: $s-border-sloppy-gradient-offset
 
   @if $side-x == left or $side-x == right
     $position: border-position($side-x, $side-y)
     #{$position}
-      +border-sloppy-background($bgcolor, $side-x, opposite($side-y))
+      +border-sloppy-background($bgcolor, $side-x, opposite($side-y), $gradient-offset, $gradient-offset--tablet, $responsive)
   @else if $side-x == both
     &:before
-      +border-sloppy-background($bgcolor, left, opposite($side-y))
+      +border-sloppy-background($bgcolor, left, opposite($side-y), $gradient-offset, $gradient-offset--tablet, $responsive)
     &:after
-      +border-sloppy-background($bgcolor, right, opposite($side-y))
+      +border-sloppy-background($bgcolor, right, opposite($side-y), $gradient-offset, $gradient-offset--tablet, $responsive)
 
 =border-sloppy--inside($side-x: $s-border-sloppy-default-side-x, $side-y: $s-border-sloppy-default-side-y)
   $position: border-position($side-x, $side-y)

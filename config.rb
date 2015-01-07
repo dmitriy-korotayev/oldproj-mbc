@@ -20,6 +20,7 @@ Slim::Engine.default_options[:pretty] = true
 
 # Change Compass configuration
 compass_config do |config|
+  config.cache      = true
   #config.css_dir    = File.join(css_dir)
   #config.images_dir = File.join(images_dir)
   #config.fonts_dir  = File.join(fonts_dir)

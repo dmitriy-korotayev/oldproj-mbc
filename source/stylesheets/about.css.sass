@@ -1,5 +1,5 @@
 @import foundation/globals
-@import slick.js/slick/slick
+@import vendor/slick
 
 // -------------------------------------
 //   Structures
@@ -10,12 +10,106 @@
 //   Components
 // -------------------------------------
 
+=header-tablet
+  position: relative
+  overflow: hidden
+  .text
+    margin-right: 50%
+    padding: 0 30px 0 50px
+    h1, p
+      padding: 0
+    h1
+      margin: .625em 0 .825em
+      text-align: left
+      font-size: 2.75em
+    p
+      margin: 1.45em 0
+      margin-left: .25em
+      line-height: 1.375
+      font-size: 1em
+  .image
+    +scut-absolute(0 0 0 50%)
+
+=section-advantages-custom--tablet
+  h1
+    padding-top: .8em
+    margin-bottom: .4em
+  ul
+    margin-bottom: -$s-border-sloppy-height--tablet
+    padding-bottom: $s-border-sloppy-height--tablet
+  li
+    $height: $section-advantages-list-item-height + $s-border-sloppy-height--tablet + 50px
+    height: $height
+    i
+      margin-top: 60px
+    span
+      margin-top: 1.375em
+      line-height: 1.25
+      text-decoration: none
+      font-size: 1.125em
+    &:nth-last-child(-n+5)
+      height: $section-advantages-list-item-height + 25px
+      i
+        margin-top: 40px
+        &:before, &:after
+          z-index: 8
+
+=section-about-custom--tablet
+  .items .text
+    &:nth-child(2):before, &:nth-child(3):before
+      display: none
+
+=section-history--tablet
+  +border-sloppy--hide
+  height: 595px
+  ul.years
+    display: none
+
+=section-statement--tablet
+  +border-sloppy--hide
+  height: 600px
+  .slick-slider, .slick-list, .slick-track
+    height: 100%
+  header
+    position: static
+    height: auto
+    h1
+      margin-top: 55px
+      font-size: 3.5em
+      font-weight: 300
+    h2
+      margin-top: 80px
+      font-size: 2em
+      margin-left: 42%
+  header h2, .contents p, .contents a.button
+    margin-left: 42%
+  .contents
+    +border-sloppy--hide
+    background: none
+    p
+      margin-top: 6px
+      margin-right: 20%
+      width: 45%
+      line-height: 1.5
+      font-size: 1.125em
+      font-weight: normal
+      &:first-child
+        padding-top: 1.125em
+    a.button
+      display: inline-block
+      margin-top: 45px
+      background: rgba(0,0,0,.1)
+      height: 60px
+      padding: 0 2em
+      line-height: 54px
+
+
 %header
   .image
     min-height: 140px
     background-size: cover
   .text
-    background: $c-background
+    background: linear-gradient($c-background, rgba($c-background--h,.1)) $c-background
     overflow: hidden
     h1
       margin: .5em 0
@@ -28,48 +122,8 @@
       padding: 0 $b-padding-x*1.25 0 $b-padding-x
       line-height: 1.45
       font-size: .95em
-
-%section-services
-  border-top: 1px solid $c-background--m
-  background: $c-background
-  ul.items
-    margin-top: 10px
-  li
-    position: relative
-    $height: 120px
-    $offset: 13px
-    margin-top: -$offset
-    height: $height
-    line-height: $height - $offset*2
-    text-align: center
-    font-size: 1.5em
-    &:first-child
-      margin-top: 0
-      +border-sloppy($c-background)
-      +border-sloppy--mirrored($c-background)
-      +border-sloppy--inside
-    &:last-child
-      +border-sloppy($c-background, both, top)
-      +border-sloppy--inside(both, top)
-      &:before, &:after
-        top: auto
-        bottom: 0
-    .background
-      +scut-absolute(0 0 0 0)
-      background-size: cover
-    .background:after
-      +scut-absolute(0 0 0 0)
-      background: #000
-      opacity: .2
-      content: ''
-    span.title
-      display: inline-block
-      position: relative
-      vertical-align: middle
-      padding: 0 $b-padding-x * 1.75
-      color: $c-base--i
-      line-height: 1.1
-      font-weight: 700
+  +respond-to(tablet)
+    +header-tablet
 
 %section-advantages-custom
   >h1
@@ -82,6 +136,19 @@
       z-index: 9
       top: auto
       bottom: -13px
+
+    +section-advantages-list
+  +respond-to(tablet)
+    +section-advantages-custom--tablet
+  +respond-to(desktop)
+    li span
+      font-size: 1.5em
+
+%section-about-custom
+  +respond-to(mobile-only)
+    display: none
+  +respond-to(tablet)
+    +section-about-custom--tablet
 
 %section-history
   padding-bottom: 10px
@@ -144,18 +211,28 @@
     +scut-absolute($achievements-padding-top+$achievement-item-height n n 0)
     width: 1000px
     height: $timeline-height
+  +respond-to(mobile-only)
+    display: none
+  +respond-to(tablet)
+    +section-history--tablet
 
 %section-statement
   +border-sloppy($c-background)
   +border-sloppy--mirrored($c-background)
   +border-sloppy--inside
   color: $c-base--i
+
+  +carousel-arrows--i(5%)
+  .slick-slider
+    margin-bottom: 0
   header
     position: relative
     height: 195px
     overflow: hidden
     .background
       +scut-absolute(0 0 0 0)
+      background-size: cover
+      background-position: center center
     >*
       position: relative
     h1
@@ -185,6 +262,14 @@
       margin: 18px 16px 0
       @extend %button
       font-weight: 500
+  +respond-to(mobile-only)
+    .slick-prev, .slick-next
+      top: 25%
+  +respond-to(tablet)
+    +section-statement--tablet
+  +respond-to(desktop)
+    .contents p
+      width: 42%
 
 
 
@@ -202,6 +287,8 @@ article.about
       @extend %section-#{$section}
   section.advantages
     @extend %section-advantages-custom
+  section.about
+    @extend %section-about-custom
 
 
 // -------------------------------------

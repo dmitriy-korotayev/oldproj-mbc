@@ -1,0 +1,10 @@
+h1 Pakalpojumi
+ul.items
+  - ['Biroja telpu un noliktavu noma', 'Telpu apsaimniekošana',
+    'Telpu pārkārtošana un pārplānojums', 'Telpu remonts un apdare',
+    'Mēbeles Jūsu birojam'].each_with_index do |title, i|
+    li
+      .background.mobile-only style="background-image: url(#{image_path("about/services/#{i+1}.jpg")})"
+      .background.tablet style="background-image: url(#{image_path("about/services/tablet/#{i+1}.jpg")})"
+      span.title= title
+

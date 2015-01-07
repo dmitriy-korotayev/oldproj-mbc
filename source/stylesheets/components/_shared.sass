@@ -1,50 +1,148 @@
-=section-advantages-list-fill($palette: 1 2 3 4 5 6 7 8 9 10)
+$bsh: $s-border-sloppy-height
+$bsh--t: $s-border-sloppy-height--tablet
+
+// ----- Component helpers -----
+
+$section-advantages-list-item-height: 270px
+=section-advantages-list($columns: 5)
+  +respond-to(tablet)
+    @if $columns == 5
+      +border-sloppy--hide
+      overflow: hidden
+      padding-top: $bsh--t
+
+=section-advantages-list-fill($palette: 1 2 3 4 5 6 7 8 9 10, $columns: 5)
   // fill
   @for $i from 1 through length($palette)
     $color: nth($c-background--h-palette, nth($palette, $i))
     &:nth-child(#{$i})
       background-color: $color
-      +border-sloppy($color)
-
-=section-advantages-tablet
-  height: 270px
-  ul.items, li
-    height: 100%
-  li
-    width: 25%
-    float: left
-    &:nth-child(n)
-      &:before, &:after
-        height: $s-border-sloppy-height--tablet
-        top: -$s-border-sloppy-height--tablet
-    &:nth-child(1), &:nth-child(n+4) // 1,4,5,6,7,8 - no sloppy border
+      $go--t: if($columns == 5 and ($i == 3 or $i == 8), 6%, 2.5%)
+      +border-sloppy($color, $gradient-offset--tablet: $go--t)
+  +respond-to(tablet)
+    width: 100% / $columns
+    // first, last in column - no sloppy border
+    &:nth-child(#{$columns}n+1), &:nth-child(#{$columns}n+#{$columns})
       &:before
         width: 100%
         background: inherit
       &:after
         display: none
-    &:nth-child(2)
+    // next to first and before last - only one downwards to center
+    &:nth-child(#{$columns}n+2)
       &:before
         width: 100%
       &:after
         display: none
-    &:nth-child(3)
+    &:nth-child(#{$columns}n+#{$columns - 1})
       &:before
         display: none
       &:after
         width: 100%
+    @if $columns == 5
+      // top border
+      &:nth-child(5n+2):before, &:nth-child(5n+4):after
+        height: $bsh--t*.667
+      &:nth-child(5n+2):after, &:nth-child(5n+4):before
+        display: block
+        top: -$bsh--t*.333
+        height: $bsh--t*.333
+        width: 100%
+        background: inherit
+      &:nth-child(5n+3):before, &:nth-child(5n+3):after
+        top: -$bsh--t*.333
+        height: $bsh--t*.333
+      @for $i from 1 through length($palette)
+        $color: nth($c-background--h-palette, nth($palette, $i))
+        &:nth-child(#{$i}) span
+          @if $i == length($palette) - 3
+            +border-sloppy($color, right, bottom, $responsive: true, $gradient-offset--tablet: 2.5%)
+              height: $bsh--t * .67
+              bottom: -$bsh--t * .67
+            position: static
+          @if $i == length($palette) - 2
+            +border-sloppy($color, both, bottom, $responsive: true)
+              height: $bsh--t * .333
+              bottom: -$bsh--t
+            +border-sloppy--mirrored($color, both, top, $gradient-offset--tablet: 6%)
+            position: static
+          @if $i == length($palette) - 1
+            +border-sloppy($color, left, bottom, $responsive: true, $gradient-offset--tablet: 2.5%)
+              height: $bsh--t * .67
+              bottom: -$bsh--t * .67
+            position: static
+        @if $i == length($palette) - 2
+          &:nth-child(#{$i}) i:before
+            +scut-absolute(n 0 n 0)
+            bottom: -$bsh--t * .67
+            background: $color
+            height: $bsh--t * .67
+            content: ''
+
+
+// ----- Components -----
+
+=section-services--tablet
+  h1
+    padding-top: 1em
+  ul.items
+    margin-top: 0
+    +border-sloppy($c-background, $responsive: true)
+      width: 30%
+    +border-sloppy--mirrored($c-background)
+    +border-sloppy--inside
+    &:before
+      left: 20%
+    &:after
+      margin-right: 1px
+      right: 20%
+  li
+    $height: 375px
+    float: left
+    margin-top: 0
+    padding-top: $s-border-sloppy-height--tablet
+    width: 20%
+    height: $height
+    line-height: $height - $s-border-sloppy-height--tablet*2
+    &:first-child
+      +border-sloppy--hide
+    span.title
+      font-size: .875em
+      font-weight: 500
+      text-shadow: 2px 2px 4px rgba(0,0,0,.35)
+  overflow: hidden
+  +border-sloppy($c-background, $responsive: true)
+    width: 30%
+  &:before, &:after
+    top: auto
+    bottom: 0
+  &:before
+    left: 20%
+  &:after
+    right: 20%
+  li:nth-child(1):after, li:nth-child(5):after
+    display: block
+    +scut-absolute(auto 0 0 0)
+    width: 100%
+    height: $s-border-sloppy-height--tablet
+    background: $c-background
+
+=section-advantages--tablet
+  li
+    float: left
+    height: 270px
   li span
     margin-top: 1.75em
     line-height: 1.375
     font-size: 1.25em
   i
     margin-top: 23px
-    @each $i in (infrastructure car professional handshake)
+    @each $i in (infrastructure car professional handshake room buildings camera measures projector guard24)
       &.#{$i}:after
-        +bsprite($sm-shared, "advantages-#{$i}-desktop")
+        +bsprite($sm-shared, "advantages-#{$i}--tablet")
 
-=section-about-tablet
-  +border-sloppy($c-background--i, both, top)
+=section-about--tablet
+  +border-sloppy($c-background--i, both, top, $responsive: true)
   +border-sloppy--mirrored($c-background--i, both, top)
   +border-sloppy--inside(top)
   &:before, &:after
@@ -67,25 +165,25 @@
       &:before, &:after
         display: none
   .items .text
-    padding: $s-border-sloppy-height--tablet $item-width*.1 0 $item-width*.08
+    padding: $bsh--t $item-width*.1 0 $item-width*.08
     &:nth-child(2)
       $background: nth($c-background--h-palette, 1)
       background: $background
       &:before
         display: block
-      +border-sloppy($c-background, left, top)
+      +border-sloppy($c-background, left, top, $responsive: true)
       +border-sloppy--mirrored($c-background, left, top)
       +border-sloppy--inside(top)
-      +border-sloppy($background, right, bottom)
+      +border-sloppy($background, right, bottom, $responsive: true)
     &:nth-child(3)
       $background: nth($c-background--h-palette, 6)
       background: $background
       &:before
         display: block
-      +border-sloppy($c-background, right, top)
+      +border-sloppy($c-background, right, top, $responsive: true)
       +border-sloppy--mirrored($c-background, right, top)
       +border-sloppy--inside(top)
-      +border-sloppy($background, left, bottom)
+      +border-sloppy($background, left, bottom, $responsive: true)
     h1
       margin-top: .875em
       font-size: 1.75em
@@ -102,25 +200,86 @@
       font-size: 1em
       font-weight: normal
 
-=section-social-tablet
+=section-contact-us--tablet
+  +border-sloppy--hide
+  padding-bottom: 35px
+  .frame
+    margin: 15px 13.5% 0
+    padding: 25px
+  h1
+    font-size: 2.875em
+    font-weight: 300
+  p
+    margin-top: .9em
+    line-height: 1.375
+    font-size: 1.375em
+
+=section-social--tablet
   h1
     padding-top: .875em
     font-size: 2.25em
     font-weight: normal
   .facebook
     margin: 15px auto 0
-    max-width: 880px
+    max-width: 600px
     .fb-like-box,
       &,&>span,&>span>iframe
         width: 100% !important
 
+
+%section-services
+  border-top: 1px solid $c-background--m
+  background: $c-background
+  ul.items
+    margin-top: 10px
+  li
+    position: relative
+    $height: 120px
+    $offset: 13px
+    margin-top: -$offset
+    height: $height
+    line-height: $height - $offset*2
+    text-align: center
+    font-size: 1.5em
+    &:first-child
+      margin-top: 0
+      +border-sloppy($c-background)
+      +border-sloppy--mirrored($c-background)
+      +border-sloppy--inside
+    &:last-child
+      +border-sloppy($c-background, both, top)
+      +border-sloppy--inside(both, top)
+      &:before, &:after
+        top: auto
+        bottom: 0
+    .background
+      +scut-absolute(0 0 0 0)
+      background-position: center center
+      background-size: cover
+    .background:after
+      +scut-absolute(0 0 0 0)
+      background: #000
+      opacity: .2
+      content: ''
+    span.title
+      display: inline-block
+      position: relative
+      vertical-align: middle
+      padding: 0 $b-padding-x * 1.75
+      color: $c-base--i
+      line-height: 1.1
+      font-weight: 700
+  +respond-to(tablet)
+    +section-services--tablet
+  +respond-to(desktop)
+    li span.title
+      font-size: 1.125em
 
 %section-advantages
   text-align: center
   h1
     margin-bottom: 1em
   li
-    +section-advantages-list-fill
     padding: 12px 20px 20px
     color: $c-base--i
     span
@@ -136,11 +295,13 @@
         +bsprite($sm-shared, "advantages-#{$i}")
         content: ''
   +respond-to(tablet)
-    +section-advantages-tablet
+    +section-advantages--tablet
   +respond-to(desktop)
     li span
       font-size: 1.625em
       text-decoration: underline
+  li
+    +section-advantages-list-fill
 
 %section-about
   +border-sloppy($c-base--i)
@@ -148,10 +309,10 @@
   +border-sloppy--inside
   background: $c-background--h
   color: $c-base--i
-  padding-bottom: $s-border-sloppy-height
+  padding-bottom: $bsh
   .items
     @extend %scut-clearfix
-    padding-bottom: $s-border-sloppy-height*2
+    padding-bottom: $bsh*2
   .items>div
     position: relative
     float: left
@@ -160,20 +321,20 @@
   .items .image
     .background
       width: 100%
-      height: 244px + $s-border-sloppy-height*3
+      height: 244px + $bsh*3
       background-size: cover
     &:nth-child(1)
       position: static
   .items .text
     z-index: 1
-    top: $s-border-sloppy-height
+    top: $bsh
     padding: 8px $b-padding-x 5px 16px
     background: $c-background--h
     &:nth-child(2n)
       +border-sloppy($c-background--h, right)
       +border-sloppy($c-background--h, left, bottom)
     &:nth-child(2n+1)
-      top: $s-border-sloppy-height*2
+      top: $bsh*2
       +border-sloppy($c-background--h, left)
     h1
       overflow: hidden
@@ -198,7 +359,7 @@
       &:hover
         border-bottom: none
   +respond-to(tablet)
-    +section-about-tablet
+    +section-about--tablet
   +respond-to(desktop)
     height: 515px
     .items .text h1
@@ -223,6 +384,9 @@
     line-height: 1.45
   a
     display: inline-block
+  +respond-to(tablet)
+    +section-contact-us--tablet
+
 %section-social
   border-top: 1px solid $c-background--m
   .facebook
@@ -231,5 +395,9 @@
     overflow: hidden
     text-align: center
   +respond-to(tablet)
-    +section-social-tablet
+    +section-social--tablet
+  +respond-to(desktop)
+    .facebook
+      max-width: 880px
+
 

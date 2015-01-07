@@ -1,21 +1,15 @@
 article.about
   header
-    .image style="background-image: url(#{image_path('articles/about.jpg')})"
+    .image.mobile-only style="background-image: url(#{image_path('articles/about.jpg')})"
+    .image.tablet style="background-image: url(#{image_path('articles/about--tablet.jpg')})"
     .text
       h1 Par Mūkusalas biznesa centru
       p Mūkusalas Biznesa Centrs ir lielākais biznesa centrs Rīgā ar kopējo iznomāto telpu platību 20,000 m2 apmērā. Mūkusalas Biznesa Centrs aizņem 5 hektāru lielu platību Daugavas kreisajā krastā, starp Mūkusalas un Jelgavas ielām. Uzņēmums nodrošina kvalitatīvu tehnisko infrastruktūru veiksmīgai biroju centra darbībai.
       p Mūkusalas Biznesa centra pakalpojumus izmanto vairāk kā 70 uzņēmumi, kā nozīmīgākos minot, Tele2, Itella, Latvijas Pasts, Unicredit Līzings un LR Tiesu Administrācija.
   section.services
-    h1 Pakalpojumi
-    ul.items
-      - ['Biroja telpu un noliktavu noma', 'Telpu apsaimniekošana',
-        'Telpu pārkārtošana un pārplānojums', 'Telpu remonts un apdare',
-        'Mēbeles Jūsu birojam'].each_with_index do |title, i|
-        li
-          .background style="background-image: url(#{image_path("about/services/#{i+1}.jpg")})"
-          span.title= title
+    = partial 'sections/services'
   section.advantages
-    h1 Kāpēc izvēlēties Mūkusalas biznesa centru?
+    h1 Kāpēc izvēlēties<br>Mūkusalas biznesa centru?
     ul.items
       -{car: 'Milzīga autostāvvieta<br>Jums un Jūsu klientiem',
       infrastructure: 'Biznesam piemērota vieta<br>un infrastruktūra',
@@ -50,12 +44,18 @@ article.about
                   p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et
         .timeline
   section.statement
-    header
-      .background style="background-image: url(#{image_path("about/statement/1.jpg")})"
-      h1 MBC direktores uzruna
-      h2 Vārds<br>Uzvārds
-    .contents
-      p "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-      = link_to 'Izvēlēties telpu', '#', class: 'button'
+    .items
+      - 3.times do |i|
+        .item
+          header
+            .background.mobile-only style="background-image: url(#{image_path("about/statement/1.jpg")})"
+            .background.tablet style="background-image: url(#{image_path("about/statement/1--tablet.jpg")})"
+            h1 MBC direktores uzruna
+            h2.mobile-only Vārds<br>Uzvārds
+            h2.tablet Vārds Uzvārds
+          .contents
+            p= "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\"#{i}"
+            = link_to 'Izvēlēties telpu', '#', class: 'button'
   section.contact-us
     = partial 'sections/contact-us'
+
