@@ -291,8 +291,6 @@
 // -------------------------------------
 
 article.home
-  section
-    @extend %section
   @each $section in (intro advantages numbers clients services reviews)
     section.#{$section}
       @extend %section-#{$section}

@@ -8,3 +8,4 @@ $ ->
     fade: true
     fadeIn: true
     cssEase: 'linear'
+

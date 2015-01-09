@@ -1,54 +1,57 @@
-article.spaces
-  header
-    .text
-      h1 Visspiemērotākas telpas biznesa attīstībai
-      p Mūkusalas Biznesa Centrs ir lielākais biznesa centrs Rīgā ar kopējo iznomāto telpu platību 20,000 m2 apmērā. Mūkusalas Biznesa Centrs aizņem 5 hektāru lielu platību Daugavas kreisajā krastā, starp Mūkusalas un Jelgavas ielām. Uzņēmums nodrošina kvalitatīvu tehnisko infrastruktūru veiksmīgai biroju centra darbībai.
-    = image_tag 'articles/spaces.png'
-  section.spaces
-    h1
-      ' Brīvas telpas
-      strong (22)
-    .filter
+header
+  .text
+    h1 Visspiemērotākas telpas biznesa attīstībai
+    p Mūkusalas Biznesa Centrs ir lielākais biznesa centrs Rīgā ar kopējo iznomāto telpu platību 20,000 m2 apmērā. Mūkusalas Biznesa Centrs aizņem 5 hektāru lielu platību Daugavas kreisajā krastā, starp Mūkusalas un Jelgavas ielām. Uzņēmums nodrošina kvalitatīvu tehnisko infrastruktūru veiksmīgai biroju centra darbībai.
+  .map= image_tag 'articles/_map.png'
+section.spaces
+  h1
+    ' Brīvas telpas
+    strong= '(22)'
+  .filter
+    .select-custom
       select name="filter" id="filter"
         option value="0" disabled=true selected=true Radīt Ēkas
         option value="1" Value 1
         option value="2" Value 2
         option value="3" Value 3
-      select name="filter" id="filter"
+    .select-custom
+      select name="sort" id="sort"
         option value="0" disabled=true selected=true Sakārtot
         option value="1" Value 1
         option value="2" Value 2
         option value="3" Value 3
-    .items
-      - 5.times do |i|
-        .item
-          = image_tag "spaces/1.jpg"
-          ul.info
-            li.area
-              .number 200
-              .unit
-                ' m
-                sup 2
-            li.price
-              .number 8
-              .unit
-                ' &euro;/m
-                sup 2
-            li.building
-              .number 2
-              .unit ēka
-          ul.extra
-            li
-              .number 3
-              .text stāvs
-            li
-              .number 7
-              .text autostāvvieta
-            li
-              .check
-              .text mēbeles
-            li
-              .check
-              .text pārlukošana
-  section.contact-us
-    = partial 'sections/contact-us'
+  .items
+    - 15.times do |i|
+      .item class=(i==6-1 ? 'tablet' : nil)
+        .image
+          .background style="background-image: url(#{image_path('spaces/1.jpg')})"
+          ul.actions
+            li.view: a href="#" View
+            li.measure: a href="#" Measure
+        ul.info
+          li.area
+            .number 200
+            .unit
+              | m
+              sup 2
+          li.price
+            .number 8
+            .unit
+              | &euro;/m
+              sup 2
+          li.building
+            .number 2
+            .unit ēka
+        ul.extra
+          li
+            .number 3
+            .text stāvs
+          li
+            .number 7
+            .text autostāvvieta
+          li
+            i.check
+            .text mēbeles
+          li
+            i.cross
+            .text pārlukošana

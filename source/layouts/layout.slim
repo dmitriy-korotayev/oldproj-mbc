@@ -38,9 +38,17 @@ html
     .wrapper
       header.main
         = partial :header
-      =yield
-      section.social
-        = partial 'sections/social'
+
+      main
+        article class=(current_page.data.article_class || path)
+          = yield
+
+        - if path != 'index'
+          section.contact-us
+            = partial 'sections/contact-us'
+        section.social
+          = partial 'sections/social'
+
       footer.main
         = partial :footer
 

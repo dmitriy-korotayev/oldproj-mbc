@@ -1,0 +1,258 @@
+@import foundation/globals
+
+// -------------------------------------
+//   Structures
+// -------------------------------------
+
+$select-height: 44px
+%select-container
+  .customSelect
+    width: 100%
+    @extend %select
+  select
+    width: 100%
+    @extend %select-hidden
+%select
+  position: relative
+  border: 2px solid $c-background--ml
+  height: $select-height
+  padding: 0.55em 30px .55em .75em
+  font-size: .95em
+  &:after
+    display: block
+    +scut-absolute(0 10px n n)
+    +bsprite($sm-common, 'select-arrowdown', nil, $select-height)
+    content: ''
+%select-hidden
+  position: relative
+  z-index: 1
+  height: $select-height !important
+
+
+// -------------------------------------
+//   Components
+// -------------------------------------
+
+=article-header-custom--tablet
+  .text
+    float: left
+    width: 55%
+    margin-right: 0
+    h1
+      margin-top: 1.75em
+      margin-bottom: .95em
+      font-size: 2.875em
+    p
+      line-height: 1.7
+  .image
+    display: none
+  .map
+    float: right
+    width: 45%
+    height: 450px
+
+=section-spaces--tablet
+  padding: 0 $b-padding-x*5
+  h1
+    padding-top: .75em
+    strong
+      font-weight: normal
+      font-size: 1em
+
+  .filter
+    margin-top: 38px
+    height: 125px
+
+  .items
+    margin-top: 24px
+    overflow: hidden
+    text-align: center
+
+  .items .item
+    display: inline-block
+    vertical-align: top
+    margin: 0 14px 45px
+    width: 275px
+    height: 295px
+    padding: 2px
+    &:first-child
+      margin-left: 0
+    &:hover
+      border: 2px solid $c-background--m
+      padding: 1px
+
+  $image-height: 57.5%
+  .image
+    position: relative
+    height: $image-height
+    ul.actions
+      +scut-absolute(0 0 0 0)
+      background: rgba($c-background--h, .7)
+      text-align: center
+      li
+        position: relative
+        display: inline-block
+        vertical-align: top
+        height: 100%
+      li a
+        display: block
+        position: relative
+        top: 50%
+        margin-top: -29px
+        border-left: 1px solid rgba($c-background, .5)
+        height: 58px
+        padding: 0 30px
+        font-size: 0
+        &:after
+          display: block
+          content: ''
+      @each $i in (view measure)
+        li.#{$i} a:after
+          +bsprite($sm-spaces, "item-action-#{$i}", nil, 58px)
+      li:first-child a
+        border-left: none
+
+    &:hover ul.actions
+      display: block
+
+  ul.info
+    background: $c-background--i
+    height: 24%
+
+  ul.info li
+    .number
+      font-size: 2.375em
+    .unit
+      line-height: 1
+      font-size: 1em
+
+  ul.extra
+    height: 18.5%
+
+  ul.extra li
+    margin: 0 3px 0 6px
+    .number, i
+      height: 28px
+    .number
+      margin-top: .25em
+      font-size: 1.375em
+    i.check:after
+      margin-top: -6px
+    i.cross:after
+      margin-top: -4px
+
+
+%article-header-custom
+  +respond-to(mobile-only)
+    .image
+      margin-top: -12px
+  +respond-to(tablet)
+    +article-header-custom--tablet
+
+%section-spaces
+  padding: $b-padding
+  h1
+    padding-top: .65em
+  .filter
+    margin-top: 5px
+    overflow: hidden
+    .select-custom
+      float: left
+      width: 48.5%
+      &:nth-child(2n) // every second, skipping hidden selects
+        margin-left: 3%
+      @extend %select-container
+  .items
+    margin-top: 12px
+  $item-height: 262px
+  $item-padding: 3px
+  $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
+  .items .item
+    margin-bottom: 14px
+    border: 1px solid $c-background--ml
+    padding: $item-padding
+    height: $item-height
+  .image
+    height: 121px / $item-inner-height * 100%
+    .background
+      background-position: center bottom
+      background-size: cover
+      height: 100%
+    ul.actions
+      display: none
+      @extend %scut-list-unstyled
+  ul
+    @extend %scut-list-unstyled
+    overflow: hidden
+  ul.info
+    height: 75px / $item-inner-height * 100%
+  ul.info li
+    float: left
+    width: 33.33%
+    height: 100%
+    text-align: center
+    &:nth-child(3n-2) // 1,4
+      background: $c-background--ml
+    &:nth-child(3n-1) // 2,5
+      background: $c-background--h
+      color: $c-base--i
+    &:nth-child(3n-0) // 3,6
+      background: $c-background--i
+      color: $c-base--i
+    .number
+      margin-top: .075em
+      font-size: 2.5em
+      font-weight: 300
+      line-height: 1.125
+    .unit
+      line-height: 1.125
+      font-size: 1.0625em
+      sub, sup
+        font-size: .6em
+  ul.extra
+    text-align: center
+    padding-bottom: 3px
+    height: 58px / $item-inner-height * 100%
+  ul.extra li
+    display: inline-block
+    margin: 0 8px 0 7px
+    height: 100%
+    text-align: center
+    .number, i
+      height: 30px
+    .number
+      margin-top: .3em
+      line-height: 1.25
+      font-size: 1.5em
+      font-weight: 500
+    i
+      text-align: center
+      &:after
+        display: inline-block
+        vertical-align: middle
+        content: ''
+      &.check:after
+        margin-left: 6px
+      @each $i in (check cross)
+        &.#{$i}:after
+          +bsprite($sm-spaces, "item-extra-#{$i}", nil, 30px)
+    .text
+      font-size: .65em
+      text-transform: uppercase
+      color: $c-base--m
+  +respond-to(tablet)
+    +section-spaces--tablet
+
+
+
+// -------------------------------------
+// Project structure / Extends
+// -------------------------------------
+
+article.spaces
+  >header
+    @extend %article-header-custom
+  @each $section in (spaces)
+    section.#{$section}
+      @extend %section-#{$section}
+

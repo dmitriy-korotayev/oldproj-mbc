@@ -14,6 +14,7 @@
 $black:     #141414
 $gray:      #40d3c4
 $ltgray:    #808080
+$ltltgray:  lighten($black, 82%) // #e5e5e5
 $white:     #fff
 $blue:      #002f5f
 $blue-palette: (#002f5f #083d72 #124a82 #1f578f #2d659c #366da3 #4479ac #4f84b6 #5f91c1 #6a9ac8)
@@ -24,12 +25,17 @@ $ltblue:    #b2c0cf
 $c-base:            $black
 $c-base--i:         $white      // inverse
 $c-base--m:         $ltgray     // moderate/mild
+
 $c-background:      $white
+$c-background--i:   $black      // inverse
+
 $c-background--h:   $blue       // highlighted
 $c-background--h-palette: $blue-palette
 $c-background--hm:  $ltblue     // highlited, moderate/mild
-$c-background--i:   $black      // inverse
+
 $c-background--m:   $gray       // moderate/mild
+$c-background--ml:  $ltltgray   // moderate/mild + lighter
+
 $c-link:            $c-base
 
 // ----- Components ----- //
@@ -76,6 +82,7 @@ $b-padding: 0 $b-padding-x
 
 $sm-common: sprite-map('sprites/common/*.png')
 $sm-shared: sprite-map('sprites/shared/*.png')
+$sm-spaces: sprite-map('sprites/spaces/*.png')
 //$sm-home: sprite-map('sprites/home/*.png')
 
 // -------------------------------------

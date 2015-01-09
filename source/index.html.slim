@@ -1,61 +1,64 @@
-article.home
-  section.intro
-    .items
-      - 3.times do |i|
-        .item
-          .background style="background-image: url(#{image_path("home/intro/#{i+1}.jpg")})"
-          .top
-            .logo= image_tag 'logo--v.svg', alt: 'Logo'
-            h1 Vispiemērotaka vieta Jūsu biznesa attīstībai
-            p Jebkura veida un lieluma telpas<br>vienā no lielākajuem biznesa centriem
-          .bottom-container: .bottom
-            p
-              ' Ir pieejamas
-              strong> 22
-              | brivas telpas
-            = link_to 'Izvēlēties telpu', '#', class: 'button'
-  section.advantages
-    ul.items
-      -{infrastructure: 'Biznesam piemērota vieta<br>un infrastruktūra',
-      car: 'Milzīga autostāvvieta<br>Jums un Jūsu klientiem',
-      professional: 'Profesionālā atteiksme<br>un atsaucīgums',
-      handshake: 'Iespēja sadarboties ar vairāk<br>nekā 100 nominiekiem',
-      }.each do |c, text|
-        li
-          i class=c
-          span= text
-  section.numbers
-    ul.items
+---
+article_class: home
+---
+
+section.intro
+  .items
+    - 3.times do |i|
+      .item
+        .background style="background-image: url(#{image_path("home/intro/#{i+1}.jpg")})"
+        .top
+          .logo= image_tag 'logo--v.svg', alt: 'Logo'
+          h1 Vispiemērotaka vieta Jūsu biznesa attīstībai
+          p Jebkura veida un lieluma telpas<br>vienā no lielākajuem biznesa centriem
+        .bottom-container: .bottom
+          p
+            ' Ir pieejamas
+            strong> 22
+            | brivas telpas
+          = link_to 'Izvēlēties telpu', '#', class: 'button'
+section.advantages
+  ul.items
+    -{infrastructure: 'Biznesam piemērota vieta<br>un infrastruktūra',
+    car: 'Milzīga autostāvvieta<br>Jums un Jūsu klientiem',
+    professional: 'Profesionālā atteiksme<br>un atsaucīgums',
+    handshake: 'Iespēja sadarboties ar vairāk<br>nekā 100 nominiekiem',
+    }.each do |c, text|
       li
-        span.number 11
-        span.text ēkas biznesam
-      li
-        span.number 1000
-        span.text autostāvvietas
-      li
-        span.number
-          | 20000
-          sub  m2
-        span.text kopēja platība
-      li
-        span.number 100+
-        span.text nominieki
-  section.clients
-    h1 Attīsties kopā ar mūsu klientiem
-    ul.items
-      - {hilti: 'Hilti', yit: 'YIT', delfi: 'DELFI', tele2: 'TELE2',
-        vitra: 'Vitra', bostik: 'Bostik'}.each do |name,title|
-        li= link_to '#' do
-          = image_tag "sections/clients/#{name}.png", alt: title
-  section.services
-    = partial 'sections/services'
-  section.reviews
-    h1 Atsauksmes
-    .items
-      - 5.times do |i|
-        .item
-          = image_tag 'home/reviews/1.jpg'
-          h2.name Jānis Bērziņš,
-          h3.description Tele2 biroja vadītājs
-          .review
-            p "Attīstīta infrastruktūra ­ stāvvieta klientiem, ērta satiksme, vienkārša piegāde ar lielām loģistikas kravas automašīnām"
+        i class=c
+        span= text
+section.numbers
+  ul.items
+    li
+      span.number 11
+      span.text ēkas biznesam
+    li
+      span.number 1000
+      span.text autostāvvietas
+    li
+      span.number
+        | 20000
+        sub  m2
+      span.text kopēja platība
+    li
+      span.number 100+
+      span.text nominieki
+section.clients
+  h1 Attīsties kopā ar mūsu klientiem
+  ul.items
+    - {hilti: 'Hilti', yit: 'YIT', delfi: 'DELFI', tele2: 'TELE2',
+      vitra: 'Vitra', bostik: 'Bostik'}.each do |name,title|
+      li= link_to '#' do
+        = image_tag "sections/clients/#{name}.png", alt: title
+section.services
+  = partial 'sections/services'
+section.reviews
+  h1 Atsauksmes
+  .items
+    - 5.times do |i|
+      .item
+        = image_tag 'home/reviews/1.jpg'
+        h2.name Jānis Bērziņš,
+        h3.description Tele2 biroja vadītājs
+        .review
+          p "Attīstīta infrastruktūra ­ stāvvieta klientiem, ērta satiksme, vienkārša piegāde ar lielām loģistikas kravas automašīnām"

@@ -50,7 +50,11 @@
 @import components/responsive
 @import components/sidebar
 @import components/header
+@import components/article
 @import components/footer
+%main
+  background: $c-background
+
 
 // -------------------------------------
 // Project structure / Extends
@@ -67,9 +71,20 @@ aside.main
 header.main
   @extend %header
   @extend %header--headroom
-.wrapper>section.social
-  @extend %section
-  @extend %section-social
+main
+  @extend %main
+article
+  @extend %article
+  >header
+    @extend %article-header
+  >section
+    @extend %article-section
+main>section
+  @extend %article-section
+  &.contact-us
+    @extend %section-contact-us
+  &.social
+    @extend %section-social
 footer.main
   @extend %footer
 

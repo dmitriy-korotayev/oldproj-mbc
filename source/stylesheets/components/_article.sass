@@ -1,0 +1,70 @@
+=article-header--tablet
+  position: relative
+  overflow: hidden
+  .text
+    margin-right: 50%
+    padding: 0 30px 0 50px
+    h1, p
+      padding: 0
+    h1
+      margin: .625em 0 .825em
+      text-align: left
+      font-size: 2.75em
+    p
+      margin: 1.45em 0
+      margin-left: .25em
+      line-height: 1.375
+      font-size: 1em
+  .image
+    +scut-absolute(0 0 0 50%)
+
+
+%article
+  background: $c-background
+%article-header
+  border-bottom: 1px solid rgba($c-background--m, .6)
+  background: linear-gradient($c-background, rgba($c-background--h,.1)) $c-background
+  .image
+    background-size: cover
+    min-height: 140px
+    padding-bottom: 10px
+    line-height: 140px
+    text-align: center
+    img
+      vertical-align: middle
+  .text
+    overflow: hidden
+    h1
+      margin: .25em 0
+      text-align: center
+      font-size: 1.85em
+      font-weight: 300
+    p
+      margin-bottom: 1.5em
+      padding: 0 $b-padding-x*1.25 0 $b-padding-x
+      line-height: 1.45
+      font-size: .95em
+  +respond-to(tablet)
+    +article-header--tablet
+
+%article-section
+  background: $c-background
+  >h1
+    overflow: hidden
+    margin: 0
+    padding: .5em $b-padding-x .3em
+    text-align: center
+    font-size: 1.875em
+    font-weight: 300
+    strong
+      font-size: .95em
+      font-weight: 500
+    +respond-to(tablet)
+      font-size: 3em
+    +respond-to(desktop)
+      padding-top: 1.375em
+      font-size: 3.5em
+  ul.items
+    @extend %scut-list-unstyled
+    @extend %scut-clearfix
+

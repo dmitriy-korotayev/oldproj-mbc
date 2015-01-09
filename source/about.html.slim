@@ -1,61 +1,57 @@
-article.about
-  header
-    .image.mobile-only style="background-image: url(#{image_path('articles/about.jpg')})"
-    .image.tablet style="background-image: url(#{image_path('articles/about--tablet.jpg')})"
-    .text
-      h1 Par Mūkusalas biznesa centru
-      p Mūkusalas Biznesa Centrs ir lielākais biznesa centrs Rīgā ar kopējo iznomāto telpu platību 20,000 m2 apmērā. Mūkusalas Biznesa Centrs aizņem 5 hektāru lielu platību Daugavas kreisajā krastā, starp Mūkusalas un Jelgavas ielām. Uzņēmums nodrošina kvalitatīvu tehnisko infrastruktūru veiksmīgai biroju centra darbībai.
-      p Mūkusalas Biznesa centra pakalpojumus izmanto vairāk kā 70 uzņēmumi, kā nozīmīgākos minot, Tele2, Itella, Latvijas Pasts, Unicredit Līzings un LR Tiesu Administrācija.
-  section.services
-    = partial 'sections/services'
-  section.advantages
-    h1 Kāpēc izvēlēties<br>Mūkusalas biznesa centru?
-    ul.items
-      -{car: 'Milzīga autostāvvieta<br>Jums un Jūsu klientiem',
-      infrastructure: 'Biznesam piemērota vieta<br>un infrastruktūra',
-      professional: 'Profesionālā atteiksme<br>un atsaucīgums',
-      handshake: 'Iespēja sadarboties ar vairāk<br>nekā 100 nominiekiem',
-      room: 'Brīvs telpu<br>plānojums',
-      buildings: '5 rekonstruētas<br>ēkas',
-      camera: 'Ventilācija, kondicionēšana, videnovērošana',
-      measures: 'Telpas no 120 m2<br>līdz 2000 m2',
-      projector: 'Konferenču telpas<br>un aprīkojums',
-      guard24: 'Diennakts apsardze<br>un novērošana',
-      }.each do |c, text|
-        li
-          i class=c
-          span= text
-  section.about
-    = partial 'sections/about'
-  section.history
-    h1 Vēsture
-    .contents
-      ul.years
+header
+  .image.mobile-only style="background-image: url(#{image_path('articles/about.jpg')})"
+  .image.tablet style="background-image: url(#{image_path('articles/about--tablet.jpg')})"
+  .text
+    h1 Par Mūkusalas biznesa centru
+    p Mūkusalas Biznesa Centrs ir lielākais biznesa centrs Rīgā ar kopējo iznomāto telpu platību 20,000 m2 apmērā. Mūkusalas Biznesa Centrs aizņem 5 hektāru lielu platību Daugavas kreisajā krastā, starp Mūkusalas un Jelgavas ielām. Uzņēmums nodrošina kvalitatīvu tehnisko infrastruktūru veiksmīgai biroju centra darbībai.
+    p Mūkusalas Biznesa centra pakalpojumus izmanto vairāk kā 70 uzņēmumi, kā nozīmīgākos minot, Tele2, Itella, Latvijas Pasts, Unicredit Līzings un LR Tiesu Administrācija.
+section.services
+  = partial 'sections/services'
+section.advantages
+  h1 Kāpēc izvēlēties<br>Mūkusalas biznesa centru?
+  ul.items
+    -{car: 'Milzīga autostāvvieta<br>Jums un Jūsu klientiem',
+    infrastructure: 'Biznesam piemērota vieta<br>un infrastruktūra',
+    professional: 'Profesionālā atteiksme<br>un atsaucīgums',
+    handshake: 'Iespēja sadarboties ar vairāk<br>nekā 100 nominiekiem',
+    room: 'Brīvs telpu<br>plānojums',
+    buildings: '5 rekonstruētas<br>ēkas',
+    camera: 'Ventilācija, kondicionēšana, videnovērošana',
+    measures: 'Telpas no 120 m2<br>līdz 2000 m2',
+    projector: 'Konferenču telpas<br>un aprīkojums',
+    guard24: 'Diennakts apsardze<br>un novērošana',
+    }.each do |c, text|
+      li
+        i class=c
+        span= text
+section.about
+  = partial 'sections/about'
+section.history
+  h1 Vēsture
+  .contents
+    ul.years
+      - %w(2014 2013 2012 2011 2010).each do |year|
+        li class=(year=='2014' ? 'active' : '') : a href="#" ="#{year}."
+    .frame
+      .achievements
         - %w(2014 2013 2012 2011 2010).each do |year|
-          li class=(year=='2014' ? 'active' : '') : a href="#" ="#{year}."
-      .frame
-        .achievements
-          - %w(2014 2013 2012 2011 2010).each do |year|
-            - 3.times do |i|
-              .item
-                .date= "10.0#{i+9}.#{year}"
-                h2.title Uzbūvētā jaunā A klases 15 000 m2 ēka
-                .description
-                  p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et
-        .timeline
-  section.statement
-    .items
-      - 3.times do |i|
-        .item
-          header
-            .background.mobile-only style="background-image: url(#{image_path("about/statement/1.jpg")})"
-            .background.tablet style="background-image: url(#{image_path("about/statement/1--tablet.jpg")})"
-            h1 MBC direktores uzruna
-            h2.mobile-only Vārds<br>Uzvārds
-            h2.tablet Vārds Uzvārds
-          .contents
-            p= "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\"#{i}"
-            = link_to 'Izvēlēties telpu', '#', class: 'button'
-  section.contact-us
-    = partial 'sections/contact-us'
-
+          - 3.times do |i|
+            .item
+              .date= "10.0#{i+9}.#{year}"
+              h2.title Uzbūvētā jaunā A klases 15 000 m2 ēka
+              .description
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et
+      .timeline
+section.statement
+  .items
+    - 3.times do |i|
+      .item
+        header
+          .background.mobile-only style="background-image: url(#{image_path("about/statement/1.jpg")})"
+          .background.tablet style="background-image: url(#{image_path("about/statement/1--tablet.jpg")})"
+          h1 MBC direktores uzruna
+          h2.mobile-only Vārds<br>Uzvārds
+          h2.tablet Vārds Uzvārds
+        .contents
+          p= "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\"#{i}"
+          = link_to 'Izvēlēties telpu', '#', class: 'button'

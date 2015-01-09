@@ -10,26 +10,6 @@
 //   Components
 // -------------------------------------
 
-=header-tablet
-  position: relative
-  overflow: hidden
-  .text
-    margin-right: 50%
-    padding: 0 30px 0 50px
-    h1, p
-      padding: 0
-    h1
-      margin: .625em 0 .825em
-      text-align: left
-      font-size: 2.75em
-    p
-      margin: 1.45em 0
-      margin-left: .25em
-      line-height: 1.375
-      font-size: 1em
-  .image
-    +scut-absolute(0 0 0 50%)
-
 =section-advantages-custom--tablet
   h1
     padding-top: .8em
@@ -71,6 +51,7 @@
   .slick-slider, .slick-list, .slick-track
     height: 100%
   header
+    +border-sloppy--hide
     position: static
     height: auto
     h1
@@ -103,27 +84,6 @@
       padding: 0 2em
       line-height: 54px
 
-
-%header
-  .image
-    min-height: 140px
-    background-size: cover
-  .text
-    background: linear-gradient($c-background, rgba($c-background--h,.1)) $c-background
-    overflow: hidden
-    h1
-      margin: .5em 0
-      padding: $b-padding
-      text-align: center
-      font-size: 1.85em
-      font-weight: 300
-    p
-      margin-bottom: 1.5em
-      padding: 0 $b-padding-x*1.25 0 $b-padding-x
-      line-height: 1.45
-      font-size: .95em
-  +respond-to(tablet)
-    +header-tablet
 
 %section-advantages-custom
   >h1
@@ -229,6 +189,9 @@
     position: relative
     height: 195px
     overflow: hidden
+    +border-sloppy($c-background--h)
+      top: auto
+      bottom: 0
     .background
       +scut-absolute(0 0 0 0)
       background-size: cover
@@ -247,7 +210,9 @@
       font-size: 1.25em
       text-transform: uppercase
   .contents
-    +border-sloppy($c-background--h)
+    +border-sloppy($c-background)
+      top: auto
+      bottom: 0
     background: $c-background--h
     padding: 0 $b-padding-x 28px
     p
@@ -272,17 +237,12 @@
       width: 42%
 
 
-
 // -------------------------------------
 // Project structure / Extends
 // -------------------------------------
 
 article.about
-  >header
-    @extend %header
-  section
-    @extend %section
-  @each $section in (services advantages about history statement contact-us)
+  @each $section in (services advantages about history statement)
     section.#{$section}
       @extend %section-#{$section}
   section.advantages
