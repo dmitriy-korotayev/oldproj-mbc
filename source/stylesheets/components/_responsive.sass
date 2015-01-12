@@ -1,7 +1,17 @@
 =responsive
   +respond-to(mobile-only)
     .tablet
-      display: none
+      display: none !important
+    .tablet-only
+      display: none !important
+    .desktop
+      display: none !important
+  +respond-to(tablet-only)
+    .desktop
+      display: none !important
   +respond-to(tablet)
     .mobile-only
-      display: none
+      display: none !important
+  +respond-to(desktop)
+    .tablet-only
+      display: none !important

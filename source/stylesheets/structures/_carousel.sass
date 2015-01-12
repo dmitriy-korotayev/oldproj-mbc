@@ -1,22 +1,17 @@
 =carousel-arrows($side: 0px, $postfix: '')
-  .slick-prev, .slick-next
-    +scut-image-replace
   .slick-prev
     left: $side
-    +bsprite($sm-common, "carousel-arrow-left#{$postfix}", nil, 100%)
+    +icon-arrow-left($postfix)
   .slick-next
     right: $side
-    +bsprite($sm-common, "carousel-arrow-right#{$postfix}", nil, 100%)
-  +respond-to(tablet)
-    .slick-prev
+    +icon-arrow-right($postfix)
 
-      +bsprite($sm-common, "carousel-arrow-left#{$postfix}--tablet", nil, 100%)
-    .slick-next
-      +bsprite($sm-common, "carousel-arrow-right#{$postfix}--tablet", nil, 100%)
 =carousel-arrows--i($side: 0px)
   +carousel-arrows($side, '--i')
+
 %carousel-arrows
   +carousel-arrows
+
 =carousel-arrows-centered($item-width, $offset)
   .slick-prev
     left: auto
@@ -26,3 +21,4 @@
     left: 50%
     right: auto
     margin-left:  $item-width/2 + $offset
+

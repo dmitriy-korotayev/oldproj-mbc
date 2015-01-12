@@ -1,23 +1,22 @@
-article.news
-  header
+header
+  .text.single
     h1 Jaunumi
-  section.filter
-    ul.items
-      - %w(2014 2013 2012 2011 2010).each do |year|
-        li: a href="#"= year
-  section.news
-    .items
-      - 2.times do
-        .item
-          .date 10.09.2014
-          h1 Uzbūvētā jaunā A klases 15 000 m2 ēka
-          = image_tag "news/1.jpg"
-          .text
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
-          a.more Lasīt tālāk
-          .social
-            a.like  href="#"
-            a.share href="#"
-            a.send  href="#" Sūtīt draugam
-  section.contact-us
-    = partial 'sections/contact-us'
+section.news
+  ul.years
+    - %w(2014 2013 2012 2011 2010).each do |year|
+      li class=(year=='2014' ? 'active' : '') : a href="#" ="#{year}."
+  .items
+    - 2.times do |i|
+      .item
+        .date= "10.#{format('%02d', i+9)}.2014"
+        h2 Uzbūvētā jaunā A klases 15 000 m2 ēka
+        - if i+1 != 1
+          = image_tag "news/1.jpg", class: 'mobile-only'
+          = image_tag "news/1--tablet.jpg", class: 'tablet'
+        .text
+          p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+        a.more Lasīt tālāk
+        .social
+          a.like  href="#"
+          a.share href="#"
+          a.send  href="#" Sūtīt draugam

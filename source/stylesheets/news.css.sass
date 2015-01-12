@@ -1,0 +1,109 @@
+@import foundation/globals
+
+// -------------------------------------
+//   Structures
+// -------------------------------------
+
+
+// -------------------------------------
+//   Components
+// -------------------------------------
+
+$c-link-underline: #a3acba
+
+=section-news--tablet
+  ul.years
+    margin-top: 44px
+  .items
+    padding-bottom: 15px
+  .item
+    margin: 0 auto 12px
+    max-width: $b-maxWidth--frame
+    padding: 6px $b-padding-x*2 8px $b-padding-x*2
+    &:first-child
+      padding-top: 0
+    .date
+      margin-top: 25px
+    h2
+      margin: .175em 0
+      font-size: 2.2em
+      font-weight: 300
+      letter-spacing: .013em
+    img
+      float: left
+      margin: 15px 21px 0 0
+      width: auto
+    p
+      margin: .875em 0
+      line-height: 1.5
+      font-size: 1.0625em
+      letter-spacing: .028em
+    a.more
+      font-size: 1em
+      margin-top: 0
+    .social
+      margin-top: -9px
+
+
+%section-news
+  ul.years
+    @extend %filter-years
+    margin-top: 20px
+  .item
+    border-top: 1px solid $c-background--m
+    overflow: hidden
+    padding: 0 $b-padding-x 19px
+    .date
+      margin-top: 14px
+      color: $c-base--m
+      font-size: .9em
+      letter-spacing: .02em
+    h2
+      margin: .125em 0
+      line-height: 1.25
+      font-size: 1.875em
+      font-weight: 400
+    img
+      margin-top: 8px
+      margin-bottom: -8px
+      width: 100%
+    p
+      font-size: .95em
+      margin: .75em 0
+      line-height: 1.25
+      letter-spacing: .005em
+    a.more
+      display: block
+      float: left
+      margin-top: 5px
+      border-bottom: 1px solid $c-link-underline
+      line-height: 1.125
+      color: darken($c-base--h, 2.5%)
+      font-size: .95em
+    .social
+      margin-top: -2px
+      float: right
+      @extend %extra-social
+  +respond-to(tablet)
+    +section-news--tablet
+  +respond-to(desktop)
+    padding:
+      left: $b-padding-x
+      right: $b-padding-x
+
+%section-contact-us--custom
+  +respond-to(tablet)
+    padding-top: 36px
+
+
+// -------------------------------------
+// Project structure / Extends
+// -------------------------------------
+
+article.news
+  section.news
+    @extend %section-news
+main
+  section.contact-us
+    @extend %section-contact-us--custom
+

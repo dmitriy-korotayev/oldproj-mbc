@@ -1,38 +1,43 @@
-article.client
-  header
+header
+  .image.mobile-only
     = image_tag 'articles/client.jpg'
-    .text
-      h1 Tele2
-      p Vairāk nekā miljons iedzīvotāju ir izvēlējušies Tele2 kā savu mobilo sakaru pakalpojumu sniedzēju, padarot Tele2 par vadošo mobilo sakaru operatoru Latvijā balss klientu skaita ziņā.
-  section.text
-    p Te]le2 Latvijā piedāvā mobilos sakaru pakalpojumus ar zīmoliem Tele2 un Zelta Zivtiņa. Biznesa uzņēmumiem individuālu pieeju un piemērotākos mobilo sakaru risinājumus nodrošina īpaša Tele2 struktūrvienība – Tele2 Bizness.
-    h1 Pakalpojumi
+  .image.tablet style="background-image: url(#{image_path 'articles/client--tablet.jpg'})"
+  .text
+    h1 Tele2
+    p Vairāk nekā miljons iedzīvotāju ir izvēlējušies Tele2 kā savu mobilo sakaru pakalpojumu sniedzēju, padarot Tele2 par vadošo mobilo sakaru operatoru Latvijā balss klientu skaita ziņā.
+section.text
+  p.intro Tele2 Latvijā piedāvā mobilos sakaru pakalpojumus ar zīmoliem Tele2 un Zelta Zivtiņa. Biznesa uzņēmumiem individuālu pieeju un piemērotākos mobilo sakaru risinājumus nodrošina īpaša Tele2 struktūrvienība – Tele2 Bizness.
+  .column
+    h2 Pakalpojumi
     ul
       li Internets
       li Mobīlie sakari
       li Telefoni
       li Planšetes un datori
-    h1 Kontakti
-    h2 Privātpersonām
-    p
-      ' Tele2 diennakts informatīvais dienests:
-      strong 600, 29560600
-    p
-      ' E-pasta adrese:
-      a href="mailto:tele2@tele2.lv" tele2@tele2.lv
-    h2 Biznesa klientu info:
-    p
-      ' Tālrunis:
-      strong 28444777
-    p
-      ' Fakss:
-      strong 67060521
-    p
-      ' e-pasts:
-      a href="mailto:bizness@tele2.lv" bizness@tele2.lv
-    p
-      ' Darba laiks:
-      strong Darba dienās 8.00 - 23.00
-  section.map
-  section.contact-us
-    = partial 'sections/contact-us'
+  .column
+    h2 Kontakti
+    .row
+      h3 Privātpersonām:
+      p
+        ' Tele2 diennakts informatīvais dienests:
+        strong 600, 29560600
+      p
+        ' E-pasta adrese:
+        a href="mailto:tele2@tele2.lv" tele2@tele2.lv
+    .row
+      h3 Biznesa klientu info:
+      p
+        ' Tālrunis:
+        strong 28444777
+      p
+        ' Fakss:
+        strong 67060521
+      p
+        ' e-pasts:
+        a href="mailto:bizness@tele2.lv" bizness@tele2.lv
+      p
+        ' Darba laiks:
+        strong Darba dienās 8.00 - 23.00
+section.map
+  .marker data-latitude="56.935501" data-longtitude="24.102857" 41a
+  .contents

@@ -1,0 +1,418 @@
+@import 'components/article'
+
+=bundle-article-header--custom--tablet
+  margin: 0 -20px 0 -30px
+  border-bottom: none
+  background: none
+  .text
+    margin-right: 0
+    h1
+      font-size: 2em
+      margin: .75em 0 .5em
+    p
+      line-height: 1.7
+
+=bundle-article-header--custom--desktop
+  .text
+    h1
+      font-size: 2.875em
+      margin: .9em 0 .45em
+
+=article-header-building_map--tablet
+  float: right
+  margin-top: 40px
+  width: 48.5%
+  height: 250px
+  .tips
+    width: 350px
+    height: 221px
+  a.tip
+    font-size: 1.125em
+    &:before
+      left: 10px
+    &:after
+      left: 12px
+
+=section-numbers--h--tablet
+  margin-top: 24px
+  clear: right
+  ul.items
+    padding-bottom: 0
+  li
+    position: relative
+    float: left
+    width: 33.33%
+    height: 45px
+    margin: 8px 0 10px
+    &:first-child
+      margin: 8px 0 10px
+    &:last-child
+      float: right
+    span.number
+      font-size: 2em
+    span.text
+      line-height: 1
+      font-size: .875em
+
+=section-numbers--h--desktop
+  padding: 0 10px 0 20px
+  li
+    height: 65px
+    span.number
+      font-size: 2.8em
+    span.text
+      font-size: 1em
+    &:first-child
+      &:before
+        display: none
+    &:before
+      +scut-absolute(3px n 3px 0)
+      transform: skew(-17deg)
+      display: block
+      background: $c-background--m
+      width: 1px
+      content: ''
+
+=section-advantages--h--desktop
+  padding: 0 10px 28px 20px
+  ul.items
+    margin: 35px -40px 15px -25px
+  li
+    float: left
+    width: 20%
+    margin-top: 0 !important
+    height: auto !important
+    i
+      display: block
+      position: static
+      width: 100%
+      text-align: center
+      &:after
+        display: inline-block
+      @each $i in (room infrastructure guard24 camera projector)
+        &.#{$i}:after
+          +bsprite($sm-building, "advantages-#{$i}--tablet")
+      &.room:after
+        margin-top: 8px
+      &.projector:after
+        margin-top: 12px
+    .bubble
+      transition: visibility 0s, opacity .25s
+      position: absolute
+      z-index: 1
+      visibility: hidden
+      opacity: 0
+      top: 65px
+      left: -50px
+      background: $c-background
+      width: 150px
+      height: auto !important
+      padding-bottom: 8px
+      text-align: center
+      font-size: .9em
+      $width: 22px
+      $height: 11px
+      &:before, &:after
+        left: 65px
+        margin-left: -$width/2
+        border-style: solid
+        border-color: transparent
+        border-width: 0 $width/2 $height $width/2
+      &:before
+        top: -1px
+        border-right-color: transparent
+        border-bottom-color: $border-color
+      &:after
+        top: 0
+        border-right-color: transparent
+        border-bottom-color: $c-background
+    &:hover
+      .bubble
+        visibility: visible
+        opacity: 1
+  a.button
+    float: left
+    height: 41px
+    padding: 0 .5em
+    line-height: 37px
+    font-size: 1.125em
+  .social
+    float: right
+
+
+%article
+  +respond-to(tablet)
+    position: relative
+
+%article-header-building_map
+  margin-top: -12px
+  padding-bottom: 12px
+  .tips
+    position: relative
+    margin: 0 auto
+    width: 298px
+    height: 188px
+    .background
+      +scut-absolute(0 0 0 0)
+      background-size: cover
+  a.tip
+    +scut-absolute(0 n n 0)
+    margin-left: -22px
+    margin-top: -34px
+    border: 2px solid darken($c-background--m, 2.5%)
+    background: $c-background
+    padding: .375em .55em .375em .65em
+    text-transform: uppercase
+    line-height: 1
+    font-size: .95em
+    font-weight: 500
+    &:before, &:after
+      display: block
+      position: absolute
+      content: ''
+    $arrow-width: 16px
+    $arrow-height: 8px
+    &:before
+      $width: $arrow-width
+      $height: $arrow-height
+      bottom: -$height
+      left: 6px
+      border:
+        left: $width/2 solid transparent
+        right: $width/2 solid transparent
+        top: $height solid $c-background--m
+    &:after
+      $width: $arrow-width - 4px
+      $height: $arrow-height - 2px
+      bottom: -$height
+      left: 8px
+      border:
+        left: $width/2 solid transparent
+        right: $width/2 solid transparent
+        top: $height solid $c-background
+  +respond-to(tablet)
+    +article-header-building_map--tablet
+  +respond-to(desktop)
+    margin-top: 5px
+    height: 450px
+    .tips
+      width: 688px
+      height: 435px
+
+%section-image
+  position: relative
+  a.prev, a.next
+    display: block
+    position: absolute
+  a.prev
+    left: 15px
+    +icon-arrow-left('--i')
+  a.next
+    right: 15px
+    +icon-arrow-right('--i')
+  img
+    vertical-align: top
+    width: 100%
+  +respond-to(tablet)
+    position: static
+    float: left
+    width: 50%
+    a.prev, a.next
+      display: none
+    .background
+      +scut-absolute(0 n 0 0)
+      width: 50%
+      background-size: cover
+
+%section-overview
+  +respond-to(tablet)
+    max-height: inherit
+    margin-left: 50%
+    overflow: hidden
+    padding: 0 20px 0 30px
+
+%bundle-article-header--custom
+  .text p
+    margin-top: -.25em
+    margin-bottom: .8em
+    margin-top: -10px
+  +respond-to(tablet)
+    +bundle-article-header--custom--tablet
+  +respond-to(desktop)
+    +bundle-article-header--custom--desktop
+
+$border-color: rgba($c-background--h, .2)
+%section-numbers--h
+  padding: 12px $b-padding-x 0
+  ul.items
+    border: 2px solid $border-color
+    padding-bottom: 12px
+  li
+    margin: 20px $b-padding-x 0
+    text-align: center
+    &:first-child
+      margin-top: 11px
+    span
+      display: block
+    span.number
+      color: $c-base--h
+      line-height: 1
+      font-size: 4.125em
+      font-weight: 300
+      sup, sub
+        font-size: .55em
+      sub
+        bottom: 0
+    span.text
+      font-size: 1.375em
+      font-weight: 300
+      line-height: 1.275
+  +respond-to(mobile-only)
+    li
+      width: 100% !important
+  +respond-to(tablet)
+    +section-numbers--h--tablet
+  +respond-to(desktop)
+    +section-numbers--h--desktop
+
+%section-advantages--h
+  display: table
+  padding: 0 $b-padding-x 23px
+  li
+    position: relative
+    margin-top: 21px
+    height: 50px
+    &:first-child
+      margin-top: 18px
+    i
+      +scut-absolute(0 n 0 3%)
+      width: 29%
+      text-align: center
+      &:after
+        display: inline-block
+        content: ''
+      &.infrastructure:after
+        margin-top: 5px
+      &.camera:after
+        margin-top: 8px
+        margin-left: 6px
+      &.projector:after
+        margin-top: 3px
+      @each $i in (room infrastructure guard24 camera projector)
+        &.#{$i}:after
+          +bsprite($sm-building, "advantages-#{$i}")
+    .bubble
+      position: relative
+      border: 1px solid $border-color
+      margin-left: 38%
+      height: 100%
+      padding: .25em .75em
+      line-height: 1.25
+      font-size: .95em
+      $width: 11px
+      $height: 22px
+      &:before, &:after
+        display: block
+        position: absolute
+        top: 50%
+        left: 0
+        margin-top: -$height/2
+        border-style: solid
+        border-color: transparent
+        border-width: $height/2 $width $height/2 0
+        content: ''
+      &:before
+        border-right-color: $border-color
+        left: -$width - 1px
+      &:after
+        left: -$width
+        border-right-color: $c-background
+      .vcenter
+        display: table
+        height: 100%
+      span
+        display: table-cell
+        vertical-align: middle
+
+  a.button
+    @extend %button
+    margin: 25px $b-padding-x 0
+    border-color: $c-background--ms
+    color: $c-background--ms
+    background: $c-background
+    font-weight: 500
+    &:hover
+      color: $c-background
+      background: $c-background--ms
+
+  .social
+    @extend %extra-social
+    margin-top: 23px
+    text-align: center
+    a
+      float: none
+      display: inline-block
+      vertical-align: top
+
+  +respond-to(tablet)
+    display: block
+  +respond-to(desktop)
+    +section-advantages--h--desktop
+
+
+%bundle-building
+  @extend %article
+  section.image
+    @extend %section-image
+  section.overview
+    @extend %section-overview
+  header
+    @extend %article-header
+    @extend %bundle-article-header--custom
+  section.numbers
+    @extend %section-numbers--h
+  section.advantages
+    @extend %section-advantages--h
+
+%bundle-building--hideable
+  transition: max-height .5s
+  max-height: 0
+  &.active
+    border-bottom: 1px solid $c-background--m
+    max-height: 1000px
+    padding-bottom: 30px
+  $width:  130px
+  $height: 40px
+  a.hide
+    transform: all .25s
+    display: block
+    +scut-absolute(n n 0 50%)
+    margin-left: -65px
+    border-bottom-left-radius:  $width/2 $height
+    border-bottom-right-radius: $width/2 $height
+    background: lighten($c-background--hm, 10%)
+    width:  $width
+    height: $height
+    max-height: 0
+    overflow: hidden
+    padding-top: 0
+    color: darken($c-background--m, 28%)
+    text-align: center
+    text-transform: uppercase
+    font-size: .75em
+    font-weight: 500
+    &:before
+      display: block
+      position: absolute
+      +bsprite($sm-common, 'icon-arrow-up', 100%)
+      top: 5px
+      content: ''
+    &:hover
+      text-decoration: none
+  &.active a.hide
+    bottom: -$height
+    max-height: $height
+    padding-top: 16px
+
+  +respond-to(mobile-only)
+    display: none

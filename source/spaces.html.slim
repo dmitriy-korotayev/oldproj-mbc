@@ -2,27 +2,83 @@ header
   .text
     h1 Visspiemērotākas telpas biznesa attīstībai
     p Mūkusalas Biznesa Centrs ir lielākais biznesa centrs Rīgā ar kopējo iznomāto telpu platību 20,000 m2 apmērā. Mūkusalas Biznesa Centrs aizņem 5 hektāru lielu platību Daugavas kreisajā krastā, starp Mūkusalas un Jelgavas ielām. Uzņēmums nodrošina kvalitatīvu tehnisko infrastruktūru veiksmīgai biroju centra darbībai.
-  .map= image_tag 'articles/_map.png'
+  .building_map
+    = partial 'article-header-building_map'
+section.building
+  = partial 'bundle-building'
+  a.hide href="#" Aizvert
 section.spaces
   h1
     ' Brīvas telpas
     strong= '(22)'
-  .filter
-    .select-custom
-      select name="filter" id="filter"
-        option value="0" disabled=true selected=true Radīt Ēkas
-        option value="1" Value 1
-        option value="2" Value 2
-        option value="3" Value 3
-    .select-custom
-      select name="sort" id="sort"
-        option value="0" disabled=true selected=true Sakārtot
-        option value="1" Value 1
-        option value="2" Value 2
-        option value="3" Value 3
+  .filters.mobile-only
+    .filter
+      .select-custom
+        select name="type" id="type"
+          option value="0" disabled=true selected=true Radīt Ēkas
+          option value="1" Value 1
+          option value="2" Value 2
+          option value="3" Value 3
+    .filter
+      .select-custom
+        select name="sort" id="sort"
+          option value="0" disabled=true selected=true Sakārtot
+          option value="1" Value 1
+          option value="2" Value 2
+          option value="3" Value 3
+  .filters.tablet
+    .filter.class
+      .title: span Ēkas klase
+      .checktextboxes
+        - %w(A B C D).each do |x|
+          label
+            input type="checkbox" name="class" id="class_#{x}" value=x
+            span #{x}
+    .filter.type
+      .title: span Radīt Ēkas
+      .select-custom
+        select name="type" id="type"
+          option value="0" disabled=true selected=true Izvēlēties telpu
+          option value="1" Value 1
+          option value="2" Value 2
+          option value="3" Value 3
+    .filter.limit
+      .title: span Filtrēt
+      .columns
+        .column.half
+          label for="limit_price_min" Pēc cenas, &euro;
+          .inline
+            span no
+            input name="limit_price_min" id="limit_price_min" placeholder="" value="8"
+            span līdz
+            input name="limit_price_max" id="limit_price_min" placeholder="" value=""
+        .column.half
+          label for="limit_area_min"
+            | Pēc platības, M
+            sup 2
+          .inline
+            span no
+            input name="limit_area_min" id="limit_area_min" placeholder="" value="150"
+            span līdz
+            input name="limit_area_max" id="limit_area_min" placeholder="" value="2000"
+    .filter.sort
+      .title: span Sakārtot
+      .columns
+        .column.half
+          label for="sort_price" Pēc cenas
+          .select-custom
+            select name="sort_price" id="sort_price"
+              option value="desc" selected=true Dilstoši
+              option value="asc" Augoši
+        .column.half
+          label for="sort_area" Pēc platības
+          .select-custom
+            select name="sort_area" id="sort_area"
+              option value="desc" selected=true Dilstoši
+              option value="asc" Augoši
   .items
     - 15.times do |i|
-      .item class=(i==6-1 ? 'tablet' : nil)
+      .item class=(i>5-1 ? 'tablet' : nil)
         .image
           .background style="background-image: url(#{image_path('spaces/1.jpg')})"
           ul.actions

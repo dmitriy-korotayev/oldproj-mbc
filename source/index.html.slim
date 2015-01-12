@@ -8,7 +8,7 @@ section.intro
       .item
         .background style="background-image: url(#{image_path("home/intro/#{i+1}.jpg")})"
         .top
-          .logo= image_tag 'logo--v.svg', alt: 'Logo'
+          .logo= image_tag 'logo--v.png', alt: 'Logo'
           h1 Vispiemērotaka vieta Jūsu biznesa attīstībai
           p Jebkura veida un lieluma telpas<br>vienā no lielākajuem biznesa centriem
         .bottom-container: .bottom
@@ -49,7 +49,7 @@ section.clients
     - {hilti: 'Hilti', yit: 'YIT', delfi: 'DELFI', tele2: 'TELE2',
       vitra: 'Vitra', bostik: 'Bostik'}.each do |name,title|
       li= link_to '#' do
-        = image_tag "sections/clients/#{name}.png", alt: title
+        = image_tag "sections/clients/#{name}--tablet.png", alt: title
 section.services
   = partial 'sections/services'
 section.reviews

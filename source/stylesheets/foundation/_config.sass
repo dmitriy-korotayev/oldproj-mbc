@@ -18,13 +18,16 @@ $ltltgray:  lighten($black, 82%) // #e5e5e5
 $white:     #fff
 $blue:      #002f5f
 $blue-palette: (#002f5f #083d72 #124a82 #1f578f #2d659c #366da3 #4479ac #4f84b6 #5f91c1 #6a9ac8)
+$marine:    #40d3c4
 $ltblue:    #b2c0cf
 
 // ----- General ----- //
 
 $c-base:            $black
+$c-base--h:         $blue       // highlighted
 $c-base--i:         $white      // inverse
 $c-base--m:         $ltgray     // moderate/mild
+$c-base--ms:        $marine     // moderate/mild, secondary
 
 $c-background:      $white
 $c-background--i:   $black      // inverse
@@ -35,6 +38,7 @@ $c-background--hm:  $ltblue     // highlited, moderate/mild
 
 $c-background--m:   $gray       // moderate/mild
 $c-background--ml:  $ltltgray   // moderate/mild + lighter
+$c-background--ms:  $marine     // moderate/mild, secondary
 
 $c-link:            $c-base
 
@@ -71,7 +75,7 @@ $b-maxWidth--frame: em(1000px)
 
 $b-b:   em(768px)  // tablets+
 $b-b-d: em(1024px) // desktops+
-$breakpoints: (mobile-only: 0 ($b-b - 1), tablet: $b-b, desktop: $b-b-d)
+$breakpoints: (mobile-only: 0 ($b-b - 1), tablet-only: $b-b ($b-b-d - 1), tablet: $b-b, desktop: $b-b-d)
 
 // ----- Padding ----- //
 
@@ -80,9 +84,10 @@ $b-padding: 0 $b-padding-x
 
 // ----- Sprites ----- //
 
-$sm-common: sprite-map('sprites/common/*.png')
-$sm-shared: sprite-map('sprites/shared/*.png')
-$sm-spaces: sprite-map('sprites/spaces/*.png')
+$sm-common:   sprite-map('sprites/common/*.png')
+$sm-shared:   sprite-map('sprites/shared/*.png')
+$sm-spaces:   sprite-map('sprites/spaces/*.png')
+$sm-building: sprite-map('sprites/building/*.png')
 //$sm-home: sprite-map('sprites/home/*.png')
 
 // -------------------------------------

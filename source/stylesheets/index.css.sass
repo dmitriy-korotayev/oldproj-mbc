@@ -67,6 +67,7 @@
     height: 75px
     padding-top: 4px
     &:after
+      display: block
       top: 15px
     &:nth-child(4n+2):after
       display: block
@@ -194,7 +195,7 @@
     &:after
       +scut-absolute(0 0 n n)
       transform: rotate(15deg)
-      display: block
+      display: none
       width: 1px
       height: 64px
       background: rgba($c-base--i, .20)

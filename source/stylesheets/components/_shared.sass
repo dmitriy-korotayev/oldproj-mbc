@@ -226,6 +226,25 @@ $section-advantages-list-item-height: 270px
       &,&>span,&>span>iframe
         width: 100% !important
 
+=extra-social--tablet
+  $height: 43px
+  a
+    margin-left: 7px
+    height: $height
+    padding: 0 14px
+    line-height: $height - 2px
+  a.like, a.share
+    width: $height
+  @each $i in (like share)
+    a.#{$i}:after
+      +bsprite($sm-common, "social-#{$i}--tablet")
+  a.like:after
+    margin-left: 1px
+  a.share:after
+    margin-left: 0
+  a.send
+    font-size: .875em
+
 
 %section-services
   background: $c-background
@@ -400,3 +419,99 @@ $section-advantages-list-item-height: 270px
       max-width: 880px
 
 
+%filter-years
+  @extend %scut-list-unstyled
+  margin: 16px auto
+  text-align: center
+  li
+    display: inline-block
+    margin-left: .05em
+    padding: 0 .375em
+    font-size: 1.0625em
+    font-weight: 500
+    letter-spacing: .025em
+    +respond-to(tablet)
+      margin: 0 .2em
+      padding-left: .5em
+      font-size: 1.625em
+      font-weight: 300
+    &:first-child
+      margin-left: 0
+    &:hover, &.active
+      background: $c-background--h
+      a
+        color: $c-base--i
+        text-decoration: none
+
+$filter-select-height: 44px
+%filter-select
+  position: relative
+  border: 2px solid $c-background--ml
+  height: $filter-select-height
+  padding: 0.55em 30px .55em .75em
+  font-size: .95em
+  &:after
+    display: block
+    +scut-absolute(0 10px n n)
+    +bsprite($sm-common, 'select-arrowdown', nil, 100%, nil, 2px)
+    content: ''
+  +respond-to(tablet)
+    font-size: 1.25em
+    font-weight: 500
+%filter-select-hidden
+  position: relative
+  z-index: 1
+  height: $filter-select-height !important
+
+%filter-select-container
+  .customSelect
+    width: 100%
+    @extend %filter-select
+  select
+    width: 100%
+    @extend %filter-select-hidden
+%extra-social
+  $height: 35px
+  a
+    display: block
+    float: left
+    margin-left: 6px
+    border: 1px solid $c-base--h
+    height: $height
+    padding: 0 10px
+    line-height: $height - 2px
+    opacity: .5
+  a.like, a.share
+    width: $height
+    padding: 0
+    text-align: center
+    &:after
+      display: inline-block
+      vertical-align: middle
+      content: ''
+  @each $i in (like share)
+    a.#{$i}:after
+      +bsprite($sm-common, "social-#{$i}")
+  a.like:after
+    margin-top: -5px
+  a.share:after
+    margin-top: -5px
+    margin-left: -1px
+  a.send
+    color: $c-base--h
+    font-size: .8em
+    font-weight: 700
+  +respond-to(tablet)
+    +extra-social--tablet
+
+
+=icon-arrow-left($postfix: '')
+  +scut-image-replace
+  +bsprite($sm-common, "icon-arrow-left#{$postfix}", nil, 100%)
+  +respond-to(tablet)
+    +bsprite($sm-common, "icon-arrow-left#{$postfix}--tablet", nil, 100%)
+=icon-arrow-right($postfix: '')
+  +scut-image-replace
+  +bsprite($sm-common, "icon-arrow-right#{$postfix}", nil, 100%)
+  +respond-to(tablet)
+    +bsprite($sm-common, "icon-arrow-right#{$postfix}--tablet", nil, 100%)

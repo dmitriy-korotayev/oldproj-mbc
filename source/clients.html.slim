@@ -1,25 +1,43 @@
-article.clients
-  header
-    .text
-      h1 Mūsu nominieki
-      p Vairāk nekā miljons iedzīvotāju ir izvēlējušies Tele2 kā savu mobilo sakaru pakalpojumu sniedzēju, padarot Tele2 par vadošo mobilo sakaru operatoru Latvijā balss klientu skaita ziņā.
-    = image_tag 'articles/clients.jpg'
-  section.clients
-    .filter
-      select name="filter" id="filter"
-        option value="0" disabled=true selected=true Filtrēt
-        option value="1" Value 1
-        option value="2" Value 2
-        option value="3" Value 3
+header
+  .text
+    h1 Mūsu nominieki
+    p Vairāk nekā miljons iedzīvotāju ir izvēlējušies Tele2 kā savu mobilo sakaru pakalpojumu sniedzēju, padarot Tele2 par vadošo mobilo sakaru operatoru Latvijā balss klientu skaita ziņā.
+  .building_map
+    = partial 'article-header-building_map'
+section.building
+  = partial 'bundle-building'
+  a.hide href="#" Aizvert
+section.clients
+  .filters.mobile-only
+    .filter.type
+      .select-custom
+        select name="type" id="type"
+          option value="0" disabled=true selected=true Filtrēt
+          option value="1" Value 1
+          option value="2" Value 2
+          option value="3" Value 3
+    .filter.search
       input type="text" name="search" id="search" placeholder="Meklēt" value=""
-    .items
-      - {hilti: 'Hilti', yit: 'YIT', delfi: 'DELFI', tele2: 'TELE2',
-        vitra: 'Vitra', bostik: 'Bostik'}.each do |name,title|
-        .item
-          = image_tag "sections/clients/#{name}.png", alt: title
-          = link_to title, '#'
+  .filters.tablet
+    .filter.type
+      .checkboxes
+        - ['Visi', 'Finanses', 'Telekomunikācija', 'Valsts Institūcijas',
+           'Veikali', 'Mediji', 'IT uzņēmumi'].each_with_index do |x,i|
+          label
+            input type="checkbox" name="type" id="type_#{i}" value=i
+            span #{x}
+    .filter.search
+      input type="text" name="search" id="search" placeholder="Ievadiet nosaukumu" value=""
+  .items
+    - 5.times do |i|
+      - {tele2: 'A/S TELE2', delfi: 'A/S DELFI', yit: 'SIA YIT',
+        hilti: 'SIA Hilti'}.each do |name,title|
+        = link_to 'client.html', class: "item#{i>0 ? ' tablet' : ''}"
+          .image
+            = image_tag "sections/clients/#{name}.png", alt: title, class: 'mobile-only'
+            = image_tag "sections/clients/#{name}--tablet.png", alt: title, class: 'tablet-only'
+            = image_tag "sections/clients/#{name}--desktop.png", alt: title, class: 'desktop'
+          .title= title
           .description Mobilo sakaru pakalpojumi
           address Mukusalas 41b
-          a.phone href="tel:37120020000" +371 200 200 00
-  section.contact-us
-    = partial 'sections/contact-us'
+          .phone +371 200 200 00

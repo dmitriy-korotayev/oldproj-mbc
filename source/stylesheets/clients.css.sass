@@ -1,0 +1,212 @@
+@import foundation/globals
+@import components/bundle-building
+
+// -------------------------------------
+//   Structures
+// -------------------------------------
+
+
+// -------------------------------------
+//   Components
+// -------------------------------------
+
+=section-clients--tablet
+  display: block
+  padding: 0 $b-padding-x*5
+  $height: 62px
+  .filter
+    margin-top: 25px
+    width: 100%
+    height: $height
+    overflow: hidden
+    &:nth-child(2n)
+      margin-left: 0
+    &.type
+      border: 2px solid $c-background--ml
+      line-height: $height - 4px
+      padding: 0 2%
+      text-align: center
+      .checkboxes label
+        span:before
+          display: inline-block
+          position: relative
+          top: -2px
+          margin-right: 11px
+          border: 1px solid $c-background--m
+          vertical-align: middle
+          width: 18px
+          height: 18px
+          content: ''
+        span
+          margin-left: 15px
+          vertical-align: middle
+          height: 18px
+          font-size: .9em
+        &:first-child span
+          margin-left: 0
+        input
+          display: none
+        input:checked+span:before
+          background: $c-background--m
+    &.search
+      input
+        height: 100%
+        background: image-url('clients/input-search--tablet.png') 16px 19px no-repeat
+        padding-left: 55px
+        font-size: 1.0625em
+        &::placeholder
+          font-weight: 400
+
+
+  .items
+    margin: 0 -1.5% 32px
+    text-align: center
+  .items a.item
+    display: inline-block
+    float: none
+    border-width: 2px
+    width: 210px
+    height: 200px
+    &, &:nth-child(2n)
+      margin: 36px 1.5% 4px
+    &:hover
+      border-color: $c-background--m
+  .image
+    height: 85px
+    line-height: 85px
+  .title
+    margin-top: 4px
+    font-size: 1.125em
+  .description, address, .phone
+    font-size: .95em
+    font-weight: 400
+  .description
+    margin-top: 0
+  .phone
+    font-weight: 700
+
+=section-clients--desktop
+  display: block
+  .filter
+    &.type
+      width: 75%
+      .checkboxes label span
+        font-size: 1em
+    &.search
+      margin-left: 1%
+      width: 24%
+
+
+
+%article-header-custom
+  .text p
+    margin-top: .5em
+    padding-right: .25em
+  .building_map
+    @extend %article-header-building_map
+  +respond-to(tablet)
+    .text
+      float: left
+      width: 50%
+      margin-right: 0
+      p
+        line-height: 1.7
+  +respond-to(desktop)
+    .text
+      h1
+        margin-top: 1.75em
+        margin-bottom: .95em
+        font-size: 2.875em
+
+%section-building
+  @extend %bundle-building
+  @extend %bundle-building--hideable
+
+%section-clients
+  padding: $b-padding
+  .filters
+    margin-top: 20px
+    overflow: hidden
+  .filter, .item
+    float: left
+    width: 48.5%
+    &:nth-child(2n) // every second, skipping hidden selects
+      margin-left: 3%
+
+  .filter
+    .select-custom
+      @extend %filter-select-container
+    &.search input
+      outline: none
+      border: 2px solid $c-background--ml
+      background: image-url('clients/input-search.png') 10px 10px no-repeat
+      width: 100%
+      height: 44px
+      padding: 0 .5em 0 35px
+      color: $c-base
+      font-size: .95em
+      &::placeholder
+        font-weight: 500
+
+
+  .items
+    margin-top: 8px
+    overflow: hidden
+  $item-height: 138px
+  .items a.item
+    display: block
+    margin-bottom: 14px
+    border: 1px solid $c-background--ml
+    height: $item-height
+    overflow: hidden
+    padding: 3px
+    text-align: center
+    &:hover, &:focus
+      text-decoration: none
+  .image
+    $height: 50px
+    height: $height
+    line-height: $height
+    img
+      vertical-align: middle
+  .title
+    margin-top: 10px
+    display: inline-block
+    height: 1.125em
+    overflow: hidden
+    line-height: 1.125
+    text-transform: uppercase
+    font-size: .75em
+    font-weight: 700
+    border-bottom: 1px solid darken($c-background--m, 10%)
+  .description, address, .phone
+    font-size: .7em
+    line-height: 1.25
+    font-weight: 500
+  .description
+    margin-top: -.25em
+  address
+    margin-top: .375em
+    font-style: normal
+  .phone
+    margin-top: .375em
+    font-weight: 700
+  +respond-to(tablet)
+    +section-clients--tablet
+  +respond-to(desktop)
+    +section-clients--desktop
+
+
+// -------------------------------------
+// Project structure / Extends
+// -------------------------------------
+
+article.clients
+  >header
+    @extend %article-header-custom
+  @each $section in (building clients)
+    section.#{$section}
+      @extend %section-#{$section}
+
+
+

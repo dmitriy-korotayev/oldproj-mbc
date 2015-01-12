@@ -1,0 +1,149 @@
+@import foundation/globals
+
+// -------------------------------------
+//   Structures
+// -------------------------------------
+
+
+// -------------------------------------
+//   Components
+// -------------------------------------
+
+=section-text--tablet
+  margin: 0 auto
+  max-width: $b-maxWidth--frame + $b-padding-x*10
+  padding:
+    left: $b-padding-x*5
+    right: $b-padding-x*5
+  overflow: hidden
+  p.intro
+    margin-top: 1.125em
+    line-height: 1.5
+    text-align: center
+    font-size: 1.3em
+    letter-spacing: .0275em
+  .column
+    float: left
+    width: 50%
+    padding-right: 2%
+  h2
+    margin-top: .5em
+    font-size: 2.875em
+    font-weight: 300
+  h3
+    margin-top: 1em
+    font-size: 1.375em
+    font-weight: 500
+  p
+    line-height: 1.55
+    font-size: .95em
+    letter-spacing: .035em
+  a
+    font-size: 1em
+    line-height: 1.25
+  ul
+    margin-top: 12px
+  ul li
+    margin-top: .2em
+    padding-left: .85em
+    font-size: 1.375em
+    font-weight: 500
+    &:before
+      top: 21px
+  .row
+    margin-bottom: 25px
+
+=section-map--tablet
+  height: 340px
+
+
+%article-header-custom
+  background: $c-background--h
+  color: $c-base--i
+  .text h1
+    margin-top: .45em
+    margin-bottom: 0
+    font-size: 1.8em
+  .text p
+    margin: .75em 0 1em
+  +respond-to(tablet)
+    .text h1
+      font-size: 2.85em
+      margin-left: -.05em
+      margin-top: .625em
+      letter-spacing: -.035em
+    .text p
+      margin-top: 1.75em
+      line-height: 1.5
+
+%section-text
+  padding: 15px $b-padding-x
+  h2
+    margin: .625em 0 0 -.05em
+    text-align: left
+    font-weight: 400
+    font-size: 1.875em
+  h3
+    margin: .75em 0 0
+    font-size: 1.125em
+    font-weight: 400
+  p
+    line-height: 1.45
+    font-size: .95em
+    margin: .5em 0
+  ul
+    @extend %scut-list-unstyled
+  ul li
+    position: relative
+    padding: .325em 0 .15em 1.05em
+    font-size: 1.125em
+    &:before
+      display: block
+      +scut-absolute(16px n n 0)
+      width: 8px
+      height: 8px
+      background: $c-background--m
+      content: ''
+  a
+    display: inline-block
+    border-bottom: 1px solid $c-background--m
+    line-height: 1.065
+    font-size: 1.05em
+  .row
+    margin-bottom: 20px
+  +respond-to(tablet)
+    +section-text--tablet
+
+%section-map
+  height: 190px
+  background: $c-background--hm
+  .contents
+    height: 100%
+  .marker
+    display: none
+    background: image-url('common/map-marker.png')
+  .marker-label
+    font-size: empx(1.375em)
+    margin-top:  -68px !important
+    margin-left: -20px !important
+  +respond-to(tablet)
+    +section-map--tablet
+
+
+// -------------------------------------
+// Project structure / Extends
+// -------------------------------------
+
+article.client
+  >header
+    @extend %article-header-custom
+  @each $section in (text map)
+    section.#{$section}
+      @extend %section-#{$section}
+
+
+// -------------------------------------
+// Inbox
+// -------------------------------------
+
+

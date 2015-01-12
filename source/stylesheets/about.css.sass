@@ -116,22 +116,7 @@
   >h1
     padding-top: .75em
   ul.years
-    @extend %scut-list-unstyled
-    margin-top: 16px
-    text-align: center
-  ul.years li
-    display: inline-block
-    margin-left: .05em
-    padding: 0 .375em
-    font-size: 1.0625em
-    font-weight: 500
-    letter-spacing: .025em
-    &:first-child
-      margin-left: 0
-    &:hover, &.active
-      background: $c-background--h
-      a
-        color: $c-base--i
+    @extend %filter-years
   $achievements-padding-top: 20px
   $achievement-item-height: 240px
   $timeline-height: 100px
@@ -236,6 +221,9 @@
     .contents p
       width: 42%
 
+%section-contact-us-custom
+  border-top: none
+
 
 // -------------------------------------
 // Project structure / Extends
@@ -249,6 +237,10 @@ article.about
     @extend %section-advantages-custom
   section.about
     @extend %section-about-custom
+
+main
+  section.contact-us
+    @extend %section-contact-us-custom
 
 
 // -------------------------------------
