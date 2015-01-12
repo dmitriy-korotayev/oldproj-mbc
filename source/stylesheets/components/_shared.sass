@@ -245,6 +245,10 @@ $section-advantages-list-item-height: 270px
   a.send
     font-size: .875em
 
+=extra-social--i--tablet
+  @each $i in (like share)
+    a.#{$i}:after
+      +bsprite($sm-common, "social-#{$i}--i--tablet")
 
 %section-services
   background: $c-background
@@ -503,6 +507,18 @@ $filter-select-height: 44px
     font-weight: 700
   +respond-to(tablet)
     +extra-social--tablet
+
+%extra-social--i
+  a
+    border-color: $c-background
+    opacity: 1
+  @each $i in (like share)
+    a.#{$i}:after
+      +bsprite($sm-common, "social-#{$i}--i")
+  a.send
+    color: $c-background
+  +respond-to(tablet)
+    +extra-social--i--tablet
 
 
 =icon-arrow-left($postfix: '')

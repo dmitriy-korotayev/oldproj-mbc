@@ -82,7 +82,7 @@ section.spaces
         .image
           .background style="background-image: url(#{image_path('spaces/1.jpg')})"
           ul.actions
-            li.view: a href="#" View
+            li.view: a href="#space" View
             li.measure: a href="#" Measure
         ul.info
           li.area
@@ -111,3 +111,39 @@ section.spaces
           li
             i.cross
             .text pārlukošana
+
+- content_for :modals do
+  .remodal.space data-remodal-id="space"
+    .image
+      = image_tag 'spaces/1-big.jpg'
+    .social
+      a.like  href="#"
+      a.share href="#"
+      a.send  href="#" Sūtīt draugam
+    ul.info
+      li.area
+        .number 200
+        .unit
+          | m
+          sup 2
+      li.price
+        .number 8
+        .unit
+          | &euro;/m
+          sup 2
+      li.building
+        .number 2
+        .unit ēka
+    ul.extra
+      li
+        .number 3
+        .text stāvs
+      li
+        .number 7
+        .text autostāvvieta
+      li
+        i.check
+        .text mēbeles
+      li
+        i.cross
+        .text pārlukošana

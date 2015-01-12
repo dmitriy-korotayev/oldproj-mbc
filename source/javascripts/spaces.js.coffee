@@ -1,6 +1,7 @@
 #= require jquery.customSelect/jquery.customSelect
 #= require jquery-ui
 #= require jquery.scrollTo/jquery.scrollTo
+#= require remodal
 
 $ ->
   $('select').customSelect()

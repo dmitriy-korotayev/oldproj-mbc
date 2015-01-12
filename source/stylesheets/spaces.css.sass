@@ -1,9 +1,219 @@
 @import foundation/globals
 @import components/bundle-building
+@import vendor/remodal
 
 // -------------------------------------
 //   Structures
 // -------------------------------------
+
+$item-height: 262px
+$item-padding: 3px
+$item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
+
+=spaces-item--tablet
+  display: inline-block
+  vertical-align: top
+  margin: 0 14px 45px
+  width: 275px
+  height: 295px
+  padding: 2px
+  &:first-child
+    margin-left: 0
+  &:hover
+    border: 2px solid $c-background--m
+    padding: 1px
+  &:hover .image ul.actions
+    display: block
+
+
+  $image-height: 57.5%
+  .image
+    position: relative
+    height: $image-height
+    ul.actions
+      +scut-absolute(0 0 0 0)
+      background: rgba($c-background--h, .7)
+      text-align: center
+      li
+        position: relative
+        display: inline-block
+        vertical-align: top
+        height: 100%
+      li a
+        display: block
+        position: relative
+        top: 50%
+        margin-top: -29px
+        border-left: 1px solid rgba($c-background, .5)
+        height: 58px
+        padding: 0 30px
+        font-size: 0
+        &:after
+          display: block
+          content: ''
+      @each $i in (view measure)
+        li.#{$i} a:after
+          +bsprite($sm-spaces, "item-action-#{$i}", nil, 58px)
+      li:first-child a
+        border-left: none
+
+
+  ul.info
+    background: $c-background--i
+    height: 24%
+
+  ul.info li
+    .number
+      font-size: 2.375em
+    .unit
+      line-height: 1
+      font-size: 1em
+
+  ul.extra
+    height: 18.5%
+
+  ul.extra li
+    margin: 0 3px 0 6px
+    .number, i
+      height: 28px
+    .number
+      margin-top: .25em
+      font-size: 1.375em
+
+%spaces-item
+  margin-bottom: 14px
+  border: 1px solid $c-background--ml
+  padding: $item-padding
+  height: $item-height
+  .image
+    height: 121px / $item-inner-height * 100%
+    .background
+      background-position: center bottom
+      background-size: cover
+      height: 100%
+    ul.actions
+      display: none
+      @extend %scut-list-unstyled
+  ul
+    @extend %scut-list-unstyled
+    overflow: hidden
+  ul.info
+    height: 75px / $item-inner-height * 100%
+  ul.info li
+    float: left
+    width: 33.33%
+    height: 100%
+    text-align: center
+    &:nth-child(3n-2) // 1,4
+      background: $c-background--ml
+    &:nth-child(3n-1) // 2,5
+      background: $c-background--h
+      color: $c-base--i
+    &:nth-child(3n-0) // 3,6
+      background: $c-background--i
+      color: $c-base--i
+    .number
+      margin-top: .075em
+      font-size: 2.5em
+      font-weight: 300
+      line-height: 1.125
+    .unit
+      line-height: 1.125
+      font-size: 1.0625em
+      sub, sup
+        font-size: .6em
+  ul.extra
+    text-align: center
+    padding-bottom: 3px
+    height: 58px / $item-inner-height * 100%
+  ul.extra li
+    display: inline-block
+    margin: 0 8px 0 7px
+    height: 100%
+    text-align: center
+    .number, i
+      height: 30px
+    .number
+      margin-top: .3em
+      line-height: 1.25
+      font-size: 1.5em
+      font-weight: 500
+    i
+      text-align: center
+      &:after
+        display: inline-block
+        vertical-align: middle
+        content: ''
+      &.check:after
+        margin-left: 6px
+      @each $i in (check cross)
+        &.#{$i}:after
+          +bsprite($sm-spaces, "item-extra-#{$i}", nil, 30px)
+    i.check:after
+      margin-top: -6px
+    i.cross:after
+      margin-top: -4px
+    .text
+      font-size: .65em
+      text-transform: uppercase
+      color: $c-base--m
+  +respond-to(tablet)
+    +spaces-item--tablet
+
+%spaces-item-modal
+  border: none
+  width: auto
+  max-width: 890px
+  height: auto
+  padding: 0
+  .image img
+    display: block
+  .social
+    @extend %extra-social
+    @extend %extra-social--i
+    position: relative
+    float: right
+    margin: -40px 5px 0 0
+    overflow: hidden
+  ul.info
+    height: 80px
+  +respond-to(tablet)
+    &:hover
+      border: none
+      padding: 0
+    .social
+      margin-top: -50px
+    ul.info
+      float: left
+      width: 45%
+      height: 70px
+    ul.extra
+      width: 55%
+      height: 70px
+    ul.extra li
+      .number
+        font-size: 1.75em
+      .text
+        margin-top: .25em
+        font-size: .875em
+  +respond-to(desktop)
+    ul.info
+      height: 100px
+    ul.info li
+      .number
+        font-size: 3.25em
+      .unit
+        font-size: 1.375em
+    ul.extra
+      height: 100px
+    ul.extra li
+      .number
+        margin-top: .5em
+        font-size: 2em
+      .text
+        margin-top: .75em
+        font-size: .95em
+
 
 // -------------------------------------
 //   Components
@@ -109,75 +319,6 @@
     overflow: hidden
     text-align: center
 
-  .items .item
-    display: inline-block
-    vertical-align: top
-    margin: 0 14px 45px
-    width: 275px
-    height: 295px
-    padding: 2px
-    &:first-child
-      margin-left: 0
-    &:hover
-      border: 2px solid $c-background--m
-      padding: 1px
-    &:hover .image ul.actions
-      display: block
-
-  $image-height: 57.5%
-  .image
-    position: relative
-    height: $image-height
-    ul.actions
-      +scut-absolute(0 0 0 0)
-      background: rgba($c-background--h, .7)
-      text-align: center
-      li
-        position: relative
-        display: inline-block
-        vertical-align: top
-        height: 100%
-      li a
-        display: block
-        position: relative
-        top: 50%
-        margin-top: -29px
-        border-left: 1px solid rgba($c-background, .5)
-        height: 58px
-        padding: 0 30px
-        font-size: 0
-        &:after
-          display: block
-          content: ''
-      @each $i in (view measure)
-        li.#{$i} a:after
-          +bsprite($sm-spaces, "item-action-#{$i}", nil, 58px)
-      li:first-child a
-        border-left: none
-
-
-  ul.info
-    background: $c-background--i
-    height: 24%
-
-  ul.info li
-    .number
-      font-size: 2.375em
-    .unit
-      line-height: 1
-      font-size: 1em
-
-  ul.extra
-    height: 18.5%
-
-  ul.extra li
-    margin: 0 3px 0 6px
-    .number, i
-      height: 28px
-    .number
-      margin-top: .25em
-      font-size: 1.375em
-
 =section-spaces--desktop
   .filters
     height: 125px
@@ -248,86 +389,8 @@
 
   .items
     margin-top: 12px
-  $item-height: 262px
-  $item-padding: 3px
-  $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
   .items .item
-    margin-bottom: 14px
-    border: 1px solid $c-background--ml
-    padding: $item-padding
-    height: $item-height
-  .image
-    height: 121px / $item-inner-height * 100%
-    .background
-      background-position: center bottom
-      background-size: cover
-      height: 100%
-    ul.actions
-      display: none
-      @extend %scut-list-unstyled
-  ul
-    @extend %scut-list-unstyled
-    overflow: hidden
-  ul.info
-    height: 75px / $item-inner-height * 100%
-  ul.info li
-    float: left
-    width: 33.33%
-    height: 100%
-    text-align: center
-    &:nth-child(3n-2) // 1,4
-      background: $c-background--ml
-    &:nth-child(3n-1) // 2,5
-      background: $c-background--h
-      color: $c-base--i
-    &:nth-child(3n-0) // 3,6
-      background: $c-background--i
-      color: $c-base--i
-    .number
-      margin-top: .075em
-      font-size: 2.5em
-      font-weight: 300
-      line-height: 1.125
-    .unit
-      line-height: 1.125
-      font-size: 1.0625em
-      sub, sup
-        font-size: .6em
-  ul.extra
-    text-align: center
-    padding-bottom: 3px
-    height: 58px / $item-inner-height * 100%
-  ul.extra li
-    display: inline-block
-    margin: 0 8px 0 7px
-    height: 100%
-    text-align: center
-    .number, i
-      height: 30px
-    .number
-      margin-top: .3em
-      line-height: 1.25
-      font-size: 1.5em
-      font-weight: 500
-    i
-      text-align: center
-      &:after
-        display: inline-block
-        vertical-align: middle
-        content: ''
-      &.check:after
-        margin-left: 6px
-      @each $i in (check cross)
-        &.#{$i}:after
-          +bsprite($sm-spaces, "item-extra-#{$i}", nil, 30px)
-    i.check:after
-      margin-top: -6px
-    i.cross:after
-      margin-top: -4px
-    .text
-      font-size: .65em
-      text-transform: uppercase
-      color: $c-base--m
+    @extend %spaces-item
   +respond-to(tablet)
     +section-spaces--tablet
   +respond-to(desktop)
@@ -345,4 +408,6 @@ article.spaces
     section.#{$section}
       @extend %section-#{$section}
 
-
+.remodal.space
+  @extend %spaces-item
+  @extend %spaces-item-modal
