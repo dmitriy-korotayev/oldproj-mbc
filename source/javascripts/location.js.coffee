@@ -12,9 +12,15 @@ $ ->
     marker_text = $(this).html()
     [[latitude, longtitude, marker_image_url, marker_text]]
 
+  center = ->
+    elem = $(element).siblings('.center')
+    if(elem.length)
+      return new google.maps.LatLng(elem.attr('data-latitude'), elem.attr('data-longtitude'))
+    else
+      return new google.maps.LatLng(markers[0][0], markers[0][1])
   map = new google.maps.Map element,
     zoom: ($(element).width() > 480) && 17 || 16
-    center: new google.maps.LatLng(markers[0][0], markers[0][1])
+    center: center()
     mapTypeId: google.maps.MapTypeId.ROADMAP
     panControl: 0
     zoomControl: 0
@@ -22,6 +28,7 @@ $ ->
     scaleControl: 0
     streetViewControl: 0
     overviewMapControl: 0
+    scrollwheel: 0
 
 
   $.each markers, (i, v) ->

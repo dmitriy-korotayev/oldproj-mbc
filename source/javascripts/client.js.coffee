@@ -22,6 +22,7 @@ $ ->
     scaleControl: 0
     streetViewControl: 0
     overviewMapControl: 0
+    scrollwheel: 0
 
 
   $.each markers, (i, v) ->

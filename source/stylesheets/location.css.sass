@@ -1,0 +1,216 @@
+@import foundation/globals
+
+// -------------------------------------
+//   Structures
+// -------------------------------------
+
+// -------------------------------------
+//   Components
+// -------------------------------------
+
+%article-header-custom
+  .text
+    float: left
+    width: 39%
+    margin-right: 0
+    h1
+      margin-top: .675em
+      margin-bottom: 0
+      font-size: 2.875em
+      line-height: 1.03
+    p
+      margin-top: 1em
+      font-size: .875em
+  ul.travel_time
+    @extend %scut-list-unstyled
+    float: left
+    margin-left: 2%
+    width: 59%
+    text-align: center
+    li
+      display: inline-block
+      vertical-align: top
+      margin: 65px 1%
+      border: 1px solid $c-background--m
+      width: 22%
+      height: 90px
+      .from
+        margin-top: .3em
+        font-size: 1.25em
+        font-weight: 300
+        &:before
+          +bsprite($sm-location, 'travel_time-arrow-up-right')
+          display: inline-block
+          margin-right: 4px
+          margin-bottom: 2px
+          vertical-align: bottom
+          content: ''
+      .in
+        margin-top: .375em
+        font-size: 1.375em
+        font-weight: 500
+
+%section-map
+  position: relative
+  height: 735px
+  background: $c-background--hm
+  .search
+    position: absolute
+    z-index: 1
+    top: 34px
+    width: 100%
+    height: 42px
+    line-height: 42px
+    text-align: center
+    input[type="text"]
+      outline: none
+      display: inline-block
+      margin: 0 auto
+      border: none
+      background: linear-gradient($c-background, rgba($c-background--m,.2)) $c-background
+      width: 450px
+      height: 100%
+      padding: 0 50px 0 1em
+      font-size: 1.125em
+    input[type="submit"]
+      display: inline-block
+      vertical-align: middle
+      -webkit-appearance: none
+      margin-top: -6px
+      margin-left: -33px
+      border: none
+      background-color: transparent
+      opacity: .4
+      +bsprite($sm-location, 'map-search')
+      &:hover
+        opacity: .7
+  .marker
+    display: none
+    background: image-url('common/map-marker.png')
+    &.marker--h
+      background: image-url('common/map-marker--h.png')
+  .marker-label
+    font-size: empx(1.375em)
+    margin-top:  -68px !important
+    margin-left: -20px !important
+    height: 50px
+    width: 40px
+    i
+      display: block
+      position: relative
+      left: -6px
+      top: 16px
+      width: 50px
+      text-align: center
+      &:after
+        display: inline-block
+        content: ''
+      &.basket
+        margin-left: 1px
+    @each $i in food basket// instruments bank petrol cart cocktail grooming
+      i.#{$i}:after
+        +bsprite($sm-location, "map-marker-#{$i}--i")
+  .contents
+    height: 100%
+  .filter
+    position: absolute
+    left: 50%
+    margin-left: -$b-maxWidth--frame/2
+    bottom: 45px
+    width: $b-maxWidth--frame
+    height: 115px
+    text-align: center
+    a
+      display: inline-block
+      vertical-align: bottom
+      margin-right: -.25em
+      border-left: 1px solid $c-background
+      border-right: 1px solid $c-background--ml
+      background: linear-gradient($c-background, rgba($c-background--m,.2)) $c-background
+      width: 123px
+      height: 100%
+      padding: 0 15px
+      &:first-child
+        border-left: none
+      &:last-child
+        border-right: none
+        margin-right: 0
+      &:hover, &:focus
+        background: $c-background--h
+        color: $c-base--i
+        text-decoration: none
+      i
+        display: block
+        height: 53px
+        line-height: 53px
+        text-align: center
+        &:after
+          display: inline-block
+          vertical-align: bottom
+          content: ''
+      @each $i in food basket instruments bank petrol cart cocktail grooming
+        i.#{$i}:after
+          +bsprite($sm-location, "map-filter-#{$i}")
+        &:hover i.#{$i}:after
+          +bsprite($sm-location, "map-filter-#{$i}--i")
+      .title
+        margin-top: .55em
+        height: 2.5em
+        overflow: hidden
+        line-height: 1.2
+
+%section-transport
+  margin: 0 auto
+  width: $b-maxWidth--frame
+  padding: 0 $b-padding-x*.8 36px
+  li
+    float: left
+    margin-top: 33px
+    margin-left: 4.5%
+    border: 1px solid $c-background--m
+    width: 21.6%
+    text-align: center
+    &:first-child
+      margin-left: 0
+    i
+      display: block
+      height: 52px
+      line-height: 52px
+      &:after
+        display: inline-block
+        vertical-align: bottom
+        content: ''
+      @each $i in bus trolleybus tram microbus
+        &.#{$i}:after
+          +bsprite($sm-location, "transport-#{$i}")
+    .numbers
+      margin-top: .0625em
+      font-size: 1.75em
+      font-weight: 300
+    .stop
+      line-height: 1.75
+      font-size: .95em
+      span
+        color: $c-base--m
+    a.schedule
+      display: block
+      margin-top: 8px
+      background: $c-background--h
+      height: 33px
+      line-height: 33px
+      color: $c-base--i
+      font-size: .95em
+
+
+// -------------------------------------
+// Project structure / Extends
+// -------------------------------------
+
+article.location
+  >header
+    @extend %article-header-custom
+  @each $section in (map transport)
+    section.#{$section}
+      @extend %section-#{$section}
+
+

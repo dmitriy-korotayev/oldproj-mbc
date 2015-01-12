@@ -1,0 +1,41 @@
+header
+  .text
+    h1 Ideāla ātrašanas vieta biznesa veicināšanai
+    p Mūkusalas Biznesa centra pakalpojumus izmanto vairāk kā 70 uzņēmumi, kā nozīmīgākos minot, Tele2, Itella, Latvijas Pasts, Unicredit Līzings un LR Tiesu Administrācija.
+  ul.travel_time
+    - {'Centrs': '5 min. / 3 km.', 'Vecrīga': '10 min. / 5 km.',
+      'TC Riga Plaza': '3 min. / 400 m.',
+      'Lidosta': '15 min. / 10 km.'}.each do |from, _in|
+      li
+        .from= from
+        .in= _in
+section.map
+  .search
+    input type="text" name="search" id="search" placeholder="Sākumpunkts (adrese)" value=""
+    input type="submit" value=""
+  .marker data-latitude="56.935501" data-longtitude="24.102857" 41a
+  .marker data-latitude="56.934846" data-longtitude="24.101666" 41b
+  .marker data-latitude="56.934641" data-longtitude="24.103275" 41c
+  .marker.marker--h data-latitude="56.936847" data-longtitude="24.101216": i.food
+  .marker.marker--h data-latitude="56.933891" data-longtitude="24.105078": i.basket
+  .center data-latitude="56.935267" data-longtitude="24.104198"
+  .contents
+  .filter
+    - {food: 'Kafejnīcas, restorāni', basket: 'Pārtika',
+      instruments: 'Autoservisi', bank: 'Bankas', petrol: 'DUS',
+      cart: 'Veikali', cocktail: 'Izklaide',
+      grooming: 'Skaistums un veselība'}.each do |i, title|
+      a href="#"
+        i class=i
+        .title= title
+section.transport
+  ul.items
+    - {bus: '15; 24', trolleybus: '13', tram: '43; 23',
+      microbus: '43; 23'}.each do |i, numbers|
+      li
+        i class=i
+        .numbers= numbers
+        .stop
+          span>Pietura:
+          | Mukusalas iela
+        a.schedule href="#" Skatīt sarakstu
