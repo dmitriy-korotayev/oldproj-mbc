@@ -80,10 +80,21 @@ $c-link-underline: #a3acba
       line-height: 1.125
       color: darken($c-base--h, 2.5%)
       font-size: .95em
+      &:hover
+        text-decoration: none
+        border-bottom: none
+    &.open a.more
+      display: none
     .social
       margin-top: -2px
       float: right
       @extend %extra-social
+    .hidden
+      transition: max-height .375s
+      max-height: 0
+      overflow: hidden
+    &.open .hidden
+      max-height: 1000px
   +respond-to(tablet)
     +section-news--tablet
   +respond-to(desktop)
