@@ -18,8 +18,20 @@ $ ->
       return new google.maps.LatLng(elem.attr('data-latitude'), elem.attr('data-longtitude'))
     else
       return new google.maps.LatLng(markers[0][0], markers[0][1])
+
+  mobile = false
+  touch = false
+  Breakpoints.on
+    name: 'mobile'
+    matched: ->
+      mobile = true
+  Breakpoints.on
+    name: 'tablet'
+    matched: ->
+      touch = true
+
   map = new google.maps.Map element,
-    zoom: ($(element).width() > 480) && 17 || 16
+    zoom: mobile && 16 || 17
     center: center()
     mapTypeId: google.maps.MapTypeId.ROADMAP
     panControl: 0
@@ -29,6 +41,7 @@ $ ->
     streetViewControl: 0
     overviewMapControl: 0
     scrollwheel: 0
+    draggable: !touch
 
 
   $.each markers, (i, v) ->

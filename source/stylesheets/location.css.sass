@@ -24,15 +24,16 @@
   ul.travel_time
     @extend %scut-list-unstyled
     float: left
+    margin-top: 65px
     margin-left: 2%
     width: 59%
     text-align: center
     li
       display: inline-block
       vertical-align: top
-      margin: 65px 1%
+      margin: 0 2% 30px
       border: 1px solid $c-background--m
-      width: 22%
+      width: 45%
       height: 90px
       .from
         margin-top: .3em
@@ -46,9 +47,22 @@
           vertical-align: bottom
           content: ''
       .in
+        font-weight: 500
         margin-top: .375em
         font-size: 1.375em
-        font-weight: 500
+      +breakpoint($b-b-d, em(1280px))
+        .from
+          margin-top: .7em
+          font-size: .95em
+        .in
+          margin-top: .5em
+          font-size: 1.125em
+  +respond-to(desktop)
+    ul.travel_time li
+      width: 22%
+      margin:
+        left: 1%
+        right: 1%
 
 %section-map
   position: relative

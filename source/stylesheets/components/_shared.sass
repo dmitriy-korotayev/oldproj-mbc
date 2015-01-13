@@ -31,52 +31,54 @@ $section-advantages-list-item-height: 270px
     // next to first and before last - only one downwards to center
     &:nth-child(#{$columns}n+2)
       &:before
-        width: 100%
+        width: 100.1%
       &:after
         display: none
     &:nth-child(#{$columns}n+#{$columns - 1})
       &:before
         display: none
       &:after
-        width: 100%
+        width: 100.1%
     @if $columns == 5
       // top border
       &:nth-child(5n+2):before, &:nth-child(5n+4):after
         height: $bsh--t*.667
       &:nth-child(5n+2):after, &:nth-child(5n+4):before
         display: block
-        top: -$bsh--t*.333
-        height: $bsh--t*.333
-        width: 100%
+        top: -$bsh--t*.334
+        height: $bsh--t*.334
+        width: 100.1%
         background: inherit
       &:nth-child(5n+3):before, &:nth-child(5n+3):after
-        top: -$bsh--t*.333
-        height: $bsh--t*.333
+        top: -$bsh--t*.334
+        height: $bsh--t*.334
       @for $i from 1 through length($palette)
         $color: nth($c-background--h-palette, nth($palette, $i))
         &:nth-child(#{$i}) span
           @if $i == length($palette) - 3
             +border-sloppy($color, right, bottom, $responsive: true, $gradient-offset--tablet: 2.5%)
-              height: $bsh--t * .67
-              bottom: -$bsh--t * .67
+              width: 100.1%
+              height: $bsh--t * .667
+              bottom: -$bsh--t * .667
             position: static
           @if $i == length($palette) - 2
             +border-sloppy($color, both, bottom, $responsive: true)
-              height: $bsh--t * .333
+              height: $bsh--t * .334
               bottom: -$bsh--t
             +border-sloppy--mirrored($color, both, top, $gradient-offset--tablet: 6%)
             position: static
           @if $i == length($palette) - 1
             +border-sloppy($color, left, bottom, $responsive: true, $gradient-offset--tablet: 2.5%)
-              height: $bsh--t * .67
-              bottom: -$bsh--t * .67
+              width: 100.1%
+              height: $bsh--t * .667
+              bottom: -$bsh--t * .667
             position: static
         @if $i == length($palette) - 2
           &:nth-child(#{$i}) i:before
             +scut-absolute(n 0 n 0)
-            bottom: -$bsh--t * .67
+            bottom: -$bsh--t * .667
             background: $color
-            height: $bsh--t * .67
+            height: $bsh--t * .667
             content: ''
 
 
@@ -425,7 +427,8 @@ $section-advantages-list-item-height: 270px
 
 %filter-years
   @extend %scut-list-unstyled
-  margin: 16px auto
+  margin: 16px auto 0
+  padding-bottom: 16px
   text-align: center
   li
     display: inline-block
