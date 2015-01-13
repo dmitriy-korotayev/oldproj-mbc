@@ -42,8 +42,118 @@
 =section-history--tablet
   +border-sloppy--hide
   height: 595px
+  .frame
+    border-top: none
+    height: 450px
+  $padding-left: $b-padding-x*23
   ul.years
-    display: none
+    +scut-absolute(197px 0 n $padding-left)
+    color: $c-background--hm
+    &:before
+      +scut-absolute(n 0 n 0)
+      background: currentColor
+      height: 2px
+      content: ''
+    li
+      position: absolute
+      padding: 0
+      &:hover
+        background: none
+      &:before
+        position: absolute
+        top: -8px
+        left: 0
+        margin-left: -1px
+        background: currentColor
+        width: 2px
+        height: 18px
+        content: ''
+      a
+        position: absolute
+        top: 17px
+        left: 50%
+        margin-left: -50px + 5px
+        width: 100px
+        color: $c-base--h
+        font-size: .675em
+        &:hover
+          color: $c-base--h
+          text-decoration: none
+  .achievements
+    position: relative
+    margin-left: $b-padding-x*23
+    height: 430px
+    overflow: visible
+  .achievement
+    // TODO: refactor this mess
+    $tail-height: 148px
+    $tail-top: 28px
+    $top: 22px
+    $bottom: 26px
+    float: left
+    position: absolute
+    margin-left: 25px
+    width: 350px
+    padding: 0 .5em 0 1em
+    &:before
+      $height: 30px
+      position: absolute
+      top: $tail-height + $tail-top
+      left: -40px
+      border-radius: $height/2
+      background: $c-background--hm
+      width: $height
+      height: $height
+      content: ''
+    &.bottom:before
+      top: auto
+      bottom: $tail-height + $tail-top
+    &:after
+      height: $tail-height
+      +scut-absolute($tail-top n n -25px)
+      +scut-border(1px solid $c-background--hm, y n n y)
+      width: 22px
+      content: ''
+    &.bottom:after
+      border-top: none
+      border-bottom: 1px solid $c-background--hm
+      top: auto
+      bottom: $tail-top
+    h2.title
+      margin: .625em 0 .25em
+      font-size: 1.375em
+      font-weight: 300
+    p.description
+      margin-top: .625em
+      line-height: 1.25
+      font-size: .875em
+      font-weight: 500
+    &.block
+      border: 2px solid $c-background--hm
+      max-height: 170px
+      h2.title
+        margin-right: 3em
+    &.top
+      top: $top
+    &.bottom
+      bottom: $bottom
+    &.simple
+      $offset: 50px
+      &.top
+        top: $top + $offset
+        &:before, &:after
+          margin-top: -$offset
+        &:after
+          top: $tail-top + $offset
+      &.bottom
+        bottom: $bottom + $offset
+        &:before, &:after
+          margin-bottom: -$offset
+        &:after
+          bottom: $tail-top + $offset
+      &:after
+        width: 30px
+        height: $tail-height - $offset
 
 =section-statement--tablet
   +border-sloppy--hide

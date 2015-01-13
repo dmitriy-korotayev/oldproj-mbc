@@ -95,6 +95,23 @@ $c-link-underline: #a3acba
       overflow: hidden
     &.open .hidden
       max-height: 1000px
+  .pagination
+    margin: 15px 0 40px
+    text-align: center
+    a.page
+      $height: 36px
+      display: inline-block
+      vertical-align: middle
+      margin: 0 5px
+      border: 1px solid $c-background--m
+      width: $height
+      height: $height
+      line-height: $height - 2px
+      &:hover, &.active
+        border-width: 2px
+        color: $c-base--ml
+        line-height: $height - 4px
+        text-decoration: none
   +respond-to(tablet)
     +section-news--tablet
   +respond-to(desktop)
