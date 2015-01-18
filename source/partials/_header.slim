@@ -1,5 +1,8 @@
 .inner
-  .sidebar-toggle: a href="#"
+  - if current_page.data.link_back
+    = link_to 'Atpakaļ', current_page.data.link_back, title: 'Atpakaļ', class: 'back'
+  - else
+    .sidebar-toggle: a href="#"
 
   .logo
     = link_to 'index.html' do

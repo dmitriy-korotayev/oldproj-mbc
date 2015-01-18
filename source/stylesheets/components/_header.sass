@@ -11,7 +11,7 @@ $background: $c-background--i
     margin: 0 auto
     max-width: $b-maxWidth--frame
     height: 100%
-  .sidebar-toggle, .logo
+  .sidebar-toggle, a.back, .logo
     float: left
     height: 100%
   .sidebar-toggle
@@ -23,6 +23,11 @@ $background: $c-background--i
       vertical-align: middle
       margin-top: -2px
       +bsprite($sm-common, 'header-sidebar-toggle')
+  a.back
+    @extend %scut-image-replace
+    display: block
+    margin: 0 30px 0 5px
+    +bsprite($sm-common, 'icon-arrow-left--i--bold', nil, $height)
   .logo
     padding-top: 12px
     padding-bottom: 8px
@@ -45,6 +50,10 @@ $background: $c-background--i
   +respond-to(desktop)
     .sidebar-toggle
       display: none
+    a.back
+      margin:
+        right: 20px
+        left: -40px
     .logo
       width: 11.5%
       padding-top: 8px

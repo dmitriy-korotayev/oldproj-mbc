@@ -68,7 +68,7 @@
   position: relative
   height: 735px
   background: $c-background--hm
-  .search
+  .directions-search
     position: absolute
     z-index: 1
     top: 34px
@@ -76,23 +76,23 @@
     height: 42px
     line-height: 42px
     text-align: center
-    input[type="text"]
+    form, input[type="text"]
+      height: 100%
+    input
       outline: none
       display: inline-block
-      margin: 0 auto
       border: none
+    input[type="text"]
+      margin: 0 auto
       background: linear-gradient($c-background, rgba($c-background--m,.2)) $c-background
       width: 450px
-      height: 100%
       padding: 0 50px 0 1em
       font-size: 1.125em
     input[type="submit"]
-      display: inline-block
       vertical-align: middle
       -webkit-appearance: none
       margin-top: -6px
       margin-left: -33px
-      border: none
       background-color: transparent
       opacity: .4
       +bsprite($sm-location, 'map-search')
@@ -149,9 +149,11 @@
       &:last-child
         border-right: none
         margin-right: 0
-      &:hover, &:focus
+      &:hover, &.active
         background: $c-background--h
         color: $c-base--i
+        text-decoration: none
+      &:focus
         text-decoration: none
       i
         display: block
@@ -165,8 +167,9 @@
       @each $i in food basket instruments bank petrol cart cocktail grooming
         i.#{$i}:after
           +bsprite($sm-location, "map-filter-#{$i}")
-        &:hover i.#{$i}:after
-          +bsprite($sm-location, "map-filter-#{$i}--i")
+        &:hover, &.active
+          i.#{$i}:after
+            +bsprite($sm-location, "map-filter-#{$i}--i")
       .title
         margin-top: .55em
         height: 2.5em

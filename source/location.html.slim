@@ -10,24 +10,31 @@ header
         .from= from
         .in= _in
 section.map
-  .search
-    input type="text" name="search" id="search" placeholder="Sākumpunkts (adrese)" value=""
-    input type="submit" value=""
+  .directions-search
+    form
+      input type="text" name="from" id="from" placeholder="Sākumpunkts (adrese)" value=""
+      input type="submit" value=""
   .marker data-latitude="56.935501" data-longtitude="24.102857" 41a
   .marker data-latitude="56.934846" data-longtitude="24.101666" 41b
   .marker data-latitude="56.934641" data-longtitude="24.103275" 41c
-  .marker.marker--h data-latitude="56.936847" data-longtitude="24.101216": i.food
-  .marker.marker--h data-latitude="56.933891" data-longtitude="24.105078": i.basket
+  .marker.marker--h data-category="cafe" data-latitude="56.936847" data-longtitude="24.101216": i.food
+  .marker.marker--h data-category="groceries" data-latitude="56.933891" data-longtitude="24.105078": i.basket
   .center data-latitude="56.935267" data-longtitude="24.104198"
   .contents
   .filter
-    - {food: 'Kafejnīcas, restorāni', basket: 'Pārtika',
-      instruments: 'Autoservisi', bank: 'Bankas', petrol: 'DUS',
-      cart: 'Veikali', cocktail: 'Izklaide',
-      grooming: 'Skaistums un veselība'}.each do |i, title|
-      a href="#"
-        i class=i
-        .title= title
+    -[\
+      ['cafe', 'food', 'Kafejnīcas, restorāni'],
+      ['groceries', 'basket', 'Pārtika'],
+      ['autoservice', 'instruments', 'Autoservisi'],
+      ['bank', 'bank', 'Bankas'],
+      ['petrol_station', 'petrol', 'DUS'],
+      ['shop', 'cart', 'Veikali'],
+      ['entertainment', 'cocktail', 'Izklaide'],
+      ['beauty', 'grooming', 'Skaistums un veselība'] \
+    ].each_with_index do |c,i|
+      a href="#" data-category=c[0] class=(i<2 ? 'active' : nil)
+        i class=c[1]
+        .title=c[2]
 section.transport
   ul.items
     - {bus: '15; 24', trolleybus: '13', tram: '43; 23',
