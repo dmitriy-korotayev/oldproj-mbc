@@ -21,7 +21,8 @@
     "jquery-ui": "~1.11.2",
     "google-map": "GoogleWebComponents/google-map#~0.4.0",
     "easy-markerwithlabel": "~0.0.1",
-    "remodal": "~0.4.1"
+    "remodal": "~0.4.1",
+    "jquery.kinetic": "~2.0.5"
   },
   "devDependencies": {
     "scut": "~1.0.1",

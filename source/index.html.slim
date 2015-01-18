@@ -46,10 +46,11 @@ section.numbers
 section.clients
   h1 Attīsties kopā ar mūsu klientiem
   ul.items
-    - {hilti: 'Hilti', yit: 'YIT', delfi: 'DELFI', tele2: 'TELE2',
-      vitra: 'Vitra', bostik: 'Bostik'}.each do |name,title|
-      li= link_to '#' do
-        = image_tag "sections/clients/#{name}--tablet.png", alt: title
+    - 3.times do |i|
+      - {hilti: 'Hilti', yit: 'YIT', delfi: 'DELFI', tele2: 'TELE2',
+        vitra: 'Vitra', bostik: 'Bostik'}.each do |name,title|
+        li class=(i>0 ? ' tablet' : nil) = link_to '#' do
+          = image_tag "sections/clients/#{name}--tablet.png", alt: title
 section.services
   = partial 'sections/services'
 section.reviews

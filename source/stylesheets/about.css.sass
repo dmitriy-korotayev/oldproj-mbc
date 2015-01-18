@@ -43,11 +43,14 @@
   +border-sloppy--hide
   height: 595px
   .frame
+    margin:
+      left: $b-padding-x*23
+      right: $b-padding-x*23
     border-top: none
     height: 450px
-  $padding-left: $b-padding-x*23
+    overflow: visible
   ul.years
-    +scut-absolute(197px 0 n $padding-left)
+    +scut-absolute(197px 0 n 0)
     color: $c-background--hm
     &:before
       +scut-absolute(n 0 n 0)
@@ -79,9 +82,40 @@
         &:hover
           color: $c-base--h
           text-decoration: none
+  a.prev, a.next
+    display: none
+    $height: 62px
+    position: absolute
+    top: 50%
+    z-index: 1
+    color: $c-base--hm
+    opacity: .7
+    &:hover
+      opacity: 1
+      text-decoration: none
+    &.active
+      display: block
+    &:after
+      display: block
+      position: absolute
+      top: 0
+      content: ''
+  @each $w, $d in (prev: left, next: right) // what, direction
+    a.#{$w}
+      $image-width:  image-width(sprite-file($sm-common, "icon-arrow-#{$d}--hm"))
+      $image-height: image-height(sprite-file($sm-common, "icon-arrow-#{$d}--hm"))
+      #{$d}:  $b-padding-x*4
+      padding-#{$d}: $image-width
+      height: $image-height
+      line-height: $image-height
+      margin-top: -$image-height/2
+      &:after
+        #{$d}: 0
+        +bsprite($sm-common, "icon-arrow-#{$d}--hm")
+  .kinetic
+    overflow: hidden
   .achievements
     position: relative
-    margin-left: $b-padding-x*23
     height: 430px
     overflow: visible
   .achievement
@@ -227,20 +261,18 @@
     padding-top: .75em
   ul.years
     @extend %filter-years
-  $achievements-padding-top: 20px
   $achievement-item-height: 240px
   $timeline-height: 100px
   .frame
     position: relative
     margin-top: 20px
     border-top: 1px solid $c-background--m
-    height: $achievements-padding-top + $achievement-item-height + $timeline-height
+    height: $achievement-item-height + $timeline-height
     overflow: hidden
   .achievements
     +scut-absolute(0 n n 0)
-    padding-top: $achievements-padding-top
     width: 1000px
-    height: $achievements-padding-top + $achievement-item-height
+    height: $achievement-item-height
     overflow: hidden
   .achievements .item
     float: left
@@ -263,7 +295,7 @@
       p:first-child
         margin-top: .625em
   .timeline
-    +scut-absolute($achievements-padding-top+$achievement-item-height n n 0)
+    +scut-absolute($achievement-item-height n n 0)
     width: 1000px
     height: $timeline-height
   +respond-to(mobile-only)

@@ -30,10 +30,13 @@ $ ->
   Breakpoints.on
     name: 'tablet'
     matched: ->
-      $('section.clients .items').slick
+      carousel = $('section.clients .items')
+      slidesToShow = Math.ceil(carousel.innerWidth() / carousel.find('li').outerWidth(true))
+
+      carousel.slick
         slide: 'li'
-        centerMode: true
-        variableWidth: true
+        infinite: true
+        slidesToShow: slidesToShow
         autoplay: true
         arrows: true
 
