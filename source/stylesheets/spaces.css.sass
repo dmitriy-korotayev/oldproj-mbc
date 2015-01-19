@@ -391,6 +391,8 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     margin-top: 12px
   .items .item
     @extend %spaces-item
+    &.template
+      display: none
   +respond-to(tablet)
     +section-spaces--tablet
   +respond-to(desktop)

@@ -8,7 +8,7 @@ section.building
   = partial 'bundle-building'
   a.hide href="#" Aizvert
 section.clients
-  .filters.mobile-only
+  form.filters.mobile-only
     .filter.type
       .select-custom
         select name="type" id="type"
@@ -18,7 +18,7 @@ section.clients
           option value="3" Value 3
     .filter.search
       input type="text" name="search" id="search" placeholder="Meklēt" value=""
-  .filters.tablet
+  form.filters.tablet
     .filter.type
       .checkboxes
         - ['Visi', 'Finanses', 'Telekomunikācija', 'Valsts Institūcijas',
@@ -29,6 +29,15 @@ section.clients
     .filter.search
       input type="text" name="search" id="search" placeholder="Ievadiet nosaukumu" value=""
   .items
+    = link_to '%url', class: "item template"
+      .image
+        img.mobile-only src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_src_mobile" alt="%title"
+        img.tablet-only src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_src_tablet" alt="%title"
+        img.desktop     src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_src_desktop" alt="%title"
+      .title %title
+      .description %description
+      address %address
+      .phone %phone
     - 5.times do |i|
       - {tele2: 'A/S TELE2', delfi: 'A/S DELFI', yit: 'SIA YIT',
         hilti: 'SIA Hilti'}.each do |name,title|

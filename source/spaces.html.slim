@@ -11,7 +11,7 @@ section.spaces
   h1
     ' Brīvas telpas
     strong= '(22)'
-  .filters.mobile-only
+  form.filters.mobile-only
     .filter
       .select-custom
         select name="type" id="type"
@@ -26,7 +26,7 @@ section.spaces
           option value="1" Value 1
           option value="2" Value 2
           option value="3" Value 3
-  .filters.tablet
+  form.filters.tablet
     .filter.class
       .title: span Ēkas klase
       .checktextboxes
@@ -77,6 +77,28 @@ section.spaces
               option value="desc" selected=true Dilstoši
               option value="asc" Augoši
   .items
+    .item.template
+      .image
+        .background data-image-url="%image_url" style="background-image: none"
+        ul.actions
+          li.view: a href="#space" View
+          li.measure: a href="#" Measure
+      ul.info
+        li.area
+          .number %info_area_number
+          .unit
+            | m
+            sup 2
+        li.price
+          .number %info_price_number
+          .unit
+            | &euro;/m
+            sup 2
+        li.building
+          .number %info_building_number
+          .unit ēka
+      ul.extra %extra_html
+
     - 15.times do |i|
       .item class=(i>5-1 ? 'tablet' : nil)
         .image

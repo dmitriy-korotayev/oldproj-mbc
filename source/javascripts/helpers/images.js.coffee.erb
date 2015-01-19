@@ -1,0 +1,9 @@
+<%
+images = {}
+Dir.chdir("#{source}/#{images_dir}/") do
+  images = Dir["**"].inject({}) {|h,f| h.merge! f => image_path(f)}
+end
+%>
+
+window.image_path = (name) ->
+  <%= images.to_json %>[name]
