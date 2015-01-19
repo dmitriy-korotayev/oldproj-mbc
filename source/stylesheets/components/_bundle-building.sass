@@ -145,6 +145,7 @@
     position: relative
 
 %article-header-building_map
+  position: relative
   margin-top: -12px
   padding-bottom: 12px
   .tips
@@ -190,6 +191,25 @@
         left: $width/2 solid transparent
         right: $width/2 solid transparent
         top: $height solid $c-background
+  .pointer
+    +scut-absolute(n n 48px -50px)
+    background: $c-background--h
+    padding: .75em 1.25em
+    color: $c-base--i
+    text-transform: uppercase
+    font-size: 1.125em
+    &:after
+      display: block
+      +scut-absolute(-26px -3px n n)
+      transform-origin: center bottom
+      transform: rotate(42deg)
+      border-bottom: 40px solid $c-background--h
+      +scut-border(18px solid transparent, n y n y)
+      content: ''
+    .close
+      +scut-absolute(5px n n 5px)
+      +bsprite($sm-common, 'icon-close--small')
+      cursor: pointer
   +respond-to(tablet)
     +article-header-building_map--tablet
   +respond-to(desktop)

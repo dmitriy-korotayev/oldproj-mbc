@@ -113,6 +113,7 @@ $ ->
 
     directionsService.route request, (response, status)->
       if status == google.maps.DirectionsStatus.OK
-        directionsDisplay.setDirections response
         hideAllMarkers()
+        $(element).siblings('.filter').hide()
+        directionsDisplay.setDirections response
 

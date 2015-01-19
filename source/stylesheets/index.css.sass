@@ -44,21 +44,27 @@
     overflow: hidden
     p
       float: left
+      margin-left: 2.5%
       width: 47%
-      font-size: 1.625em
       height: $height
       line-height: $height*.75
+      font-size: 1.5em
       strong
         margin: 0 .125em
     a.button
       float: right
-      margin: 0 6.5% 0 2.5%
+      margin: 0 4% 0 2.5%
       border-width: 5px
       width: 44%
       height: 100%
       line-height: $height - 10px
-      font-size: 2.125em
+      font-size: 1.875em
       font-weight: 500
+    +breakpoint(em(845px))
+      p
+        font-size: 1.625em
+      a.button
+        font-size: 2.125em
 
 =section-numbers--tablet
   +border-sloppy--hide

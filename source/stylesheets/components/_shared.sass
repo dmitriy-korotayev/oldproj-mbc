@@ -261,6 +261,7 @@ $section-advantages-list-item-height: 270px
     $height: 120px
     $offset: 13px
     margin-top: -$offset
+    background-color: $c-background--i
     height: $height
     line-height: $height - $offset*2
     text-align: center
@@ -455,7 +456,8 @@ $filter-select-height: 44px
   position: relative
   border: 2px solid $c-background--ml
   height: $filter-select-height
-  padding: 0.55em 30px .55em .75em
+  line-height: $filter-select-height - 12px - 4px - 2px // padding, border, offset
+  padding: 6px 30px 6px .75em
   font-size: .95em
   &:after
     display: block

@@ -18,11 +18,12 @@ $background: $c-background--i
     margin-right: 20px
     width: 34px
     line-height: $height
-    a
+    &:after
       display: inline-block
       vertical-align: middle
       margin-top: -2px
       +bsprite($sm-common, 'header-sidebar-toggle')
+      content: ''
   a.back
     @extend %scut-image-replace
     display: block
@@ -65,15 +66,20 @@ $background: $c-background--i
       margin: 0 1.5%
       width: 64%
       height: $height
+      line-height: $height
       overflow: hidden
       line-height: $height
       a
         display: inline-block
-        margin: 0 .5em
-        height: 100%
+        border: 1px solid transparent
+        vertical-align: middle
+        padding: 0 .425em
+        height: $height * .5
+        line-height: $height*.5 - 2px
         font-weight: 700
-        &.current
-          text-decoration: underline
+        &:hover, &.current
+          text-decoration: none
+          border-color: rgba($c-background, .5)
     .contacts
       float: left
       +scut-margin(n .25%)

@@ -89,6 +89,9 @@
       padding: 0 50px 0 1em
       font-size: 1.125em
     input[type="submit"]
+      @extend %scut-image-replace
+      text-indent: 200%
+
       vertical-align: middle
       -webkit-appearance: none
       margin-top: -6px
@@ -127,12 +130,13 @@
   .contents
     height: 100%
   .filter
+    $width: (90px + 2px) * 8
     position: absolute
     left: 50%
-    margin-left: -$b-maxWidth--frame/2
     bottom: 45px
-    width: $b-maxWidth--frame
-    height: 115px
+    margin-left: -$width/2
+    width: $width
+    height: 80px
     text-align: center
     a
       display: inline-block
@@ -141,15 +145,15 @@
       border-left: 1px solid $c-background
       border-right: 1px solid $c-background--ml
       background: linear-gradient($c-background, rgba($c-background--m,.2)) $c-background
-      width: 123px
+      width: $width/8 - 2px
       height: 100%
-      padding: 0 15px
+      padding: 0 8px
       &:first-child
         border-left: none
       &:last-child
         border-right: none
         margin-right: 0
-      &:hover, &.active
+      &.active
         background: $c-background--h
         color: $c-base--i
         text-decoration: none
@@ -157,8 +161,8 @@
         text-decoration: none
       i
         display: block
-        height: 53px
-        line-height: 53px
+        height: 40px
+        line-height: 40px
         text-align: center
         &:after
           display: inline-block
@@ -167,26 +171,41 @@
       @each $i in food basket instruments bank petrol cart cocktail grooming
         i.#{$i}:after
           +bsprite($sm-location, "map-filter-#{$i}")
-        &:hover, &.active
+        &.active
           i.#{$i}:after
             +bsprite($sm-location, "map-filter-#{$i}--i")
       .title
-        margin-top: .55em
+        margin-top: .25em
         height: 2.5em
         overflow: hidden
+        font-size: .875em
         line-height: 1.2
+  +respond-to(desktop)
+    .filter
+      margin-left: -$b-maxWidth--frame/2
+      width: $b-maxWidth--frame
+      height: 115px
+      a
+        width: 123px
+        padding: 0 15px
+        i
+          height: 53px
+          line-height: 53px
+        .title
+          margin-top: .55em
+          font-size: 1em
 
 %section-transport
   margin: 0 auto
-  width: $b-maxWidth--frame
-  padding: 0 $b-padding-x*.8 36px
+  padding: 0 100px 36px
   li
     float: left
     margin-top: 33px
-    margin-left: 4.5%
     border: 1px solid $c-background--m
-    width: 21.6%
+    width: 47.5%
     text-align: center
+    &:nth-child(2n)
+      margin-left: 4.5%
     &:first-child
       margin-left: 0
     i
@@ -217,6 +236,12 @@
       line-height: 33px
       color: $c-base--i
       font-size: .95em
+  +respond-to(desktop)
+    width: $b-maxWidth--frame
+    +scut-padding(n 8px n 8px)
+    li
+      width: 21.6%
+      margin-left: 4.5%
 
 
 // -------------------------------------

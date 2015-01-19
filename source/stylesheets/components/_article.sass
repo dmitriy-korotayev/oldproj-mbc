@@ -1,3 +1,5 @@
+@import structures/buttons
+
 =article-header--tablet
   position: relative
   overflow: hidden
@@ -82,4 +84,13 @@
   ul.items
     @extend %scut-list-unstyled
     @extend %scut-clearfix
-
+  .back
+    text-align: center
+    margin-bottom: 50px
+    a
+      @extend %button
+      display: inline-block
+      color: $c-base
+      background: none
+      &:hover
+        background: rgba($c-background--i, .025)

@@ -220,7 +220,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
 // -------------------------------------
 
 =section-spaces--tablet
-  padding: 0 $b-padding-x*5
+  padding: 0 $b-padding-x*3
   h1
     padding-top: .75em
     strong
@@ -265,6 +265,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       .customSelect, select
         border-width: 1px
         height: 34px !important
+        line-height: 32px !important
         padding:
           top: 0
           bottom: 0
@@ -320,6 +321,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     text-align: center
 
 =section-spaces--desktop
+  padding: 0 $b-padding-x*5
   .filters
     height: 125px
   .filter
@@ -334,7 +336,6 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     &.limit, &.sort
       width: 29%
     height: 100%
-
     &.limit
       .column label
         font-size: 1em
@@ -343,6 +344,39 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
           font-size: 1.25em
         input
           width: 40px
+
+
+    +breakpoint(max-width em(1320px))
+      &.limit
+        .inline > *
+          font-size: 1em
+        .inline
+          margin-top: 5px
+        .inline input
+          width: 33px
+    +breakpoint(max-width em(1248px))
+      &.type .select-custom .customSelect
+        font-size: .875em
+      &.limit .column label
+        font-size: .875em
+    +breakpoint(max-width em(1152px))
+      .title
+        font-size: 1.375em
+      .select-custom .customSelect
+        font-size: 1em
+      .column label
+        font-size: .875em
+      &.type .select-custom .customSelect
+        font-size: .75em
+      &.limit
+        .column label
+          font-size: .75em
+        .inline
+          margin-top: 3px
+        .inline > *
+          font-size: .875em
+        .inline input
+          width: 27px
 
 
 %article-header-custom
