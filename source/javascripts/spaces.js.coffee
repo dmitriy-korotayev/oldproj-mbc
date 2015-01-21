@@ -4,6 +4,7 @@
 #= require helpers/images
 #= require vendor/jquery.ajaxFilter
 #= require remodal
+#= require purl
 
 $ ->
   $('select').customSelect()
@@ -69,3 +70,12 @@ $ ->
 
   form.ajaxFilter container, template,
     sampleData: sampleData
+
+
+  # Filter -> type change if given in hash
+  changeFilterType = ->
+    filter_type = $.url().fparam('filter_type')
+    if filter_type
+      form.find('[name="type"]').val(filter_type).change()
+  changeFilterType()
+  $(window).on('hashchange', changeFilterType)

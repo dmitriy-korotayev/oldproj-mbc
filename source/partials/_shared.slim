@@ -1,6 +1,6 @@
 - if path == 'location' || path == 'client'
-    - content_for :javascripts_before do
-      = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC9KzoA3mQu9qoqJT-3Tuphbxrk_PcHirQ'
+  - content_for :javascripts_before do
+    = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC9KzoA3mQu9qoqJT-3Tuphbxrk_PcHirQ'
 
 - content_for :links do
   - {\
@@ -10,7 +10,7 @@
       news: 'Jaunumi',
       about: 'Par MBC',
     }.each do |name,title|
-    = link_to title, "#{name}.html", title: title, class: (name==:location ? 'tablet' : nil)
+    = link_to title, "#{name}.html", title: title, class: "#{path==name.to_s ? 'current' : ''}#{(name==:location ? ' tablet' : nil)}"
 
 - content_for :languages do
   - %w(LV RU EN).each do |language|

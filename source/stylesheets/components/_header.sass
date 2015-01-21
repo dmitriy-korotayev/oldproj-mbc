@@ -77,7 +77,9 @@ $background: $c-background--i
         height: $height * .5
         line-height: $height*.5 - 2px
         font-weight: 700
-        &:hover, &.current
+        &.current
+          border-color: rgba($c-background--ms, .5)
+        &:hover
           text-decoration: none
           border-color: rgba($c-background, .5)
     .contacts

@@ -16,16 +16,14 @@ section.spaces
       .select-custom
         select name="type" id="type"
           option value="0" disabled=true selected=true Radīt Ēkas
-          option value="1" Value 1
-          option value="2" Value 2
-          option value="3" Value 3
+          - 3.times do |i|
+            option value="#{i+1}"= "Value #{i+1}"
     .filter
       .select-custom
         select name="sort" id="sort"
           option value="0" disabled=true selected=true Sakārtot
-          option value="1" Value 1
-          option value="2" Value 2
-          option value="3" Value 3
+          - 3.times do |i|
+            option value="#{i+1}"= "Value #{i+1}"
   form.filters.tablet
     .filter.class
       .title: span Ēkas klase
@@ -39,9 +37,8 @@ section.spaces
       .select-custom
         select name="type" id="type"
           option value="0" disabled=true selected=true Izvēlēties telpu
-          option value="1" Value 1
-          option value="2" Value 2
-          option value="3" Value 3
+          - 3.times do |i|
+            option value="#{i+1}"= "Ēka #{i+1}"
     .filter.limit
       .title: span Filtrēt
       .columns
