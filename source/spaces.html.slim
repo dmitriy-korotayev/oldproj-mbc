@@ -10,11 +10,14 @@ section.building
 section.spaces
   h1
     ' Brīvas telpas
-    strong= '(22)'
+    strong
+      | (
+      span.number 22
+      | )
   form.filters.mobile-only
     .filter
       .select-custom
-        select name="type" id="type"
+        Select name="type" id="type"
           option value="0" disabled=true selected=true Radīt Ēkas
           - 3.times do |i|
             option value="#{i+1}"= "Value #{i+1}"
@@ -73,6 +76,8 @@ section.spaces
             select name="sort_area" id="sort_area"
               option value="desc" selected=true Dilstoši
               option value="asc" Augoši
+    .reset
+      input type="reset" value="noņemt visus filtrus"
   .items
     .item.template
       .image
@@ -96,49 +101,42 @@ section.spaces
           .unit ēka
       ul.extra %extra_html
 
-    - 15.times do |i|
-      .item class=(i>5-1 ? 'tablet' : nil)
-        .image
-          .background style="background-image: url(#{image_path('spaces/1.jpg')})"
-          ul.actions
-            li.view: a href="#space" View
-            li.measure: a href="#" Measure
-        ul.info
-          li.area
-            .number 200
-            .unit
-              | m
-              sup 2
-          li.price
-            .number 8
-            .unit
-              | &euro;/m
-              sup 2
-          li.building
-            .number 2
-            .unit ēka
-        ul.extra
-          li
-            .number 3
-            .text stāvs
-          li
-            .number 7
-            .text autostāvvieta
-          li
-            i.check
-            .text mēbeles
-          li
-            i.cross
-            .text pārlukošana
+    coffee:
+      window.itemsSampleFirstData = Array.apply(null, new Array(15)).map ->
+        image_url: "#{image_path 'spaces'}/1.jpg"
+        info_area_number: 200
+        info_price_number: 8
+        info_building_number: 2
+        extra_html: """
+          <li>
+            <div class="number">3</div>
+            <div class="text">stāvs</div>
+          </li>
+          <li>
+            <div class="number">7</div>
+            <div class="text">autostāvvieta</div>
+          </li>
+          <li>
+            <i class="check"></i>
+            <div class="text">mēbeles</div>
+          </li>
+          <li>
+            <i class="cross"></i>
+            <div class="text">pārlukošana</div>
+          </li>"""
 
 - content_for :modals do
   .remodal.space data-remodal-id="space"
+    .id
+      .number 191
+      .text ID telpa
     .image
       = image_tag 'spaces/1-big.jpg'
     .social
       a.like  href="#"
       a.share href="#"
       a.send  href="#" Sūtīt draugam
+      a.contact href="#contact" Sazināties ar mums
     ul.info
       li.area
         .number 200
@@ -166,3 +164,13 @@ section.spaces
       li
         i.cross
         .text pārlukošana
+  .remodal.contact data-remodal-id="contact"
+    h1
+      ' Sūtīt ziņojumu par telpu
+      strong 191
+    form
+      input type="text" name="name" id="name" placeholder="Vārds" value=""
+      input type="text" name="email" id="email" placeholder="E-pasts" value=""
+      input type="text" name="phone" id="phone" placeholder="Tālrunis" value=""
+      textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
+      input type="submit" name="submit" id="submit" value="Sūtīt"

@@ -176,15 +176,17 @@
       a.button
         margin: 0 16px
         @extend %button
+        @extend %button--big
 
   +respond-to(tablet)
     +section-intro--tablet
 
-%section-advantages-custom
+%section-advantages--custom
   ul.items
     +section-advantages-list(4)
   li
     +section-advantages-list-fill(1 2 4 6, 4)
+
 %section-numbers
   +border-sloppy($c-background--i)
   background: $c-background--i
@@ -228,6 +230,8 @@
   +border-sloppy($c-background)
   text-align: center
   padding: 5px $b-padding-x 20px
+  h1
+    padding-top: .5em
   li
     float: left
     width: 50%
@@ -238,11 +242,19 @@
   +respond-to(tablet)
     +section-clients--tablet
   +respond-to(desktop)
-    height: 410px
+    height: 310px
+
+%section-services--custom
+  h1
+    padding-top: .5em
+  ul.items
+    margin-top: 30px
 
 %section-reviews
   +border-sloppy($c-background)
     z-index: auto
+  h1
+    padding-top: .5em
   $item-width: 200px
   .items
     @extend %carousel-arrows
@@ -303,7 +315,9 @@ article.home
     section.#{$section}
       @extend %section-#{$section}
   section.advantages
-    @extend %section-advantages-custom
+    @extend %section-advantages--custom
+  section.services
+    @extend %section-services--custom
 
 
 // -------------------------------------

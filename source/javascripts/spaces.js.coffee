@@ -70,6 +70,9 @@ $ ->
 
   form.ajaxFilter container, template,
     sampleData: sampleData
+    sampleFirstData: window.itemsSampleFirstData || []
+    onDataChange: (data)->
+      form.siblings('h1').find('span.number').html(data.length)
 
 
   # Filter -> type change if given in hash

@@ -356,14 +356,11 @@ $border-color: rgba($c-background--h, .2)
 
   a.button
     @extend %button
+    @extend %button--big
+    @extend %button--m
     margin: 25px $b-padding-x 0
-    border-color: $c-background--ms
-    color: $c-background--ms
     background: $c-background
     font-weight: 500
-    &:hover
-      color: $c-background
-      background: $c-background--ms
 
   .social
     @extend %extra-social

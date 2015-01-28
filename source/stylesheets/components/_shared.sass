@@ -221,12 +221,6 @@ $section-advantages-list-item-height: 270px
     padding-top: .875em
     font-size: 2.25em
     font-weight: normal
-  .facebook
-    margin: 15px auto 0
-    max-width: 600px
-    .fb-like-box,
-      &,&>span,&>span>iframe
-        width: 100% !important
 
 =extra-social--tablet
   $height: 43px
@@ -414,16 +408,43 @@ $section-advantages-list-item-height: 270px
 
 %section-social
   border-top: 1px solid $c-background--m
-  .facebook
-    margin: 6px $b-padding-x*2 0
-    max-height: 240px
-    overflow: hidden
+  .items
+    padding: 40px 0 60px
     text-align: center
+  .items a
+    display: inline-block
+    $wheight: 128px
+    $color: darken($c-background--m, 10%)
+    margin: 0 40px
+    width: $wheight
+    height: $wheight
+    border: 3px solid $color
+    border-radius: $wheight
+    line-height: $wheight - 6px
+    color: $color
+    &:hover
+      border-width: 5px
+      text-decoration: none
+      line-height: $wheight - 10px
+    &:after
+      display: inline-block
+      vertical-align: middle
+      font-size: 7.5em
+      font-style: normal
+      content: ''
+    @each $i, $color in (facebook: #3b5998, gplus: #da4835)
+      &.#{$i}
+        border-color: $color
+        &:after
+          +bsprite($sm-common, "icon-social-#{$i}")
+    &.gplus:after
+      margin-left: 5px
+    &.bookmark:after
+      margin-top: -36px
+      font-weight: 300
+      content: '+'
   +respond-to(tablet)
     +section-social--tablet
-  +respond-to(desktop)
-    .facebook
-      max-width: 880px
 
 
 %filter-years
@@ -485,11 +506,13 @@ $filter-select-height: 44px
     display: block
     float: left
     margin-left: 6px
-    border: 1px solid $c-base--h
+    border: 1px solid rgba($c-base--h, .4)
     height: $height
     padding: 0 10px
     line-height: $height - 2px
     opacity: .5
+    &:first-child
+      margin-left: 0
   a.like, a.share
     width: $height
     padding: 0
@@ -514,9 +537,12 @@ $filter-select-height: 44px
     +extra-social--tablet
 
 %extra-social--i
+  opacity: .9
   a
-    border-color: $c-background
+    border-color: rgba($c-background, .4)
     opacity: 1
+    &:hover
+      border-color: $c-background
   @each $i in (like share)
     a.#{$i}:after
       +bsprite($sm-common, "social-#{$i}--i")

@@ -81,6 +81,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       font-size: 1.375em
 
 %spaces-item
+  position: relative
   margin-bottom: 14px
   border: 1px solid $c-background--ml
   padding: $item-padding
@@ -123,9 +124,10 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       sub, sup
         font-size: .6em
   ul.extra
-    text-align: center
-    padding-bottom: 3px
+    background: $c-background
     height: 58px / $item-inner-height * 100%
+    padding-bottom: 3px
+    text-align: center
   ul.extra li
     display: inline-block
     margin: 0 8px 0 7px
@@ -160,29 +162,70 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
   +respond-to(tablet)
     +spaces-item--tablet
 
-%spaces-item-modal
+%modal-space
+  @extend %modal--i
+
+  @extend %spaces-item
+  vertical-align: middle
   border: none
   width: auto
-  max-width: 890px
   height: auto
   padding: 0
-  .image img
-    display: block
+
+  max-width: 890px
+  .id
+    +scut-absolute(0 n n 0)
+    z-index: 1
+    background: $c-background--ml
+    padding: 5px 20px 8px
+    .number
+      font-size: 2.5em
+      font-weight: 300
+      line-height: 1
+    .text
+      line-height: 1.125
+      font-size: 1.125em
+      sub, sup
+        font-size: .6em
+  .image
+    position: relative
+    &:after
+      display: block
+      +scut-absolute(70% 0 0 0)
+      background: linear-gradient(transparent, rgba(0,0,0,.5))
+      content: ''
+    img
+      display: block
   .social
     @extend %extra-social
     @extend %extra-social--i
+    $height: 35px
     position: relative
-    float: right
-    margin: -40px 5px 0 0
+    float: left
+    margin: (-10px - $height) 0 0 10px
+    height: $height
     overflow: hidden
+    a.contact
+      @extend %button
+      height: 100%
+      line-height: $height - 6px
+      font-size: 1em
+
   ul.info
     height: 80px
   +respond-to(tablet)
     &:hover
       border: none
       padding: 0
+    .image:after
+      top: 80%
     .social
-      margin-top: -50px
+      $height: 43px
+      margin: (-18px - $height) 0 0 18px
+      height: $height
+      a.contact
+        line-height: $height - 6px
+        font-size: 1.25em
     ul.info
       float: left
       width: 45%
@@ -197,6 +240,11 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         margin-top: .25em
         font-size: .875em
   +respond-to(desktop)
+    .id
+      .number
+        font-size: 2.75em
+      .text
+        font-size: 1.2em
     ul.info
       height: 100px
     ul.info li
@@ -214,6 +262,30 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         margin-top: .75em
         font-size: .95em
 
+%modal-contact
+  max-width: 900px
+  padding: 0 40px 35px
+  form
+    margin-top: -10px
+    *
+      display: block
+      float: left
+      margin-top: 16px
+      outline: none
+      border: 2px solid $c-background--ml
+      width: 100%
+      height: 50px
+      padding: 3px 20px
+      font-size: 1.55em
+      &::placeholder
+        color: $c-base--ml
+    input[type=submit]
+      @extend %button
+      @extend %button--m
+      border-width: 4px
+      width: auto
+      font-weight: 500
+
 
 // -------------------------------------
 //   Components
@@ -230,7 +302,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
 
   .filters
     margin-top: 8px
-    padding-bottom: 35px
+    padding-bottom: 20px
   .filter
     position: relative
     margin-top: 30px
@@ -322,8 +394,6 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
 
 =section-spaces--desktop
   padding: 0 $b-padding-x*5
-  .filters
-    height: 125px
   .filter
     // left margin
     &, &:nth-child(2n)
@@ -335,7 +405,6 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       width: 18%
     &.limit, &.sort
       width: 29%
-    height: 100%
     &.limit
       .column label
         font-size: 1em
@@ -343,7 +412,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         >*
           font-size: 1.25em
         input
-          width: 40px
+          width: 38px
 
 
     +breakpoint(max-width em(1320px))
@@ -377,7 +446,23 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
           font-size: .875em
         .inline input
           width: 27px
+  .reset
+    text-align: center
+    input
+      border: none
+      outline: none
+      background: none
+      padding: 0
 
+      margin-top: 2px
+      border-bottom: 1px dashed $c-background--m
+      vertical-align: top
+      color: $c-base--m
+      line-height: 1.25
+      font-size: .875em
+      &:hover
+        border-color: darken($c-background--m, 10%)
+        color: darken($c-base--m, 10%)
 
 %article-header-custom
   .building_map
@@ -445,5 +530,6 @@ article.spaces
       @extend %section-#{$section}
 
 .remodal.space
-  @extend %spaces-item
-  @extend %spaces-item-modal
+  @extend %modal-space
+.remodal.contact
+  @extend %modal-contact

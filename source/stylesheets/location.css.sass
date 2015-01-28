@@ -66,41 +66,66 @@
 
 %section-map
   position: relative
-  height: 735px
+  height: 500px
   background: $c-background--hm
+  $absolute-padding: 35px
   .directions-search
-    position: absolute
-    z-index: 1
-    top: 34px
-    width: 100%
-    height: 42px
-    line-height: 42px
+    $height: 42px
+    $button-width: $height
+    $input-width: 450px
+    $width: $input-width + 2px + $button-width*2 // + 2 square buttons
+    +scut-absolute($absolute-padding n n 36%)
+    margin-left: -$width/2
+    width: $width
+    height: $height
+    line-height: $height
     text-align: center
-    form, input[type="text"]
+    +respond-to(desktop)
+      left: 50%
+    form
+      +scut-reset-button
       height: 100%
-    input
-      outline: none
-      display: inline-block
-      border: none
-    input[type="text"]
-      margin: 0 auto
-      background: linear-gradient($c-background, rgba($c-background--m,.2)) $c-background
-      width: 450px
-      padding: 0 50px 0 1em
-      font-size: 1.125em
-    input[type="submit"]
-      @extend %scut-image-replace
-      text-indent: 200%
-
-      vertical-align: middle
-      -webkit-appearance: none
-      margin-top: -6px
-      margin-left: -33px
-      background-color: transparent
-      opacity: .4
-      +bsprite($sm-location, 'map-search')
-      &:hover
+      *
+        display: block
+        float: left
+        outline: none
+        border: none
+        height: 100%
+      // background
+      input[type=text], button[type=reset], button.locate
+        background: linear-gradient($c-background, rgba($c-background--m,.2)) $c-background
+      // opacity on hover
+      button[type=reset]:after, input[type=submit], button.locate:after
+        opacity: .4
+      button[type=reset]:hover:after, input[type=submit]:hover, button.locate:hover:after
         opacity: .7
+      // aside buttons
+      button[type=reset], button.locate
+        position: relative
+        width: $button-width
+        height: $height
+        &:after
+          display: block
+          position: absolute
+          content: ''
+      // specific
+      button[type=reset]:after
+        +bsprite($sm-location, 'icon-x--h', 100%, 100%)
+      input[type=text]
+        margin: 0 1px
+        width: $input-width
+        padding: 0 50px 0 1em
+        font-size: 1.125em
+      input[type=submit]
+        position: absolute
+        right: 11px + $button-width + 1px
+
+        @extend %scut-image-replace
+        text-indent: 200%
+        +bsprite($sm-location, 'icon-search--h', nil, 100%)
+      button.locate:after
+        +bsprite($sm-location, 'icon-location--h', 100%, 100%)
+
   .marker
     display: none
     background: image-url('common/map-marker.png')
@@ -129,30 +154,24 @@
         +bsprite($sm-location, "map-marker-#{$i}--i")
   .contents
     height: 100%
+
   .filter
-    $width: (90px + 2px) * 8
-    position: absolute
-    left: 50%
-    bottom: 45px
+    position: relative
+    $item-width: 90px
+    $width: $item-width * 2
+    +scut-absolute($absolute-padding $absolute-padding n n)
     margin-left: -$width/2
     width: $width
-    height: 80px
-    text-align: center
-    a
-      display: inline-block
-      vertical-align: bottom
-      margin-right: -.25em
-      border-left: 1px solid $c-background
-      border-right: 1px solid $c-background--ml
+    .items a
+      display: block
+      float: left
       background: linear-gradient($c-background, rgba($c-background--m,.2)) $c-background
-      width: $width/8 - 2px
-      height: 100%
+      width: $item-width
+      height: 80px
       padding: 0 8px
-      &:first-child
-        border-left: none
-      &:last-child
-        border-right: none
-        margin-right: 0
+      text-align: center
+      &:nth-child(2n-1) // 1,3,5
+        border-right: 1px solid $c-background--ml
       &.active
         background: $c-background--h
         color: $c-base--i
@@ -163,7 +182,6 @@
         display: block
         height: 40px
         line-height: 40px
-        text-align: center
         &:after
           display: inline-block
           vertical-align: bottom
@@ -178,10 +196,23 @@
         margin-top: .25em
         height: 2.5em
         overflow: hidden
-        font-size: .875em
         line-height: 1.2
+        font-size: .875em
+    .reset
+      $height: 24px
+      +scut-absolute(n 0 (-$height) 0)
+      text-align: center
+      a
+        display: inline-block
+        background: linear-gradient(rgba($c-background--m,.4), $c-background) $c-background
+        height: 100%
+        padding: 0 10px
+        line-height: $height
+        color: rgba($c-base, .6)
+        font-size: .875em
+
   +respond-to(desktop)
-    .filter
+    //.filter
       margin-left: -$b-maxWidth--frame/2
       width: $b-maxWidth--frame
       height: 115px

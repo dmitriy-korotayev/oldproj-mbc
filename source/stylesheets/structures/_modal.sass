@@ -1,0 +1,45 @@
+%modal-base
+  background: $c-background
+  .remodal-close
+    +scut-absolute(5px 5px n n)
+
+    width: 32px
+    height: 32px
+
+    opacity: .5
+    border: 1px solid $c-background--i
+    text-decoration: none
+    color: $c-base
+    transition: opacity 0.2s ease-out
+
+    &:hover, &:active
+      opacity: 1
+    &:after
+      display: block
+      cursor: pointer
+
+      text-decoration: none
+      line-height: 21px // vertically centered
+      color: inherit
+      font-size: 40px
+      font-weight: 300
+
+      content: "×"
+      transition: all 0.2s ease-out
+
+%modal
+  @extend %modal-base
+  >h1
+    margin: .375em -2px
+    text-align: left
+    font-size: 2.875em
+    font-weight: 300
+    strong
+      font-weight: 500
+
+%modal--i
+  background: $c-background--i
+  .remodal-close
+    color: $c-base--i
+    border-color: $c-background
+

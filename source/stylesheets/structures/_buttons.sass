@@ -1,9 +1,8 @@
 %button
   display: block
+  outline: none
   border: 3px solid $c-background--m
-  height: 56px
   padding: 0 1em
-  line-height: 50px
   background: rgba($c-background--i, .4)
   color: $c-background--m
   text-align: center
@@ -12,3 +11,15 @@
   &:hover
     text-decoration: none
     background: rgba($c-background--i, .7)
+
+%button--big
+  height: 56px
+  line-height: 50px
+
+%button--m
+  background: none
+  border-color: $c-background--m
+  color: $c-base--ms
+  &:hover
+    background: $c-background--m
+    color: $c-background

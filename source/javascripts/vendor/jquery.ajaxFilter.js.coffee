@@ -3,11 +3,15 @@ $ ->
   pluginName = 'ajaxFilter'
   defaults =
     url: null
+    sampleFirstData: {}
     sampleData: {}
+    onDataChange: ((data)-> true)
 
 
   AjaxFilter = (element, options) ->
     this.options = $.extend( {}, defaults, options)
+
+    # Shortcuts
     this.form = element
     this.url = this.options.url
     this.container = this.options.container
@@ -20,33 +24,37 @@ $ ->
 
   AjaxFilter.prototype =
     _init: ()->
+      # Save template and remove it
       template = $(this.template).removeClass('template')
-      templateHtml = template[0].outerHTML
+      this.templateHtml = template[0].outerHTML
       $(this.template).remove()
 
-      firstFormData = $(this.form).serializeArray()
-      firstContainerHtml = $(this.container).html()
+      # Set and render first data
+      this.firstFormData = this._getFormData()
+      this._showFirstItems()
 
       t = this
+      # Prevent submission
       $(this.form).submit (e)->
         e.preventDefault()
+      # Change items on input changes
       $(this.form).find(':input').change (e)->
         e.preventDefault()
-        formData = $(t.form).serializeArray()
+        t._refresh()
 
-        # form data is the same as first time - use cached container html
-        if deepCompare(formData, firstFormData)
-          $(t.container).html(firstContainerHtml)
-        # else use sample data or get it from ajax
-        else
-          if t.url == null
-            t._renderItems(templateHtml, t.options.sampleData)
-          else
-            console.log "TODO: get ajax data"
-            ajaxData = t.sampleData
-            t._renderItems(templateHtml, ajaxData)
+      # Reset to first data on form reset
+      $(this.form).find('input[type=reset]').click ->
+        t._showFirstItems()
 
-    _renderItems: (templateHtml, data)->
+    _getFormData: ()->
+      $(this.form).serializeArray()
+
+    _getData: (formData, callback)->
+      console.log "TODO: get ajax data"
+      callback(this.sampleData)
+
+    _renderItems: (data)->
+      templateHtml = this.templateHtml
       itemsHtml = data.map (item)->
         itemHtml = templateHtml
 
@@ -60,7 +68,34 @@ $ ->
         itemHtml
 
       containerHtml = itemsHtml.join('')
+
       $(this.container).html(containerHtml)
+      this.options.onDataChange(data)
+
+    _showItems: (sample = false)->
+      if !sample
+        # Ajax, async
+        this._getData this._getFormData(), (data)->
+          this.renderItems(data)
+      else
+        this._renderItems this.options.sampleData
+
+    _showFirstItems: ()->
+      if this.options.url
+        # Ajax, async
+        this._getData this.firstFormData, (data)->
+          this._renderItems data
+      else
+        # Sample data
+        this._renderItems this.options.sampleFirstData
+
+    _refresh: ()->
+      # form data is the same as first time - use cached container html
+      if deepCompare(this._getFormData(), this.firstFormData)
+        this._showFirstItems()
+      # else use sample data or get it from ajax
+      else
+        this._showItems(this.url == null)
 
 
   # Initialization

@@ -10,31 +10,36 @@ header
         .from= from
         .in= _in
 section.map
-  .directions-search
-    form
-      input type="text" name="from" id="from" placeholder="Sākumpunkts (adrese)" value=""
-      input type="submit" value="Submit"
+  .contents
   .marker data-latitude="56.935501" data-longtitude="24.102857" 41a
   .marker data-latitude="56.934846" data-longtitude="24.101666" 41b
   .marker data-latitude="56.934641" data-longtitude="24.103275" 41c
   .marker.marker--h data-category="cafe" data-latitude="56.936847" data-longtitude="24.101216": i.food
   .marker.marker--h data-category="groceries" data-latitude="56.933891" data-longtitude="24.105078": i.basket
   .center data-latitude="56.935267" data-longtitude="24.104198"
-  .contents
+  .directions-search
+    form
+      button type="reset" value=""
+      input type="text" name="from" id="from" placeholder="Sākumpunkts (adrese)" value=""
+      input type="submit" value="Submit"
+      button.locate name="locate" id="locate"
   .filter
-    -[\
-      ['cafe', 'food', 'Kafejnīcas, restorāni'],
-      ['groceries', 'basket', 'Pārtika'],
-      ['autoservice', 'instruments', 'Autoservisi'],
-      ['bank', 'bank', 'Bankas'],
-      ['petrol_station', 'petrol', 'DUS'],
-      ['shop', 'cart', 'Veikali'],
-      ['entertainment', 'cocktail', 'Izklaide'],
-      ['beauty', 'grooming', 'Skaistums un veselība'] \
-    ].each_with_index do |c,i|
-      a href="#" data-category=c[0] class=(i<2 ? 'active' : nil)
-        i class=c[1]
-        .title=c[2]
+    .items
+      -[\
+        ['cafe', 'food', 'Kafejnīcas, restorāni'],
+        ['groceries', 'basket', 'Pārtika'],
+        ['autoservice', 'instruments', 'Autoservisi'],
+        ['bank', 'bank', 'Bankas'],
+        ['petrol_station', 'petrol', 'DUS'],
+        ['shop', 'cart', 'Veikali'],
+        ['entertainment', 'cocktail', 'Izklaide'],
+        ['beauty', 'grooming', 'Skaistums un veselība'] \
+      ].each_with_index do |c,i|
+        a href="#" data-category=c[0] class=(i<2 ? 'active' : nil)
+          i class=c[1]
+          .title=c[2]
+    .reset
+      a href="#" noņemt visus filtrus
 section.transport
   ul.items
     - {bus: '15; 24', trolleybus: '13', tram: '43; 23',
