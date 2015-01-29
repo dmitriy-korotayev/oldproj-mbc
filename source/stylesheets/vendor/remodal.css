@@ -224,7 +224,6 @@ body.remodal-is-active .remodal {
 
 @media only screen and (min-width: 40.063em) /* min-width 641px */ {
     .remodal {
-        max-width: 700px;
         min-height: 0;
         margin: 20px auto;
     }

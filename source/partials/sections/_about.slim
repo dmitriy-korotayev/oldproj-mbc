@@ -4,11 +4,19 @@
   .text
     h1 Mūsu vērtības un vēsture
     p= lorem.sentences 3
-    = link_to 'lasīt tālāk', '#'
+    = link_to 'lasīt tālāk', '#about'
   .text
     h1 MBC<br>Attīstība
     p= lorem.sentences 3
-    = link_to 'lasīt tālāk', '#'
+    = link_to 'lasīt tālāk', '#about'
   .image
     .background style="background-image: url(#{image_path('sections/about/2.jpg')})"
+
+- content_for :modals do
+  .remodal.about.window-height data-remodal-id="about"
+    .cover style="background-image: url(#{image_path 'about/modal-cover.jpg'})"
+    .contents
+      h1 Mūsu vertības un vēsture
+      - 5.times do
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis elit dolor, non vestibulum elit placerat non. Nulla facilisi. Integer gravida odio lobortis enim viverra, vel consequat augue vehicula. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed condimentum mattis purus, vitae elementum mi mattis eu. In ante elit, maximus vitae augue sed, hendrerit laoreet lectus.
 

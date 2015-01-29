@@ -4,7 +4,16 @@ ul.items
     'Telpu pārkārtošana un pārplānojums', 'Telpu remonts un apdare',
     'Mēbeles Jūsu birojam'].each_with_index do |title, i|
     li
-      .background.mobile-only style="background-image: url(#{image_path("about/services/#{i+1}.jpg")})"
-      .background.tablet style="background-image: url(#{image_path("about/services/tablet/#{i+1}.jpg")})"
-      span.title= title
+      a href="#service"
+        .background.mobile-only style="background-image: url(#{image_path("about/services/#{i+1}.jpg")})"
+        .background.tablet style="background-image: url(#{image_path("about/services/tablet/#{i+1}.jpg")})"
+        span.title= title
+
+- content_for :modals do
+  .remodal.about.window-height data-remodal-id="service"
+    .cover style="background-image: url(#{image_path 'about/modal-cover.jpg'})"
+    .contents
+      h1 Telpu pārkārtošana un pārplānojums
+      - 5.times do
+        p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis elit dolor, non vestibulum elit placerat non. Nulla facilisi. Integer gravida odio lobortis enim viverra, vel consequat augue vehicula. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed condimentum mattis purus, vitae elementum mi mattis eu. In ante elit, maximus vitae augue sed, hendrerit laoreet lectus.
 

@@ -112,6 +112,8 @@ $section-advantages-list-item-height: 270px
       font-size: .875em
       font-weight: 500
       text-shadow: 2px 2px 4px rgba(0,0,0,.35)
+    &:hover span.title
+      text-shadow: 2px 2px 4px rgba(0,0,0,.5)
   overflow: hidden
   +border-sloppy($c-background, $responsive: true)
     width: 30%
@@ -280,6 +282,8 @@ $section-advantages-list-item-height: 270px
       background: #000
       opacity: .2
       content: ''
+    &:hover .background:after
+      opacity: .1
     span.title
       display: inline-block
       position: relative
@@ -288,6 +292,7 @@ $section-advantages-list-item-height: 270px
       color: $c-base--i
       line-height: 1.1
       font-weight: 700
+
   +respond-to(tablet)
     +section-services--tablet
   +respond-to(desktop)
@@ -375,7 +380,8 @@ $section-advantages-list-item-height: 270px
       font-size: .8em
       font-weight: 700
       line-height: 1
-      &:hover
+      &:hover, &:focus
+        text-decoration: none
         border-bottom: none
   +respond-to(tablet)
     +section-about--tablet

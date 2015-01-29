@@ -23,7 +23,8 @@
     "easy-markerwithlabel": "~0.0.1",
     "remodal": "~0.4.1",
     "jquery.kinetic": "~2.0.5",
-    "purl": "~2.3.1"
+    "purl": "~2.3.1",
+    "simplebar": "https://github.com/Grsmto/simplebar"
   },
   "devDependencies": {
     "scut": "~1.0.1",

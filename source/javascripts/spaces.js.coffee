@@ -8,7 +8,6 @@
 #= require purl
 
 #= require vendor/slick
-#= require remodal
 
 $ ->
   $('select').customSelect()

@@ -1,5 +1,4 @@
 #= require vendor/slick
-#= require jquery.kinetic
 
 $ ->
   # Statement
@@ -13,6 +12,8 @@ $ ->
 
 
   # TRASH
+
+# require jquery.kinetic
 
   ## --- History ---
   #wrapper = $('section.history .contents.tablet .kinetic')

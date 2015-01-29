@@ -1,15 +1,19 @@
 %modal-base
-  background: $c-background
+  background: $c-background--i
+  max-width: 890px
+  text-align: left
   .remodal-close
     +scut-absolute(5px 5px n n)
+    opacity: .5
 
+    border: 1px solid $c-background
     width: 32px
     height: 32px
 
-    opacity: .5
-    border: 1px solid $c-background--i
+    text-align: center
     text-decoration: none
-    color: $c-base
+    color: $c-base--i
+
     transition: opacity 0.2s ease-out
 
     &:hover, &:active
@@ -29,17 +33,35 @@
 
 %modal
   @extend %modal-base
+  >h1, .contents h1
+    font-weight: 300
   >h1
     margin: .375em -2px
-    text-align: left
     font-size: 2.875em
-    font-weight: 300
     strong
       font-weight: 500
+  $cover-height: 130px
+  .cover
+    height: $cover-height
+    background-position: center center
+    background-size: cover
+  .contents
+    background: $c-background
+    max-height: 540px
+    max-height: calc(100% - #{$cover-height})
+    overflow-y: auto
+    text-align: left
+    padding: 0 35px
+    h1
+      margin: .5em 0
+      font-size: 2.25em
+    p
+      font-size: 1.05em
+      font-weight: 300
 
 %modal--i
-  background: $c-background--i
+  background: $c-background
   .remodal-close
-    color: $c-base--i
-    border-color: $c-background
+    color: $c-base
+    border-color: $c-background--i
 
