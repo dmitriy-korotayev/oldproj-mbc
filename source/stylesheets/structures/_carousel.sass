@@ -1,4 +1,12 @@
 =carousel-arrows($side: 0px, $postfix: '')
+  .slick-prev, .slick-next
+    position: absolute
+    outline: none
+    border: none
+    background: none
+    text-indent: 666%
+    @content
+
   .slick-prev
     left: $side
     +icon-arrow-left($postfix)
@@ -8,6 +16,7 @@
 
 =carousel-arrows--i($side: 0px)
   +carousel-arrows($side, '--i')
+    @content
 
 %carousel-arrows
   +carousel-arrows

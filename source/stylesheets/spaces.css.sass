@@ -51,7 +51,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         &:after
           display: block
           content: ''
-      @each $i in (view measure)
+      @each $i in (view gallery)
         li.#{$i} a:after
           +bsprite($sm-spaces, "item-action-#{$i}", nil, 58px)
       li:first-child a
@@ -162,33 +162,13 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
   +respond-to(tablet)
     +spaces-item--tablet
 
-%modal-space
+%shared-modal-space-gallery
   @extend %modal--i
-
-  @extend %spaces-item
-  vertical-align: middle
-  border: none
-  width: auto
-  height: auto
-  padding: 0
-
   max-width: 890px
-  .id
-    +scut-absolute(0 n n 0)
-    z-index: 1
-    background: $c-background--ml
-    padding: 5px 20px 8px
-    .number
-      font-size: 2.5em
-      font-weight: 300
-      line-height: 1
-    .text
-      line-height: 1.125
-      font-size: 1.125em
-      sub, sup
-        font-size: .6em
   .image
     position: relative
+    z-index: 0
+    overflow: hidden
     &:after
       display: block
       +scut-absolute(70% 0 0 0)
@@ -211,12 +191,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       line-height: $height - 6px
       font-size: 1em
 
-  ul.info
-    height: 80px
   +respond-to(tablet)
-    &:hover
-      border: none
-      padding: 0
     .image:after
       top: 80%
     .social
@@ -226,6 +201,40 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       a.contact
         line-height: $height - 6px
         font-size: 1.25em
+
+%modal-space
+  @extend %spaces-item
+  // resets to the extend
+  vertical-align: middle
+  border: none
+  width: auto
+  height: auto
+  padding: 0
+  +respond-to(tablet)
+    &:hover
+      border: none
+      padding: 0
+  // resets end
+
+  @extend %shared-modal-space-gallery
+
+  .id
+    +scut-absolute(0 n n 0)
+    z-index: 1
+    background: $c-background--ml
+    padding: 5px 20px 8px
+    .number
+      font-size: 2.5em
+      font-weight: 300
+      line-height: 1
+    .text
+      line-height: 1.125
+      font-size: 1.125em
+      sub, sup
+        font-size: .6em
+  ul.info
+    height: 80px
+  +respond-to(tablet)
     ul.info
       float: left
       width: 45%
@@ -261,6 +270,18 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       .text
         margin-top: .75em
         font-size: .95em
+
+%modal-gallery
+  @extend %shared-modal-space-gallery
+  .image.slick-slider
+    +carousel-arrows--i(20px)
+      z-index: 1000
+    div
+      float: left
+      width: 100%
+    &:after
+      z-index: 1000 // above carousel
+
 
 %modal-contact
   max-width: 900px
@@ -529,7 +550,7 @@ article.spaces
     section.#{$section}
       @extend %section-#{$section}
 
-.remodal.space
-  @extend %modal-space
-.remodal.contact
-  @extend %modal-contact
+.remodal
+  @each $i in space gallery contact
+    &.#{$i}
+      @extend %modal-#{$i}

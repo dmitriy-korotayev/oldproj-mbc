@@ -553,12 +553,10 @@ $filter-select-height: 44px
 
 
 =icon-arrow-left($postfix: '')
-  +scut-image-replace
   +bsprite($sm-common, "icon-arrow-left#{$postfix}", nil, 100%)
   +respond-to(tablet)
     +bsprite($sm-common, "icon-arrow-left#{$postfix}--tablet", nil, 100%)
 =icon-arrow-right($postfix: '')
-  +scut-image-replace
   +bsprite($sm-common, "icon-arrow-right#{$postfix}", nil, 100%)
   +respond-to(tablet)
     +bsprite($sm-common, "icon-arrow-right#{$postfix}--tablet", nil, 100%)

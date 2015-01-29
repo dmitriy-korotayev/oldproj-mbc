@@ -1,13 +1,19 @@
 #= require jquery.customSelect/jquery.customSelect
+#= require helpers/images
+
 #= require jquery-ui
 #= require jquery.scrollTo/jquery.scrollTo
-#= require helpers/images
+
 #= require vendor/jquery.ajaxFilter
-#= require remodal
 #= require purl
+
+#= require vendor/slick
+#= require remodal
 
 $ ->
   $('select').customSelect()
+
+  # --- Building rollout ---
 
   # Show according building on this page
   Breakpoints.on
@@ -30,7 +36,8 @@ $ ->
         , 500)
 
 
-  # Dynamic items filter
+  # --- Dynamic items filter ---
+
   form = null
   Breakpoints.on
     name: 'mobile-only'
@@ -75,10 +82,26 @@ $ ->
       form.siblings('h1').find('span.number').html(data.length)
 
 
-  # Filter -> type change if given in hash
+  # filter -> type change if given in hash
   changeFilterType = ->
     filter_type = $.url().fparam('filter_type')
     if filter_type
       form.find('[name="type"]').val(filter_type).change()
   changeFilterType()
   $(window).on('hashchange', changeFilterType)
+
+  # --- Modal: gallery - carousel ---
+
+  gallery = $('.remodal.gallery')
+  container = gallery.children('.image')
+  container.css('height', "#{container.children().first().height()}px")
+  gallery.on 'opened', ->
+    container.slick
+      autoplay: true
+      autoplaySpeed: 6000
+      arrows: true
+      fade: true
+      fadeIn: true
+      cssEase: 'linear'
+  gallery.on 'closed', ->
+    container.unslick()

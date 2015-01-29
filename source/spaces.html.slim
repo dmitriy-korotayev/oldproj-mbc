@@ -84,7 +84,7 @@ section.spaces
         .background data-image-url="%image_url" style="background-image: none"
         ul.actions
           li.view: a href="#space" View
-          li.measure: a href="#" Measure
+          li.gallery: a href="#gallery" Gallery
       ul.info
         li.area
           .number %info_area_number
@@ -164,6 +164,17 @@ section.spaces
       li
         i.cross
         .text pārlukošana
+
+  .remodal.gallery data-remodal-id="gallery"
+    .image
+      div= image_tag 'spaces/1-big.jpg'
+      div= image_tag 'spaces/2-big.jpg'
+    .social
+      a.like  href="#"
+      a.share href="#"
+      a.send  href="#" Sūtīt draugam
+      a.contact href="#contact" Sazināties ar mums
+
   .remodal.contact data-remodal-id="contact"
     h1
       ' Sūtīt ziņojumu par telpu
