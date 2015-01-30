@@ -14,7 +14,7 @@ $ ->
     marker_category = $(this).attr('data-category') || 'none'
     [[latitude, longtitude, marker_image_url, marker_text, marker_category]]
 
-  center = (->
+  mapCenter = (->
     elem = $(element).siblings('.center')
     if(elem.length)
       return new google.maps.LatLng(elem.attr('data-latitude'), elem.attr('data-longtitude'))
@@ -39,7 +39,7 @@ $ ->
   mapZoom = mobile && 16 || 17
   map = new google.maps.Map element,
     zoom: mapZoom
-    center: center
+    center: mapCenter
     mapTypeId: google.maps.MapTypeId.ROADMAP
     panControl: 0
     zoomControl: 0
@@ -61,7 +61,7 @@ $ ->
 
   addZoomLimit()
 
-  # Add markers
+  # Add/remove markers
   markersOnMap = {none: []}
   $.each markers, (i,m) ->
     return true  if m.count < 2
@@ -88,12 +88,14 @@ $ ->
     $.each markersOnMap[category], (i,m) ->
       m.setMap(null)
 
-  hideAllMarkers = ->
-    $.each markersOnMap, (i,category) ->
-      $.each category, (i,m) ->
-        m.setMap(null)
+  hideAllMarkers = (except = '')->
+    $.each markersOnMap, (categoryName,category) ->
+      if categoryName != except
+        $.each category, (i,m) ->
+          m.setMap(null)
 
   showMarkersByCategory('none')
+
   # Filter markers
   filter = $(element).siblings('.filter')
   filters = filter.find('a')
@@ -110,20 +112,29 @@ $ ->
       else
         hideMarkersByCategory(category)
 
-
-  # Direction calculation on search
-  directionsDisplay = new google.maps.DirectionsRenderer()
-  directionsService = new google.maps.DirectionsService();
-
-  directionsDisplay.setMap(map)
-  $(element).siblings('.directions-search').children('form').submit (e)->
+  filterReset = filter.find('.reset a')
+  filterReset.click (e)->
     e.preventDefault()
+    filters.removeClass('active')
+    hideAllMarkers('none')
+
+
+  # Direction calculation
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer()
+  directionsContainer = $(element).siblings('.directions-search')
+
+  # on submit
+  directionsForm = directionsContainer.children('form')
+  directionsForm.submit (e)->
+    e.preventDefault()
+    directionsDisplay.setMap(map)
     removeZoomLimit()
     origin = $(this).find('input[type=text]').val()
     if origin != ''
       request =
         origin: origin
-        destination: center
+        destination: mapCenter
         travelMode: google.maps.TravelMode.DRIVING
 
       directionsService.route request, (response, status)->
@@ -134,11 +145,32 @@ $ ->
     else
       $(this).find('[type=reset]').click()
 
-  # reset
-  $(element).siblings('.directions-search').find('[type=reset]').click (e)->
+  # on geolocation
+  geocoder = new google.maps.Geocoder()
+  directionsContainer.find('button.locate').click (e)->
+    e.preventDefault()
+    if navigator.geolocation
+      navigator.geolocation.getCurrentPosition (position) ->
+        lat = position.coords.latitude
+        lng = position.coords.longitude
+        geocoder.geocode {'latLng': new google.maps.LatLng(lat, lng)}, (results, status)->
+          if (status == google.maps.GeocoderStatus.OK && results[0])
+            address = results[0].formatted_address
+          else
+            address = "#{lat}, #{lng}"
+          directionsForm.find('[name=from]').val(address)
+          directionsForm.submit()
+    else
+      false
+
+  # and reset
+  directionsContainer.find('[type=reset]').click (e)->
     addZoomLimit()
     directionsDisplay.setMap(null)
-    directionsDisplay = null
     filter.show()
 
+    map.setCenter(mapCenter)
+    map.setZoom(mapZoom)
+    filterReset.click()
+    showMarkersByCategory('none')
 
