@@ -36,8 +36,9 @@ $ ->
 
 
   # Initialize map
+  mapZoom = mobile && 16 || 17
   map = new google.maps.Map element,
-    zoom: mobile && 16 || 17
+    zoom: mapZoom
     center: center
     mapTypeId: google.maps.MapTypeId.ROADMAP
     panControl: 0
@@ -49,6 +50,16 @@ $ ->
     scrollwheel: 0
     draggable: !touch
 
+  # limit zoom level to +1/-1
+  addZoomLimitListener = null
+  addZoomLimit = ->
+    window.addZoomLimitListener = google.maps.event.addListener map, 'zoom_changed', ->
+      map.setZoom(mapZoom+1) if map.getZoom() > mapZoom+1
+      map.setZoom(mapZoom-1) if map.getZoom() < mapZoom-1
+  removeZoomLimit = ->
+    google.maps.event.removeListener window.addZoomLimitListener
+
+  addZoomLimit()
 
   # Add markers
   markersOnMap = {none: []}
@@ -84,7 +95,8 @@ $ ->
 
   showMarkersByCategory('none')
   # Filter markers
-  filters = $(element).siblings('.filter').find('a')
+  filter = $(element).siblings('.filter')
+  filters = filter.find('a')
   filters.each ->
     if $(this).hasClass('active')
       showMarkersByCategory($(this).attr('data-category'))
@@ -106,14 +118,27 @@ $ ->
   directionsDisplay.setMap(map)
   $(element).siblings('.directions-search').children('form').submit (e)->
     e.preventDefault()
-    request =
-      origin: $(this).find('input[type=text]').val(),
-      destination: center,
-      travelMode: google.maps.TravelMode.DRIVING
+    removeZoomLimit()
+    origin = $(this).find('input[type=text]').val()
+    if origin != ''
+      request =
+        origin: origin
+        destination: center
+        travelMode: google.maps.TravelMode.DRIVING
 
-    directionsService.route request, (response, status)->
-      if status == google.maps.DirectionsStatus.OK
-        hideAllMarkers()
-        $(element).siblings('.filter').hide()
-        directionsDisplay.setDirections response
+      directionsService.route request, (response, status)->
+        if status == google.maps.DirectionsStatus.OK
+          hideAllMarkers()
+          filter.hide()
+          directionsDisplay.setDirections response
+    else
+      $(this).find('[type=reset]').click()
+
+  # reset
+  $(element).siblings('.directions-search').find('[type=reset]').click (e)->
+    addZoomLimit()
+    directionsDisplay.setMap(null)
+    directionsDisplay = null
+    filter.show()
+
 
