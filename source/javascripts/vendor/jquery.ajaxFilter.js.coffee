@@ -11,11 +11,15 @@ $ ->
   AjaxFilter = (element, options) ->
     this.options = $.extend( {}, defaults, options)
 
+    containers = this.options.containers
+    this.containers = containers.constructor == Array && containers || [containers]
+
+    templates = this.options.templates
+    this.templates = templates.constructor == Array && templates || [templates]
+
     # Shortcuts
     this.form = element
     this.url = this.options.url
-    this.container = this.options.container
-    this.template = this.options.template
 
     this._defaults = defaults
     this._name = pluginName
@@ -24,16 +28,22 @@ $ ->
 
   AjaxFilter.prototype =
     _init: ()->
-      # Save template and remove it
-      template = $(this.template).removeClass('template')
-      this.templateHtml = template[0].outerHTML
-      $(this.template).remove()
+      t = this
+
+      # Save templates and remove them
+      this.templatesHtml = []
+      $.each this.templates, (i,template)->
+        template = $(template).removeClass('template')
+        if template.length != 0
+          t.templatesHtml.push template[0].outerHTML
+        else
+          console.log "#{t._name}: template at index #{i} is empty"
+        template.remove()
 
       # Set and render first data
       this.firstFormData = this._getFormData()
       this._showFirstItems()
 
-      t = this
       # Prevent submission
       $(this.form).submit (e)->
         e.preventDefault()
@@ -54,22 +64,23 @@ $ ->
       callback(this.sampleData)
 
     _renderItems: (data)->
-      templateHtml = this.templateHtml
-      itemsHtml = data.map (item)->
-        itemHtml = templateHtml
+      t = this
+      $.each this.templatesHtml, (i, templateHtml)->
+        itemsHtml = data.map (item)->
+          itemHtml = templateHtml
 
-        $.each item, (name, value)->
-          find = "%"+name
-          regex = new RegExp(find, 'g')
-          itemHtml = itemHtml.replace(regex, value)
+          $.each item, (name, value)->
+            find = "%"+name
+            regex = new RegExp(find, 'g')
+            itemHtml = itemHtml.replace(regex, value)
 
-        itemHtml = itemHtml.replace(/data-src="([^"]+)" src="[^"]+"/g, 'src="$1"')
-        itemHtml = itemHtml.replace(/data-image-url="([^"]+)" style="background-image: none"/g, 'style="background-image: url($1)"')
-        itemHtml
+          itemHtml = itemHtml.replace(/data-src="([^"]+)" src="[^"]+"/g, 'src="$1"')
+          itemHtml = itemHtml.replace(/data-image-url="([^"]+)" style="background-image: none"/g, 'style="background-image: url($1)"')
+          itemHtml
 
-      containerHtml = itemsHtml.join('')
+        containerHtml = itemsHtml.join('')
+        $(t.containers[i]).html(containerHtml)
 
-      $(this.container).html(containerHtml)
       this.options.onDataChange(data)
 
     _showItems: (sample = false)->
@@ -99,11 +110,11 @@ $ ->
 
 
   # Initialization
-  $.fn[pluginName] = (container, template, options)->
+  $.fn[pluginName] = (containers, templates, options)->
     this.each ->
       if !$.data(this, 'plugin_'+pluginName)
-        options['container'] = container
-        options['template']  = template
+        options['containers'] = containers
+        options['templates']  = templates
         $.data(this, 'plugin_'+pluginName,
           new AjaxFilter(this, options))
 

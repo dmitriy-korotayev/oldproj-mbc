@@ -78,7 +78,10 @@ section.spaces
               option value="asc" Augoši
     .reset
       input type="reset" value="noņemt visus filtrus"
-  .items
+  .items-view.tablet
+    a.grid.active
+    a.list
+  .items.grid.active
     .item.template
       .image
         .background data-image-url="%image_url" style="background-image: none"
@@ -99,31 +102,58 @@ section.spaces
         li.building
           .number %info_building_number
           .unit ēka
-      ul.extra %extra_html
+      ul.extra
+        li
+          .number %extra_stores_number
+          .text stāvs
+        li
+          .number %extra_parkings_number
+          .text autostāvvieta
+        li
+          | %extra_furniture
+          .text mēbeles
+        li
+          | %extra_lookover
+          .text pārlukošana
+
+  .items.list
+    table
+      thead
+        tr
+          th.image
+          th
+            | platība,m
+            sup 2
+          th
+            | cena, &euro;/m
+            sup 2
+          th ēka
+          th stāvs
+          th autostāvvieta
+          th mēbeles
+          th pārlūkošana
+      tbody
+        tr.item.template
+          td.image: img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_small_src"
+          td %info_area_number
+          td %info_price_number
+          td %info_building_number
+          td %extra_stores_number
+          td %extra_parkings_number
+          td %extra_furniture
+          td %extra_lookover
 
     coffee:
       window.itemsSampleFirstData = Array.apply(null, new Array(15)).map ->
         image_url: "#{image_path 'spaces'}/1.jpg"
+        image_small_src: "#{image_path 'spaces'}/1--small.jpg"
         info_area_number: 200
         info_price_number: 8
         info_building_number: 2
-        extra_html: """
-          <li>
-            <div class="number">3</div>
-            <div class="text">stāvs</div>
-          </li>
-          <li>
-            <div class="number">7</div>
-            <div class="text">autostāvvieta</div>
-          </li>
-          <li>
-            <i class="check"></i>
-            <div class="text">mēbeles</div>
-          </li>
-          <li>
-            <i class="cross"></i>
-            <div class="text">pārlukošana</div>
-          </li>"""
+        extra_stores_number: 3
+        extra_parkings_number: 7
+        extra_furniture: '<i class="check"></i>'
+        extra_lookover: '<i class="cross"></i>'
 
 - content_for :modals do
   .remodal.space data-remodal-id="space"

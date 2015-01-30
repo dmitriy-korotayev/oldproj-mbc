@@ -49,32 +49,23 @@ $ ->
 
 
   url = null
-  container = form.siblings('.items')
-  template = container.children('.item.template')
+  container = form.siblings('.items.grid')
+  template  = container.children('.item.template')
+  secondaryContainer = form.siblings('.items.list').find('tbody')
+  secondaryTemplate  = secondaryContainer.children('.template')
   sampleData = Array.apply(null, new Array(3)).map ->
     image_url: "#{image_path 'spaces'}/1.jpg"
+    image_small_src: "#{image_path 'spaces'}/1--small.jpg"
     info_area_number: 200
     info_price_number: 8
     info_building_number: 2
-    extra_html: """
-      <li>
-        <div class="number">3</div>
-        <div class="text">stāvs</div>
-      </li>
-      <li>
-        <div class="number">7</div>
-        <div class="text">autostāvvieta</div>
-      </li>
-      <li>
-        <i class="check"></i>
-        <div class="text">mēbeles</div>
-      </li>
-      <li>
-        <i class="cross"></i>
-        <div class="text">pārlukošana</div>
-      </li>"""
+    extra_stores_number: 3
+    extra_parkings_number: 7
+    extra_furniture: '<i class="check"></i>'
+    extra_lookover: '<i class="cross"></i>'
 
-  form.ajaxFilter container, template,
+
+  form.ajaxFilter [container, secondaryContainer], [template, secondaryTemplate],
     sampleData: sampleData
     sampleFirstData: window.itemsSampleFirstData || []
     onDataChange: (data)->
@@ -88,6 +79,18 @@ $ ->
       form.find('[name="type"]').val(filter_type).change()
   changeFilterType()
   $(window).on('hashchange', changeFilterType)
+
+  # --- Grid/List items view ---
+  Breakpoints.on
+    name: 'tablet'
+    matched: ->
+      $('.items-view a').click ->
+        if !$(this).hasClass('active')
+          klass = $(this).attr('class')
+          container = $(".items.#{klass}")
+          $(this).siblings().add(container.siblings('.items')).removeClass('active')
+          $(this).add(container).addClass('active')
+
 
   # --- Modal: gallery - carousel ---
 
