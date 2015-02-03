@@ -96,7 +96,9 @@ $ ->
 
   gallery = $('.remodal.gallery')
   container = gallery.children('.image')
-  container.css('height', "#{container.children().first().height()}px")
+  firstImage = container.children().first()
+  firstImage.load ->
+    container.css('height', "#{$(this).height()}px")
   gallery.on 'opened', ->
     container.slick
       autoplay: true
