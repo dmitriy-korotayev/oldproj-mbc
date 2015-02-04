@@ -36,6 +36,9 @@ html lang="lv"
 
     aside.main= partial :sidebar
 
+    - if path == 'index'
+      .location-link= link_to 'Apskatīt atrāšanas vietu', 'location.html'
+
     .wrapper
       header.main
         = partial :header

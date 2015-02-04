@@ -7,14 +7,19 @@
 #= require headroom.js/dist/jQuery.headroom.js
 
 $ ->
-  # ----- Navigation hiding -----
+  # ----- Header -----
 
+  # hiding
   header = $('header.main')
   header.headroom()
-
+  # sidebar
   header.find('.sidebar-toggle').click ->
     $('body').      toggleClass('sidebar-active')
     $('aside.main').toggleClass('active')
+
+
+  # ----- Location link hiding -----
+  $('.location-link').headroom()
 
   # ----- Sizing of window-height modals -----
   $('.remodal.window-height').on 'opened', ->

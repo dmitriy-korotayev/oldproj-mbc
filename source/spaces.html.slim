@@ -134,7 +134,7 @@ section.spaces
           th pārlūkošana
       tbody
         tr.item.template
-          td.image: img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_small_src"
+          td.image: a href="#space": img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_small_src"
           td %info_area_number
           td %info_price_number
           td %info_building_number
@@ -165,7 +165,7 @@ section.spaces
     .social
       a.like  href="#"
       a.share href="#"
-      a.send  href="#" Sūtīt draugam
+      a.send  href="#send" Sūtīt draugam
       a.contact href="#contact" Sazināties ar mums
     ul.info
       li.area
@@ -202,8 +202,18 @@ section.spaces
     .social
       a.like  href="#"
       a.share href="#"
-      a.send  href="#" Sūtīt draugam
+      a.send  href="#send" Sūtīt draugam
       a.contact href="#contact" Sazināties ar mums
+
+  .remodal.send data-remodal-id="send"
+    h1
+      ' Sūtīt ziņojumu draugam par telpu
+      strong 191
+    form
+      input type="text" name="name" id="name" placeholder="Vārds" value=""
+      input type="text" name="email" id="email" placeholder="E-pasts" value=""
+      textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
+      input type="submit" name="submit" id="submit" value="Sūtīt"
 
   .remodal.contact data-remodal-id="contact"
     h1

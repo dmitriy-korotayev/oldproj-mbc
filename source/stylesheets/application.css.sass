@@ -52,6 +52,34 @@
 %main
   background: $c-background
 
+%location-link
+  display: none
+  +breakpoint(em(960px))
+    display: block
+    position: fixed
+    z-index: 11
+    top: 85px
+    right: -212px
+    pointer-events: none
+    +bsprite($sm-common, 'location-link')
+    transition: right .5s ease-out
+    &.headroom--top
+      right: 0
+    a
+      display: block
+      margin: 10px
+      pointer-events: all
+      width: 190px
+      height: 190px
+      padding: 138px 20px 10px
+      text-align: center
+      line-height: 1.25
+      color: $c-base--i
+      font-weight: 500
+  +respond-to(desktop)
+    right: -150px
+    &:hover
+      right: 0
 
 // -------------------------------------
 // Project structure / Extends
@@ -63,6 +91,8 @@ html
   @extend %sidebar-global
   @extend %header-global--headroom
   @extend %footer-global
+.location-link
+  @extend %location-link
 aside.main
   @extend %sidebar
 header.main

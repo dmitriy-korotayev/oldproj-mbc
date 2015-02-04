@@ -248,6 +248,7 @@ $section-advantages-list-item-height: 270px
     a.#{$i}:after
       +bsprite($sm-common, "social-#{$i}--i--tablet")
 
+
 %section-services
   background: $c-background
   ul.items
@@ -282,8 +283,6 @@ $section-advantages-list-item-height: 270px
       background: #000
       opacity: .2
       content: ''
-    &:hover .background:after
-      opacity: .1
     span.title
       display: inline-block
       position: relative
@@ -296,8 +295,13 @@ $section-advantages-list-item-height: 270px
   +respond-to(tablet)
     +section-services--tablet
   +respond-to(desktop)
-    li span.title
-      font-size: 1.125em
+    li
+      span.title
+        font-size: 1.125em
+      &:hover span.title
+        text-decoration: underline
+      &:hover .background:after
+        opacity: .1
 
 %section-advantages
   text-align: center

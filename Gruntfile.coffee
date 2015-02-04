@@ -40,8 +40,10 @@ module.exports = (grunt) ->
   grunt.registerTask "dev", [
     "middleman:server"
   ]
-  grunt.registerTask "server", ["middleman:server"]
-  grunt.registerTask "build",  ["middleman:build"]
+  #grunt.registerTask "s",       ["middleman:server"]
+  #grunt.registerTask "server",  ["middleman:server"]
+  grunt.registerTask "b",       ["middleman:build"]
+  grunt.registerTask "build",   ["middleman:build"]
 
 # Samples
 #module.exports = (grunt) ->

@@ -200,7 +200,6 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         font-size: 1.25em
 
 %modal-space
-  @extend %modal--i
   @extend %spaces-item
   // resets to the extend
   vertical-align: middle
@@ -280,8 +279,8 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     &:after
       z-index: 1000 // above carousel
 
-
-%modal-contact
+%shared-modal-contact-send
+  @extend %modal--i
   padding: 0 40px 35px
   form
     margin-top: -10px
@@ -303,6 +302,10 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       border-width: 4px
       width: auto
       font-weight: 500
+%modal-send
+  @extend %shared-modal-contact-send
+%modal-contact
+  @extend %shared-modal-contact-send
 
 
 // -------------------------------------
@@ -599,6 +602,6 @@ article.spaces
       @extend %section-#{$section}
 
 .remodal
-  @each $i in space gallery contact
+  @each $i in space gallery send contact
     &.#{$i}
       @extend %modal-#{$i}
