@@ -12,7 +12,7 @@
 
 =section-intro--tablet
   position: relative
-  min-height: 550px
+  min-height: 590px
   text-align: left
   .item .top
     margin: 70px auto 0
@@ -38,7 +38,7 @@
     +scut-absolute(n 0 0 0)
   .item .bottom
     $height: 82px
-    margin: 100px auto 70px
+    margin: 100px auto 110px
     max-width: $b-maxWidth--frame * .895
     height: $height
     overflow: hidden
@@ -177,9 +177,36 @@
         margin: 0 16px
         @extend %button
         @extend %button--big
+  .scroll-icon
+    display: none
 
   +respond-to(tablet)
     +section-intro--tablet
+  +respond-to(desktop)
+    .scroll-icon
+      +bsprite($sm-home, 'intro-scroll-icon', 100%)
+      display: block
+      position: absolute
+      opacity: .7
+      bottom: 25px
+      &:after
+        display: block
+        position: absolute
+        margin-top: 30px
+        +bsprite($sm-home, 'intro-scroll-icon-arrow', 100%)
+        content: ''
+        animation: scroll-icon-arrow-movement 1.5s steps(3) infinite, fadeIn .25s ease-in alternate infinite
+        @at-root
+          @keyframes scroll-icon-arrow-movement
+            from
+              top: 0px
+            to
+              top: 24px
+          @keyframes fadeIn
+            from
+              opacity: 0
+            to
+              opacity: 1
 
 %section-advantages--custom
   ul.items
