@@ -115,10 +115,12 @@
     +section-text--tablet
 
 %section-map
+  position: relative
   height: 190px
   background: $c-background--hm
-  .contents
-    height: 100%
+  .directions-search
+    @extend %map-directions-search
+    top: 20px
   .marker
     display: none
     background: image-url('common/map-marker.png')
@@ -126,6 +128,8 @@
     font-size: empx(1.375em)
     margin-top:  -68px !important
     margin-left: -20px !important
+  .contents
+    height: 100%
   +respond-to(tablet)
     +section-map--tablet
 

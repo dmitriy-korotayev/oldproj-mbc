@@ -70,61 +70,7 @@
   background: $c-background--hm
   $absolute-padding: 35px
   .directions-search
-    $height: 42px
-    $button-width: $height
-    $input-width: 450px
-    $width: $input-width + 2px + $button-width*2 // + 2 square buttons
-    +scut-absolute($absolute-padding n n 36%)
-    margin-left: -$width/2
-    width: $width
-    height: $height
-    line-height: $height
-    text-align: center
-    +respond-to(desktop)
-      left: 50%
-    form
-      +scut-reset-button
-      height: 100%
-      *
-        display: block
-        float: left
-        outline: none
-        border: none
-        height: 100%
-      // background
-      input[type=text], button[type=reset], button.locate
-        background: linear-gradient($c-background, rgba($c-background--m,.2)) $c-background
-      // opacity on hover
-      button[type=reset]:after, input[type=submit], button.locate:after
-        opacity: .4
-      button[type=reset]:hover:after, input[type=submit]:hover, button.locate:hover:after
-        opacity: .7
-      // aside buttons
-      button[type=reset], button.locate
-        position: relative
-        width: $button-width
-        height: $height
-        &:after
-          display: block
-          position: absolute
-          content: ''
-      // specific
-      button[type=reset]:after
-        +bsprite($sm-location, 'icon-x--h', 100%, 100%)
-      input[type=text]
-        margin: 0 1px
-        width: $input-width
-        padding: 0 50px 0 1em
-        font-size: 1.125em
-      input[type=submit]
-        position: absolute
-        right: 11px + $button-width + 1px
-
-        @extend %scut-image-replace
-        text-indent: 200%
-        +bsprite($sm-location, 'icon-search--h', nil, 100%)
-      button.locate:after
-        +bsprite($sm-location, 'icon-location--h', 100%, 100%)
+    @extend %map-directions-search
 
   .marker
     display: none
