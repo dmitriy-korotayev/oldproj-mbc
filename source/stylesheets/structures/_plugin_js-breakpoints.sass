@@ -3,3 +3,6 @@
   @each $name,$breakpoint in $breakpoints
     +respond-to($name)
       +defineBreakpoint("#{$name}")
+  &:after
+    height: 0
+    overflow: hidden
