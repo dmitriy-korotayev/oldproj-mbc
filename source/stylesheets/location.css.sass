@@ -72,11 +72,15 @@
   .directions-search
     @extend %map-directions-search
 
+  $icons: food basket instruments bank petrol cart cocktail grooming
   .marker
     display: none
     background: image-url('common/map-marker.png')
     &.marker--h
       background: image-url('common/map-marker--h.png')
+    @for $n from 2 through length($icons)
+      &.marker--h#{$n}
+        background: image-url("common/map-marker--h#{$n}.png")
   .marker-label
     font-size: empx(1.375em)
     margin-top:  -68px !important
@@ -93,11 +97,21 @@
       &:after
         display: inline-block
         content: ''
-      &.basket
+      &.instruments
+        margin-top: 2px
+      &.petrol
+        margin-left: 3px
+      &.cart
+        margin-top: 4px
+        margin-left: -1px
+      &.cocktail
+        margin-left: 2px
+      &.grooming
+        margin-top: 2px
         margin-left: 1px
-    @each $i in food basket// instruments bank petrol cart cocktail grooming
-      i.#{$i}:after
-        +bsprite($sm-location, "map-marker-#{$i}--i")
+      @each $i in $icons
+        &.#{$i}:after
+          +bsprite($sm-location, "map-marker-#{$i}--i")
   .contents
     height: 100%
 
@@ -132,7 +146,7 @@
           display: inline-block
           vertical-align: bottom
           content: ''
-      @each $i in food basket instruments bank petrol cart cocktail grooming
+      @each $i in $icons
         i.#{$i}:after
           +bsprite($sm-location, "map-filter-#{$i}")
         &.active
