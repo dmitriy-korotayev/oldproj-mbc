@@ -11,21 +11,27 @@ section.clients
   form.filters.mobile-only
     .filter.type
       .select-custom
-        select name="type" id="type"
+        select name="category" id="category"
           option value="0" disabled=true selected=true Filtrēt
-          option value="1" Value 1
-          option value="2" Value 2
-          option value="3" Value 3
+          -{all: 'Visi', financial: 'Finanses',
+            tc: 'Telekomunikācija',
+            government: 'Valsts Institūcijas',
+            shop: 'Veikali', media: 'Mediji', it: 'IT uzņēmumi',
+            }.each do |name,title|
+            option value=name = title
     .filter.search
       input type="text" name="search" id="search" placeholder="Meklēt" value=""
   form.filters.tablet
     .filter.type
       .checkboxes
-        - ['Visi', 'Finanses', 'Telekomunikācija', 'Valsts Institūcijas',
-           'Veikali', 'Mediji', 'IT uzņēmumi'].each_with_index do |x,i|
+        -{all: 'Visi', financial: 'Finanses',
+          tc: 'Telekomunikācija',
+          government: 'Valsts Institūcijas',
+          shop: 'Veikali', media: 'Mediji', it: 'IT uzņēmumi',
+          }.each do |name,title|
           label
-            input type="checkbox" name="type" id="type_#{i}" value=i
-            span #{x}
+            input type="checkbox" name="category" id="category_#{name}" value=name
+            span #{title}
     .filter.search
       input type="text" name="search" id="search" placeholder="Ievadiet nosaukumu" value=""
   .items
@@ -38,15 +44,28 @@ section.clients
       .description %description
       address %address
       .phone %phone
-    - 5.times do |i|
-      - {tele2: 'A/S TELE2', delfi: 'A/S DELFI', yit: 'SIA YIT',
-        hilti: 'SIA Hilti'}.each do |name,title|
-        = link_to 'client.html', class: "item#{i>0 ? ' tablet' : ''}"
-          .image
-            = image_tag "sections/clients/#{name}.png", alt: title, class: 'mobile-only'
-            = image_tag "sections/clients/#{name}--tablet.png", alt: title, class: 'tablet-only'
-            = image_tag "sections/clients/#{name}--desktop.png", alt: title, class: 'desktop'
-          .title= title
-          .description Mobilo sakaru pakalpojumi
-          address Mukusalas 41b
-          .phone +371 200 200 00
+
+    coffee:
+      i = -1
+      count = 20
+      Breakpoints.on
+        name: 'mobile-only'
+        matched: ->
+          count = 5
+
+      window.itemsData = Array.apply(null, new Array(20)).map ()->
+        i = i + 1
+        names = 'tele2 delfi yit hilti'.split(' ')
+        titles = ['A/S TELE2', 'A/S DELFI', 'SIA YIT', 'SIA Hilti']
+        categories = 'financial tc government shop'.split(' ')
+        index = i%4
+
+        category: categories[index]
+        url: 'client.html'
+        image_src_mobile:  "#{image_path 'sections'}/clients/#{names[index]}.png"
+        image_src_tablet:  "#{image_path 'sections'}/clients/#{names[index]}--tablet.png"
+        image_src_desktop: "#{image_path 'sections'}/clients/#{names[index]}--desktop.png"
+        title: titles[index]
+        description: 'Mobilo sakaru pakalpojumi'
+        address: "Mukusalas 4#{index}b"
+        phone: "+371 200 200 0#{index}"
