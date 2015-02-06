@@ -1,10 +1,26 @@
 #= require helpers/deepCompare
+# better serializeArray - http://stackoverflow.com/a/1186309/1262726
+$.fn.serializeObject = ->
+  o = {}
+  a = @serializeArray()
+  $.each a, ->
+    if o[@name] != undefined
+      if !o[@name].push
+        o[@name] = [ o[@name] ]
+      o[@name].push @value or ''
+    else
+      o[@name] = @value or ''
+    return
+  o
+
 $ ->
   pluginName = 'ajaxFilter'
   defaults =
     url: null
-    sampleFirstData: {}
-    sampleData: {}
+    data: null
+    dataFilter: ((data, formData)-> data)
+    sampleFirstData: []
+    sampleData: []
     onDataChange: ((data)-> true)
 
 
@@ -57,11 +73,13 @@ $ ->
         t._showFirstItems()
 
     _getFormData: ()->
-      $(this.form).serializeArray()
+      $(this.form).serializeObject()
 
     _getData: (formData, callback)->
-      console.log "TODO: get ajax data"
-      callback(this.sampleData)
+      #console.log "TODO: get ajax data"
+      data = this.options.data
+      data = this.options.dataFilter(data, formData)
+      callback(data)
 
     _renderItems: (data)->
       t = this
@@ -85,28 +103,30 @@ $ ->
 
     _showItems: (sample = false)->
       if !sample
-        # Ajax, async
+        # Ajax, async or predefined
+        t = this
         this._getData this._getFormData(), (data)->
-          this.renderItems(data)
+          t._renderItems(data)
       else
         this._renderItems this.options.sampleData
 
     _showFirstItems: ()->
-      if this.options.url
-        # Ajax, async
+      if this.url || this.options.data
+        # Ajax, async or predefined
+        t = this
         this._getData this.firstFormData, (data)->
-          this._renderItems data
+          t._renderItems data
       else
         # Sample data
         this._renderItems this.options.sampleFirstData
 
     _refresh: ()->
-      # form data is the same as first time - use cached container html
+      # form data is the same as first time - use cached items data
       if deepCompare(this._getFormData(), this.firstFormData)
         this._showFirstItems()
-      # else use sample data or get it from ajax
+      # else use sample data or get it from ajax/predefined
       else
-        this._showItems(this.url == null)
+        this._showItems(this.url == null && this.options.sampleData.length)
 
 
   # Initialization

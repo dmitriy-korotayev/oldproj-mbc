@@ -66,8 +66,46 @@ $ ->
 
 
   form.ajaxFilter [container, secondaryContainer], [template, secondaryTemplate],
-    sampleData: sampleData
+    data: window.itemsData || null
+    sampleData: window.itemsSampleFirstData && sampleData || []
     sampleFirstData: window.itemsSampleFirstData || []
+    dataFilter: (data, formData) ->
+      f = formData
+
+      data = $.map data, (item,i)->
+        if f.building_class
+          return null if f.building_class.constructor == String && f.building_class != item.building_class
+          return null if f.building_class.constructor == Array  && f.building_class.indexOf(item.building_class) == -1
+        if f.building_number
+          return null if parseInt(f.building_number) != item.building_number
+        if f.limit_price_min
+          return null if item.price < parseInt(f.limit_price_min)
+        if f.limit_price_max
+          return null if item.price > parseInt(f.limit_price_max)
+        if f.limit_area_min
+          return null if item.area < parseInt(f.limit_area_min)
+        if f.limit_area_max != ''
+          return null if item.area > parseInt(f.limit_area_max)
+        item
+
+      sort = {}
+
+      sort.area  = f.sort_area  if f.sort_price
+      sort.price = f.sort_price if f.sort_price
+      if f.sort # mobile
+        a_o = f.sort.split('_')
+        attribute = a_o[0]
+        order = a_o[1]
+        sort[attribute] = order
+
+      $.each sort, (attribute,order)->
+        data = data.sort (a,b)->
+          return if order == 'asc'
+            a[attribute] - b[attribute]
+          else
+            b[attribute] - a[attribute]
+
+      data
     onDataChange: (data)->
       form.siblings('h1').find('span.number').html(data.length)
 

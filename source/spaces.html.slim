@@ -17,28 +17,30 @@ section.spaces
   form.filters.mobile-only
     .filter
       .select-custom
-        Select name="type" id="type"
+        Select name="building_number" id="building_number"
           option value="0" disabled=true selected=true Radīt Ēkas
           - 3.times do |i|
-            option value="#{i+1}"= "Value #{i+1}"
+            option value="#{i+1}"= "Ēka #{i+1}"
     .filter
       .select-custom
         select name="sort" id="sort"
           option value="0" disabled=true selected=true Sakārtot
-          - 3.times do |i|
-            option value="#{i+1}"= "Value #{i+1}"
+          option value="price_asc"  Pēc cenas &#x25B2;
+          option value="price_desc" Pēc cenas &#x25BC;
+          option value="area_asc"   Pēc platības &#x25B2;
+          option value="area_desc"  Pēc platības &#x25BC;
   form.filters.tablet
     .filter.class
       .title: span Ēkas klase
       .checktextboxes
-        - %w(A B C D).each do |x|
+        - %w(a b c d).each do |x|
           label
-            input type="checkbox" name="class" id="class_#{x}" value=x
-            span #{x}
+            input type="checkbox" name="building_class" id="building_class_#{x}" value=x
+            span= x.upcase
     .filter.type
       .title: span Radīt Ēkas
       .select-custom
-        select name="type" id="type"
+        select name="building_number" id="building_number"
           option value="0" disabled=true selected=true Izvēlēties telpu
           - 3.times do |i|
             option value="#{i+1}"= "Ēka #{i+1}"
@@ -60,7 +62,7 @@ section.spaces
             span no
             input name="limit_area_min" id="limit_area_min" placeholder="" value="150"
             span līdz
-            input name="limit_area_max" id="limit_area_min" placeholder="" value="2000"
+            input name="limit_area_max" id="limit_area_min" placeholder="" value="250"
     .filter.sort
       .title: span Sakārtot
       .columns
@@ -90,17 +92,17 @@ section.spaces
           li.gallery: a href="#gallery" Gallery
       ul.info
         li.area
-          .number %info_area_number
+          .number %area
           .unit
             | m
             sup 2
         li.price
-          .number %info_price_number
+          .number %price
           .unit
             | &euro;/m
             sup 2
         li.building
-          .number %info_building_number
+          .number %building_number
           .unit ēka
       ul.extra
         li
@@ -135,23 +137,29 @@ section.spaces
       tbody
         tr.item.template
           td.image: a href="#space": img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_small_src"
-          td %info_area_number
-          td %info_price_number
-          td %info_building_number
+          td %area
+          td %price
+          td %building_number
           td %extra_stores_number
           td %extra_parkings_number
           td %extra_furniture
           td %extra_lookover
 
     coffee:
-      window.itemsSampleFirstData = Array.apply(null, new Array(15)).map ->
+      i = -1
+      window.itemsData = Array.apply(null, new Array(15)).map ()->
+        i = i + 1
+        bcs = 'a b c d'.split(' ')
+        bci = i%4
+
+        building_class: bcs[bci]
+        building_number: 1+i
+        price: 8+i
         image_url: "#{image_path 'spaces'}/1.jpg"
         image_small_src: "#{image_path 'spaces'}/1--small.jpg"
-        info_area_number: 200
-        info_price_number: 8
-        info_building_number: 2
-        extra_stores_number: 3
-        extra_parkings_number: 7
+        area: 200+i
+        extra_stores_number: 3+i
+        extra_parkings_number: 7+i
         extra_furniture: '<i class="check"></i>'
         extra_lookover: '<i class="cross"></i>'
 
