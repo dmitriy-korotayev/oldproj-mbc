@@ -265,6 +265,8 @@ $border-color: rgba($c-background--h, .2)
 %section-numbers--h
   padding: 12px $b-padding-x 0
   ul.items
+    overflow: hidden
+    +scut-list-unstyled
     border: 2px solid $border-color
     padding-bottom: 12px
   li
@@ -298,6 +300,9 @@ $border-color: rgba($c-background--h, .2)
 %section-advantages--h
   display: table
   padding: 0 $b-padding-x 23px
+  ul.items
+    overflow: hidden
+    +scut-list-unstyled
   li
     position: relative
     margin-top: 21px

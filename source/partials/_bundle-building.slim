@@ -1,41 +1,44 @@
-section.image
-  = image_tag 'articles/building.jpg', class: 'mobile-only'
-  .background.tablet style="background-image: url(#{image_path 'articles/building--tablet.jpg'})"
-  a.prev Iepriekšējais
-  a.next Nākošais
-section.overview
-  header
-    .text
-      h1 Ēka 3
-      p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-  section.numbers
-    ul.items
-      li style="width: 32%"
-        span.number 1000
-        span.text autostāvvietas
-      li style="width: 42%"
-        span.number
-          | 20000
-          sub  m2
-        span.text kopēja platība
-      li style="width: 26%"
-        span.number 100+
-        span.text nominieki
-  section.advantages
-    ul.items
-      -[\
-        ['infrastructure', 'Biznesam piemērota atrāšanas vieta un infrastruktūra', 'height: 65px'],
-        ['room', 'Brīvs telpu plānojums', nil],
-        ['guard24', 'Diennakts apsardze un novērošana', 'margin-top: 30px'],
-        ['camera', 'Ventilācija kondicionēšana, videnovērošana', 'height: 65px; margin-top: 27px'],
-        ['projector', 'Konferenču telpas<br>un aprīkojums', nil],
-      ].each do |i|
-        li style=i[2]
-          i class= i[0]
-          .bubble: .vcenter: span= i[1]
-    = link_to 'Izvēlēties telpu', 'spaces.html#filter_type=3', class: 'button'
-    .social
-      a.like  href="#"
-      a.share href="#"
-      a.send  href="#" Sūtīt draugam
-
+- t = path == 'building' ? 1 : 3
+- t.times do |i|
+  section.building id="building_#{i+1}"
+    section.image
+      = image_tag 'articles/building.jpg', class: 'mobile-only'
+      .background.tablet style="background-image: url(#{image_path 'articles/building--tablet.jpg'})"
+      a.prev Iepriekšējais
+      a.next Nākošais
+    section.overview
+      header
+        .text
+          h1= "Ēka #{i+1}"
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      section.numbers
+        ul.items
+          li style="width: 32%"
+            span.number 1000
+            span.text autostāvvietas
+          li style="width: 42%"
+            span.number
+              | 20000
+              sub  m2
+            span.text kopēja platība
+          li style="width: 26%"
+            span.number 100+
+            span.text nominieki
+      section.advantages
+        ul.items
+          -[\
+            ['infrastructure', 'Biznesam piemērota atrāšanas vieta un infrastruktūra', 'height: 65px'],
+            ['room', 'Brīvs telpu plānojums', nil],
+            ['guard24', 'Diennakts apsardze un novērošana', 'margin-top: 30px'],
+            ['camera', 'Ventilācija kondicionēšana, videnovērošana', 'height: 65px; margin-top: 27px'],
+            ['projector', 'Konferenču telpas<br>un aprīkojums', nil],
+          ].each do |i|
+            li style=i[2]
+              i class= i[0]
+              .bubble: .vcenter: span= i[1]
+        = link_to 'Izvēlēties telpu', 'spaces.html#filter_type=3', class: 'button'
+        .social
+          a.like  href="#"
+          a.share href="#"
+          a.send  href="#" Sūtīt draugam
+    a.hide href="#" Aizvert
