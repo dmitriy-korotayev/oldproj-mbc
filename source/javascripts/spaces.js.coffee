@@ -18,7 +18,6 @@ $ ->
   Breakpoints.on
     name: 'tablet'
     matched: ->
-      building_id = null
       $('a.tip').click (e)->
         e.preventDefault()
         # some loading magic maybe

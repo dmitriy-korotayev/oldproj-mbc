@@ -11,16 +11,20 @@ $ ->
     matched: ->
       $('a.tip').click (e)->
         e.preventDefault()
-        # some loading magic
-        $.scrollTo $('section.building').addClass('active'), 1500,
-          easing: 'easeInOutQuart'
-          offset: -30
+        # some loading magic maybe
+        building_id = $(this).attr('href').split('#')[1]
+        building_container = $('section.building').removeClass('active').filter("##{building_id}").addClass('active')
+        scroll = ->
+          $.scrollTo building_container, 1500,
+            easing: 'easeInOutQuart'
+            offset: -30
+        setTimeout(scroll, 500)
       $('section.building a.hide').click (e)->
         e.preventDefault()
         # some unloading magic
         $(this).parent().removeClass('active')
         setTimeout(->
-          $.scrollTo 'section.clients', 1500,
+          $.scrollTo 'section.spaces', 1500,
             easing: 'easeInOutQuart'
             offset: -50
         , 500)
