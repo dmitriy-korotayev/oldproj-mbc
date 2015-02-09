@@ -223,6 +223,8 @@ $section-advantages-list-item-height: 270px
     padding-top: .875em
     font-size: 2.25em
     font-weight: normal
+  .items a
+    +scut-margin(n 40px)
 
 =extra-social--tablet
   $height: 43px
@@ -419,13 +421,13 @@ $section-advantages-list-item-height: 270px
 %section-social
   border-top: 1px solid $c-background--m
   .items
-    padding: 40px 0 60px
+    padding: 10px 0 60px
     text-align: center
   .items a
     display: inline-block
     $wheight: 85px
     $color: darken($c-background--m, 10%)
-    margin: 0 40px
+    margin: 30px 8px 0
     width: $wheight
     height: $wheight
     border: 3px solid $color
@@ -453,6 +455,9 @@ $section-advantages-list-item-height: 270px
       margin-top: -.3em
       font-weight: 300
       content: '+'
+  +breakpoint(em(500px))
+    .items a
+      +scut-margin(n 20px)
   +respond-to(tablet)
     +section-social--tablet
 

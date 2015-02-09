@@ -18,44 +18,10 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
   padding: 2px
   &:first-child
     margin-left: 0
-  &:hover
-    border: 2px solid $c-background--m
-    padding: 1px
-  &:hover .image ul.actions
-    display: block
-
 
   $image-height: 57.5%
   .image
-    position: relative
     height: $image-height
-    ul.actions
-      +scut-absolute(0 0 0 0)
-      background: rgba($c-background--h, .7)
-      text-align: center
-      li
-        position: relative
-        display: inline-block
-        vertical-align: top
-        height: 100%
-      li a
-        display: block
-        position: relative
-        top: 50%
-        margin-top: -29px
-        border-left: 1px solid rgba($c-background, .5)
-        height: 58px
-        padding: 0 30px
-        font-size: 0
-        &:after
-          display: block
-          content: ''
-      @each $i in (view gallery)
-        li.#{$i} a:after
-          +bsprite($sm-spaces, "item-action-#{$i}", nil, 58px)
-      li:first-child a
-        border-left: none
-
 
   ul.info
     background: $c-background--i
@@ -85,7 +51,11 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
   border: 1px solid $c-background--ml
   padding: $item-padding
   height: $item-height
+  &:hover
+    border: 2px solid $c-background--m
+    padding: 1px
   .image
+    position: relative
     height: 121px / $item-inner-height * 100%
     .background
       background-position: center bottom
@@ -94,6 +64,33 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     ul.actions
       display: none
       @extend %scut-list-unstyled
+      +scut-absolute(0 0 0 0)
+      background: rgba($c-background--h, .7)
+      text-align: center
+      li
+        position: relative
+        display: inline-block
+        vertical-align: top
+        height: 100%
+      li a
+        display: block
+        position: relative
+        top: 50%
+        margin-top: -29px
+        border-left: 1px solid rgba($c-background, .5)
+        height: 58px
+        padding: 0 30px
+        font-size: 0
+        &:after
+          display: block
+          content: ''
+      @each $i in (view gallery)
+        li.#{$i} a:after
+          +bsprite($sm-spaces, "item-action-#{$i}", nil, 58px)
+      li:first-child a
+        border-left: none
+  &:hover .image ul.actions
+    display: block
   ul
     @extend %scut-list-unstyled
     overflow: hidden
@@ -517,8 +514,6 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
 %article-header-custom
   .building_map
     @extend %article-header-building_map
-    +respond-to(tablet)
-      height: 450px
   +respond-to(mobile-only)
     .image
       margin-top: -12px

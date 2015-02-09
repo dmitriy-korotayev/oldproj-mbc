@@ -74,7 +74,7 @@
       content: ''
 
 =section-advantages--h--desktop
-  padding: 0 10px 28px 20px
+  padding: 0 10px 40px 20px
   ul.items
     margin: 35px -40px 15px -25px
   li
@@ -224,6 +224,8 @@
   a.prev, a.next
     display: block
     position: absolute
+    overflow: hidden
+    @extend %scut-image-replace
   a.prev
     left: 15px
     +icon-arrow-left('--i')
@@ -255,7 +257,7 @@
   .text p
     margin-top: -.25em
     margin-bottom: .8em
-    margin-top: -10px
+    //margin-top: -10px
   +respond-to(tablet)
     +bundle-article-header--custom--tablet
   +respond-to(desktop)
@@ -298,10 +300,12 @@ $border-color: rgba($c-background--h, .2)
     +section-numbers--h--desktop
 
 %section-advantages--h
+  @extend %scut-clearfix
   display: table
+  margin: 0 auto
   padding: 0 $b-padding-x 23px
   ul.items
-    overflow: hidden
+    @extend %scut-clearfix
     +scut-list-unstyled
   li
     position: relative
@@ -402,7 +406,6 @@ $border-color: rgba($c-background--h, .2)
   &.active
     border-bottom: 1px solid $c-background--m
     max-height: 1000px
-    padding-bottom: 30px
   $width:  130px
   $height: 40px
   a.hide
