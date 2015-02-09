@@ -20,6 +20,7 @@ $ ->
 
   $('section.map .contents').first().googleMarkerMap
     map:
+      mapTypeId: google.maps.MapTypeId.SATELLITE
       zoom: mapZoom
       draggable: mapDraggable
 
