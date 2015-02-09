@@ -51,8 +51,11 @@ $ ->
         marker_image_url = marker_background_url.substring(4, marker_background_url.length - 1)
         marker_text = $(this).html()
         marker_category = $(this).attr('data-category') || 'none'
+        mcc = $(this).find('.content')
+        marker_content = mcc.length && mcc.html() || null
+        mcc.remove()
 
-        [[latitude, longtitude, marker_image_url, marker_text, marker_category]]
+        [[latitude, longtitude, marker_image_url, marker_text, marker_category, marker_content]]
       ).get()
       this.markers = this.markers.concat markersFromHtml
 
@@ -85,6 +88,14 @@ $ ->
           labelAnchor: new google.maps.Point(0,0)
           labelClass: "marker-label"
         )
+
+        # tip with content
+        if m[5]
+          contentTip = new google.maps.InfoWindow
+            content: m[5]
+          google.maps.event.addListener marker, 'click', ->
+            contentTip.open(this.map,marker);
+
         # if category exists
         c = m[4]
         if t.markersOnMap[c]
