@@ -18,6 +18,7 @@ section.spaces
       .select-custom
         Select name="building_number" id="building_number"
           option value="0" disabled=true selected=true Radīt Ēkas
+          option value="0" Visi
           - 3.times do |i|
             option value="#{i+1}"= "Ēka #{i+1}"
     .filter
@@ -41,6 +42,7 @@ section.spaces
       .select-custom
         select name="building_number" id="building_number"
           option value="0" disabled=true selected=true Izvēlēties telpu
+          option value="0" Visi
           - 3.times do |i|
             option value="#{i+1}"= "Ēka #{i+1}"
     .filter.limit
@@ -69,13 +71,15 @@ section.spaces
           label for="sort_price" Pēc cenas
           .select-custom
             select name="sort_price" id="sort_price"
+              option value="0" Izvelēties
               option value="desc" selected=true Dilstoši
               option value="asc" Augoši
         .column.half
           label for="sort_area" Pēc platības
           .select-custom
             select name="sort_area" id="sort_area"
-              option value="desc" selected=true Dilstoši
+              option value="0" selected=true Izvelēties
+              option value="desc" Dilstoši
               option value="asc" Augoši
     .reset
       input type="reset" value="noņemt visus filtrus"

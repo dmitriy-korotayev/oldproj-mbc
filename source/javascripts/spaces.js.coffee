@@ -81,7 +81,7 @@ $ ->
           return null if f.building_class.constructor == String && f.building_class != item.building_class
           return null if f.building_class.constructor == Array  && f.building_class.indexOf(item.building_class) == -1
         if f.building_number
-          return null if parseInt(f.building_number) != item.building_number
+          return null if f.building_number != "0" && f.building_number != String(item.building_number)
         if f.limit_price_min
           return null if item.price < parseInt(f.limit_price_min)
         if f.limit_price_max
@@ -103,15 +103,28 @@ $ ->
         sort[attribute] = order
 
       $.each sort, (attribute,order)->
-        data = data.sort (a,b)->
-          return if order == 'asc'
-            a[attribute] - b[attribute]
-          else
-            b[attribute] - a[attribute]
+        if order != '0'
+          data = data.sort (a,b)->
+            return if order == 'asc'
+              a[attribute] - b[attribute]
+            else
+              b[attribute] - a[attribute]
 
       data
+
     onDataChange: (data)->
       form.siblings('h1').find('span.number').html(data.length)
+
+  s_price = form.find('[name=sort_price]')
+  s_area =  form.find('[name=sort_area]')
+  s_price.change ->
+    if($(this).val() != '0')
+      s_area.val '0'
+      s_area.change()
+  s_area.change ->
+    if($(this).val() != '0')
+      s_price.val '0'
+      s_price.change()
 
 
   # filter -> type change if given in hash

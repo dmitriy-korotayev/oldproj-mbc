@@ -18,10 +18,11 @@ $ ->
   defaults =
     url: null
     data: null
-    dataFilter: ((data, formData)-> data)
     sampleFirstData: []
     sampleData: []
-    onDataChange: ((data)-> true)
+    onFormChange:   ((form, formData, oldFormData)-> form)
+    dataFilter:     ((data, formData)-> data)
+    onDataChange:   ((data)-> true)
 
 
   AjaxFilter = (element, options) ->
@@ -60,20 +61,23 @@ $ ->
       this.firstFormData = this._getFormData()
       this._showFirstItems()
 
+      form = $(this.form)
       # Prevent submission
-      $(this.form).submit (e)->
+      form.submit (e)->
         e.preventDefault()
       # Change items on input changes
-      $(this.form).find(':input').change (e)->
+      this.oldFormData = this._getFormData()
+      form.find(':input').change (e)->
         e.preventDefault()
         t._refresh()
 
       # Reset to first data on form reset
-      $(this.form).find('input[type=reset]').click ->
+      form.find('input[type=reset]').click ->
         t._showFirstItems()
 
     _getFormData: ()->
-      $(this.form).serializeObject()
+      form = $(this.form)
+      formData = form.serializeObject()
 
     _getData: (formData, callback)->
       #console.log "TODO: get ajax data"
