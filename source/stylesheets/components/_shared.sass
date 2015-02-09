@@ -516,17 +516,21 @@ $filter-select-height: 44px
     width: 100%
     @extend %filter-select-hidden
 %map-directions-search
+  $absolute-padding: 35px
+  $width: 280px
   $height: 42px
   $button-width: $height
-  $input-width: 450px
-  $width: $input-width + 2px + $button-width*2 // + 2 square buttons
-  $absolute-padding: 35px
-  +scut-absolute($absolute-padding n n 36%)
-  margin-left: -$width/2
-  width: $width
+  +scut-absolute($absolute-padding $b-padding-x n $b-padding-x)
   height: $height
+  padding: 0 $button-width+1px
   line-height: $height
   text-align: center
+  +respond-to(tablet)
+    left: 36%
+    right: auto
+    $width: 500px
+    margin-left: -$width/2
+    width: $width
   +respond-to(desktop)
     left: 50%
   form
@@ -534,7 +538,6 @@ $filter-select-height: 44px
     height: 100%
     *
       display: block
-      float: left
       outline: none
       border: none
       height: 100%
@@ -548,7 +551,8 @@ $filter-select-height: 44px
       opacity: .7
     // aside buttons
     button[type=reset], button.locate
-      position: relative
+      position: absolute
+      top: 0
       width: $button-width
       height: $height
       &:after
@@ -556,11 +560,12 @@ $filter-select-height: 44px
         position: absolute
         content: ''
     // specific
-    button[type=reset]:after
-      +bsprite($sm-location, 'icon-x--h', 100%, 100%)
+    button[type=reset]
+      left: 0
+      &:after
+        +bsprite($sm-location, 'icon-x--h', 100%, 100%)
     input[type=text]
-      margin: 0 1px
-      width: $input-width
+      width: 100%
       padding: 0 50px 0 1em
       font-size: 1.125em
     input[type=submit]
@@ -570,8 +575,10 @@ $filter-select-height: 44px
       @extend %scut-image-replace
       text-indent: 200%
       +bsprite($sm-location, 'icon-search--h', nil, 100%)
-    button.locate:after
-      +bsprite($sm-location, 'icon-location--h', 100%, 100%)
+    button.locate
+      right: 0
+      &:after
+        +bsprite($sm-location, 'icon-location--h', 100%, 100%)
 
 %extra-social
   $height: 35px

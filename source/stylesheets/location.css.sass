@@ -9,31 +9,18 @@
 // -------------------------------------
 
 %article-header-custom
+  overflow: hidden
   .text
-    float: left
-    width: 39%
     margin-right: 0
-    h1
-      margin-top: .675em
-      margin-bottom: 0
-      font-size: 2.875em
-      line-height: 1.03
     p
       margin-top: 1em
       font-size: .875em
   ul.travel_time
     @extend %scut-list-unstyled
-    float: left
-    margin-top: 65px
-    margin-left: 2%
-    width: 59%
     text-align: center
     li
-      display: inline-block
-      vertical-align: top
-      margin: 0 2% 30px
+      margin: 0 $b-padding-x 20px
       border: 1px solid $c-background--m
-      width: 45%
       height: 90px
       .from
         margin-top: .3em
@@ -57,6 +44,25 @@
         .in
           margin-top: .5em
           font-size: 1.125em
+  +respond-to(tablet)
+    .text
+      float: left
+      width: 39%
+      h1
+        margin-top: .675em
+        margin-bottom: 0
+        font-size: 2.875em
+        line-height: 1.03
+    ul.travel_time
+      float: left
+      margin-top: 65px
+      margin-left: 2%
+      width: 59%
+      li
+        display: inline-block
+        vertical-align: top
+        margin: 0 2% 30px
+        width: 45%
   +respond-to(desktop)
     ul.travel_time li
       width: 22%
@@ -116,18 +122,15 @@
     height: 100%
 
   .filter
-    position: relative
-    $item-width: 90px
-    $width: $item-width * 2
-    +scut-absolute($absolute-padding $absolute-padding n n)
-    margin-left: -$width/2
-    width: $width
+    +scut-absolute(n $b-padding-x $absolute-padding*1.5 n)
+    $item-width: 70px
+    width: $item-width * 4
     .items a
       display: block
       float: left
       background: linear-gradient($c-background, rgba($c-background--m,.2)) $c-background
       width: $item-width
-      height: 80px
+      height: 50px
       padding: 0 8px
       text-align: center
       &:nth-child(2n-1) // 1,3,5
@@ -153,11 +156,7 @@
           i.#{$i}:after
             +bsprite($sm-location, "map-filter-#{$i}--i")
       .title
-        margin-top: .25em
-        height: 2.5em
-        overflow: hidden
-        line-height: 1.2
-        font-size: .875em
+        display: none
     .reset
       $height: 24px
       +scut-absolute(n 0 (-$height) 0)
@@ -169,8 +168,27 @@
         padding: 0 10px
         line-height: $height
         color: rgba($c-base, .6)
-        font-size: .875em
+        font-size: .75em
 
+  +respond-to(tablet)
+    .filter
+      $item-width: 90px
+      top: $absolute-padding
+      right: $absolute-padding
+      bottom: auto
+      width: $item-width * 2
+      .items a
+        width: $item-width
+        height: 80px
+        .title
+          display: block
+          margin-top: .25em
+          height: 2.5em
+          overflow: hidden
+          line-height: 1.2
+          font-size: .875em
+      .reset a
+        font-size: .875em
   +respond-to(desktop)
     //.filter
       margin-left: -$b-maxWidth--frame/2
@@ -188,15 +206,11 @@
 
 %section-transport
   margin: 0 auto
-  padding: 0 100px 36px
+  padding: $b-padding
   li
-    float: left
     margin-top: 33px
     border: 1px solid $c-background--m
-    width: 47.5%
     text-align: center
-    &:nth-child(2n)
-      margin-left: 4.5%
     &:first-child
       margin-left: 0
     i
@@ -227,6 +241,13 @@
       line-height: 33px
       color: $c-base--i
       font-size: .95em
+  +respond-to(tablet)
+    padding: 0 100px 36px
+    li
+      float: left
+      width: 47.5%
+      &:nth-child(2n)
+        margin-left: 4.5%
   +respond-to(desktop)
     width: $b-maxWidth--frame
     +scut-padding(n 8px n 8px)
