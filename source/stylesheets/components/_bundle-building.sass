@@ -21,11 +21,8 @@
 =article-header-building_map--tablet
   float: right
   margin-top: 40px
-  width: 48.5%
-  height: 250px
-  .tips
-    width: 350px
-    height: 221px
+  margin-left: -5%
+  width: 55%
   a.tip
     font-size: 1.125em
     &:before
@@ -151,16 +148,17 @@
   .tips
     position: relative
     margin: 0 auto
-    width: 298px
-    height: 188px
     .background
       +scut-absolute(0 0 0 0)
       background-size: cover
+  .tips.desktop--big
+    display: none
   a.tip
+    $border-color: darken($c-background--m, 2.5%)
     +scut-absolute(0 n n 0)
     margin-left: -22px
     margin-top: -34px
-    border: 2px solid darken($c-background--m, 2.5%)
+    border: 2px solid $border-color
     background: $c-background
     padding: .375em .55em .375em .65em
     text-transform: uppercase
@@ -191,6 +189,12 @@
         left: $width/2 solid transparent
         right: $width/2 solid transparent
         top: $height solid $c-background
+    &:hover
+      background: $border-color
+      text-decoration: none
+      color: $c-base--i
+      &:after
+        border-top-color: $border-color
   .pointer
     +scut-absolute(n n 48px -50px)
     background: $c-background--h
@@ -212,12 +216,12 @@
       cursor: pointer
   +respond-to(tablet)
     +article-header-building_map--tablet
-  +respond-to(desktop)
+  +breakpoint(em(1400px))
+    .tips.desktop
+      display: none !important
+    .tips.desktop--big
+      display: block
     margin-top: 5px
-    height: 450px
-    .tips
-      width: 688px
-      height: 435px
 
 %section-image
   position: relative
