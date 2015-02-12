@@ -593,6 +593,9 @@ $filter-select-height: 44px
     opacity: .5
     &:first-child
       margin-left: 0
+    span
+      vertical-align: middle !important
+
   a.like, a.share
     width: $height
     padding: 0
@@ -601,6 +604,12 @@ $filter-select-height: 44px
       display: inline-block
       vertical-align: middle
       content: ''
+  a.like-facebook, a.share-facebook
+    line-height: 35px
+  a.like-facebook
+    min-width: 107px
+  a.share-facebook
+    min-width: 115px
   @each $i in (like share)
     a.#{$i}:after
       +bsprite($sm-common, "social-#{$i}")
@@ -609,6 +618,7 @@ $filter-select-height: 44px
   a.share:after
     margin-top: -5px
     margin-left: -1px
+
   a.send
     color: $c-base--h
     font-size: .8em

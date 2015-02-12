@@ -164,3 +164,5 @@ $ ->
       cssEase: 'linear'
   gallery.on 'closed', ->
     container.unslick()
+
+

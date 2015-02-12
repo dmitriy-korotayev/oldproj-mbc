@@ -20,9 +20,7 @@ section.news
               p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
         a.more href="#" Lasīt tālāk
         .social
-          a.like  href="#"
-          a.share href="#"
-          a.send  href="#" Sūtīt draugam
+          = partial 'components/social'
   .pagination
     - 5.times do |i|
       = link_to "#{i+1}", '#', class: "page#{i==0 ? ' active' : ''}"

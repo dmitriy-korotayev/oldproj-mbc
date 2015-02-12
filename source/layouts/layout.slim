@@ -25,7 +25,7 @@ html lang="lv"
     = javascript_include_tag path if javascript_exists? path
 
   body
-    = partial :facebook
+    = partial 'vendor/facebook'
     /[if lte IE 8]
       .outdated
         ' You are using an

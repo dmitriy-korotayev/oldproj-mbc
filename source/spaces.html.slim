@@ -3,9 +3,9 @@ header
     h1 Visspiemērotākas telpas biznesa attīstībai
     p Mūkusalas Biznesa Centrs ir lielākais biznesa centrs Rīgā ar kopējo iznomāto telpu platību 20,000 m2 apmērā. Mūkusalas Biznesa Centrs aizņem 5 hektāru lielu platību Daugavas kreisajā krastā, starp Mūkusalas un Jelgavas ielām. Uzņēmums nodrošina kvalitatīvu tehnisko infrastruktūru veiksmīgai biroju centra darbībai.
   .building_map
-    = partial 'article-header-building_map'
+    = partial 'bundle/building_article-header-map'
 .buildings
-  = partial 'bundle-building'
+  = partial 'bundle/building'
 section.spaces
   h1
     ' Brīvas telpas
@@ -174,9 +174,7 @@ section.spaces
     .image
       = image_tag 'spaces/1-big.jpg'
     .social
-      a.like  href="#"
-      a.share href="#"
-      a.send  href="#send" Sūtīt draugam
+      = partial 'components/social'
       a.contact href="#contact" Sazināties ar mums
     ul.info
       li.area
@@ -211,28 +209,43 @@ section.spaces
       div= image_tag 'spaces/1-big.jpg'
       div= image_tag 'spaces/2-big.jpg'
     .social
-      a.like  href="#"
-      a.share href="#"
-      a.send  href="#send" Sūtīt draugam
+      = partial 'components/social'
       a.contact href="#contact" Sazināties ar mums
 
   .remodal.send data-remodal-id="send"
     h1
       ' Sūtīt ziņojumu draugam par telpu
       strong 191
-    form
-      input type="text" name="name" id="name" placeholder="Vārds" value=""
-      input type="text" name="email" id="email" placeholder="E-pasts" value=""
-      textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
+    form.mailable novalidate=true data-mailable-id="mbc_send"
+      .row
+        input type="text" name="name" id="name" placeholder="Vārds" value=""
+        .error
+      .row
+        input type="text" name="email" id="email" placeholder="E-pasts" value=""
+        .error
+      .row
+        textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
+        .error
       input type="submit" name="submit" id="submit" value="Sūtīt"
 
   .remodal.contact data-remodal-id="contact"
     h1
       ' Sūtīt ziņojumu par telpu
       strong 191
-    form
-      input type="text" name="name" id="name" placeholder="Vārds" value=""
-      input type="text" name="email" id="email" placeholder="E-pasts" value=""
-      input type="text" name="phone" id="phone" placeholder="Tālrunis" value=""
-      textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
+    form.mailable novalidate=true data-mailable-id="mbc_contact"
+      .row
+        input type="text" name="name" id="name" placeholder="Vārds" value=""
+        .error
+      .row
+        input type="text" name="email" id="email" placeholder="E-pasts" value=""
+        .error
+      .row
+        input type="text" name="phone" id="phone" placeholder="Tālrunis" value=""
+        .error
+      .row
+        textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
+        .error
       input type="submit" name="submit" id="submit" value="Sūtīt"
+- content_for :javascripts_before do
+  coffee:
+    window.mailableLocale = 'lv'
