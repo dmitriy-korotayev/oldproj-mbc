@@ -41,6 +41,7 @@ $ ->
 
   # --- Dynamic items filter ---
 
+  # Preamble
   form = null
   Breakpoints.on
     name: 'mobile-only'
@@ -52,10 +53,11 @@ $ ->
       form = $('form.filters.tablet')
 
 
+  # ajaxFilter variables
   url = null
-  container = form.siblings('.items.grid')
+  container = form.parent().find('.items.grid')
   template  = container.children('.item.template')
-  secondaryContainer = form.siblings('.items.list').find('tbody')
+  secondaryContainer = container.siblings('.items.list').find('tbody')
   secondaryTemplate  = secondaryContainer.children('.template')
   sampleData = Array.apply(null, new Array(3)).map ->
     image_url: "#{image_path 'spaces'}/1.jpg"
@@ -69,6 +71,7 @@ $ ->
     extra_lookover: '<i class="cross"></i>'
 
 
+  # init
   form.ajaxFilter [container, secondaryContainer], [template, secondaryTemplate],
     data: window.itemsData || null
     sampleData: window.itemsSampleFirstData && sampleData || []
@@ -115,6 +118,8 @@ $ ->
     onDataChange: (data)->
       form.siblings('h1').find('span.number').html(data.length)
 
+
+  # Reset another sorting on change of one
   s_price = form.find('[name=sort_price]')
   s_area =  form.find('[name=sort_area]')
   s_price.change ->
@@ -128,12 +133,18 @@ $ ->
 
 
   # filter -> type change if given in hash
-  changeFilterType = ->
-    filter_type = $.url().fparam('filter_type')
-    if filter_type
-      form.find('[name="type"]').val(filter_type).change()
-  changeFilterType()
-  $(window).on('hashchange', changeFilterType)
+  changeFilterBuildingNumber = ->
+    filter_bnumber = $.url().fparam('filter_building_number')
+    if filter_bnumber
+      form.find('[name="building_number"]').val(filter_bnumber).change()
+    filter_bnumber
+  changeFilterBuildingNumber()
+  $(window).on 'hashchange', ->
+    if changeFilterBuildingNumber()
+      $.scrollTo form, 1500,
+        easing: 'easeInOutQuart'
+        offset: -30
+
 
   # --- Grid/List items view ---
   Breakpoints.on

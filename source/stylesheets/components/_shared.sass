@@ -580,6 +580,83 @@ $filter-select-height: 44px
       &:after
         +bsprite($sm-location, 'icon-location--h', 100%, 100%)
 
+%extra-filter-reset
+  text-align: center
+  input
+    border: none
+    outline: none
+    background: none
+    padding: 0
+
+    margin-top: 2px
+    border-bottom: 1px dashed $c-background--m
+    vertical-align: top
+    color: $c-base--m
+    line-height: 1.25
+    font-size: .875em
+    &:hover
+      border-color: darken($c-background--m, 10%)
+      color: darken($c-base--m, 10%)
+
+%extra-items-view
+  +respond-to(tablet)
+    a
+      display: inline-block
+      opacity: .4
+      margin-right: 12px
+      @each $i in grid list
+        &.#{$i}
+          +bsprite($sm-spaces, "items-view-#{$i}")
+      &:hover
+        cursor: pointer
+        opacity: .85
+      &.active
+        opacity: 1
+%extra-items-list
+  display: none
+  +respond-to(tablet)
+    &.active
+      display: block
+    margin: -30px 0 35px
+    table
+      width: 100%
+      th, td
+        padding: 8px
+      th
+        font-weight: 500
+        font-size: 1.0625em
+        sup
+          font-size: .625em
+      td
+        border: 1px solid $c-background--ml
+        border-left-style: dashed
+        border-right-style: dashed
+        font-weight: 300
+        font-size: 2.375em
+        &:first-child
+          border-left-style: solid
+        &:last-child
+          border-right-style: solid
+        &.image
+          width: 116px
+          img
+            display: block
+            width: 100%
+        i
+          display: inline-block
+          @each $i in (check cross)
+            &.#{$i}
+              +bsprite($sm-spaces, "item-list-#{$i}", nil, 30px)
+%extra-items-views
+  .items
+    +respond-to(mobile-only)
+      &.list
+        display: none
+    +respond-to(tablet)
+      display: none
+      &.active
+        display: block
+
 %extra-social
   $height: 35px
   a

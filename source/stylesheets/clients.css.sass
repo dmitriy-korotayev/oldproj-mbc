@@ -59,9 +59,9 @@
 
 
   .items
-    margin: 0 -1.5% 32px
     text-align: center
-  .items a.item
+  .items.grid a.item
+    margin: 0 -1.5% 32px
     display: inline-block
     float: none
     border-width: 2px
@@ -71,19 +71,19 @@
       margin: 36px 1.5% 4px
     &:hover
       border-color: $c-background--m
-  .image
-    height: 85px
-    line-height: 85px
-  .title
-    margin-top: 4px
-    font-size: 1.125em
-  .description, address, .phone
-    font-size: .95em
-    font-weight: 400
-  .description
-    margin-top: 0
-  .phone
-    font-weight: 700
+    .image
+      height: 85px
+      line-height: 85px
+    .title
+      margin-top: 4px
+      font-size: 1.125em
+    .description, address, .phone
+      font-size: .95em
+      font-weight: 400
+    .description
+      margin-top: 0
+    .phone
+      font-weight: 700
 
 =section-clients--desktop
   display: block
@@ -126,7 +126,7 @@
   .filters
     margin-top: 20px
     overflow: hidden
-  .filter, .item
+  .filter, .items.grid .item
     float: left
     width: 48.5%
     &:nth-child(2n) // every second, skipping hidden selects
@@ -147,12 +147,18 @@
       &::placeholder
         font-weight: 500
 
+  .reset
+    @extend %extra-filter-reset
 
+
+  .items-view
+    @extend %extra-items-view
   .items
-    margin-top: 8px
-    overflow: hidden
+    margin-top: 12px
   $item-height: 138px
-  .items a.item
+  .items.grid
+    overflow: hidden
+  .items.grid a.item
     display: block
     margin-bottom: 14px
     border: 1px solid $c-background--ml
@@ -164,34 +170,41 @@
       text-decoration: none
     &.template
       display: none
-  .image
-    $height: 50px
-    height: $height
-    line-height: $height
-    img
-      vertical-align: middle
-  .title
-    margin-top: 10px
-    display: inline-block
-    height: 1.125em
-    overflow: hidden
-    line-height: 1.125
-    text-transform: uppercase
-    font-size: .75em
-    font-weight: 700
-    border-bottom: 1px solid darken($c-background--m, 10%)
-  .description, address, .phone
-    font-size: .7em
-    line-height: 1.25
-    font-weight: 500
-  .description
-    margin-top: -.25em
-  address
-    margin-top: .375em
-    font-style: normal
-  .phone
-    margin-top: .375em
-    font-weight: 700
+    .image
+      $height: 50px
+      height: $height
+      line-height: $height
+      img
+        vertical-align: middle
+    .title
+      margin-top: 10px
+      display: inline-block
+      height: 1.125em
+      overflow: hidden
+      line-height: 1.125
+      text-transform: uppercase
+      font-size: .75em
+      font-weight: 700
+      border-bottom: 1px solid darken($c-background--m, 10%)
+    .description, address, .phone
+      font-size: .7em
+      line-height: 1.25
+      font-weight: 500
+    .description
+      margin-top: -.25em
+    address
+      margin-top: .375em
+      font-style: normal
+    .phone
+      margin-top: .375em
+      font-weight: 700
+
+  .items.list
+    @extend %extra-items-list
+  .items-views
+    @extend %extra-items-views
+
+
   +respond-to(tablet)
     +section-clients--tablet
   +respond-to(desktop)

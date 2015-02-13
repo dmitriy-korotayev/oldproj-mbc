@@ -86,67 +86,68 @@ section.spaces
   .items-view.tablet
     a.grid.active
     a.list
-  .items.grid.active
-    .item.template
-      .image
-        .background data-image-url="%image_url" style="background-image: none"
-        ul.actions
-          li.view: a href="#space" View
-          li.gallery: a href="#gallery" Gallery
-      ul.info
-        li.area
-          .number %area
-          .unit
-            | m
-            sup 2
-        li.price
-          .number %price
-          .unit
-            | &euro;/m
-            sup 2
-        li.building
-          .number %building_number
-          .unit ēka
-      ul.extra
-        li
-          .number %extra_stores_number
-          .text stāvs
-        li
-          .number %extra_parkings_number
-          .text autostāvvieta
-        li
-          | %extra_furniture
-          .text mēbeles
-        li
-          | %extra_lookover
-          .text pārlukošana
+  .items-views
+    .items.grid.active
+      .item.template
+        .image
+          .background data-image-url="%image_url" style="background-image: none"
+          ul.actions
+            li.view: a href="#space" View
+            li.gallery: a href="#gallery" Gallery
+        ul.info
+          li.area
+            .number %area
+            .unit
+              | m
+              sup 2
+          li.price
+            .number %price
+            .unit
+              | &euro;/m
+              sup 2
+          li.building
+            .number %building_number
+            .unit ēka
+        ul.extra
+          li
+            .number %extra_stores_number
+            .text stāvs
+          li
+            .number %extra_parkings_number
+            .text autostāvvieta
+          li
+            | %extra_furniture
+            .text mēbeles
+          li
+            | %extra_lookover
+            .text pārlukošana
 
-  .items.list
-    table
-      thead
-        tr
-          th.image
-          th
-            | platība,m
-            sup 2
-          th
-            | cena, &euro;/m
-            sup 2
-          th ēka
-          th stāvs
-          th autostāvvieta
-          th mēbeles
-          th pārlūkošana
-      tbody
-        tr.item.template
-          td.image: a href="#space": img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_small_src"
-          td %area
-          td %price
-          td %building_number
-          td %extra_stores_number
-          td %extra_parkings_number
-          td %extra_furniture
-          td %extra_lookover
+    .items.list
+      table
+        thead
+          tr
+            th.image
+            th
+              | platība,m
+              sup 2
+            th
+              | cena, &euro;/m
+              sup 2
+            th ēka
+            th stāvs
+            th autostāvvieta
+            th mēbeles
+            th pārlūkošana
+        tbody
+          tr.item.template
+            td.image: a href="#space": img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_small_src"
+            td %area
+            td %price
+            td %building_number
+            td %extra_stores_number
+            td %extra_parkings_number
+            td %extra_furniture
+            td %extra_lookover
 
     coffee:
       i = -1

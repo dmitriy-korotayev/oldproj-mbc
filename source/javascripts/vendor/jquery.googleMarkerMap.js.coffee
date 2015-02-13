@@ -15,7 +15,7 @@ $ ->
       center: null
       panControl: 0
       zoomControl: 0
-      #mapTypeControl: 0
+      mapTypeControl: 0
       scaleControl: 0
       streetViewControl: 0
       overviewMapControl: 0

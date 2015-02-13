@@ -5,6 +5,10 @@
 #= require vendor/jquery.ajaxFilter
 
 $ ->
+  $('select').customSelect()
+
+  # --- Building rollout ---
+
   # Show according building on this page
   Breakpoints.on
     name: 'tablet'
@@ -30,9 +34,9 @@ $ ->
         , 500)
 
 
-  $('select').customSelect()
+  # --- Dynamic items filter ---
 
-  # Dynamic items filter
+  # Preamble
   form = null
   Breakpoints.on
     name: 'mobile-only'
@@ -44,9 +48,12 @@ $ ->
       form = $('form.filters.tablet')
 
 
+  # ajaxFilter variables
   url = null
-  container = form.siblings('.items')
+  container = form.parent().find('.items.grid')
   template = container.children('a.item.template')
+  secondaryContainer = container.siblings('.items.list').find('tbody')
+  secondaryTemplate  = secondaryContainer.children('.template')
   sampleDataToGenerate = {tele2: 'A/S TELE2', delfi: 'A/S DELFI', yit: 'SIA YIT', hilti: 'SIA Hilti'}
   sampleData = $.map sampleDataToGenerate, (title, name) ->
     url: 'client.html'
@@ -59,7 +66,8 @@ $ ->
     phone: '+371 200 200 00'
 
 
-  form.ajaxFilter container, template,
+  # init
+  form.ajaxFilter [container, secondaryContainer], [template, secondaryTemplate],
     data: window.itemsData || null
     sampleData: window.itemsSampleFirstData && sampleData || []
     sampleFirstData: window.itemsSampleFirstData || []
@@ -76,3 +84,16 @@ $ ->
 
 
       data
+
+
+  # --- Grid/List items view ---
+  Breakpoints.on
+    name: 'tablet'
+    matched: ->
+      $('.items-view a').click ->
+        if !$(this).hasClass('active')
+          klass = $(this).attr('class')
+          container = $(".items.#{klass}")
+          $(this).siblings().add(container.siblings('.items')).removeClass('active')
+          $(this).add(container).addClass('active')
+
