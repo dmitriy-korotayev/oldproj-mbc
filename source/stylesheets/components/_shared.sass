@@ -204,28 +204,6 @@ $section-advantages-list-item-height: 270px
       font-size: 1em
       font-weight: normal
 
-=section-contact-us--tablet
-  +border-sloppy--hide
-  padding-bottom: 35px
-  .frame
-    margin: 15px 13.5% 0
-    padding: 25px
-  h1
-    font-size: 2.875em
-    font-weight: 300
-  p
-    margin-top: .9em
-    line-height: 1.375
-    font-size: 1.375em
-
-=section-social--tablet
-  h1
-    padding-top: .875em
-    font-size: 2.25em
-    font-weight: normal
-  .items a
-    +scut-margin(n 40px)
-
 =extra-social--tablet
   $height: 43px
   a
@@ -395,71 +373,6 @@ $section-advantages-list-item-height: 270px
     height: 515px
     .items .text h1
       font-size: 2.5em
-
-%section-contact-us
-  border-top: 1px solid $c-background--m
-  padding: 21px 0
-  text-align: center
-  .frame
-    overflow: hidden
-    border: 2px solid $c-background--m
-    margin: 0 8px
-    padding: 15px
-  h1
-    margin: 0
-    line-height: 1.2
-    font-size: 1.875em
-    font-weight: normal
-  p
-    margin: .75em 0 0
-    line-height: 1.45
-  a
-    display: inline-block
-  +respond-to(tablet)
-    +section-contact-us--tablet
-
-%section-social
-  border-top: 1px solid $c-background--m
-  .items
-    padding: 10px 0 60px
-    text-align: center
-  .items a
-    display: inline-block
-    $wheight: 85px
-    $color: darken($c-background--m, 10%)
-    margin: 30px 8px 0
-    width: $wheight
-    height: $wheight
-    border: 3px solid $color
-    border-radius: $wheight
-    line-height: $wheight - 6px
-    color: $color
-    &:hover
-      border-width: 5px
-      text-decoration: none
-      line-height: $wheight - 10px
-    &:after
-      display: inline-block
-      vertical-align: middle
-      font-size: 5em
-      font-style: normal
-      content: ''
-    @each $i, $color in (facebook: #3b5998, gplus: #da4835)
-      &.#{$i}
-        border-color: $color
-        &:after
-          +bsprite($sm-common, "icon-social-#{$i}")
-    &.gplus:after
-      margin-left: 5px
-    &.bookmark:after
-      margin-top: -.3em
-      font-weight: 300
-      content: '+'
-  +breakpoint(em(500px))
-    .items a
-      +scut-margin(n 20px)
-  +respond-to(tablet)
-    +section-social--tablet
 
 
 %filter-years

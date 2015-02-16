@@ -467,12 +467,8 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         .inline input
           width: 27px
 
-%article-header-custom
-  .building_map
-    @extend %article-header-building_map
-  +respond-to(mobile-only)
-    .image
-      margin-top: -12px
+%article-header--custom
+  @extend %bundle-building-article-header
   +respond-to(tablet)
     .text
       float: left
@@ -540,7 +536,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
 
 article.spaces
   >header
-    @extend %article-header-custom
+    @extend %article-header--custom
   @each $section in (building spaces)
     section.#{$section}
       @extend %section-#{$section}

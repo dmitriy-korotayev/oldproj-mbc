@@ -5,24 +5,6 @@ module.exports = (grunt) ->
   # Configuration
   grunt.initConfig
     pkg: grunt.file.readJSON("package.json")
-    compass:
-      options:
-        config: '/dev/null'
-        sassDir: 'grunt/stylesheets'
-        cssDir: 'middleman/stylesheets'
-        imagesDir: 'middleman/images'
-        fontsDir: 'middleman/fonts'
-        importPath: 'bower_components'
-        relativeAssets: true
-        trace: true
-      dev:
-        options:
-          watch: true
-          sourcemap: true
-      dist:
-        options:
-          environment: 'production'
-          #outputStyle: 'compressed'
     middleman:
       options:
         useBundle: true
@@ -32,7 +14,7 @@ module.exports = (grunt) ->
       build:
         options:
           command: "build"
-  
+
 
   # Default task on running `grunt`
   grunt.registerTask "default", ["dev"]
@@ -47,7 +29,7 @@ module.exports = (grunt) ->
 
 # Samples
 #module.exports = (grunt) ->
-  
+
   ## Require it at the top and pass in the grunt instance
   #require("jit-grunt") grunt,
     #scsslint: "grunt-scss-lint"
@@ -55,11 +37,11 @@ module.exports = (grunt) ->
   #require("time-grunt") grunt
   #grunt.option "port", 9002 if !grunt.option("port")
   #grunt.option "livereload-port", grunt.option("port") + 1 if !grunt.option("livereload-port")
-  
-  ## All configuration goes here 
+
+  ## All configuration goes here
   #grunt.initConfig
     #pkg: grunt.file.readJSON("package.json")
-    
+
     ## Accessibility Configuration
     #accessibility:
       #options:
@@ -75,7 +57,7 @@ module.exports = (grunt) ->
           #src: ["*.html"]
         #]
 
-    
+
     ## Configuration for assemble
     #assemble:
       #options:
@@ -115,7 +97,7 @@ module.exports = (grunt) ->
           #src: ["**/*.hbs"]
         #]
 
-    
+
     ## Configuration for autoprefixer
     #autoprefixer:
       #options:
@@ -133,7 +115,7 @@ module.exports = (grunt) ->
       #dist:
         #src: "dist/css/*.css"
 
-    
+
     ## Configuration for deleting files
     #clean:
       #dev:
@@ -148,7 +130,27 @@ module.exports = (grunt) ->
       #tmp:
         #files: [src: ["tmp"]]
 
-    
+
+    #compass:
+      #options:
+        #config: '/dev/null'
+        #sassDir: 'grunt/stylesheets'
+        #cssDir: 'middleman/stylesheets'
+        #imagesDir: 'middleman/images'
+        #fontsDir: 'middleman/fonts'
+        #importPath: 'bower_components'
+        #relativeAssets: true
+        #trace: true
+      #dev:
+        #options:
+          #watch: true
+          #sourcemap: true
+      #dist:
+        #options:
+          #environment: 'production'
+          ##outputStyle: 'compressed'
+
+
     ## Configuration for concatenating js files
     #concat:
       #options:
@@ -169,7 +171,7 @@ module.exports = (grunt) ->
           #"tmp/main.js"
         #]
 
-    
+
     ## Configuration for run tasks concurrently
     #concurrent:
       #dev1: [
@@ -186,7 +188,7 @@ module.exports = (grunt) ->
         #"imagemin:dist"
       #]
 
-    
+
     ## Configuration for livereload
     #connect:
       #livereload:
@@ -208,7 +210,7 @@ module.exports = (grunt) ->
         #files:
           #src: ["*/*.html"]
 
-    
+
     ## Configuration for copying files
     #copy:
       #ajax:
@@ -255,7 +257,7 @@ module.exports = (grunt) ->
         #flatten: true
         #src: ["**/*.css"]
 
-    
+
     ## Configuration for minifying css-files
     #cssmin:
       #dist:
@@ -264,7 +266,7 @@ module.exports = (grunt) ->
         #expand: true
         #src: ["*.css"]
 
-    
+
     ## Configuration for splitting css-files (e.g. IE9)
     #csssplit:
       #options:
@@ -279,7 +281,7 @@ module.exports = (grunt) ->
         #dest: "dist/css"
         #src: "dist/css/styles.css"
 
-    
+
     ## Configuration for writing index files of directory contents (sass-globbing alernative for libsass)
     #fileindex:
       #globbing:
@@ -299,16 +301,16 @@ module.exports = (grunt) ->
           #cwd: "source/sass/"
           #dest: "source/sass/styles.scss"
           #src: [
-            
+
             ## Webfonts
             #"_webfonts.scss"
-            
+
             ## Browser-Reset
             #"_reset.scss"
-            
+
             ## SASS Variables
             #"variables/**/*.scss"
-            
+
             ## nikita.css Mixins
             #"../../bower_components/nikita.css/mixins/_centering.scss"
             #"../../bower_components/nikita.css/mixins/_fixed-ratiobox.scss"
@@ -317,42 +319,42 @@ module.exports = (grunt) ->
             #"../../bower_components/nikita.css/mixins/_px-to-rem.scss"
             #"../../bower_components/nikita.css/mixins/_respond-to.scss"
             #"../../bower_components/nikita.css/mixins/_triangle.scss"
-            
+
             ## SASS Mixins
             #"mixins/**/*.scss"
-            
+
             ## nikita.css Extends
             #"../../bower_components/nikita.css/extends/_a11y.scss"
             #"../../bower_components/nikita.css/extends/_cf.scss"
             #"../../bower_components/nikita.css/extends/_ellipsis.scss"
             #"../../bower_components/nikita.css/extends/_hide-text.scss"
             #"../../bower_components/nikita.css/extends/_ib.scss"
-            
+
             ## SASS Extends
             #"extends/**/*.scss"
-            
+
             ## SVG Background Extends
             #"svg-bg-extends/**/*.scss"
-            
+
             ## Basic Formatting
             #"_basics.scss"
-            
+
             ## Blocks
             #"blocks/**/*.scss"
           #]
         #]
 
-    
+
     ## Configuration for gitinfo (will be populated with values from Git)
     #gitinfo: {}
-    
+
     ## Configuration for grouping media queries
     #group_css_media_queries:
       #dist:
         #files:
           #"dist/css/styles.css": ["dist/css/styles.css"]
 
-    
+
     ## Configuration for managing SVG-icons
     #grunticon:
       #options:
@@ -388,7 +390,7 @@ module.exports = (grunt) ->
           #src: ["*.svg"]
         #]
 
-    
+
     ## Configuration for validating html-files
     #htmlhint:
       #options:
@@ -415,7 +417,7 @@ module.exports = (grunt) ->
           #"!styleguide/**/*.html"
         #]
 
-    
+
     ## Configuration for optimizing image-files
     #imagemin:
       #options:
@@ -437,7 +439,7 @@ module.exports = (grunt) ->
           #src: ["**/*.{jpg,png,gif}"]
         #]
 
-    
+
     ## Configuration for documenting js-files
     #jsdoc:
       #all:
@@ -449,7 +451,7 @@ module.exports = (grunt) ->
           #"source/js/README.md"
         #]
 
-    
+
     ## Configuration for validating js-files
     #jshint:
       #options:
@@ -488,7 +490,7 @@ module.exports = (grunt) ->
 
         #src: ["source/js/**/*.js"]
 
-    
+
     ## Modernizr configuration
     #modernizr:
       #all:
@@ -503,7 +505,7 @@ module.exports = (grunt) ->
         #outputFile: "tmp/modernizr.js"
         #uglify: false
 
-    
+
     ## Configuration for pagespeed
     #pagespeed:
       #options:
@@ -527,7 +529,7 @@ module.exports = (grunt) ->
           #strategy: "desktop"
           #threshold: 80
 
-    
+
     ## Configuration for measuring frontend performance
     #phantomas:
       #all:
@@ -536,7 +538,7 @@ module.exports = (grunt) ->
           #numberOfRuns: 10
           #url: "http://0.0.0.0:" + grunt.option("port") + "/"
 
-    
+
     ## Configuration for photobox
     #photobox:
       #all:
@@ -551,7 +553,7 @@ module.exports = (grunt) ->
           #]
           #urls: ["http://0.0.0.0:" + grunt.option("port") + "/index.html"]
 
-    
+
     ## Configuration for prettifying the html-code generated by assemble
     #prettify:
       #options:
@@ -596,7 +598,7 @@ module.exports = (grunt) ->
           #src: ["*.html"]
         #]
 
-    
+
     ## Configuration for requirejs
     #requirejs:
       #compile:
@@ -605,7 +607,7 @@ module.exports = (grunt) ->
           #mainConfigFile: "source/js/_requireconfig.js"
           #out: "tmp/main.js"
 
-    
+
     ## Configuration for SASS
     #sass:
       #dev:
@@ -626,7 +628,7 @@ module.exports = (grunt) ->
           #"dist/css/styles.css": "source/sass/styles.scss"
           #"dist/css/universal.css": "source/sass/universal.scss"
 
-    
+
     ## Configuration for SCSS linting
     #scsslint:
       #allFiles: ["source/sass/{blocks,extends,mixins,variables,styles.scss,_*.scss}"]
@@ -636,7 +638,7 @@ module.exports = (grunt) ->
         #config: ".scss-lint.yml"
         #force: true
 
-    
+
     ## Configuration for string-replacing the grunticon output
     #"string-replace":
       #"grunticon-datasvg":
@@ -669,7 +671,7 @@ module.exports = (grunt) ->
             #replacement: "%bg-fallback-"
           #]
 
-    
+
     ## Configuration for the styleguide output
     #styleguide:
       #options:
@@ -683,7 +685,7 @@ module.exports = (grunt) ->
       #all:
         #files: [styleguide: "source/sass/blocks/**/*.scss"]
 
-    
+
     ## Configuration for optimizing SVG-files
     #svgmin:
       #options:
@@ -819,7 +821,7 @@ module.exports = (grunt) ->
           #src: ["*.svg"]
         #]
 
-    
+
     ## Configuration for building the SVG-sprite
     #svgstore:
       #options:
@@ -839,7 +841,7 @@ module.exports = (grunt) ->
         #files:
           #"tmp/icon-sprite.svg": ["tmp/svgmin/icons/*.svg"]
 
-    
+
     ## Configuration for syncing files
     ## Task does not remove any files and directories in 'dest' that are no longer in 'cwd'. :'(
     #sync:
@@ -881,7 +883,7 @@ module.exports = (grunt) ->
           #src: "modernizr.js"
         #]
 
-    
+
     ## Configuration for uglifying JS
     #uglify:
       #dist:
@@ -899,7 +901,7 @@ module.exports = (grunt) ->
           #]
         #]
 
-    
+
     ## Configuration for symlink files
     #symlink:
       #options:
@@ -909,7 +911,7 @@ module.exports = (grunt) ->
         #src: "bower_components/"
         #dest: "build/bower_components/"
 
-    
+
     ## Configuration for watching changes
     #watch:
       #options:
@@ -984,15 +986,15 @@ module.exports = (grunt) ->
           #"prettify:dev"
         #]
 
-  
+
   ## Where we tell Grunt we plan to use this plug-in.
   ## done by jit-grunt plugin loader
-  
+
   ## Where we tell Grunt what to do when we type "grunt" into the terminal.
-  
+
   ## Default -> Standard Build task
   #grunt.registerTask "default", ["build"]
-  
+
   ## Development task
   #grunt.registerTask "dev", [
     #"clean:dev"
@@ -1011,14 +1013,14 @@ module.exports = (grunt) ->
     #"sync"
     #"prettify:dev"
   #]
-  
+
   ## Build task
   #grunt.registerTask "build", [
     #"dev"
     #"connect:livereload"
     #"watch"
   #]
-  
+
   ## Distributing task
   #grunt.registerTask "dist", [
     #"clean:dist"
@@ -1050,49 +1052,49 @@ module.exports = (grunt) ->
     #"uglify"
     #"prettify:dist"
   #]
-  
+
   ## Gitinfos task
   #grunt.registerTask "write-gitinfos", "Write gitinfos to a temp. file", ->
     #grunt.task.requires "gitinfo"
     #grunt.file.write "tmp/gitinfos.json", JSON.stringify(gitinfo: grunt.config("gitinfo"))
     #return
 
-  
+
   ## HTMLHint task
   #grunt.registerTask "check-html", ["htmlhint"]
-  
+
   ## SCSSLint task
   #grunt.registerTask "check-scss", ["scsslint"]
-  
+
   ## JSHint task
   #grunt.registerTask "check-js", ["jshint"]
-  
+
   ## Accessibility task
   #grunt.registerTask "check-wcag2", ["accessibility"]
-  
+
   ## Pagespeed task
   #grunt.registerTask "measure-pagespeed", ["pagespeed"]
-  
+
   ## Phantomas task
   #grunt.registerTask "measure-performance", [
     #"dev"
     #"connect:livereload"
     #"phantomas"
   #]
-  
+
   ## Photobox task
   #grunt.registerTask "take-screenshots", [
     #"dev"
     #"connect:livereload"
     #"photobox"
   #]
-  
+
   ## Styleguide task
   #grunt.registerTask "build-styleguide", [
     #"styleguide"
     #"copy:styleguide"
   #]
-  
+
   ## JSDoc task
   #grunt.registerTask "build-jsdoc", ["jsdoc"]
   #return

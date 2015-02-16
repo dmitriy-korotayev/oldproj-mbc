@@ -1,6 +1,103 @@
 @import 'components/article'
 
-=bundle-article-header--custom--tablet
+=article-header-building_map--tablet
+  float: right
+  margin-top: 40px
+  margin:
+    left: -5%
+    right: -5%
+  width: 59%
+  a.tip
+    font-size: 1.125em
+    &:before
+      left: 10px
+    &:after
+      left: 12px
+
+%article-header-building_map
+  position: relative
+  margin-top: -12px
+  padding-bottom: 12px
+  .tips
+    position: relative
+    margin: 0 auto
+    .background
+      +scut-absolute(0 0 0 0)
+      background-size: cover
+  .tips.desktop--big
+    display: none
+  a.tip
+    $border-color: darken($c-background--m, 2.5%)
+    +scut-absolute(0 n n 0)
+    margin-left: -22px
+    margin-top: -34px
+    border: 2px solid $border-color
+    background: $c-background
+    padding: .375em .55em .375em .65em
+    text-transform: uppercase
+    line-height: 1
+    font-size: .95em
+    font-weight: 500
+    &:before, &:after
+      display: block
+      position: absolute
+      content: ''
+    $arrow-width: 16px
+    $arrow-height: 8px
+    &:before
+      $width: $arrow-width
+      $height: $arrow-height
+      bottom: -$height
+      left: 6px
+      border:
+        left: $width/2 solid transparent
+        right: $width/2 solid transparent
+        top: $height solid $c-background--m
+    &:after
+      $width: $arrow-width - 4px
+      $height: $arrow-height - 2px
+      bottom: -$height
+      left: 8px
+      border:
+        left: $width/2 solid transparent
+        right: $width/2 solid transparent
+        top: $height solid $c-background
+    &:hover
+      background: $border-color
+      text-decoration: none
+      color: $c-base--i
+      &:after
+        border-top-color: $border-color
+  .pointer
+    +scut-absolute(n n 48px -50px)
+    background: $c-background--h
+    padding: .75em 1.25em
+    color: $c-base--i
+    text-transform: uppercase
+    font-size: 1.125em
+    &:after
+      display: block
+      +scut-absolute(-26px -3px n n)
+      transform-origin: center bottom
+      transform: rotate(42deg)
+      border-bottom: 40px solid $c-background--h
+      +scut-border(18px solid transparent, n y n y)
+      content: ''
+    .close
+      +scut-absolute(5px n n 5px)
+      +bsprite($sm-common, 'icon-close--small')
+      cursor: pointer
+  +respond-to(tablet)
+    +article-header-building_map--tablet
+  +breakpoint(em(1400px))
+    .tips.desktop
+      display: none !important
+    .tips.desktop--big
+      display: block
+    margin-top: 5px
+
+
+=section-overview-header--tablet
   margin: 0 -20px 0 -30px
   border-bottom: none
   background: none
@@ -12,23 +109,11 @@
     p
       line-height: 1.7
 
-=bundle-article-header--custom--desktop
+=section-overview-header--desktop
   .text
     h1
       font-size: 2.875em
       margin: .9em 0 .45em
-
-=article-header-building_map--tablet
-  float: right
-  margin-top: 40px
-  margin-left: -5%
-  width: 55%
-  a.tip
-    font-size: 1.125em
-    &:before
-      left: 10px
-    &:after
-      left: 12px
 
 =section-numbers--h--tablet
   margin-top: 24px
@@ -137,92 +222,6 @@
     float: right
 
 
-%article
-  +respond-to(tablet)
-    position: relative
-
-%article-header-building_map
-  position: relative
-  margin-top: -12px
-  padding-bottom: 12px
-  .tips
-    position: relative
-    margin: 0 auto
-    .background
-      +scut-absolute(0 0 0 0)
-      background-size: cover
-  .tips.desktop--big
-    display: none
-  a.tip
-    $border-color: darken($c-background--m, 2.5%)
-    +scut-absolute(0 n n 0)
-    margin-left: -22px
-    margin-top: -34px
-    border: 2px solid $border-color
-    background: $c-background
-    padding: .375em .55em .375em .65em
-    text-transform: uppercase
-    line-height: 1
-    font-size: .95em
-    font-weight: 500
-    &:before, &:after
-      display: block
-      position: absolute
-      content: ''
-    $arrow-width: 16px
-    $arrow-height: 8px
-    &:before
-      $width: $arrow-width
-      $height: $arrow-height
-      bottom: -$height
-      left: 6px
-      border:
-        left: $width/2 solid transparent
-        right: $width/2 solid transparent
-        top: $height solid $c-background--m
-    &:after
-      $width: $arrow-width - 4px
-      $height: $arrow-height - 2px
-      bottom: -$height
-      left: 8px
-      border:
-        left: $width/2 solid transparent
-        right: $width/2 solid transparent
-        top: $height solid $c-background
-    &:hover
-      background: $border-color
-      text-decoration: none
-      color: $c-base--i
-      &:after
-        border-top-color: $border-color
-  .pointer
-    +scut-absolute(n n 48px -50px)
-    background: $c-background--h
-    padding: .75em 1.25em
-    color: $c-base--i
-    text-transform: uppercase
-    font-size: 1.125em
-    &:after
-      display: block
-      +scut-absolute(-26px -3px n n)
-      transform-origin: center bottom
-      transform: rotate(42deg)
-      border-bottom: 40px solid $c-background--h
-      +scut-border(18px solid transparent, n y n y)
-      content: ''
-    .close
-      +scut-absolute(5px n n 5px)
-      +bsprite($sm-common, 'icon-close--small')
-      cursor: pointer
-  +respond-to(tablet)
-    +article-header-building_map--tablet
-  +breakpoint(em(1400px))
-    .tips.desktop
-      display: none !important
-    .tips.desktop--big
-      display: block
-    margin-top: 5px
-
 %section-image
   position: relative
   a.prev, a.next
@@ -257,15 +256,15 @@
     overflow: hidden
     padding: 0 20px 0 30px
 
-%bundle-article-header--custom
+%section-overview-header
   .text p
     margin-top: -.25em
     margin-bottom: .8em
     //margin-top: -10px
   +respond-to(tablet)
-    +bundle-article-header--custom--tablet
+    +section-overview-header--tablet
   +respond-to(desktop)
-    +bundle-article-header--custom--desktop
+    +section-overview-header--desktop
 
 $border-color: rgba($c-background--h, .2)
 %section-numbers--h
@@ -390,19 +389,26 @@ $border-color: rgba($c-background--h, .2)
     +section-advantages--h--desktop
 
 
+%bundle-building-article-header
+  .building_map
+    @extend %article-header-building_map
+  +respond-to(tablet)
+    overflow-y: visible
+    +scut-clearfix
 %bundle-building
-  @extend %article
   section.image
     @extend %section-image
   section.overview
     @extend %section-overview
-  header
+  section.overview header
     @extend %article-header
-    @extend %bundle-article-header--custom
+    @extend %section-overview-header
   section.numbers
     @extend %section-numbers--h
   section.advantages
     @extend %section-advantages--h
+  +respond-to(tablet)
+    position: relative
 
 %bundle-building--hideable
   transition: max-height .5s

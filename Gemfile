@@ -4,15 +4,15 @@ source 'http://rubygems.org'
 
 ### General ###
 
-gem 'middleman',            '~>3.3.7'
+gem 'middleman',            '~>3.3.8'
 
 gem 'slim'
 #gem 'susy'
 
-gem 'middleman-livereload', '~> 3.1.0'
+gem 'middleman-livereload'
 gem 'middleman-autoprefixer'
-gem 'middleman-imageoptim', '~> 0.1.4'
-gem 'middleman-favicon-maker', '~> 3.7'
+gem 'middleman-imageoptim'
+gem 'middleman-favicon-maker'
 
 # Faster JS compiles with these two
 #gem 'therubyracer' # this one freezes with autoprefixer (probably)
