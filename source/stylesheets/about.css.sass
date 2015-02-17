@@ -165,6 +165,42 @@
     .contents p
       width: 42%
 
+%section-info
+  border-bottom: 1px solid $c-background--ml
+  padding: 0 $b-padding-x 13px
+  ul
+    @extend %scut-list-unstyled
+    margin-top: 5px
+    overflow: hidden
+    text-align: center
+    font-weight: 500
+    address
+      font-style: normal
+  +respond-to(tablet)
+    position: relative
+    margin: 0 auto
+    max-width: $b-maxWidth--frame
+    overflow: hidden
+    padding: 35px $b-padding-x*2.8 35px
+    h1
+      position: absolute
+      top: 50%
+      margin-top: -.625em
+      float: left
+      padding: 0
+      text-transform: uppercase
+      font-size: 1.625em
+      font-weight: 500
+    ul
+      float: right
+      margin-top: 0
+      text-align: left
+      line-height: 2
+  +respond-to(desktop)
+    h1
+      font-size: 1.875em
+    ul
+      font-size: 1.25em
 %section-contact-us-custom
   border-top: none
 
@@ -174,7 +210,7 @@
 // -------------------------------------
 
 article.about
-  @each $section in (services advantages about statement)
+  @each $section in (services advantages about statement info)
     section.#{$section}
       @extend %section-#{$section}
   section.advantages
