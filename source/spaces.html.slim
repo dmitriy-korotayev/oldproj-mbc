@@ -93,7 +93,6 @@ section.spaces
           .background data-image-url="%image_url" style="background-image: none"
           ul.actions
             li.view: a href="#space" View
-            li.gallery: a href="#gallery" Gallery
         ul.info
           li.area
             .number %area
@@ -173,7 +172,9 @@ section.spaces
       .number 191
       .text ID telpa
     .image
-      = image_tag 'spaces/1-big.jpg'
+      div= image_tag 'spaces/1-big.jpg'
+      div= image_tag 'spaces/2-big.jpg'
+      div.plan= image_tag 'spaces/3-big.jpg'
     .social
       = partial 'components/social'
       a.contact href="#contact" Sazināties ar mums
@@ -204,14 +205,6 @@ section.spaces
       li
         i.cross
         .text pārlukošana
-
-  .remodal.gallery data-remodal-id="gallery"
-    .image
-      div= image_tag 'spaces/1-big.jpg'
-      div= image_tag 'spaces/2-big.jpg'
-    .social
-      = partial 'components/social'
-      a.contact href="#contact" Sazināties ar mums
 
   .remodal.send data-remodal-id="send"
     h1

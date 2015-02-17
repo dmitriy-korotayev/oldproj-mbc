@@ -84,7 +84,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         &:after
           display: block
           content: ''
-      @each $i in (view gallery)
+      @each $i in (view)
         li.#{$i} a:after
           +bsprite($sm-spaces, "item-action-#{$i}", nil, 58px)
       li:first-child a
@@ -159,7 +159,19 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     +spaces-item--tablet
 
 
-%shared-modal-space-gallery
+%modal-space
+  @extend %spaces-item
+  // resets to the extend
+  vertical-align: middle
+  border: none
+  width: auto
+  height: auto
+  padding: 0
+  &:hover
+    border: none
+    padding: 0
+  // resets end
+
   .image
     position: relative
     z-index: 0
@@ -171,13 +183,14 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       content: ''
     img
       display: block
+  $social-height: 35px
   .social
     @extend %extra-social
     @extend %extra-social--i
-    $height: 35px
+    $height: $social-height
     position: relative
     float: left
-    margin: (-10px - $height) 0 0 10px
+    margin: (-10px - $height) 60px 0 10px
     height: $height
     overflow: hidden
     a.contact
@@ -186,36 +199,31 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       line-height: $height - 6px
       font-size: 1em
 
-  +respond-to(tablet)
-    .image:after
-      top: 80%
-    .social
-      $height: 43px
-      margin: (-18px - $height) 0 0 18px
-      height: $height
-      a.contact
-        line-height: $height - 6px
-        font-size: 1.25em
-
-%modal-space
-  @extend %spaces-item
-  // resets to the extend
-  vertical-align: middle
-  border: none
-  width: auto
-  height: auto
-  padding: 0
-  +respond-to(tablet)
-    &:hover
-      border: none
-      padding: 0
-  // resets end
-
-  @extend %shared-modal-space-gallery
-
+  .image.slick-slider
+    +carousel-arrows--i(20px)
+      z-index: 1001
+    div
+      float: left
+      width: 100%
+    button.plan
+      $height: $social-height
+      display: block
+      z-index: 1002
+      +scut-absolute(n 10px 10px n)
+      border: 1px solid rgba($c-base--i, .4)
+      background: none
+      &:hover
+        border-color: $c-base--i
+      &:after
+        display: block
+        margin: 3px 0 3px 2px
+        +bsprite($sm-spaces, 'modal-image-plan')
+        content: ''
+    &:after
+      z-index: 1001 // above carousel
   .id
     +scut-absolute(0 n n 0)
-    z-index: 1
+    z-index: 1001
     background: $c-background--ml
     padding: 5px 20px 8px
     .number
@@ -230,6 +238,23 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
   ul.info
     height: 80px
   +respond-to(tablet)
+    .image:after
+      top: 80%
+    .image.slick-slider
+      button.plan
+        right: 18px
+        bottom: 18px
+        &:after
+          display: block
+          margin: 5px 0 5px 4px
+          +bsprite($sm-spaces, 'modal-image-plan--tablet')
+    .social
+      $height: 43px
+      margin: (-18px - $height) 90px 0 18px
+      height: $height
+      a.contact
+        line-height: $height - 6px
+        font-size: 1.25em
     ul.info
       float: left
       width: 45%
@@ -265,17 +290,6 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       .text
         margin-top: .75em
         font-size: .95em
-
-%modal-gallery
-  @extend %shared-modal-space-gallery
-  .image.slick-slider
-    +carousel-arrows--i(20px)
-      z-index: 1000
-    div
-      float: left
-      width: 100%
-    &:after
-      z-index: 1000 // above carousel
 
 %shared-modal-contact-send
   @extend %modal--i
@@ -542,6 +556,6 @@ article.spaces
       @extend %section-#{$section}
 
 .remodal
-  @each $i in space gallery send contact
+  @each $i in space send contact
     &.#{$i}
       @extend %modal-#{$i}

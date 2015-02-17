@@ -20,6 +20,7 @@ section.clients
             option value=name = title
     .filter.search
       input type="text" name="search" id="search" placeholder="Meklēt" value=""
+      .clear
   form.filters.tablet
     .filter.type
       .checkboxes
@@ -34,6 +35,7 @@ section.clients
             span #{title}
     .filter.search
       input type="text" name="search" id="search" placeholder="Ievadiet nosaukumu" value=""
+      .clear
     .reset
       input type="reset" value="noņemt visus filtrus"
 
@@ -55,14 +57,20 @@ section.clients
       table
         thead
           tr
+            th.open
             th nosaukums
             th adrese
+            th telefons
+            th e-pasts
             th darbības sfēra
             th ēka
         tbody
           tr.item.template
+            td.open: a href="client.html"
             td %title
             td %address
+            td %phone
+            td %email
             td %c_name
             td %building_number
 
@@ -95,4 +103,5 @@ section.clients
       description: 'Mobilo sakaru pakalpojumi'
       address: "Mukusalas 4#{index}b"
       phone: "+371 200 200 0#{index}"
+      email: "info@truevision.lv"
       building_number: index+1

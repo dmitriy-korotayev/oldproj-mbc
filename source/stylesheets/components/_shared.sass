@@ -213,6 +213,8 @@ $section-advantages-list-item-height: 270px
     line-height: $height - 2px
   a.like, a.share
     width: $height
+  a.like-facebook, a.share-facebook
+    line-height: $height - 7px
   @each $i in (like share)
     a.#{$i}:after
       +bsprite($sm-common, "social-#{$i}--tablet")
@@ -595,7 +597,7 @@ $filter-select-height: 44px
       vertical-align: middle
       content: ''
   a.like-facebook, a.share-facebook
-    line-height: 35px
+    line-height: $height - 7px
   a.like-facebook
     min-width: 107px
   a.share-facebook

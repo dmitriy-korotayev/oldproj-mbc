@@ -26,12 +26,15 @@ $ ->
   $('.location-link').headroom()
 
   # ----- Modals -----
-  # Sizing of window-height and text-content-containing modals
-  $('.remodal.window-height, .remodal:has(.contents)').on 'opened', ->
+  # Sizing of text-content-containing modals
+  $('.remodal:has(.contents)').on 'opened', ->
     vmargin =
       parseInt($(this).css('margin-top')) +
       parseInt($(this).css('margin-bottom'))
-    $(this).css('height', "#{$(window).height()-vmargin}px")
+    height = $(this).height()
+    windowHeight = $(window).height()
+    if height+vmargin > windowHeight
+      $(this).css('height', "#{windowHeight-vmargin}px")
 
   # Mailable forms
   $('.remodal form.mailable').mailable

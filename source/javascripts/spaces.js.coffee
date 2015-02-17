@@ -158,14 +158,23 @@ $ ->
           $(this).add(container).addClass('active')
 
 
-  # --- Modal: gallery - carousel ---
+  # --- Modal: space - carousel ---
 
-  gallery = $('.remodal.gallery')
-  container = gallery.children('.image')
-  firstImage = container.children().first()
-  firstImage.load ->
-    container.css('height', "#{$(this).height()}px")
-  gallery.on 'opened', ->
+  modal = $('.remodal.space')
+  container = modal.children('.image')
+
+  firstPlanItem = container.children('div.plan').first()
+  firstPlanItemIndex = container.children().index(firstPlanItem)
+  modal.on 'opened', ->
+    if $(this).width() == $(window).width()
+      container.css('width',  "#{$(window).width() }px")
+    container.on 'init', ->
+      if firstPlanItem.length
+        button = $('<button class="plan"/>')
+        button.appendTo container
+        button.click ->
+          container.slick('slickGoTo', firstPlanItemIndex)
+
     container.slick
       autoplay: true
       autoplaySpeed: 6000
@@ -173,7 +182,8 @@ $ ->
       fade: true
       fadeIn: true
       cssEase: 'linear'
-  gallery.on 'closed', ->
-    container.unslick()
 
+  modal.on 'closed', ->
+    container.find('button.plan').remove()
+    container.slick('unslick')
 

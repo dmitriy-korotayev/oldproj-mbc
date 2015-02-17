@@ -51,15 +51,33 @@
     &.search
       input
         height: 100%
-        background: image-url('clients/input-search--tablet.png') 16px 19px no-repeat
+        background: image-url('clients/icon-magnifier--tablet.png') 16px 19px no-repeat
         padding-left: 55px
         font-size: 1.0625em
         &::placeholder
           font-weight: 400
+      .clear
+        $height: 32px
+        top: 50%
+        right: 15px
+        margin-top: -$height/2
+        height: $height
+        line-height: $height
+        font-size: 2.5em
+        &:after
+          top: -4px
 
 
   .items
     text-align: center
+  .items.list table td
+    font-size: 1em
+    &.open
+      width: 74px
+      a:after
+        display: block
+        content: image-url('clients/icon-magnifier--tablet.png')
+        height: 24px
   .items.grid a.item
     margin: 0 -1.5% 32px
     display: inline-block
@@ -95,6 +113,13 @@
     &.search
       margin-left: 1%
       width: 24%
+  .items.list table td
+    font-size: 1.25em
+    &.open
+      a:after
+        opacity: .7
+      a:hover:after
+        opacity: 1
 
 
 %article-header-custom
@@ -135,17 +160,32 @@
   .filter
     .select-custom
       @extend %filter-select-container
-    &.search input
-      outline: none
-      border: 2px solid $c-background--ml
-      background: image-url('clients/input-search.png') 10px 10px no-repeat
-      width: 100%
-      height: 44px
-      padding: 0 .5em 0 35px
-      color: $c-base
-      font-size: .95em
-      &::placeholder
-        font-weight: 500
+    &.search
+      position: relative
+      $field-height: 44px
+      input
+        outline: none
+        border: 2px solid $c-background--ml
+        background: image-url('clients/icon-magnifier.png') 10px 10px no-repeat
+        width: 100%
+        height: $field-height
+        padding: 0 28px 0 35px
+        color: $c-base
+        font-size: .95em
+        &::placeholder
+          font-weight: 500
+      .clear
+        $height: 16px
+        +scut-absolute(($field-height - $height)/2 10px n n)
+        cursor: pointer
+        height: $height
+        line-height: $height
+        color: $c-base--m
+        font-size: 1.5em
+        &:after
+          display: inline-block
+          +scut-relative(-2px n n n)
+          content: "×"
 
   .reset
     @extend %extra-filter-reset
