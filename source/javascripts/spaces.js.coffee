@@ -137,13 +137,12 @@ $ ->
     filter_bnumber = $.url().fparam('filter_building_number')
     if filter_bnumber
       form.find('[name="building_number"]').val(filter_bnumber).change()
-    filter_bnumber
-  changeFilterBuildingNumber()
-  $(window).on 'hashchange', ->
-    if changeFilterBuildingNumber()
       $.scrollTo form, 1500,
         easing: 'easeInOutQuart'
-        offset: -30
+        offset: -100
+  changeFilterBuildingNumber()
+  $(window).on 'hashchange', ->
+    changeFilterBuildingNumber()
 
 
   # --- Grid/List items view ---
@@ -166,7 +165,7 @@ $ ->
   firstPlanItem = container.children('div.plan').first()
   firstPlanItemIndex = container.children().index(firstPlanItem)
   modal.on 'opened', ->
-    if $(this).width() == $(window).width()
+    if $(this).width() < parseInt $(this).css('max-width')
       container.css('width',  "#{$(window).width() }px")
     container.on 'init', ->
       if firstPlanItem.length

@@ -16,10 +16,11 @@ $ ->
 
   mapZoom = mobile && 16 || 17
   mapDraggable = !touch
+  mapZoomControl = !touch
 
   $('section.map .contents').first().googleMarkerMap
     map:
       zoom: mapZoom
       draggable: mapDraggable
-      zoomControl: 1
+      zoomControl: mapZoomControl
 

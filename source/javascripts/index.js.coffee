@@ -43,6 +43,7 @@ $ ->
   # Reviews
   $('section.reviews .items').slick
     centerMode: true
+    centerPadding: '0px'
     variableWidth: true
     autoplay: true
     autoplaySpeed: 6000

@@ -43,7 +43,11 @@ $c-link-underline: #a3acba
       font-size: 1em
       margin-top: 0
     .social
+      float: right
+      clear: none
       margin-top: -9px
+      a
+        margin-top: 0
 
 
 %section-news
@@ -90,9 +94,10 @@ $c-link-underline: #a3acba
     &.open a.more
       display: none
     .social
-      margin-top: -2px
-      float: right
       @extend %extra-social
+      clear: both
+      a
+        margin-top: 10px
     .hidden
       transition: max-height .375s
       max-height: 0
