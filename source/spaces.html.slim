@@ -206,22 +206,6 @@ section.spaces
         i.cross
         .text pārlukošana
 
-  .remodal.send data-remodal-id="send"
-    h1
-      ' Sūtīt ziņojumu draugam par telpu
-      strong 191
-    form.mailable novalidate=true data-mailable-id="mbc_send"
-      .row
-        input type="text" name="name" id="name" placeholder="Vārds" value=""
-        .error
-      .row
-        input type="text" name="email" id="email" placeholder="E-pasts" value=""
-        .error
-      .row
-        textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
-        .error
-      input type="submit" name="submit" id="submit" value="Sūtīt"
-
   .remodal.contact data-remodal-id="contact"
     h1
       ' Sūtīt ziņojumu par telpu
@@ -240,6 +224,8 @@ section.spaces
         textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
         .error
       input type="submit" name="submit" id="submit" value="Sūtīt"
+
 - content_for :javascripts_before do
   coffee:
     window.mailableLocale = 'lv'
+

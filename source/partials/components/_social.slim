@@ -3,3 +3,21 @@ a.like-facebook href="#"
 a.share-facebook href="#"
   .fb-share-button  data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count"
 a.send  href="#send" Sūtīt draugam
+
+- content_for :modals do
+  .remodal.send data-remodal-id="send"
+    h1
+      ' Sūtīt ziņojumu draugam par telpu
+      strong 191
+    form.mailable novalidate=true data-mailable-id="mbc_send"
+      .row
+        input type="text" name="name" id="name" placeholder="Vārds" value=""
+        .error
+      .row
+        input type="text" name="email" id="email" placeholder="E-pasts" value=""
+        .error
+      .row
+        textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
+        .error
+      input type="submit" name="submit" id="submit" value="Sūtīt"
+

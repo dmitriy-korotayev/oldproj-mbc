@@ -38,8 +38,6 @@
               .bubble: .vcenter: span= i[1]
         = link_to 'Izvēlēties telpu', "spaces.html#filter_building_number=#{i+1}", class: 'button'
         .social
-          a.like  href="#"
-          a.share href="#"
-          a.send  href="#" Sūtīt draugam
+          = partial 'components/social'
     - if path != 'building'
       a.hide href="#" Aizvert

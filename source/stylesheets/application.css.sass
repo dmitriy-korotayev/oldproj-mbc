@@ -166,6 +166,10 @@
       color: $c-base--i
       font-weight: 500
 
+%modal-send
+  @extend %modal--i
+  padding: 0 40px 35px
+
 
 // -------------------------------------
 // Project structure / Extends
@@ -204,6 +208,8 @@ footer.main
 
 .remodal
   @extend %modal
+  &.send
+    @extend %modal-send
 
 
 // -------------------------------------

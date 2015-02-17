@@ -291,33 +291,9 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         margin-top: .75em
         font-size: .95em
 
-%shared-modal-contact-send
+%modal-contact
   @extend %modal--i
   padding: 0 40px 35px
-  form
-    margin-top: -10px
-    input,textarea
-      display: block
-      float: left
-      margin-top: 16px
-      outline: none
-      border: 2px solid $c-background--ml
-      width: 100%
-      height: 50px
-      padding: 3px 20px
-      font-size: 1.55em
-      &::placeholder
-        color: $c-base--ml
-    input[type=submit]
-      @extend %button
-      @extend %button--m
-      border-width: 4px
-      width: auto
-      font-weight: 500
-%modal-send
-  @extend %shared-modal-contact-send
-%modal-contact
-  @extend %shared-modal-contact-send
 
 
 // -------------------------------------
@@ -556,6 +532,6 @@ article.spaces
       @extend %section-#{$section}
 
 .remodal
-  @each $i in space send contact
+  @each $i in space contact
     &.#{$i}
       @extend %modal-#{$i}

@@ -213,13 +213,10 @@
         visibility: visible
         opacity: 1
   a.button
-    float: left
     height: 41px
     padding: 0 .5em
     line-height: 37px
     font-size: 1.125em
-  .social
-    float: right
 
 
 %section-image
@@ -387,6 +384,11 @@ $border-color: rgba($c-background--h, .2)
     display: block
   +respond-to(desktop)
     +section-advantages--h--desktop
+  +breakpoint(1325px)
+    a.button
+      float: left
+    .social
+      float: right
 
 
 %bundle-building-article-header
