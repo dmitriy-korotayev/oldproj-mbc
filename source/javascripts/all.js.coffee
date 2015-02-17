@@ -9,7 +9,7 @@
 #= require vendor/jquery.mailable
 
 $ ->
-  window.env = document.location.hostname && 'dev' || 'prod'
+  window.env = document.location.hostname == 'localhost' && 'dev' || 'prod'
 
   # ----- Header -----
 
