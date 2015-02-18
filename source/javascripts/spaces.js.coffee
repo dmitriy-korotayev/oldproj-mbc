@@ -160,11 +160,11 @@ $ ->
   # --- Modal: space - carousel ---
 
   modal = $('.remodal.space')
-  container = modal.children('.image')
 
   firstPlanItem = container.children('div.plan').first()
   firstPlanItemIndex = container.children().index(firstPlanItem)
   modal.on 'opened', ->
+    container = modal.children('.image')
     if $(this).width() < parseInt $(this).css('max-width')
       container.css('width',  "#{$(window).width() }px")
     container.on 'init', ->
