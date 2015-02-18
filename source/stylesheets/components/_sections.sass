@@ -1,0 +1,350 @@
+@import structures/border-sloppy
+
+$bsh: $s-border-sloppy-height
+$bsh--t: $s-border-sloppy-height--tablet
+
+$section-advantages-list-item-height: 270px
+=section-advantages-list($columns: 5)
+  +respond-to(tablet)
+    @if $columns == 5
+      +border-sloppy--hide
+      overflow: hidden
+      padding-top: $bsh--t
+
+=section-advantages-list-fill($palette: 1 2 3 4 5 6 7 8 9 10, $columns: 5)
+  // fill
+  @for $i from 1 through length($palette)
+    $color: nth($c-background--h-palette, nth($palette, $i))
+    &:nth-child(#{$i})
+      background-color: $color
+      $go--t: if($columns == 5 and ($i == 3 or $i == 8), 6%, 2.5%)
+      +border-sloppy($color, $gradient-offset--tablet: $go--t)
+  +respond-to(tablet)
+    width: 100% / $columns
+    // first, last in column - no sloppy border
+    &:nth-child(#{$columns}n+1), &:nth-child(#{$columns}n+#{$columns})
+      &:before
+        width: 100%
+        background: inherit
+      &:after
+        display: none
+    // next to first and before last - only one downwards to center
+    &:nth-child(#{$columns}n+2)
+      &:before
+        width: 100.1%
+      &:after
+        display: none
+    &:nth-child(#{$columns}n+#{$columns - 1})
+      &:before
+        display: none
+      &:after
+        width: 100.1%
+    @if $columns == 5
+      // top border
+      &:nth-child(5n+2):before, &:nth-child(5n+4):after
+        height: $bsh--t*.667
+      &:nth-child(5n+2):after, &:nth-child(5n+4):before
+        display: block
+        top: -$bsh--t*.334
+        height: $bsh--t*.334
+        width: 100.1%
+        background: inherit
+      &:nth-child(5n+3):before, &:nth-child(5n+3):after
+        top: -$bsh--t*.334
+        height: $bsh--t*.334
+      @for $i from 1 through length($palette)
+        $color: nth($c-background--h-palette, nth($palette, $i))
+        &:nth-child(#{$i}) span
+          @if $i == length($palette) - 3
+            +border-sloppy($color, right, bottom, $responsive: true, $gradient-offset--tablet: 2.5%)
+              width: 100.1%
+              height: $bsh--t * .667
+              bottom: -$bsh--t * .667
+            position: static
+          @if $i == length($palette) - 2
+            +border-sloppy($color, both, bottom, $responsive: true)
+              height: $bsh--t * .334
+              bottom: -$bsh--t
+            +border-sloppy--mirrored($color, both, top, $gradient-offset--tablet: 6%)
+            position: static
+          @if $i == length($palette) - 1
+            +border-sloppy($color, left, bottom, $responsive: true, $gradient-offset--tablet: 2.5%)
+              width: 100.1%
+              height: $bsh--t * .667
+              bottom: -$bsh--t * .667
+            position: static
+        @if $i == length($palette) - 2
+          &:nth-child(#{$i}) i:before
+            +scut-absolute(n 0 n 0)
+            bottom: -$bsh--t * .667
+            background: $color
+            height: $bsh--t * .667
+            content: ''
+
+
+=section-advantages--tablet
+  li
+    float: left
+    height: 270px
+  li span
+    margin-top: 1.75em
+    line-height: 1.375
+    font-size: 1.25em
+  i
+    margin-top: 23px
+    @each $i in (infrastructure car professional handshake room buildings camera measures projector guard24)
+      &.#{$i}:after
+        +bsprite($sm-shared, "advantages-#{$i}--tablet")
+
+=section-services--tablet
+  h1
+    padding-top: 1em
+  ul.items
+    margin-top: 0
+    +border-sloppy($c-background, $responsive: true)
+      width: 30%
+    +border-sloppy--mirrored($c-background)
+    +border-sloppy--inside
+    &:before
+      left: 20%
+    &:after
+      margin-right: 1px
+      right: 20%
+  li
+    $height: 375px
+    float: left
+    margin-top: 0
+    padding-top: $s-border-sloppy-height--tablet
+    width: 20%
+    height: $height
+    line-height: $height - $s-border-sloppy-height--tablet*2
+    &:first-child
+      +border-sloppy--hide
+    span.title
+      font-size: .875em
+      font-weight: 500
+      text-shadow: 2px 2px 4px rgba(0,0,0,.35)
+    &:hover span.title
+      text-shadow: 2px 2px 4px rgba(0,0,0,.5)
+  overflow: hidden
+  +border-sloppy($c-background, $responsive: true)
+    width: 30%
+  &:before, &:after
+    top: auto
+    bottom: 0
+  &:before
+    left: 20%
+  &:after
+    right: 20%
+  li:nth-child(1):after, li:nth-child(5):after
+    display: block
+    +scut-absolute(auto 0 0 0)
+    width: 100%
+    height: $s-border-sloppy-height--tablet
+    background: $c-background
+
+=section-about--tablet
+  +border-sloppy($c-background--i, both, top, $responsive: true)
+  +border-sloppy--mirrored($c-background--i, both, top)
+  +border-sloppy--inside(top)
+  &:before, &:after
+    display: none
+
+
+  background: none
+  height: 450px
+  padding-bottom: 0
+  .items, .items>div, .items .image .background
+    height: 100%
+  .items
+    padding-bottom: 0
+  $item-width: 25%
+  .items>div
+    width: $item-width
+  .items .image, .items .text
+    &:nth-child(n)
+      top: 0
+      &:before, &:after
+        display: none
+  .items .text
+    padding: $bsh--t $item-width*.1 0 $item-width*.08
+    &:nth-child(2)
+      $background: nth($c-background--h-palette, 1)
+      background: $background
+      &:before
+        display: block
+      +border-sloppy($c-background, left, top, $responsive: true)
+      +border-sloppy--mirrored($c-background, left, top)
+      +border-sloppy--inside(top)
+      +border-sloppy($background, right, bottom, $responsive: true)
+    &:nth-child(3)
+      $background: nth($c-background--h-palette, 6)
+      background: $background
+      &:before
+        display: block
+      +border-sloppy($c-background, right, top, $responsive: true)
+      +border-sloppy--mirrored($c-background, right, top)
+      +border-sloppy--inside(top)
+      +border-sloppy($background, left, bottom, $responsive: true)
+    h1
+      margin-top: .875em
+      font-size: 1.75em
+      font-weight: 300
+      line-height: 1.125
+    p
+      margin-top: 1.55em
+      height: 1em * 1.375 * 10 // lines
+      overflow: hidden
+      line-height: 1.375
+      font-size: 1em
+    a
+      margin-top: 1em
+      font-size: 1em
+      font-weight: normal
+
+
+%section-advantages
+  text-align: center
+  h1
+    margin-bottom: 1em
+  li
+    padding: 12px 20px 20px
+    color: $c-base--i
+    span
+      display: block
+      margin-top: .75em
+      line-height: 1.125
+  i
+    display: block
+    @each $i in (infrastructure car professional handshake room buildings camera measures projector guard24)
+      &.#{$i}:after
+        display: block
+        margin: 0 auto
+        +bsprite($sm-shared, "advantages-#{$i}")
+        content: ''
+  +respond-to(tablet)
+    +section-advantages--tablet
+  +respond-to(desktop)
+    li span
+      font-size: 1.625em
+      text-decoration: underline
+  li
+    +section-advantages-list-fill
+
+%section-services
+  background: $c-background
+  ul.items
+    margin-top: 10px
+  li
+    position: relative
+    $height: 120px
+    $offset: 13px
+    margin-top: -$offset
+    background-color: $c-background--i
+    height: $height
+    line-height: $height - $offset*2
+    text-align: center
+    font-size: 1.5em
+    &:first-child
+      margin-top: 0
+      +border-sloppy($c-background)
+      +border-sloppy--mirrored($c-background)
+      +border-sloppy--inside
+    &:last-child
+      +border-sloppy($c-background, both, top)
+      +border-sloppy--inside(both, top)
+      &:before, &:after
+        top: auto
+        bottom: 0
+    .background
+      +scut-absolute(0 0 0 0)
+      background-position: center center
+      background-size: cover
+    .background:after
+      +scut-absolute(0 0 0 0)
+      background: #000
+      opacity: .2
+      content: ''
+    span.title
+      display: inline-block
+      position: relative
+      vertical-align: middle
+      padding: 0 $b-padding-x * 1.75
+      color: $c-base--i
+      line-height: 1.1
+      font-weight: 700
+
+  +respond-to(tablet)
+    +section-services--tablet
+  +respond-to(desktop)
+    li
+      span.title
+        font-size: 1.125em
+      &:hover span.title
+        text-decoration: underline
+      &:hover .background:after
+        opacity: .1
+
+%section-about
+  +border-sloppy($c-base--i)
+  +border-sloppy--mirrored($c-base--i)
+  +border-sloppy--inside
+  background: $c-background--h
+  color: $c-base--i
+  padding-bottom: $bsh
+  .items
+    @extend %scut-clearfix
+    padding-bottom: $bsh*2
+  .items>div
+    position: relative
+    float: left
+    width: 50%
+    height: 244px
+  .items .image
+    .background
+      width: 100%
+      height: 244px + $bsh*3
+      background-size: cover
+    &:nth-child(1)
+      position: static
+  .items .text
+    z-index: 1
+    top: $bsh
+    padding: 8px $b-padding-x 5px 16px
+    background: $c-background--h
+    &:nth-child(2n)
+      +border-sloppy($c-background--h, right)
+      +border-sloppy($c-background--h, left, bottom)
+    &:nth-child(2n+1)
+      top: $bsh*2
+      +border-sloppy($c-background--h, left)
+    h1
+      overflow: hidden
+      margin: 0
+      height: 2em * 1.2
+      font-size: 1.25em
+      font-weight: normal
+    p
+      overflow: hidden
+      margin-bottom: .875em
+      height: 8em * 1.3
+      line-height: 1.35
+      font-size: .825em
+    a
+      display: block
+      float: left
+      border-bottom: 1px solid $c-base--i
+      color: $c-base--i
+      font-size: .8em
+      font-weight: 700
+      line-height: 1
+      &:hover, &:focus
+        text-decoration: none
+        border-bottom: none
+  +respond-to(tablet)
+    +section-about--tablet
+  +respond-to(desktop)
+    height: 515px
+    .items .text h1
+      font-size: 2.5em
+

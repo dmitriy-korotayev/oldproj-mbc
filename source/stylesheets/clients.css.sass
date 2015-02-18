@@ -1,5 +1,6 @@
 @import foundation/globals
-@import components/bundle-building
+@import components/bundle/building
+@import components/bundle/filterable
 
 // -------------------------------------
 //   Structures
@@ -124,23 +125,24 @@
 
 %article-header-custom
   .text p
-    margin-top: .5em
-    padding-right: .25em
-  .building_map
-    @extend %article-header-building_map
+    margin-top: 1em
+    font-size: .875em
+  ul.averages
+    @extend %extra-header-boxes
   +respond-to(tablet)
     .text
       float: left
-      width: 50%
+      width: 39%
       margin-right: 0
-      p
-        line-height: 1.7
-  +respond-to(desktop)
-    .text
       h1
-        margin-top: 1.75em
-        margin-bottom: .95em
+        margin-top: .675em
+        margin-bottom: 0
         font-size: 2.875em
+        line-height: 1.03
+    ul.averages
+      float: left
+      margin-left: 2%
+      width: 59%
 
 %section-building
   @extend %bundle-building
@@ -159,7 +161,7 @@
 
   .filter
     .select-custom
-      @extend %filter-select-container
+      @extend %filterable-filter-select-container
     &.search
       position: relative
       $field-height: 44px
@@ -188,11 +190,11 @@
           content: "×"
 
   .reset
-    @extend %extra-filter-reset
+    @extend %filterable-filter-reset
 
 
   .items-view
-    @extend %extra-items-view
+    @extend %filterable-items-view
   .items
     margin-top: 12px
   $item-height: 138px
@@ -240,9 +242,9 @@
       font-weight: 700
 
   .items.list
-    @extend %extra-items-list
+    @extend %filterable-items-list
   .items-views
-    @extend %extra-items-views
+    @extend %filterable-items-views
 
 
   +respond-to(tablet)

@@ -7,15 +7,15 @@ header
       'TC Riga Plaza': '3 min. / 400 m.',
       'Lidosta': '15 min. / 10 km.'}.each do |from, _in|
       li
-        .from= from
-        .in= _in
+        h2= from
+        strong= _in
 section.map
   .contents
-  .marker data-latitude="56.935501" data-longtitude="24.102857" 41a
-  .marker data-latitude="56.934846" data-longtitude="24.101666" 41b
-  .marker data-latitude="56.934641" data-longtitude="24.103275" 41c
+  .marker data-latitude="56.935501" data-longtitude="24.102857": i.building
+  .marker data-latitude="56.934846" data-longtitude="24.101666": i.building
+  .marker data-latitude="56.934641" data-longtitude="24.103275": i.building
   .marker data-latitude="56.935800" data-longtitude="24.101000"
-    | 41d
+    i.building
     .content
       h1 Yes
       p Lorem ipsum sed dolor

@@ -1,0 +1,108 @@
+%filterable-items-view
+  +respond-to(tablet)
+    a
+      display: inline-block
+      opacity: .4
+      margin-right: 12px
+      @each $i in grid list
+        &.#{$i}
+          +bsprite($sm-spaces, "items-view-#{$i}")
+      &:hover
+        cursor: pointer
+        opacity: .85
+      &.active
+        opacity: 1
+%filterable-items-list
+  display: none
+  +respond-to(tablet)
+    &.active
+      display: block
+    margin: -30px 0 35px
+    table
+      width: 100%
+      th, td
+        padding: 8px
+      th
+        font-weight: 500
+        font-size: 1.0625em
+        sup
+          font-size: .625em
+      td
+        border: 1px solid $c-background--ml
+        border-left-style: dashed
+        border-right-style: dashed
+        font-weight: 300
+        font-size: 2.375em
+        &:first-child
+          border-left-style: solid
+        &:last-child
+          border-right-style: solid
+        &.image
+          width: 116px
+          img
+            display: block
+            width: 100%
+        i
+          display: inline-block
+          @each $i in (check cross)
+            &.#{$i}
+              +bsprite($sm-spaces, "item-list-#{$i}", nil, 30px)
+%filterable-items-views
+  .items
+    +respond-to(mobile-only)
+      &.list
+        display: none
+    +respond-to(tablet)
+      display: none
+      &.active
+        display: block
+
+$filterable-filter-select-height: 44px
+%filterable-filter-select
+  position: relative
+  border: 2px solid $c-background--ml
+  height: $filterable-filter-select-height
+  line-height: $filterable-filter-select-height - 12px - 4px - 2px // padding, border, offset
+  padding: 6px 30px 6px .75em
+  font-size: .95em
+  &:after
+    display: block
+    +scut-absolute(0 10px n n)
+    +bsprite($sm-common, 'select-arrowdown', nil, 100%, nil, 2px)
+    content: ''
+  +respond-to(tablet)
+    font-size: 1.25em
+    font-weight: 500
+%filterable-filter-select-hidden
+  position: relative
+  z-index: 1
+  height: $filterable-filter-select-height !important
+
+%filterable-filter-select-container
+  .customSelect
+    width: 100%
+    @extend %filterable-filter-select
+  select
+    width: 100%
+    @extend %filterable-filter-select-hidden
+
+%filterable-filter-reset
+  text-align: center
+  input
+    border: none
+    outline: none
+    background: none
+    padding: 0
+
+    margin-top: 2px
+    border-bottom: 1px dashed $c-background--m
+    vertical-align: top
+    color: $c-base--m
+    line-height: 1.25
+    font-size: .875em
+    &:hover
+      border-color: darken($c-background--m, 10%)
+      color: darken($c-base--m, 10%)
+
+
+

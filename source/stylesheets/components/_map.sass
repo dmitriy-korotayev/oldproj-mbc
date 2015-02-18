@@ -1,0 +1,67 @@
+%map-directions-search
+  $absolute-padding: 35px
+  $width: 280px
+  $height: 42px
+  $button-width: $height
+  +scut-absolute($absolute-padding $b-padding-x n $b-padding-x)
+  height: $height
+  padding: 0 $button-width+1px
+  line-height: $height
+  text-align: center
+  +respond-to(tablet)
+    left: 36%
+    right: auto
+    $width: 500px
+    margin-left: -$width/2
+    width: $width
+  +respond-to(desktop)
+    left: 50%
+  form
+    +scut-reset-button
+    height: 100%
+    *
+      display: block
+      outline: none
+      border: none
+      height: 100%
+    // background
+    input[type=text], button[type=reset], button.locate
+      $gradient-bottom-color: rgba(darken($c-background, 16), .21)
+      background: linear-gradient($c-background, $gradient-bottom-color) $c-background
+    // opacity on hover
+    button[type=reset]:after, input[type=submit], button.locate:after
+      opacity: .4
+    button[type=reset]:hover:after, input[type=submit]:hover, button.locate:hover:after
+      opacity: .7
+    // aside buttons
+    button[type=reset], button.locate
+      position: absolute
+      top: 0
+      width: $button-width
+      height: $height
+      &:after
+        display: block
+        position: absolute
+        content: ''
+    // specific
+    button[type=reset]
+      left: 0
+      &:after
+        +bsprite($sm-location, 'icon-x--h', 100%, 100%)
+    input[type=text]
+      width: 100%
+      padding: 0 50px 0 1em
+      font-size: 1.125em
+    input[type=submit]
+      position: absolute
+      right: 11px + $button-width + 1px
+
+      @extend %scut-image-replace
+      text-indent: 200%
+      +bsprite($sm-location, 'icon-search--h', nil, 100%)
+    button.locate
+      right: 0
+      &:after
+        +bsprite($sm-location, 'icon-location--h', 100%, 100%)
+
+

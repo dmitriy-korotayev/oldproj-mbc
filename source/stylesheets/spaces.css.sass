@@ -1,5 +1,9 @@
 @import foundation/globals
-@import components/bundle-building
+@import structures/modal
+@import structures/carousel
+@import structures/buttons
+@import components/bundle/building
+@import components/bundle/filterable
 
 // -------------------------------------
 //   Structures
@@ -494,14 +498,14 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     &:nth-child(2n) // every second, skipping hidden selects
       margin-left: 3%
     .select-custom
-      @extend %filter-select-container
+      @extend %filterable-filter-select-container
 
   .reset
-    @extend %extra-filter-reset
+    @extend %filterable-filter-reset
 
 
   .items-view
-    @extend %extra-items-view
+    @extend %filterable-items-view
   .items
     margin-top: 12px
   .items.grid .item
@@ -509,9 +513,9 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     &.template
       display: none
   .items.list
-    @extend %extra-items-list
+    @extend %filterable-items-list
   .items-views
-    @extend %extra-items-views
+    @extend %filterable-items-views
 
 
   +respond-to(tablet)

@@ -1,10 +1,3 @@
-// *************************************
-//
-//   Modified MVCSS v4.0.2
-//   stylesheet structure
-//
-// *************************************
-
 // -------------------------------------
 //   Pre-requirements
 // -------------------------------------
@@ -36,18 +29,20 @@
 //   Structures
 // -------------------------------------
 
-@import structures/plugin_js-breakpoints
+@import structures/responsive
+@import structures/border-sloppy
+@import structures/modal
+@import structures/plugins/js-breakpoints
 
 // -------------------------------------
 //   Components
 // -------------------------------------
 
 // General
-@import components/responsive
-@import components/sidebar
-@import components/header
+@import components/global/sidebar
+@import components/global/header
 @import components/article
-@import components/footer
+@import components/global/footer
 
 =section-contact-us--tablet
   +border-sloppy--hide
