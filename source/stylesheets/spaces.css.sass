@@ -185,7 +185,9 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       +scut-absolute(70% 0 0 0)
       background: linear-gradient(transparent, rgba(0,0,0,.5))
       content: ''
-    img
+    div img
+      display: none
+    div:first-child img
       display: block
   $social-height: 35px
   .social
@@ -209,6 +211,8 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     div
       float: left
       width: 100%
+    div img
+      display: block
     button.plan
       $height: $social-height
       display: block

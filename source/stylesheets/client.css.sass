@@ -125,13 +125,11 @@
     @extend %map-directions-search
     top: 20px
   .marker
-    display: none
-    background: image-url('common/map-marker.png')
+    @extend %map-marker
   .marker-label
-    font-size: empx(1.375em)
-    margin-top:  -68px !important
-    margin-left: -20px !important
+    @extend %map-marker-label
   .contents
+    @extend %map-contents
     height: 100%
   +respond-to(tablet)
     +section-map--tablet

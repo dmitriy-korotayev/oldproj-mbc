@@ -42,140 +42,17 @@
   position: relative
   height: 500px
   background: $c-background--hm
-  $absolute-padding: 35px
   .directions-search
     @extend %map-directions-search
-
-  $icons: food basket instruments bank petrol cart cocktail grooming
-  .marker
-    display: none
-    background: image-url('common/map-marker.png')
-    &.marker--h
-      background: image-url('common/map-marker--h.png')
-    @for $n from 2 through length($icons)
-      &.marker--h#{$n}
-        background: image-url("common/map-marker--h#{$n}.png")
-  .marker-label
-    font-size: empx(1.375em)
-    margin-top:  -68px !important
-    margin-left: -20px !important
-    height: 50px
-    width: 40px
-    i
-      display: block
-      position: relative
-      left: -6px
-      top: 16px
-      width: 50px
-      text-align: center
-      &:after
-        display: inline-block
-        content: ''
-      &.building:after
-        +bsprite($sm-location, "map-marker-building--i")
-      @each $i in $icons
-        &.#{$i}:after
-          +bsprite($sm-location, "map-marker-#{$i}--i")
-      &.instruments
-        margin-top: 2px
-      &.petrol
-        margin-left: 3px
-      &.cart
-        margin-top: 4px
-        margin-left: -1px
-      &.cocktail
-        margin-left: 2px
-      &.grooming
-        margin-top: 2px
-        margin-left: 1px
-  .contents
-    height: 100%
-    img
-      max-width: none
-
   .filter
-    +scut-absolute(n $b-padding-x $absolute-padding*1.5 n)
-    $item-width: 70px
-    width: $item-width * 4
-    .items a
-      $gradient-bottom-color: rgba(darken($c-background, 16), .21)
-      display: block
-      float: left
-      background: linear-gradient($c-background, $gradient-bottom-color) $c-background
-      width: $item-width
-      height: 50px
-      padding: 0 8px
-      text-align: center
-      &:nth-child(2n-1) // 1,3,5
-        border-right: 1px solid $c-background--ml
-      &.active
-        background: $c-background--h
-        color: $c-base--i
-        text-decoration: none
-      &:focus
-        text-decoration: none
-      i
-        display: block
-        height: 40px
-        line-height: 40px
-        &:after
-          display: inline-block
-          vertical-align: bottom
-          content: ''
-      @each $i in $icons
-        i.#{$i}:after
-          +bsprite($sm-location, "map-filter-#{$i}")
-        &.active
-          i.#{$i}:after
-            +bsprite($sm-location, "map-filter-#{$i}--i")
-      .title
-        display: none
-    .reset
-      $height: 24px
-      +scut-absolute(n 0 (-$height) 0)
-      text-align: center
-      a
-        display: inline-block
-        background: linear-gradient(rgba($c-background--m,.4), $c-background) $c-background
-        height: 100%
-        padding: 0 10px
-        line-height: $height
-        color: rgba($c-base, .6)
-        font-size: .75em
-
-  +respond-to(tablet)
-    .filter
-      $item-width: 90px
-      top: $absolute-padding
-      right: $absolute-padding
-      bottom: auto
-      width: $item-width * 2
-      .items a
-        width: $item-width
-        height: 80px
-        .title
-          display: block
-          margin-top: .25em
-          height: 2.5em
-          overflow: hidden
-          line-height: 1.2
-          font-size: .875em
-      .reset a
-        font-size: .875em
-  +respond-to(desktop)
-    //.filter
-      margin-left: -$b-maxWidth--frame/2
-      width: $b-maxWidth--frame
-      height: 115px
-      a
-        width: 123px
-        padding: 0 15px
-        i
-          height: 53px
-          line-height: 53px
-        .title
-          margin-top: .55em
-          font-size: 1em
+    @extend %map-filter
+  .marker
+    @extend %map-marker
+  .marker-label
+    @extend %map-marker-label
+  .contents
+    @extend %map-contents
+    height: 100%
 
 %section-transport
   margin: 0 auto

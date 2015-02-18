@@ -94,7 +94,10 @@ $ ->
           contentTip = new google.maps.InfoWindow
             content: m[5]
           google.maps.event.addListener marker, 'click', ->
+            t.directionsForm.hide()
             contentTip.open(this.map,marker);
+          google.maps.event.addListener contentTip, 'closeclick', ->
+            t.directionsForm.show()
 
         # if category exists
         c = m[4]
@@ -135,8 +138,8 @@ $ ->
       directionsContainer = this.options.directionsContainer || $(this.element).siblings('.directions-search')
 
       # on submit
-      directionsForm = this.options.directionsForm || directionsContainer.children('form')
-      directionsForm.submit (e)->
+      this.directionsForm = this.options.directionsForm || directionsContainer.children('form')
+      this.directionsForm.submit (e)->
         e.preventDefault()
         directionsDisplay.setMap(t.map)
         t._removeZoomLimit()
@@ -169,8 +172,8 @@ $ ->
                 address = results[0].formatted_address
               else
                 address = "#{lat}, #{lng}"
-              directionsForm.find('input[type=text]').val(address)
-              directionsForm.submit()
+              t.directionsForm.find('input[type=text]').val(address)
+              t.directionsForm.submit()
         else
           false
 

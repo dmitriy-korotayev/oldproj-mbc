@@ -10,8 +10,6 @@
 #= require vendor/slick
 
 $ ->
-  $('select').customSelect()
-
   # --- Building rollout ---
 
   # Show according building on this page
@@ -118,6 +116,14 @@ $ ->
     onDataChange: (data)->
       form.siblings('h1').find('span.number').html(data.length)
 
+
+  # init selects and redraw them on filter reset
+  customSelects = $('select').customSelect()
+  console.log form.find('[type=reset]')
+  form.find('[type=reset]').click ->
+    setTimeout ->
+      customSelects.trigger('render')
+    , 10
 
   # Reset another sorting on change of one
   s_price = form.find('[name=sort_price]')
