@@ -21,10 +21,13 @@
   .item .top
     margin: 70px auto 0
     max-width: $b-maxWidth--frame * .6
-    overflow: hidden
+    +scut-clearfix
+    $h1-font-size: 2.5em
+    $offset: .25em
     .logo
       display: block
       float: left
+      margin-top: $h1-font-size * ($offset/1em)
       width: 26.75%
       height: 158px // est. h1 2 lines + p 2 lines
       padding-left: 3%
@@ -33,8 +36,8 @@
     h1, p
       margin-left: 26.75%
     h1
-      margin-top: -.25em
-      font-size: 2.5em
+      margin-top: -$offset
+      font-size: $h1-font-size
     p
       margin-top: .75em
       font-size: 1.5em
