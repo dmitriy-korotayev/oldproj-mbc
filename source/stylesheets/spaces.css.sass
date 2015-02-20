@@ -42,7 +42,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     height: 18.5%
 
   ul.extra li
-    margin: 0 3px 0 6px
+    margin: 0 0px 0 6px
     .number, i
       height: 28px
     .number
@@ -469,18 +469,16 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
   @extend %bundle-building-article-header
   +respond-to(tablet)
     .text
-      float: left
-      margin-right: -3.5%
-      width: 53.5%
-      h1
-        max-width: 90%
+      margin: 0 auto
+      padding: 0 ($b-padding-x*3)
       p
         line-height: 1.7
   +respond-to(desktop)
     .text
+      max-width: $b-maxWidth--frame
+      padding: 0
       h1
-        margin-top: 1.75em
-        margin-bottom: .95em
+        margin: .5em 0
         font-size: 2.875em
 
 %section-building

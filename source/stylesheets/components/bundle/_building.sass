@@ -2,12 +2,10 @@
 @import structures/buttons
 
 =article-header-building_map--tablet
-  float: right
-  margin-top: 40px
+  margin-top: 0px
   margin:
     left: -5%
     right: -5%
-  width: 59%
   a.tip
     font-size: 1.125em
     &:before
@@ -90,7 +88,7 @@
       cursor: pointer
   +respond-to(tablet)
     +article-header-building_map--tablet
-  +breakpoint(em(1400px))
+  //+breakpoint(em(1400px))
     .tips.desktop
       display: none !important
     .tips.desktop--big

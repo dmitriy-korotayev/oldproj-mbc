@@ -119,7 +119,6 @@ $ ->
 
   # init selects and redraw them on filter reset
   customSelects = $('select').customSelect()
-  console.log form.find('[type=reset]')
   form.find('[type=reset]').click ->
     setTimeout ->
       customSelects.trigger('render')
