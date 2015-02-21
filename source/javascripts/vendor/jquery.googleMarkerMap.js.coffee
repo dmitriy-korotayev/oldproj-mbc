@@ -208,6 +208,8 @@ $ ->
       map = this.map
       $.each this.markersOnMap[category], (i,m) ->
         m.setMap(map)
+        if map.getBounds() && !map.getBounds().contains(m.getPosition())
+          map.setZoom(map.getZoom() - 1)
 
     _hideMarkersByCategory: (category)->
       $.each this.markersOnMap[category], (i,m) ->
