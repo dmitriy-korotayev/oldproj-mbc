@@ -1,3 +1,5 @@
+#= require vendor/markerwithlabel
+
 $ ->
   pluginName = 'googleMarkerMap'
   defaults =
@@ -78,6 +80,7 @@ $ ->
       this._addZoomLimit(this.options.zoomLimit)
 
       # Markers, shown on map, by category
+      hoverOffset = 80000
       $.each this.markers, (i,m) ->
         return true  if m.count < 2
         marker = new MarkerWithLabel(
@@ -87,7 +90,10 @@ $ ->
           labelContent: m[3]
           labelAnchor: new google.maps.Point(0,0)
           labelClass: "marker-label"
+          labelStyle: {zIndex: hoverOffset + 1}
         )
+        marker.setZIndex(hoverOffset)
+        hoverOffset += 2
 
         # tip with content
         if m[5]
@@ -111,6 +117,10 @@ $ ->
       # Filter markers
       this.filter ?= $(this.element).siblings('.filter')
       filters = this.filter.find('a')
+      resetZoomIfNotDefault = ->
+        map = t.map
+        if map.getZoom() < t.options.map.zoom
+          map.setZoom(t.options.map.zoom)
       if(this.filter.length)
         filters.each ->
           if $(this).hasClass('active')
@@ -120,16 +130,22 @@ $ ->
           category = $(this).attr('data-category')
           if t.markersOnMap[category]
             $(this).toggleClass('active')
+            map = t.map
             if $(this).hasClass('active')
-              t._showMarkersByCategory(category)
+              t._showMarkersByCategory category, (marker)->
+                if map.getBounds() && !map.getBounds().contains(marker.getPosition())
+                  map.setZoom(map.getZoom() - 1)
             else
-              t._hideMarkersByCategory(category)
+              t._hideMarkersByCategory category
+              if !$(this).siblings('.active').length
+                resetZoomIfNotDefault()
 
       this.filterReset ?= this.filter.find('.reset a')
       this.filterReset.length && this.filterReset.click (e)->
         e.preventDefault()
         filters.removeClass('active')
         t._hideAllMarkers('none')
+        resetZoomIfNotDefault()
 
 
       # Direction calculation
@@ -204,22 +220,31 @@ $ ->
       google.maps.event.removeListener window.mapZoomLimitListener
 
 
-    _showMarkersByCategory: (category)->
+    _showMarker: (marker, callback=((marker)-> ))->
       map = this.map
+      marker.setMap map
+      callback(marker)
+
+    _hideMarker: (marker)->
+      marker.setMap null
+
+
+    _showMarkersByCategory: (category, markerCallback=((marker)-> ))->
+      t = this
       $.each this.markersOnMap[category], (i,m) ->
-        m.setMap(map)
-        if map.getBounds() && !map.getBounds().contains(m.getPosition())
-          map.setZoom(map.getZoom() - 1)
+        t._showMarker m, markerCallback
 
     _hideMarkersByCategory: (category)->
+      t = this
       $.each this.markersOnMap[category], (i,m) ->
-        m.setMap(null)
+        t._hideMarker m
 
     _hideAllMarkers: (except = '')->
+      t = this
       $.each this.markersOnMap, (categoryName,category) ->
         if categoryName != except
           $.each category, (i,m) ->
-            m.setMap(null)
+            t._hideMarker m
 
 
   # Initialization

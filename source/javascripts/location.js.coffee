@@ -1,4 +1,3 @@
-#= require easy-markerwithlabel
 #= require vendor/jquery.googleMarkerMap
 
 $ ->
