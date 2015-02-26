@@ -68,7 +68,6 @@ section.clients
             th telefons
             th e-pasts
             th darbības sfēra
-            th ēka
         tbody
           tr.item.template
             td.open: a href="client.html"
@@ -77,7 +76,6 @@ section.clients
             td %phone
             td %email
             td %c_name
-            td %building_number
 
   - categories.shift
   javascript:
@@ -109,4 +107,3 @@ section.clients
       address: "Mukusalas 4#{index}b"
       phone: "+371 200 200 0#{index}"
       email: "info@truevision.lv"
-      building_number: index+1
