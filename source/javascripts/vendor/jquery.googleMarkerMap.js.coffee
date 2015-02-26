@@ -87,6 +87,7 @@ $ ->
 
       # Markers, shown on map, by category
       hoverOffset = 80000
+      this.lastOpenedContentTip = null
       $.each this.markers, (i,m) ->
         return true  if m.count < 2
         marker = new MarkerWithLabel(
@@ -108,6 +109,10 @@ $ ->
           google.maps.event.addListener marker, 'click', ->
             t.directionsForm.hide()
             contentTip.open(this.map,marker);
+            loct = t.lastOpenedContentTip
+            if loct != contentTip
+              loct.close() if loct
+              t.lastOpenedContentTip = contentTip
           google.maps.event.addListener contentTip, 'closeclick', ->
             t.directionsForm.show()
 
