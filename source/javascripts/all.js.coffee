@@ -25,6 +25,11 @@ $ ->
   # ----- Location link hiding -----
   $('.location-link').headroom()
 
+  # ----- a.back -----
+  $('a.back').click (e)->
+    e.preventDefault()
+    window.history.back()
+
   # ----- Modals -----
   # Sizing of text-content-containing modals
   $('.remodal:has(.contents)').on 'opened', ->
