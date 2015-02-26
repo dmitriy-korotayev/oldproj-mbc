@@ -17,10 +17,15 @@ $ ->
   mapZoom = mobile && 16 || 17
   mapDraggable = !touch
   mapZoomControl = !touch
+  mapStyle = [{
+    featureType: 'poi'
+    stylers: [{ visibility: 'off' }]
+  }]
 
-  $('section.map .contents').first().googleMarkerMap
+  map = $('section.map .contents').first().googleMarkerMap
     map:
       zoom: mapZoom
       draggable: mapDraggable
       zoomControl: mapZoomControl
+    mapStyle: mapStyle
 

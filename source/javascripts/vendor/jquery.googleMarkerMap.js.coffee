@@ -23,6 +23,7 @@ $ ->
       overviewMapControl: 0
       scrollwheel: 0
       draggable: true
+    mapStyle: null
 
 
   GoogleMarkerMap = (element, options) ->
@@ -75,6 +76,11 @@ $ ->
       this.map = new google.maps.Map this.element,
         this.options.map
 
+      mapStyle = this.options.mapStyle
+      if mapStyle
+        styledMap = new google.maps.StyledMapType(mapStyle, {name: "Styled Map"})
+        this.map.mapTypes.set('map_style', styledMap)
+        this.map.setMapTypeId('map_style')
 
       # Limit zoom level
       this._addZoomLimit(this.options.zoomLimit)
