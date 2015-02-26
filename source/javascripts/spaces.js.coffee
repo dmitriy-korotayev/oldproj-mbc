@@ -166,7 +166,7 @@ $ ->
 
   modal = $('.remodal.space')
   modal.on 'opened', ->
-    container = modal.children('.image')
+    container = $(this).children('.image')
     firstPlanItem = container.children('div.plan').first()
     firstPlanItemIndex = container.children().index(firstPlanItem)
     if $(this).width() < parseInt $(this).css('max-width')
