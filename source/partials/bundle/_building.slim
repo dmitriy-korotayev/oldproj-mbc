@@ -1,11 +1,12 @@
 - t = path == 'building' ? 1 : 3
 - t.times do |i|
   section.building id="building_#{i+1}"
-    section.image
-      = image_tag 'articles/building.jpg', class: 'mobile-only'
-      .background.tablet style="background-image: url(#{image_path 'articles/building--tablet.jpg'})"
-      a.prev Iepriekšējais
-      a.next Nākošais
+    section.image.mobile-only
+      .item= image_tag 'bundle/building/1.jpg'
+      .item= image_tag 'bundle/building/2.jpg'
+    section.image.tablet
+      .item= image_tag 'bundle/building/1--tablet.jpg'
+      .item= image_tag 'bundle/building/2--tablet.jpg'
     section.overview
       header
         .text

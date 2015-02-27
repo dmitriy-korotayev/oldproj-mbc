@@ -9,34 +9,9 @@
 
 #= require vendor/slick
 
+#= require bundle/building
+
 $ ->
-  # --- Building rollout ---
-
-  # Show according building on this page
-  Breakpoints.on
-    name: 'tablet'
-    matched: ->
-      $('a.tip').click (e)->
-        e.preventDefault()
-        # some loading magic maybe
-        building_id = $(this).attr('href').split('#')[1]
-        building_container = $('section.building').removeClass('active').filter("##{building_id}").addClass('active')
-        scroll = ->
-          $.scrollTo building_container, 1500,
-            easing: 'easeInOutQuart'
-            offset: -30
-        setTimeout(scroll, 500)
-      $('section.building a.hide').click (e)->
-        e.preventDefault()
-        # some unloading magic
-        $(this).parent().removeClass('active')
-        setTimeout(->
-          $.scrollTo 'section.spaces', 1500,
-            easing: 'easeInOutQuart'
-            offset: -50
-        , 500)
-
-
   # --- Dynamic items filter ---
 
   # Preamble

@@ -1,5 +1,6 @@
-@import components/article
+@import structures/carousel
 @import structures/buttons
+@import components/article
 
 =article-header-building_map--tablet
   margin-top: 0px
@@ -220,30 +221,19 @@
 
 %section-image
   position: relative
-  a.prev, a.next
-    display: block
-    position: absolute
-    overflow: hidden
-    @extend %scut-image-replace
-  a.prev
-    left: 15px
-    +icon-arrow-left('--i')
-  a.next
-    right: 15px
-    +icon-arrow-right('--i')
-  img
-    vertical-align: top
+  overflow: hidden
+  &.slick-slider
+    margin-bottom: 0
+    +carousel-arrows--i(15px)
+  .item
     width: 100%
+    height: 100%
+  .item img
+    vertical-align: top
+    max-width: none
+    min-height: 100%
   +respond-to(tablet)
-    position: static
-    float: left
-    width: 50%
-    a.prev, a.next
-      display: none
-    .background
-      +scut-absolute(0 n 0 0)
-      width: 50%
-      background-size: cover
+    +scut-absolute(0 50% 0 0)
 
 %section-overview
   +respond-to(tablet)

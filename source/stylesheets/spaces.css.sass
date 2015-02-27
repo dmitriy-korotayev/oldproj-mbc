@@ -1,4 +1,5 @@
 @import foundation/globals
+@import vendor/slick
 @import structures/modal
 @import structures/carousel
 @import structures/buttons
@@ -206,6 +207,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       font-size: 1em
 
   .image.slick-slider
+    margin-bottom: 0
     +carousel-arrows--i(20px)
       z-index: 1001
     div
