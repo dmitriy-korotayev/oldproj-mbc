@@ -14,6 +14,7 @@ $ ->
     matched: ->
       touch = false
 
+
   mapZoom = mobile && 16 || 17
   mapDraggable = !touch
   mapZoomControl = !touch
