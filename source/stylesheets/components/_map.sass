@@ -69,8 +69,9 @@ $absolute-padding: 35px
         +bsprite($sm-location, 'icon-location--h', 100%, 100%)
 
 %map-filter
-  +scut-absolute(n $b-padding-x $absolute-padding*1.5 n)
+  +scut-absolute(n 50% $absolute-padding*1.5 n)
   $item-width: 70px
+  margin-right: -$item-width * 2
   width: $item-width * 4
   .items a
     $gradient-bottom-color: rgba(darken($c-background, 16), .21)
@@ -123,6 +124,7 @@ $absolute-padding: 35px
     top: $absolute-padding
     right: $absolute-padding
     bottom: auto
+    margin-right: 0
     width: $item-width * 2
     .items a
       width: $item-width

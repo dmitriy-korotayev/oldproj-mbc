@@ -29,4 +29,6 @@ $ ->
       draggable: mapDraggable
       zoomControl: mapZoomControl
     mapStyle: mapStyle
+    filterBehavior:
+      hideNoCategoryMarkersOnFilterToggle: true
 

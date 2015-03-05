@@ -3,13 +3,6 @@
 $ ->
   pluginName = 'googleMarkerMap'
   defaults =
-    markers: []
-    zoomLimit: 1
-
-    filter: null
-    filterReset: null
-    directionsContainer: null
-    directionsForm: null
 
     map:
       mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -24,16 +17,26 @@ $ ->
       scrollwheel: 0
       draggable: true
     mapStyle: null
+    mapZoomLimit: 1
+    markers: []
+
+    filter: null
+    filterReset: null
+    filterBehavior:
+      hideNoCategoryOnAny: true
+
+    directionsContainer: null
+    directionsForm: null
+
 
 
   GoogleMarkerMap = (element, options) ->
-    this.options = $.extend( {}, defaults, options)
-    this.options.map = $.extend( {}, defaults.map, options.map) if options.map
+    this.options = $.extend(true, {}, defaults, options)
 
-    this.map      = null
     this.element  = element
-    this.markers  = this.options.markers
+    this.map      = null
     this.center   = this.options.map.center
+    this.markers  = this.options.markers
     this.markersOnMap = {none: []}
 
     this.filter   = this.options.filter
@@ -83,7 +86,7 @@ $ ->
         this.map.setMapTypeId('map_style')
 
       # Limit zoom level
-      this._addZoomLimit(this.options.zoomLimit)
+      this._addZoomLimit(this.options.mapZoomLimit)
 
       # Markers, shown on map, by category
       hoverOffset = 80000
@@ -142,11 +145,15 @@ $ ->
           if t.markersOnMap[category]
             $(this).toggleClass('active')
             map = t.map
+            hideNoCat = t.options.filterBehavior.hideNoCategoryOnAny
+            # if activated
             if $(this).hasClass('active')
+              t._hideMarkersByCategory('none') if hideNoCat && !$(this).siblings('.active').length
               t._showMarkersByCategory category, (marker)->
                 if map.getBounds() && !map.getBounds().contains(marker.getPosition())
                   map.setZoom(map.getZoom() - 1)
             else
+              t._showMarkersByCategory('none') if hideNoCat && !$(this).siblings('.active').length
               t._hideMarkersByCategory category
               if !$(this).siblings('.active').length
                 resetZoomIfNotDefault()
@@ -206,7 +213,7 @@ $ ->
 
       # and reset
       directionsContainer.find('[type=reset]').click (e)->
-        t._addZoomLimit(t.options.zoomLimit)
+        t._addZoomLimit(t.options.mapZoomLimit)
         directionsDisplay.setMap(null)
         t.filter.show()
 
