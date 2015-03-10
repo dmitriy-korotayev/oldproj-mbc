@@ -15,29 +15,23 @@ section.clients
   form.filters.mobile-only
     .filter.type
       .select-custom
-        select name="category" id="category"
-          option value="0" disabled=true selected=true Filtrēt
-          -{all: 'Visi', financial: 'Finanses',
-            tc: 'Telekomunikācija',
-            government: 'Valsts Institūcijas',
-            shop: 'Veikali', media: 'Mediji', it: 'IT uzņēmumi',
-            }.each do |name,title|
-            option value=name = title
+        select name="letter" id="letter"
+          option value="all" selected=true Visi
+          -('a'..'z').each do |letter|
+            option value=letter = letter.upcase
     .filter.search
       input type="text" name="search" id="search" placeholder="Meklēt" value=""
       .clear
   form.filters.tablet
     .filter.type
-      .checkboxes
-        - categories = {all: 'Visi', financial: 'Finanses',
-          tc: 'Telekomunikācija',
-          government: 'Valsts Institūcijas',
-          shop: 'Veikali', media: 'Mediji', it: 'IT uzņēmumi',
-          }
-        - categories.each do |name,title|
+      .texttoggles
+        label
+          input type="radio" name="letter" id="letter_all" value="all" checked=true
+          span Visi
+        -('a'..'z').each do |letter|
           label
-            input type="checkbox" name="category" id="category_#{name}" value=name
-            span #{title}
+            input type="radio" name="letter" id="letter_#{letter}" value=letter
+            span= letter.upcase
     .filter.search
       input type="text" name="search" id="search" placeholder="Ievadiet nosaukumu" value=""
       .clear
@@ -77,6 +71,11 @@ section.clients
             td %email
             td %c_name
 
+  - categories = {all: 'Visi', financial: 'Finanses',
+    tc: 'Telekomunikācija',
+    government: 'Valsts Institūcijas',
+    shop: 'Veikali', media: 'Mediji', it: 'IT uzņēmumi',
+    }
   - categories.shift
   javascript:
     var categories = #{categories.keys.take(4).to_json},

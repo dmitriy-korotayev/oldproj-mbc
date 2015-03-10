@@ -27,28 +27,22 @@
       line-height: $height - 4px
       padding: 0 2%
       text-align: center
-      .checkboxes label
-        span:before
-          display: inline-block
-          position: relative
-          top: -2px
-          margin-right: 11px
-          border: 1px solid $c-background--m
-          vertical-align: middle
-          width: 18px
-          height: 18px
-          content: ''
+      .texttoggles label
         span
-          margin-left: 15px
+          margin-left: 5px
           vertical-align: middle
           height: 18px
+          padding: 0 5px
           font-size: .9em
+          &:hover
+            cursor: pointer
+            text-decoration: underline
         &:first-child span
           margin-left: 0
         input
           display: none
-        input:checked+span:before
-          background: $c-background--m
+        input:checked+span
+          text-decoration: underline
     &.search
       input
         height: 100%
