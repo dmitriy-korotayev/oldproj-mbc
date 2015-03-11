@@ -323,12 +323,18 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
   .filters
     margin-top: 8px
     padding-bottom: 20px
+    text-align: center
   .filter
+    display: inline-block
+    float: none
     position: relative
+    vertical-align: top
     margin-top: 30px
     border: 2px solid $c-background--ml
+    width: 48%
     height: 90px
     padding: 22px 25px 25px
+    text-align: left
     .title
       $height: 1.6em
       +scut-absolute(-$height/2 n n 0)
@@ -365,16 +371,19 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       display: inline-block
     &.class
       padding-top: 30px
-      .checktextboxes
+      .activeboxes
+        $height: 36px
+        height: $height
+        overflow: hidden
+        text-align: center
         label
+          display: inline-block
           cursor: pointer
-          float: left
           border: 2px solid $c-background--ml
-          margin-left: 2.666%
-          width: 23%
-          line-height: 30px
+          margin-left: .3em
+          min-width: $height
           padding: 2px
-          text-align: center
+          line-height: $height - 2px*4 // border+padding
           &:first-child
             margin-left: 0
           input
@@ -383,6 +392,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
             display: block
             height: 100%
             width: 100%
+            padding: 0 .375em
           input:checked+span
             background: $c-background--m
 
@@ -405,6 +415,8 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
           width: 42px
           padding: 0 3px
           font-weight: 500
+    &.sort
+      display: none // temporarily
 
 
   .items
@@ -416,16 +428,24 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
 =section-spaces--desktop
   padding: 0 $b-padding-x*5
   .filter
+    display: block
+    float: left
     // left margin
     &, &:nth-child(2n)
       margin-left: 2%
     &:first-child
       margin-left: 0
     // width
-    &.class, &.type
-      width: 18%
-    &.limit, &.sort
-      width: 29%
+    &.class
+      width: 28%
+      +scut-padding(n 12px)
+    &.type
+      width: 38%
+    &.limit
+      width: 30%
+    //&.sort
+      width: 26%
+
     &.limit
       .column label
         font-size: 1em
@@ -445,8 +465,6 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         .inline input
           width: 33px
     +breakpoint(max-width em(1248px))
-      &.type .select-custom .customSelect
-        font-size: .875em
       &.limit .column label
         font-size: .875em
     +breakpoint(max-width em(1152px))
@@ -456,8 +474,6 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         font-size: 1em
       .column label
         font-size: .875em
-      &.type .select-custom .customSelect
-        font-size: .75em
       &.limit
         .column label
           font-size: .75em

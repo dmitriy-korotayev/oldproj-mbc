@@ -53,7 +53,7 @@ $ ->
       f = formData
 
       data = $.map data, (item,i)->
-        if f.building_class
+        if f.building_class && f.building_class != '0'
           return null if f.building_class.constructor == String && f.building_class != item.building_class
           return null if f.building_class.constructor == Array  && f.building_class.indexOf(item.building_class) == -1
         if f.building_number

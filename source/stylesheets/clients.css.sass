@@ -27,28 +27,26 @@
       line-height: $height - 4px
       padding: 0 2%
       text-align: center
-      .checkboxes label
-        span:before
-          display: inline-block
-          position: relative
-          top: -2px
-          margin-right: 11px
-          border: 1px solid $c-background--m
-          vertical-align: middle
-          width: 18px
-          height: 18px
-          content: ''
-        span
-          margin-left: 15px
-          vertical-align: middle
-          height: 18px
-          font-size: .9em
-        &:first-child span
+      .texttoggles label
+        display: inline-block
+        vertical-align: middle
+        margin-left: 1px
+        height: 25px
+        line-height: 25px
+        &:first-child
           margin-left: 0
+        span
+          border: 2px solid transparent
+          padding: 0 5px
+          font-size: .9em
+          &:hover
+            cursor: pointer
+            text-decoration: underline
         input
           display: none
-        input:checked+span:before
-          background: $c-background--m
+        input:checked+span, span:hover
+          border: 2px solid $c-background--ml
+          text-decoration: none
     &.search
       input
         height: 100%

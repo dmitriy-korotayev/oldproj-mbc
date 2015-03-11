@@ -32,11 +32,11 @@ section.spaces
   form.filters.tablet
     .filter.class
       .title: span Ēkas klase
-      .checktextboxes
-        - %w(a b c d).each do |x|
+      .activeboxes
+        - %w(0 a b c d).each do |x|
           label
-            input type="checkbox" name="building_class" id="building_class_#{x}" value=x
-            span= x.upcase
+            input type="radio" name="building_class" id="building_class_#{x}" value=x checked=(x=='0')
+            span= x == '0' ? 'Visi' : x.upcase
     .filter.type
       .title: span Radīt Ēkas
       .select-custom

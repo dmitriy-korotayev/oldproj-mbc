@@ -75,9 +75,9 @@ $ ->
       f = formData
 
       data = $.map data, (item,i)->
-        if f.category
-          return null if f.category.constructor == String && f.category != 'all' && item.category != f.category
-          return null if f.category.constructor == Array && f.category.indexOf('all') == -1 && f.category.indexOf(item.category) == -1
+        if f.letter
+          return null if f.letter.constructor == String && f.letter != 'all' && item.title.charAt(0).toLowerCase() != f.letter
+          return null if f.letter.constructor == Array && f.letter.indexOf('all') == -1 && f.letter.indexOf(item.title.charAt(0).toLowerCase()) == -1
         if f.search
           return null if item.title.toLowerCase().indexOf(f.search.toLowerCase()) == -1
         item
