@@ -28,21 +28,25 @@
       padding: 0 2%
       text-align: center
       .texttoggles label
+        display: inline-block
+        vertical-align: middle
+        margin-left: 1px
+        height: 25px
+        line-height: 25px
+        &:first-child
+          margin-left: 0
         span
-          margin-left: 5px
-          vertical-align: middle
-          height: 18px
+          border: 2px solid transparent
           padding: 0 5px
           font-size: .9em
           &:hover
             cursor: pointer
             text-decoration: underline
-        &:first-child span
-          margin-left: 0
         input
           display: none
-        input:checked+span
-          text-decoration: underline
+        input:checked+span, span:hover
+          border: 2px solid $c-background--ml
+          text-decoration: none
     &.search
       input
         height: 100%
