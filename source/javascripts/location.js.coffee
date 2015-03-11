@@ -30,5 +30,6 @@ $ ->
       zoomControl: mapZoomControl
     mapStyle: mapStyle
     filterBehavior:
-      hideNoCategoryMarkersOnFilterToggle: true
+      radioToggles: true
+      hideNoCategoryOnAny: true
 

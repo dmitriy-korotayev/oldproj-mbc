@@ -23,7 +23,8 @@ $ ->
     filter: null
     filterReset: null
     filterBehavior:
-      hideNoCategoryOnAny: true
+      radioToggles: false
+      hideNoCategoryOnAny: false # Hide no category markers on filter toggle
 
     directionsContainer: null
     directionsForm: null
@@ -91,6 +92,7 @@ $ ->
       # Markers, shown on map, by category
       hoverOffset = 80000
       this.lastOpenedContentTip = null
+      this.mapCenterBeforeTipOpen= this.map.getCenter()
       $.each this.markers, (i,m) ->
         return true  if m.count < 2
         marker = new MarkerWithLabel(
@@ -111,6 +113,7 @@ $ ->
             content: m[5]
           google.maps.event.addListener marker, 'click', ->
             t.directionsForm.hide()
+            t.mapCenterBeforeTipOpen = t.map.getCenter()
             contentTip.open(this.map,marker);
             loct = t.lastOpenedContentTip
             if loct != contentTip
@@ -118,6 +121,7 @@ $ ->
               t.lastOpenedContentTip = contentTip
           google.maps.event.addListener contentTip, 'closeclick', ->
             t.directionsForm.show()
+            t.map.panTo(t.mapCenterBeforeTipOpen)
 
         # if category exists
         c = m[4]
@@ -146,9 +150,11 @@ $ ->
             $(this).toggleClass('active')
             map = t.map
             hideNoCat = t.options.filterBehavior.hideNoCategoryOnAny
+            turnOthersOff = t.options.filterBehavior.radioToggles
             # if activated
             if $(this).hasClass('active')
               t._hideMarkersByCategory('none') if hideNoCat && !$(this).siblings('.active').length
+              filters.not(this).removeClass('active') && t._hideAllMarkers() if turnOthersOff
               t._showMarkersByCategory category, (marker)->
                 if map.getBounds() && !map.getBounds().contains(marker.getPosition())
                   map.setZoom(map.getZoom() - 1)
@@ -163,6 +169,7 @@ $ ->
         e.preventDefault()
         filters.removeClass('active')
         t._hideAllMarkers('none')
+        t._showMarkersByCategory('none') if t.options.filterBehavior.hideNoCategoryOnAny
         resetZoomIfNotDefault()
 
 
