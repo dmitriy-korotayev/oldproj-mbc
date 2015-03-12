@@ -112,11 +112,18 @@ $ ->
       s_price.change()
 
 
-  # filter -> type change if given in hash
+  # filter -> type
+  filter = form.find('[name="building_number"]')
+  # - change on building open
+  $('section.building').on 'show', ->
+    button_href = $(this).find('a.button').attr('href')
+    building_id = $.url(button_href).fparam('filter_building_number')
+    filter.val(building_id).change()
+  # - change if given in hash
   changeFilterBuildingNumber = ->
     filter_bnumber = $.url().fparam('filter_building_number')
     if filter_bnumber
-      form.find('[name="building_number"]').val(filter_bnumber).change()
+      filter.val(filter_bnumber).change()
       $.scrollTo form, 1500,
         easing: 'easeInOutQuart'
         offset: -100

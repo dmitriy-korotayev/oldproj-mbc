@@ -70,7 +70,7 @@
   .items
     text-align: center
   .items.list table td
-    font-size: 1em
+    font-size: 1.05em
     &.open
       width: 74px
       a:after
@@ -112,13 +112,11 @@
     &.search
       margin-left: 1%
       width: 24%
-  .items.list table td
-    font-size: 1.25em
-    &.open
-      a:after
-        opacity: .7
-      a:hover:after
-        opacity: 1
+  .items.list table td.open
+    a:after
+      opacity: .7
+    a:hover:after
+      opacity: 1
 
 
 %article-header-custom

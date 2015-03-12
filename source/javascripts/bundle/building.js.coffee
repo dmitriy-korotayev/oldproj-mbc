@@ -41,7 +41,7 @@ $ ->
         $(this).removeClass('active')
         t = this
         setTimeout(->
-          $(t).find('section.image').slick('unslick')
+          $(t).find('section.image:visible').slick('unslick')
         , animationDuration)
 
 
@@ -60,3 +60,4 @@ $ ->
       fade: true
       fadeIn: true
       cssEase: 'linear'
+

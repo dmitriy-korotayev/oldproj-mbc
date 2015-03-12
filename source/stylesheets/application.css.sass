@@ -67,6 +67,37 @@
     +scut-margin(n 40px)
 
 
+%anchor
+  display: block
+  position: relative
+  top: -$co-header-height
+
+%location-link
+  display: none
+  +breakpoint(em(960px))
+    display: block
+    position: fixed
+    z-index: 11
+    top: 85px
+    right: -212px
+    pointer-events: none
+    +bsprite($sm-common, 'location-link')
+    transition: right .5s ease-out
+    &.headroom--top
+      right: 0
+    a
+      display: block
+      margin: 10px
+      margin-right: 0
+      pointer-events: all
+      width: 200px
+      height: 190px
+      padding: 138px 20px 10px
+      text-align: center
+      line-height: 1.25
+      color: $c-base--i
+      font-weight: 500
+
 %main
   background: $c-background
 
@@ -135,32 +166,6 @@
   +respond-to(tablet)
     +section-social--tablet
 
-%location-link
-  display: none
-  +breakpoint(em(960px))
-    display: block
-    position: fixed
-    z-index: 11
-    top: 85px
-    right: -212px
-    pointer-events: none
-    +bsprite($sm-common, 'location-link')
-    transition: right .5s ease-out
-    &.headroom--top
-      right: 0
-    a
-      display: block
-      margin: 10px
-      margin-right: 0
-      pointer-events: all
-      width: 200px
-      height: 190px
-      padding: 138px 20px 10px
-      text-align: center
-      line-height: 1.25
-      color: $c-base--i
-      font-weight: 500
-
 %modal-send
   @extend %modal--i
   padding: 0 40px 35px
@@ -177,8 +182,12 @@ html
   @extend %sidebar-global
   @extend %header-global--headroom
   @extend %footer-global
+
+a.anchor
+  @extend %anchor
 .location-link
   @extend %location-link
+
 aside.main
   @extend %sidebar
 header.main
