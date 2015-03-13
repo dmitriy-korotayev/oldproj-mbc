@@ -68,7 +68,7 @@ $ ->
 
       # Set center point
       this.center ?= (->
-        elem = $(this.element).siblings('.center')
+        elem = $(t.element).siblings('.center')
         lat = elem.length && elem.attr('data-latitude') || t.markers[0][0]
         lng = elem.length && elem.attr('data-longtitude') || t.markers[0][1]
         return new google.maps.LatLng(lat, lng)
