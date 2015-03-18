@@ -165,13 +165,13 @@ $absolute-padding: 35px
   font-size: empx(1.375em)
   margin-top:  -68px !important
   margin-left: -20px !important
-  height: 50px
+  height: 55px
   width: 40px
   i
     display: block
     position: relative
     left: -6px
-    top: 16px
+    top: 28px
     width: 50px
     text-align: center
     &:after
@@ -182,17 +182,19 @@ $absolute-padding: 35px
     @each $i in $icons
       &.#{$i}:after
         +bsprite($sm-location, "map-marker-#{$i}--i")
-    &.instruments
-      margin-top: 2px
+    &.food
+      margin-left: 1px
+    &.building
+      margin-left: 1px
     &.petrol
-      margin-left: 3px
+      margin-top: 1px
+      margin-left: 1px
     &.cart
-      margin-top: 4px
-      margin-left: -1px
+      margin-top: 1px
     &.cocktail
+      margin-top: 3px
       margin-left: 2px
     &.grooming
-      margin-top: 2px
       margin-left: 1px
   .content
     display: none
