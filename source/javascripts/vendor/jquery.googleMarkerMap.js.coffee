@@ -59,7 +59,7 @@ $ ->
         marker_text = $(this).html()
         marker_category = $(this).attr('data-category') || 'none'
         mcc = $(this).find('.content')
-        marker_content = mcc.length && mcc.html() || null
+        marker_content = mcc.length && mcc[0].outerHTML || null
         mcc.remove()
 
         [[latitude, longtitude, marker_image_url, marker_text, marker_category, marker_content]]
