@@ -12,6 +12,7 @@ header
 section.map
   .contents
   .center data-latitude="56.935100" data-longtitude="24.102857"
+  /!.marker data-latitude="56.935501" data-longtitude="24.102857": i.custom style="background-image: url(#{image_path 'logo.svg'})"
   .marker data-latitude="56.935501" data-longtitude="24.102857": i.building
   .marker data-latitude="56.934846" data-longtitude="24.101666": i.building
   .marker data-latitude="56.934641" data-longtitude="24.103275"
@@ -45,6 +46,10 @@ section.map
       button.locate name="locate" id="locate"
   .filter
     .items
+      /!a href="#" data-category="cafe"
+        i.custom style="background-image: url(#{image_path 'logo.svg'})"
+        i.custom.active style="background-image: url(#{image_path 'logo--v.svg'})"
+        .title Custom
       -[\
         ['cafe', 'food', 'Kafejnīcas, restorāni'],
         ['groceries', 'basket', 'Pārtika'],

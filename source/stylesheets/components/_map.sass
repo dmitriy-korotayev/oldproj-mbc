@@ -90,6 +90,7 @@ $absolute-padding: 35px
       text-decoration: none
     &:focus
       text-decoration: none
+
     i
       display: block
       height: 40px
@@ -98,6 +99,16 @@ $absolute-padding: 35px
         display: inline-block
         vertical-align: bottom
         content: ''
+    i.custom
+      margin-top: 5px
+      background-position: center center
+      &.active
+        display: none
+    &.active i.custom
+      display: none
+    &.active i.custom.active
+      display: block
+
     @each $i in $icons
       i.#{$i}:after
         +bsprite($sm-location, "map-filter-#{$i}")
@@ -177,6 +188,9 @@ $absolute-padding: 35px
     &:after
       display: inline-block
       content: ''
+    &.custom
+      background-position: center center
+
     &.building:after
       +bsprite($sm-location, "map-marker-building--i")
     @each $i in $icons
