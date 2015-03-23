@@ -19,6 +19,7 @@ section.spaces
       .select-custom
         Select name="building_number" id="building_number"
           option value="0" disabled=true selected=true Radīt Ēkas
+          option value="new" Jaunas
           option value="0" Visi
           - 3.times do |i|
             option value="#{i+1}"= "Ēka #{i+1}"
@@ -46,6 +47,10 @@ section.spaces
           option value="0" Visi
           - 3.times do |i|
             option value="#{i+1}"= "Ēka #{i+1}"
+      .activebox
+        label
+          input type="checkbox" name="buildings_new" id="buildings_new" value='1'
+          span Jauni
     .filter.limit
       .title: span Filtrēt
       .columns
@@ -158,6 +163,7 @@ section.spaces
 
         building_class: bcs[bci]
         building_number: 1+i
+        new: i%2
         price: 8+i
         image_url: "#{image_path 'spaces'}/1.jpg"
         image_small_src: "#{image_path 'spaces'}/1--small.jpg"
@@ -176,6 +182,7 @@ section.spaces
       div= image_tag 'spaces/1-big.jpg'
       div= image_tag 'spaces/2-big.jpg'
       div.plan= image_tag 'spaces/3-big.jpg'
+    button.plan-template title="title"
     .social
       = partial 'components/social'
       a.contact href="#contact" Sazināties ar mums

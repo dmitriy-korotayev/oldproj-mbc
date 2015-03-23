@@ -57,7 +57,12 @@ $ ->
           return null if f.building_class.constructor == String && f.building_class != item.building_class
           return null if f.building_class.constructor == Array  && f.building_class.indexOf(item.building_class) == -1
         if f.building_number
-          return null if f.building_number != "0" && f.building_number != String(item.building_number)
+          if f.building_number == 'new'
+            return null if !item.new
+          else
+            return null if f.building_number != "0" && f.building_number != String(item.building_number)
+        if f.buildings_new
+          return null if !item.new
         if f.limit_price_min
           return null if item.price < parseInt(f.limit_price_min)
         if f.limit_price_max
@@ -155,7 +160,8 @@ $ ->
       container.css('width',  "#{$(window).width() }px")
     container.on 'init', ->
       if firstPlanItem.length
-        button = $('<button class="plan"/>')
+        button_template = container.siblings('.plan-template')
+        button = button_template.length && button_template.attr('class','plan') || $('<button class="plan"/>')
         button.appendTo container
         button.click ->
           container.slick('slickGoTo', firstPlanItemIndex)

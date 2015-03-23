@@ -333,7 +333,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     border: 2px solid $c-background--ml
     width: 48%
     height: 90px
-    padding: 22px 25px 25px
+    padding: 22px 25px 20px
     text-align: left
     .title
       $height: 1.6em
@@ -369,37 +369,50 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
           bottom: 0
     .inline>*
       display: inline-block
+    .activeboxes, .activebox
+      $height: 36px
+      height: $height
+      overflow: hidden
+      text-align: center
+      label
+        display: inline-block
+        cursor: pointer
+        border: 2px solid $c-background--ml
+        margin-left: .3em
+        min-width: $height
+        padding: 2px
+        line-height: $height - 2px*4 // border+padding
+        &:first-child
+          margin-left: 0
+        input
+          display: none
+        input+span
+          display: block
+          height: 100%
+          width: 100%
+          padding: 0 .375em
+        input:checked+span
+          background: $c-background--m
+    .activebox label
+      width: 100%
     &.class
       padding-top: 30px
-      .activeboxes
-        $height: 36px
-        height: $height
-        overflow: hidden
-        text-align: center
-        label
-          display: inline-block
-          cursor: pointer
-          border: 2px solid $c-background--ml
-          margin-left: .3em
-          min-width: $height
-          padding: 2px
-          line-height: $height - 2px*4 // border+padding
-          &:first-child
-            margin-left: 0
-          input
-            display: none
-          input+span
-            display: block
-            height: 100%
-            width: 100%
-            padding: 0 .375em
-          input:checked+span
-            background: $c-background--m
 
-    &.type .customSelect
-      padding-top: .5em
-      font-size: 1em
-      font-weight: normal
+    &.type
+      .select-custom, .activebox
+        float: left
+      .select-custom
+        width: 80%
+      .activebox
+        width: 20%
+        height: 100%
+        label
+          height: 44px
+          line-height: 38px
+      .customSelect
+        padding-top: .5em
+        font-size: 1em
+        font-weight: normal
     &.limit
       .column label
         font-size: .875em
