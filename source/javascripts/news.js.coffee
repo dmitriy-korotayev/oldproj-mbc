@@ -3,13 +3,30 @@
 
 $ ->
   items = $('.items .item')
-  items.find('a.more').click (e)->
-    e.preventDefault()
-    items.removeClass 'open'
-    currentItem = $(this).parent()
-    currentItem.addClass 'open'
+  scrollTo = (item)->
     setTimeout ->
-      $.scrollTo currentItem, 750,
+      $.scrollTo item, 750,
         easing: 'easeInOutQuart'
         offset: -$('header.main').height()
     , 500
+
+
+  items.on 'open', ->
+    item = $(@)
+    items.removeClass 'open'
+    item.addClass 'open'
+    scrollTo(item)
+
+  items.on 'close', ->
+    item = $(@)
+    item.removeClass 'open'
+    scrollTo(item)
+
+
+  items.find('a.more').click (e)->
+    e.preventDefault()
+    $(this).parent().trigger 'open'
+
+  items.find('a.less').click (e)->
+    e.preventDefault()
+    $(this).parent().trigger 'close'

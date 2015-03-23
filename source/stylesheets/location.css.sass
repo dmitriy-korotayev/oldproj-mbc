@@ -40,7 +40,9 @@
 
 %section-map
   position: relative
-  height: 650px
+  height: 430px
+  +respond-to(desktop)
+    height: 650px
   background: $c-background--hm
   .directions-search
     @extend %map-directions-search

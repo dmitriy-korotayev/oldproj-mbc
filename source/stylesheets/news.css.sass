@@ -56,7 +56,7 @@ $c-link-underline: #a3acba
       line-height: 1.5
       font-size: 1.0625em
       letter-spacing: .028em
-    a.more
+    a.more, a.less
       font-size: 1em
       margin-top: 0
     .social
@@ -96,7 +96,7 @@ $c-link-underline: #a3acba
       margin: .75em 0
       line-height: 1.25
       letter-spacing: .005em
-    a.more
+    a.more, a.less
       display: block
       float: left
       margin-top: 5px
@@ -107,8 +107,12 @@ $c-link-underline: #a3acba
       &:hover
         text-decoration: none
         border-bottom: none
+    a.less
+      display: none
     &.open a.more
       display: none
+    &.open a.less
+      display: block
     .social
       @extend %extra-social
       clear: both

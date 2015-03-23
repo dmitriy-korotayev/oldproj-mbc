@@ -30,7 +30,6 @@ $ ->
     directionsForm: null
 
 
-
   GoogleMarkerMap = (element, options) ->
     this.options = $.extend(true, {}, defaults, options)
 
@@ -112,7 +111,7 @@ $ ->
           contentTip = new google.maps.InfoWindow
             content: m[5]
           google.maps.event.addListener marker, 'click', ->
-            t.directionsForm.hide()
+            t.directionsContainer.hide()
             t.mapCenterBeforeTipOpen = t.map.getCenter()
             contentTip.open(this.map,marker);
             loct = t.lastOpenedContentTip
@@ -120,7 +119,7 @@ $ ->
               loct.close() if loct
               t.lastOpenedContentTip = contentTip
           google.maps.event.addListener contentTip, 'closeclick', ->
-            t.directionsForm.show()
+            t.directionsContainer.show()
             t.map.panTo(t.mapCenterBeforeTipOpen)
 
         # if category exists
@@ -176,10 +175,10 @@ $ ->
       # Direction calculation
       directionsService = new google.maps.DirectionsService();
       directionsDisplay = new google.maps.DirectionsRenderer()
-      directionsContainer = this.options.directionsContainer || $(this.element).siblings('.directions-search')
+      this.directionsContainer = this.options.directionsContainer || $(this.element).siblings('.directions-search')
 
       # on submit
-      this.directionsForm = this.options.directionsForm || directionsContainer.children('form')
+      this.directionsForm = this.options.directionsForm || this.directionsContainer.children('form')
       this.directionsForm.submit (e)->
         e.preventDefault()
         directionsDisplay.setMap(t.map)
@@ -201,7 +200,7 @@ $ ->
 
       # on geolocation
       geocoder = new google.maps.Geocoder()
-      directionsContainer.find('button.locate').click (e)->
+      this.directionsContainer.find('button.locate').click (e)->
         e.preventDefault()
         t._removeZoomLimit()
         if navigator.geolocation
@@ -219,7 +218,7 @@ $ ->
           false
 
       # and reset
-      directionsContainer.find('[type=reset]').click (e)->
+      this.directionsContainer.find('[type=reset]').click (e)->
         t._addZoomLimit(t.options.mapZoomLimit)
         directionsDisplay.setMap(null)
         t.filter.show()

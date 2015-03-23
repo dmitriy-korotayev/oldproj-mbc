@@ -16,7 +16,8 @@ $ ->
 
 
   mapZoom = mobile && 16 || 17
-  mapDraggable = !touch
+  #mapDraggable = !touch
+  mapDraggable = true
   mapZoomControl = !touch
   mapStyle = [{
     featureType: 'poi'
