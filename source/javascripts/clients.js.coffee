@@ -90,6 +90,7 @@ $ ->
   form.find('.clear').click ->
     $(this).siblings('input').val('').change()
 
+
   # --- Grid/List items view ---
   Breakpoints.on
     name: 'tablet'

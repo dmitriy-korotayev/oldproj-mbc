@@ -63,7 +63,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     position: relative
     height: 121px / $item-inner-height * 100%
     .background
-      background-position: center bottom
+      background-position: center center
       background-size: cover
       height: 100%
     ul.actions
@@ -391,6 +391,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
           height: 100%
           width: 100%
           padding: 0 .375em
+          user-select: none
         input:checked+span
           background: $c-background--m
     .activebox label
@@ -410,7 +411,7 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
           height: 44px
           line-height: 38px
       .customSelect
-        padding-top: .5em
+        padding-top: .25em
         font-size: 1em
         font-weight: normal
     &.limit
