@@ -75,6 +75,7 @@ helpers do
 end
 ready do # pages configuration
   page '/404.html', layout: false
+  page '/maintenance.html', layout: :base
 
   # With no layout
   #page "/path/to/file.html", :layout => false

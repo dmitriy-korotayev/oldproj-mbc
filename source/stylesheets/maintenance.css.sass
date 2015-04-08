@@ -1,0 +1,39 @@
+@import foundation/globals
+$c-background: #fcfafb
+
+%article
+  &, section
+    background: $c-background
+  section
+    margin: 0 auto
+    max-width: 840px
+    padding: 0 20px
+  section.logo
+    +scut-padding(70px n)
+    height: 340px
+    text-align: center
+    img
+      max-height: 100%
+  section.info
+    border-top: 2px solid $c-background--i
+    padding-top: 10px
+    padding-bottom: 30px
+    .inner
+      margin: 0 auto
+      max-width: 420px
+    h1, h2, .contact
+      font-weight: 500
+    h1
+      font-size: 1.5em
+    .contact
+      margin-top: 45px
+      &, h2
+        font-size: 1.05em
+      h2
+        margin-bottom: 0
+        line-height: 1.5
+      a
+        font-weight: 600
+
+article.maintenance
+  @extend %article

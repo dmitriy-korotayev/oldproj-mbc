@@ -1,0 +1,28 @@
+doctype html
+html lang=(data.main.locale || 'en')
+  head
+    = partial :shared
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+
+    title= current_page.data.title || data.main.title || ''
+    meta name="description" content=(data.main.title || '')
+
+    = stylesheet_link_tag :application
+    = stylesheet_link_tag path if stylesheet_exists? path
+    = yield_content :stylesheets
+    = stylesheet_link_tag :custom
+
+    /[if lte IE 9]
+      = stylesheet_link_tag 'overrides/ie9'
+    /[if lte IE 8]
+      = stylesheet_link_tag 'overrides/ie8'
+      = javascript_include_tag 'overrides/ie8'
+
+    = yield_content :javascripts_before
+    = javascript_include_tag :all
+    = javascript_include_tag path if javascript_exists? path
+
+  body
+    = yield
