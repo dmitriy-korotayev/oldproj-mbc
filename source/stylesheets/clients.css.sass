@@ -11,114 +11,6 @@
 //   Components
 // -------------------------------------
 
-=section-clients--tablet
-  display: block
-  padding: 0 $b-padding-x*5
-  $height: 62px
-  .filter
-    margin-top: 25px
-    width: 100%
-    height: $height
-    overflow: hidden
-    &:nth-child(2n)
-      margin-left: 0
-    &.type
-      border: 2px solid $c-background--ml
-      line-height: $height - 4px
-      padding: 0 2%
-      text-align: center
-      .texttoggles label
-        display: inline-block
-        vertical-align: middle
-        margin-left: 1px
-        height: 25px
-        line-height: 25px
-        &:first-child
-          margin-left: 0
-        span
-          border: 2px solid transparent
-          padding: 0 5px
-          font-size: .9em
-          &:hover
-            cursor: pointer
-            text-decoration: underline
-        input
-          display: none
-        input:checked+span, span:hover
-          border: 2px solid $c-background--ml
-          text-decoration: none
-    &.search
-      input
-        height: 100%
-        background: image-url('clients/icon-magnifier--tablet.png') 16px 19px no-repeat
-        padding-left: 55px
-        font-size: 1.0625em
-        &::placeholder
-          font-weight: 400
-      .clear
-        $height: 32px
-        top: 50%
-        right: 15px
-        margin-top: -$height/2
-        height: $height
-        line-height: $height
-        font-size: 2.5em
-        &:after
-          top: -4px
-
-
-  .items
-    text-align: center
-  .items.list table td
-    font-size: 1.05em
-    &.open
-      width: 74px
-      a:after
-        display: block
-        content: image-url('clients/icon-magnifier--tablet.png')
-        height: 24px
-  .items.grid a.item
-    margin: 0 -1.5% 32px
-    display: inline-block
-    float: none
-    border-width: 2px
-    width: 210px
-    height: 200px
-    &, &:nth-child(2n)
-      margin: 36px 1.5% 4px
-    &:hover
-      border-color: $c-background--m
-    .image
-      height: 85px
-      line-height: 85px
-    .title
-      margin-top: 4px
-      font-size: 1.125em
-    .description, address, .phone
-      font-size: .95em
-      font-weight: 400
-    .description
-      margin-top: 0
-    .phone
-      font-weight: 700
-
-=section-clients--desktop
-  display: block
-  .filter
-    &.type
-      width: 75%
-      .checkboxes label span
-        font-size: 1em
-    &.search
-      margin-left: 1%
-      width: 24%
-  .items.list table td.open
-    a:after
-      opacity: .7
-    a:hover:after
-      opacity: 1
-
-
 %article-header-custom
   .text p
     margin-top: 1em
@@ -142,7 +34,7 @@
   @extend %bundle-building
   @extend %bundle-building--hideable
 
-%section-clients
+%section-clients--base
   padding: $b-padding
   .filters
     margin-top: 20px
@@ -240,7 +132,116 @@
   .items-views
     @extend %filterable-items-views
 
+=section-clients--tablet
+  display: block
+  padding: 0 $b-padding-x*5
+  $height: 62px
+  .filter
+    margin-top: 25px
+    width: 100%
+    height: $height
+    overflow: hidden
+    &:nth-child(2n)
+      margin-left: 0
+    &.type
+      border: 2px solid $c-background--ml
+      line-height: $height - 4px
+      padding: 0 2%
+      text-align: center
+      .texttoggles label
+        display: inline-block
+        vertical-align: middle
+        margin-left: 1px
+        height: 25px
+        line-height: 25px
+        &:first-child
+          margin-left: 0
+        span
+          border: 2px solid transparent
+          padding: 0 5px
+          font-size: .9em
+          &:hover
+            cursor: pointer
+            text-decoration: underline
+        input
+          display: none
+        input:checked+span, span:hover
+          border: 2px solid $c-background--ml
+          text-decoration: none
+    &.search
+      input
+        height: 100%
+        background: image-url('clients/icon-magnifier--tablet.png') 16px 19px no-repeat
+        padding-left: 55px
+        font-size: 1.0625em
+        &::placeholder
+          font-weight: 400
+      .clear
+        $height: 32px
+        top: 50%
+        right: 15px
+        margin-top: -$height/2
+        height: $height
+        line-height: $height
+        font-size: 2.5em
+        &:after
+          top: -4px
 
+
+  .items
+    text-align: center
+  .items.list table td
+    font-size: 1.05em
+    &.open
+      width: 74px
+      a:after
+        display: block
+        content: image-url('clients/icon-magnifier--tablet.png')
+        height: 24px
+  .items.grid a.item
+    margin: 0 -1.5% 32px
+    display: inline-block
+    vertical-align: top
+    float: none
+    border-width: 2px
+    width: 210px
+    height: 200px
+    &, &:nth-child(2n)
+      margin: 36px 1.5% 4px
+    &:hover
+      border-color: $c-background--m
+    .image
+      height: 85px
+      line-height: 85px
+    .title
+      margin-top: 4px
+      font-size: 1.125em
+    .description, address, .phone
+      font-size: .95em
+      font-weight: 400
+    .description
+      margin-top: 0
+    .phone
+      font-weight: 700
+
+=section-clients--desktop
+  display: block
+  .filter
+    &.type
+      width: 75%
+      .checkboxes label span
+        font-size: 1em
+    &.search
+      margin-left: 1%
+      width: 24%
+  .items.list table td.open
+    a:after
+      opacity: .7
+    a:hover:after
+      opacity: 1
+
+%section-clients
+  @extend %section-clients--base
   +respond-to(tablet)
     +section-clients--tablet
   +respond-to(desktop)
