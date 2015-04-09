@@ -6,15 +6,30 @@ $height: 70px
   background: $c-background--i
   width: 100%
   height: $height
-  padding: 10px 0
+  padding: 10px 0 22px
 
   color: $c-base--i
-  line-height: $height - 10px*2
+  line-height: $height - 10px - 22px
   text-align: center
   font-size: .9em
   font-weight: 700
   nav
     display: none
+  a.developer
+    display: block
+    +scut-absolute(n 5px 5px n)
+    max-height: 22px
+    padding: 5px
+    img
+      display: block
+    img.hover
+      display: none
+    &:hover img
+      display: none
+    &:hover img.hover
+      display: block
+
+
   +respond-to(desktop)
     .inner
       margin: 0 auto
