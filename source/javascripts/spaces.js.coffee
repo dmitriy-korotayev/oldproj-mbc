@@ -165,6 +165,9 @@ $ ->
         button.appendTo container
         button.click ->
           container.slick('slickGoTo', firstPlanItemIndex)
+          container.slick('slickPause')
+        container.find('.slick-prev, .slick-next').click ->
+          container.slick('slickPlay')
 
     container.slick
       autoplay: true
