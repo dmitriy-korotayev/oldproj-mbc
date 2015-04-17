@@ -10,6 +10,9 @@
 
 $ ->
   window.env = document.location.hostname == 'localhost' && 'dev' || 'prod'
+  ua = navigator.userAgent
+  is_safari = ua.indexOf('Safari') != -1 && ua.indexOf('Chrome') == -1
+  $('html').addClass('ua-safari') if is_safari
 
   # ----- Header -----
 
