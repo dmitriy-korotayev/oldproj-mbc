@@ -172,6 +172,7 @@ $ ->
     container.slick
       autoplay: true
       autoplaySpeed: 6000
+      pauseOnHover: false
       arrows: true
       fade: true
       fadeIn: true

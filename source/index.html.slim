@@ -63,4 +63,6 @@ section.reviews
         h2.name Jānis Bērziņš,
         h3.description Tele2 biroja vadītājs
         .review
-          p "Attīstīta infrastruktūra ­ stāvvieta klientiem, ērta satiksme, vienkārša piegāde ar lielām loģistikas kravas automašīnām"
+          - t = i == 2 ? 2 : 1
+          - t.times do
+            p "Attīstīta infrastruktūra ­ stāvvieta klientiem, ērta satiksme, vienkārša piegāde ar lielām loģistikas kravas automašīnām"

@@ -98,7 +98,7 @@ section.spaces
         .image
           .background data-image-url="%image_url" style="background-image: none"
           ul.actions
-            li.view: a href="#space" View
+            li.view: a href="#space_%id" View
         ul.info
           li.area
             .number %area
@@ -145,7 +145,7 @@ section.spaces
             th pārlūkošana
         tbody
           tr.item.template
-            td.image: a href="#space": img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_small_src"
+            td.image: a href="#space_%id": img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="%image_small_src"
             td %area
             td %price
             td %building_number
@@ -161,6 +161,7 @@ section.spaces
         bcs = 'a b c d'.split(' ')
         bci = i%4
 
+        id: i
         building_class: bcs[bci]
         building_number: 1+i
         new: i%2
@@ -174,61 +175,62 @@ section.spaces
         extra_lookover: '<i class="cross"></i>'
 
 - content_for :modals do
-  .remodal.space data-remodal-id="space"
-    .id
-      .number 191
-      .text ID telpa
-    .image
-      div= image_tag 'spaces/1-big.jpg'
-      div= image_tag 'spaces/2-big.jpg'
-      div.plan= image_tag 'spaces/3-big.jpg'
-    button.plan-template title="title"
-    .social
-      = partial 'components/social'
-      a.contact href="#contact" Sazināties ar mums
-    ul.info
-      li.area
-        .number 200
-        .unit
-          | m
-          sup 2
-      li.price
-        .number 8
-        .unit
-          | &euro;/m
-          sup 2
-      li.building
-        .number 2
-        .unit ēka
-    ul.extra
-      li
-        .number 3
-        .text stāvs
-      li
-        .number 7
-        .text autostāvvieta
-      li
-        i.check
-        .text mēbeles
-      li
-        i.cross
-        .text pārlukošana
+  - 2.times do |i|
+    .remodal.space data-remodal-id="space_#{i+1}"
+      .id
+        .number 191
+        .text ID telpa
+      .image
+        div= image_tag 'spaces/1-big.jpg'
+        div= image_tag 'spaces/2-big.jpg'
+        div.plan= image_tag 'spaces/3-big.jpg'
+      button.plan-template title="title"
+      .social
+        = partial 'components/social'
+        a.contact href="#contact" Sazināties ar mums
+      ul.info
+        li.area
+          .number 200
+          .unit
+            | m
+            sup 2
+        li.price
+          .number 8
+          .unit
+            | &euro;/m
+            sup 2
+        li.building
+          .number 2
+          .unit ēka
+      ul.extra
+        li
+          .number 3
+          .text stāvs
+        li
+          .number 7
+          .text autostāvvieta
+        li
+          i.check
+          .text mēbeles
+        li
+          i.cross
+          .text pārlukošana
 
-  .remodal.contact data-remodal-id="contact"
-    h1
-      ' Sūtīt ziņojumu par telpu
-      strong 191
-    form.mailable novalidate=true data-mailable-id="mbc_contact"
-      .row
-        input type="text" name="name" id="name" placeholder="Vārds" value=""
-        .error
-      .row
-        input type="text" name="email" id="email" placeholder="E-pasts" value=""
-        .error
-      .row
-        input type="text" name="phone" id="phone" placeholder="Tālrunis" value=""
-        .error
-      .row
-        textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
-        .error
-      input type="submit" name="submit" id="submit" value="Sūtīt"
+    .remodal.contact data-remodal-id="contact"
+      h1
+        ' Sūtīt ziņojumu par telpu
+        strong 191
+      form.mailable novalidate=true data-mailable-id="mbc_contact"
+        .row
+          input type="text" name="name" id="name" placeholder="Vārds" value=""
+          .error
+        .row
+          input type="text" name="email" id="email" placeholder="E-pasts" value=""
+          .error
+        .row
+          input type="text" name="phone" id="phone" placeholder="Tālrunis" value=""
+          .error
+        .row
+          textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
+          .error
+        input type="submit" name="submit" id="submit" value="Sūtīt"
