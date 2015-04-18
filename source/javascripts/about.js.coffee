@@ -1,8 +1,29 @@
 #= require vendor/slick
+#= require vendor/jquery.getBackgroundImage
 
 $ ->
   # Statement
-  $('section.statement .items').slick
+  items = $('section.statement .items')
+
+  # - resize to image size
+  firstItem = items.find('.item:first')
+  background = firstItem.find('.background:visible')
+  backgroundContainers = items.find('header')
+  Breakpoints.on
+    name: 'tablet'
+    matched: ->
+      backgroundContainers = items
+
+  background.useBackgroundImage (image)->
+    bgcs = backgroundContainers
+    bgc = bgcs.first()
+
+    targetContainerHeight = bgc.width() / image.width * image.height
+    bgcs.css('height', "#{targetContainerHeight}px") if bgc.height() < targetContainerHeight
+
+
+  # - carousel
+  items.slick
     autoplay: true
     autoplaySpeed: 6000
     arrows: true
@@ -11,7 +32,7 @@ $ ->
     cssEase: 'linear'
 
 
-  # TRASH
+# TRASH
 
 # require jquery.kinetic
 

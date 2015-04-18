@@ -22,7 +22,8 @@
     "easy-markerwithlabel": "~0.0.1",
     "remodal": "~0.5.0",
     "jquery.kinetic": "~2.0.5",
-    "purl": "~2.3.1"
+    "purl": "~2.3.1",
+    "imagesloaded": "~3.1.8"
   },
   "devDependencies": {
     "scut": "~1.1.2",

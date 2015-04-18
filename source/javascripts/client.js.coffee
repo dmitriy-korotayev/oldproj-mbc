@@ -1,7 +1,20 @@
+#= require vendor/jquery.getBackgroundImage
 #= require easy-markerwithlabel
 #= require vendor/jquery.googleMarkerMap
 
 $ ->
+  # --- Header image height ---
+  Breakpoints.on
+    name: 'tablet'
+    matched: ->
+      header = $('article.client>header')
+      background = header.find('.image:visible')
+      background.useBackgroundImage (image)->
+        targetContainerHeight = header.width() / image.width * image.height
+        header.css('height', "#{targetContainerHeight}px") if header.height() < targetContainerHeight
+
+
+  # --- Map ---
   # Device-specific settings
   mobile = false
   Breakpoints.on
