@@ -2,6 +2,11 @@
 
 $ ->
   pluginName = 'googleMarkerMap'
+  unless google?
+    $.fn[pluginName] = (options)->
+      console.log "#{pluginName}: 'google' is not defined"
+    return false
+
   defaults =
 
     map:

@@ -63,12 +63,20 @@
 %article-header-custom
   background: $c-background--h
   color: $c-base--i
+  .text
+    position: static
+    float: left
+    margin-right: 0
+    width: 50%
   .text h1
     margin-top: .45em
     margin-bottom: 0
     font-size: 1.8em
   .text p
     margin: .75em 0 1em
+  .sizer
+    float: right
+    width: 49%
   +respond-to(tablet)
     .text h1
       font-size: 2.85em

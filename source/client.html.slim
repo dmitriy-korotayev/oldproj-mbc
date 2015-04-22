@@ -2,10 +2,13 @@
 link_back: clients.html
 ---
 
-header
+header style="height:auto"
   .image.mobile-only
     = image_tag 'articles/client.jpg'
-  .image.tablet style="background-image: url(#{image_path 'articles/client--tablet.jpg'})"
+  .image.tablet-only  style="background-image: url(#{image_path 'articles/client--tablet.jpg'})"
+  .image.desktop      style="background-image: url(#{image_path 'articles/client--tablet.jpg'})"
+  .sizer.tablet-only  style="min-height: 250px"
+  .sizer.desktop      style="min-height: 400px"
   .text
     h1 Tele2
     p Vairāk nekā miljons iedzīvotāju ir izvēlējušies Tele2 kā savu mobilo sakaru pakalpojumu sniedzēju, padarot Tele2 par vadošo mobilo sakaru operatoru Latvijā balss klientu skaita ziņā.
