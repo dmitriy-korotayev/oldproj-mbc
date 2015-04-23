@@ -176,7 +176,15 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
     border: none
     padding: 0
   // resets end
+  &.inverse
+    .remodal-close
+      border-color: currentColor
+      color: $c-base
+    .image.slick-slider
+      +carousel-arrows--d(20px)
 
+  .remodal-close
+    transition: color .5s border-color .5s
   .image
     position: relative
     z-index: 0

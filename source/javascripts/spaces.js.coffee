@@ -168,6 +168,17 @@ $ ->
           container.slick('slickPause')
         container.find('.slick-prev, .slick-next').click ->
           container.slick('slickPlay')
+      container.find('.slick-slide').each ->
+        image = $(@).find('img')
+        emptySpace = container.height() - image.height()
+        if emptySpace > 0
+          image.css('margin-top', "#{emptySpace/2}px")
+
+    container.on 'beforeChange', (e, slick, currentSlide, nextSlide)->
+      if nextSlide >= firstPlanItemIndex
+        modal.addClass 'inverse'
+      else
+        modal.removeClass 'inverse'
 
     container.slick
       autoplay: true
