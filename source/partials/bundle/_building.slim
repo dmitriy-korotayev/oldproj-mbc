@@ -12,6 +12,7 @@
         .text
           h1= "Ēka #{i+1}"
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          a.more href="#building" Radīt vairāk
       section.numbers
         ul.items
           li style="width: 32%"
@@ -28,16 +29,17 @@
       section.advantages
         ul.items
           -[\
-            ['infrastructure', 'Biznesam piemērota atrāšanas vieta un infrastruktūra', 'height: 65px'],
+            ['infrastructure', 'Biznesam piemērota atrāšanas vieta un infrastruktūra'],
             ['room', 'Brīvs telpu plānojums', nil],
             ['guard24', 'Diennakts apsardze un novērošana', 'margin-top: 30px'],
-            ['camera', 'Ventilācija kondicionēšana, videnovērošana', 'height: 65px; margin-top: 27px'],
+            ['camera', 'Ventilācija kondicionēšana, videnovērošana', 'height: 65px'],
             ['projector', 'Konferenču telpas<br>un aprīkojums', nil],
           ].each do |i|
             li style=i[2]
               i class= i[0]
               .bubble: .vcenter: span= i[1]
-        = link_to 'Izvēlēties telpu', "spaces.html#filter_building_number=#{i+1}", class: 'button'
+        .centered
+          = link_to 'Izvēlēties telpu', "spaces.html#filter_building_number=#{i+1}", class: 'button'
         .social
           = partial 'components/social'
     - if path != 'building'
@@ -47,6 +49,6 @@
   .remodal.building data-remodal-id="building"
     .cover style="background-image: url(#{image_path 'about/modal-cover.jpg'})"
     .contents
-      h1 Telpu pārkārtošana un pārplānojums
+      h1 Ēka N
       - 5.times do
         p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lobortis elit dolor, non vestibulum elit placerat non. Nulla facilisi. Integer gravida odio lobortis enim viverra, vel consequat augue vehicula. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed condimentum mattis purus, vitae elementum mi mattis eu. In ante elit, maximus vitae augue sed, hendrerit laoreet lectus.

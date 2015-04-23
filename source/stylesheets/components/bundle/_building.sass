@@ -97,10 +97,58 @@
     margin-top: 5px
 
 
+$carousel-height--tablet: 330px
+%section-image
+  position: relative
+  overflow: hidden
+  background: $c-background--i
+  height: $carousel-height--tablet
+  &.slick-slider
+    margin-bottom: 0
+    +carousel-arrows--i(15px)
+  .item
+    width: 100%
+    height: 100%
+  .item img
+    width: 100%
+  +respond-to(tablet)
+    +scut-absolute(0 50% n 0)
+    .item img
+      width: auto
+      min-width: 100%
+      max-width: none
+      min-height: 100%
+  +respond-to(desktop)
+    height: 100%
+
+
+%section-overview
+  +respond-to(tablet)
+    max-height: inherit
+    overflow: hidden
+    padding: 0 20px 0 30px
+  +respond-to(desktop)
+    margin-left: 50%
+
+%section-overview-header--base
+  .text p
+    margin-top: -.25em
+    margin-bottom: .8em
+    //margin-top: -10px
+  .text a.more
+    display: block
+    margin-bottom: 10px
+    padding: 0 $b-padding-x*1.25 0 $b-padding-x
+    text-decoration: underline
+    &:hover
+      text-decoration: none
+
 =section-overview-header--tablet
-  margin: 0 -20px 0 -30px
+  margin: 0 -20px 0 50%
+  margin-left: calc(50% - 30px)
   border-bottom: none
   background: none
+  height: $carousel-height--tablet
   .text
     float: none
     width: auto
@@ -109,12 +157,58 @@
       margin: .75em 0 .5em
     p
       line-height: 1.7
+  .text a.more
+    margin-bottom: 0
+    margin-left: .25em
+    padding: 0
 
 =section-overview-header--desktop
+  margin-left: -30px
+  height: auto
   .text
     h1
       font-size: 2.875em
       margin: .9em 0 .45em
+
+%section-overview-header
+  @extend %section-overview-header--base
+  +respond-to(tablet)
+    +section-overview-header--tablet
+  +respond-to(desktop)
+    +section-overview-header--desktop
+
+
+$border-color: rgba($c-background--h, .2)
+%section-numbers--h--base
+  padding: 12px $b-padding-x 0
+  ul.items
+    overflow: hidden
+    +scut-list-unstyled
+    border: 2px solid $border-color
+    padding-bottom: 12px
+  li
+    margin: 20px $b-padding-x 0
+    text-align: center
+    &:first-child
+      margin-top: 11px
+    span
+      display: block
+    span.number
+      color: $c-base--h
+      line-height: 1
+      font-size: 4.125em
+      font-weight: 300
+      sup, sub
+        font-size: .55em
+      sub
+        bottom: 0
+    span.text
+      font-size: 1.375em
+      font-weight: 300
+      line-height: 1.275
+  +respond-to(mobile-only)
+    li
+      width: 100% !important
 
 =section-numbers--h--tablet
   margin-top: 24px
@@ -156,140 +250,15 @@
       width: 1px
       content: ''
 
-=section-advantages--h--desktop
-  padding: 0 10px 40px 20px
-  ul.items
-    margin: 35px -40px 15px -25px
-  li
-    float: left
-    width: 20%
-    margin-top: 0 !important
-    height: auto !important
-    i
-      display: block
-      position: static
-      width: 100%
-      text-align: center
-      &:after
-        display: inline-block
-      @each $i in (room infrastructure guard24 camera projector)
-        &.#{$i}:after
-          +bsprite($sm-building, "advantages-#{$i}--tablet")
-      &.room:after
-        margin-top: 8px
-      &.projector:after
-        margin-top: 12px
-    .bubble
-      transition: visibility 0s, opacity .25s
-      position: absolute
-      z-index: 1
-      visibility: hidden
-      opacity: 0
-      top: 65px
-      left: -50px
-      background: $c-background
-      width: 150px
-      height: auto !important
-      padding-bottom: 8px
-      text-align: center
-      font-size: .9em
-      $width: 22px
-      $height: 11px
-      &:before, &:after
-        left: 65px
-        margin-left: -$width/2
-        border-style: solid
-        border-color: transparent
-        border-width: 0 $width/2 $height $width/2
-      &:before
-        top: -1px
-        border-right-color: transparent
-        border-bottom-color: $border-color
-      &:after
-        top: 0
-        border-right-color: transparent
-        border-bottom-color: $c-background
-    &:hover
-      .bubble
-        visibility: visible
-        opacity: 1
-  a.button
-    height: 41px
-    padding: 0 .5em
-    line-height: 37px
-    font-size: 1.125em
-
-
-%section-image
-  position: relative
-  overflow: hidden
-  &.slick-slider
-    margin-bottom: 0
-    +carousel-arrows--i(15px)
-  .item
-    width: 100%
-    height: 100%
-  .item img
-    vertical-align: top
-    max-width: none
-    min-height: 100%
-  +respond-to(tablet)
-    +scut-absolute(0 50% 0 0)
-
-%section-overview
-  +respond-to(tablet)
-    max-height: inherit
-    margin-left: 50%
-    overflow: hidden
-    padding: 0 20px 0 30px
-
-%section-overview-header
-  .text p
-    margin-top: -.25em
-    margin-bottom: .8em
-    //margin-top: -10px
-  +respond-to(tablet)
-    +section-overview-header--tablet
-  +respond-to(desktop)
-    +section-overview-header--desktop
-
-$border-color: rgba($c-background--h, .2)
 %section-numbers--h
-  padding: 12px $b-padding-x 0
-  ul.items
-    overflow: hidden
-    +scut-list-unstyled
-    border: 2px solid $border-color
-    padding-bottom: 12px
-  li
-    margin: 20px $b-padding-x 0
-    text-align: center
-    &:first-child
-      margin-top: 11px
-    span
-      display: block
-    span.number
-      color: $c-base--h
-      line-height: 1
-      font-size: 4.125em
-      font-weight: 300
-      sup, sub
-        font-size: .55em
-      sub
-        bottom: 0
-    span.text
-      font-size: 1.375em
-      font-weight: 300
-      line-height: 1.275
-  +respond-to(mobile-only)
-    li
-      width: 100% !important
+  @extend %section-numbers--h--base
   +respond-to(tablet)
     +section-numbers--h--tablet
   +respond-to(desktop)
     +section-numbers--h--desktop
 
-%section-advantages--h
+
+%section-advantages--h--base
   @extend %scut-clearfix
   display: table
   margin: 0 auto
@@ -353,6 +322,10 @@ $border-color: rgba($c-background--h, .2)
         display: table-cell
         vertical-align: middle
 
+  .centered
+    text-align: center
+    >a
+      display: inline-block
   a.button
     @extend %button
     @extend %button--big
@@ -372,13 +345,85 @@ $border-color: rgba($c-background--h, .2)
 
   +respond-to(tablet)
     display: block
-  +respond-to(desktop)
-    +section-advantages--h--desktop
   +breakpoint(1325px)
     a.button
       float: left
     .social
       float: right
+
+=section-advantages--h--tablet
+  li
+    float: left
+    width: 50%
+=section-advantages--h--desktop
+  padding: 0 10px 40px 20px
+  ul.items
+    margin: 35px -40px 15px -25px
+  li
+    float: left
+    width: 20%
+    margin-top: 0 !important
+    height: auto !important
+    i
+      display: block
+      position: static
+      width: 100%
+      text-align: center
+      &:after
+        display: inline-block
+      @each $i in (room infrastructure guard24 camera projector)
+        &.#{$i}:after
+          +bsprite($sm-building, "advantages-#{$i}--tablet")
+      &.room:after
+        margin-top: 8px
+      &.projector:after
+        margin-top: 12px
+    .bubble
+      transition: visibility 0s, opacity .25s
+      position: absolute
+      z-index: 1
+      visibility: hidden
+      opacity: 0
+      top: 65px
+      left: -50px
+      background: $c-background
+      width: 150px
+      height: auto !important
+      padding-bottom: 8px
+      text-align: center
+      font-size: .9em
+      $width: 22px
+      $height: 11px
+      &:before, &:after
+        left: 65px
+        margin-left: -$width/2
+        border-style: solid
+        border-color: transparent
+        border-width: 0 $width/2 $height $width/2
+      &:before
+        top: -1px
+        border-right-color: transparent
+        border-bottom-color: $border-color
+      &:after
+        top: 0
+        border-right-color: transparent
+        border-bottom-color: $c-background
+    &:hover
+      .bubble
+        visibility: visible
+        opacity: 1
+  a.button
+    height: 41px
+    padding: 0 .5em
+    line-height: 37px
+    font-size: 1.125em
+
+%section-advantages--h
+  @extend %section-advantages--h--base
+  +respond-to(tablet)
+    +section-advantages--h--tablet
+  +respond-to(desktop)
+    +section-advantages--h--desktop
 
 
 %bundle-building-article-header
