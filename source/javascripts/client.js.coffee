@@ -1,8 +1,19 @@
 #= require vendor/jquery.getBackgroundImage
 #= require easy-markerwithlabel
 #= require vendor/jquery.googleMarkerMap
+#= require vendor/jquery.readmoreable
 
 $ ->
+  # --- Header image height as sizer and text hiding ---
+  Breakpoints.on
+    name: 'tablet'
+    matched: ->
+      header = $('article.client>header')
+      sizer = header.find('.sizer:visible')
+      header.find('.image:visible').css('max-height', "#{sizer.height()}px")
+      header.find('.text').readmoreable()
+
+
   # --- Map ---
   # Device-specific settings
   mobile = false
@@ -18,7 +29,7 @@ $ ->
 
 
   mapZoom = mobile && 16 || 17
-  mapDraggable = !touch
+  mapDraggable = true
   mapZoomControl = !touch
   mapStyle = [{
     featureType: 'poi'
@@ -32,15 +43,4 @@ $ ->
       zoomControl: mapZoomControl
     mapStyle: mapStyle
 
-
-  # --- TRASH ---
-  # --- Header image height ---
-  #Breakpoints.on
-    #name: 'tablet'
-    #matched: ->
-      #header = $('article.client>header')
-      #background = header.find('.image:visible')
-      #background.useBackgroundImage (image)->
-        #targetContainerHeight = header.width() / image.width * image.height
-        #header.css('height', "#{targetContainerHeight}px") if header.height() < targetContainerHeight
 

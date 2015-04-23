@@ -410,6 +410,8 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         label
           height: 44px
           line-height: 38px
+        label span
+          font-size: .875em
       .customSelect
         padding-top: .25em
         font-size: 1em
@@ -455,6 +457,9 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       +scut-padding(n 12px)
     &.type
       width: 38%
+      .activebox
+        label span
+          font-size: .95em
     &.limit
       width: 30%
     //&.sort
@@ -502,7 +507,6 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
   @extend %bundle-building-article-header
   +respond-to(tablet)
     .text
-      margin: 0 auto
       padding: 0 ($b-padding-x*3)
       p
         line-height: 1.7

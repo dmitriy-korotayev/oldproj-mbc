@@ -63,20 +63,29 @@
 %article-header-custom
   background: $c-background--h
   color: $c-base--i
-  .text
-    position: static
-    float: left
-    margin-right: 0
-    width: 50%
   .text h1
     margin-top: .45em
     margin-bottom: 0
     font-size: 1.8em
   .text p
     margin: .75em 0 1em
-  .sizer
-    float: right
-    width: 49%
+  .text // readmoreable
+    .hidden
+      transition: max-height 0.75s
+      max-height: 0
+      overflow: hidden
+    &.open .hidden
+      max-height: 1000px
+    a
+      display: block
+      color: inherit
+      margin-bottom: 20px
+    a.less
+      display: none
+    &.open a.less
+      display: block
+    &.open a.more
+      display: none
   +respond-to(tablet)
     .text h1
       font-size: 2.85em
