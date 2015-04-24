@@ -5,8 +5,8 @@
       .item= image_tag 'bundle/building/1.jpg'
       .item= image_tag 'bundle/building/2.jpg'
     section.image.tablet
-      .item= image_tag 'bundle/building/1--tablet.jpg'
-      .item= image_tag 'bundle/building/2--tablet.jpg'
+      .item style="background-image: url(#{image_path 'bundle/building/1--tablet.jpg'})"
+      .item style="background-image: url(#{image_path 'bundle/building/2--tablet.jpg'})"
     section.overview
       header
         .text

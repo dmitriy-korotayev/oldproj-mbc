@@ -102,7 +102,6 @@ $carousel-height--tablet: 330px
   position: relative
   overflow: hidden
   background: $c-background--i
-  height: $carousel-height--tablet
   &.slick-slider
     margin-bottom: 0
     +carousel-arrows--i(15px)
@@ -113,10 +112,14 @@ $carousel-height--tablet: 330px
     width: 100%
   +respond-to(tablet)
     +scut-absolute(0 50% n 0)
-    .item img
+    height: $carousel-height--tablet
+    .item
+      background-size: cover
+      background-position: center center
+    //.item img
       width: auto
       min-width: 100%
-      max-width: none
+      max-width: 100%
       min-height: 100%
   +respond-to(desktop)
     height: 100%
@@ -236,7 +239,8 @@ $border-color: rgba($c-background--h, .2)
   li
     height: 65px
     span.number
-      font-size: 2.8em
+      font-size: 2.25em
+      line-height: 1.2
     span.text
       font-size: 1em
     &:first-child
@@ -448,11 +452,14 @@ $border-color: rgba($c-background--h, .2)
     position: relative
 
 %bundle-building--hideable
-  transition: max-height .5s
+  transition: max-height .5s, overflow 0s linear .5s
   max-height: 0
+  overflow: hidden
   &.active
     border-bottom: 1px solid $c-background--m
     max-height: 1000px
+    overflow: visible
+
   $width:  130px
   $height: 40px
   a.hide
