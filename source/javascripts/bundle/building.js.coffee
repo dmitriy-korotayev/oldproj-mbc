@@ -1,48 +1,45 @@
 $ ->
   # --- Building rollout ---
-  Breakpoints.on
-    name: 'tablet'
-    matched: ->
-      animationDuration = 500
-      $('a.tip').click (e)->
-        e.preventDefault()
-        # some loading magic maybe
-        building_id = $(this).attr('href').split('#')[1]
-        building_container = $('section.building').filter("##{building_id}")
+  animationDuration = 500
+  $('a.tip').click (e)->
+    e.preventDefault()
+    # some loading magic maybe
+    building_id = $(this).attr('href').split('#')[1]
+    building_container = $('section.building').filter("##{building_id}")
 
-        $('section.building.active').trigger('hide')
-        building_container.trigger('show')
+    $('section.building.active').trigger('hide')
+    building_container.trigger('show')
 
-        setTimeout(->
-          $.scrollTo building_container, 1500,
-            easing: 'easeInOutQuart'
-            offset: -30
-        , animationDuration)
+    setTimeout(->
+      $.scrollTo building_container, 1500,
+        easing: 'easeInOutQuart'
+        offset: -30
+    , animationDuration)
 
-      $('section.building a.hide').click (e)->
-        e.preventDefault()
-        # some unloading magic
-        building_container = $(this).parent()
-        building_container.trigger 'hide'
-        setTimeout(->
-          $.scrollTo 'section.spaces', 1500,
-            easing: 'easeInOutQuart'
-            offset: -50
-        , animationDuration)
+  $('section.building a.hide').click (e)->
+    e.preventDefault()
+    # some unloading magic
+    building_container = $(this).parent()
+    building_container.trigger 'hide'
+    setTimeout(->
+      $.scrollTo 'section.spaces', 1500,
+        easing: 'easeInOutQuart'
+        offset: -50
+    , animationDuration)
 
-      $('section.building').on 'show', ->
-        $(this).addClass('active')
-        t = this
-        setTimeout(->
-          $(t).trigger 'carousel_init'
-        , animationDuration)
+  $('section.building').on 'show', ->
+    $(this).addClass('active')
+    t = this
+    setTimeout(->
+      $(t).trigger 'carousel_init'
+    , animationDuration)
 
-      $('section.building').on 'hide', ->
-        $(this).removeClass('active')
-        t = this
-        setTimeout(->
-          $(t).find('section.image:visible').slick('unslick')
-        , animationDuration)
+  $('section.building').on 'hide', ->
+    $(this).removeClass('active')
+    t = this
+    setTimeout(->
+      $(t).find('section.image:visible').slick('unslick')
+    , animationDuration)
 
 
   # --- Building image carousel ---

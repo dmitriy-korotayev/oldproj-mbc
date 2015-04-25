@@ -2,22 +2,31 @@
 @import structures/buttons
 @import components/article
 
+$article-header-building_map-tip-border-color: darken($c-background--m, 2.5%)
+%article-header-building_map--base
+  padding-bottom: 12px
+  a.tip
+    $border-color: $article-header-building_map-tip-border-color
+    display: block
+    margin: 0 $b-padding-x*3 10px
+    border: 2px solid $border-color
+    background: $c-background
+    padding: .375em .55em .375em .65em
+    text-align: center
+    text-transform: uppercase
+    line-height: 1
+    font-size: .95em
+    font-weight: 500
+    &:hover
+      background: $border-color
+      text-decoration: none
+      color: $c-base--i
+
 =article-header-building_map--tablet
-  margin-top: 0px
+  position: relative
   margin:
     left: -5%
     right: -5%
-  a.tip
-    font-size: .75em
-    &:before
-      left: 10px
-    &:after
-      left: 12px
-
-%article-header-building_map
-  position: relative
-  margin-top: -12px
-  padding-bottom: 12px
   .tips
     position: relative
     margin: 0 auto
@@ -27,28 +36,23 @@
   .tips.desktop--big
     display: none
   a.tip
-    $border-color: darken($c-background--m, 2.5%)
+    $border-color: $article-header-building_map-tip-border-color
     +scut-absolute(0 n n 0)
     margin-left: -22px
     margin-top: -34px
-    border: 2px solid $border-color
-    background: $c-background
-    padding: .375em .55em .375em .65em
-    text-transform: uppercase
-    line-height: 1
-    font-size: .95em
-    font-weight: 500
+    margin-bottom: 0
+    font-size: .75em
+    $arrow-width: 16px
+    $arrow-height: 8px
     &:before, &:after
       display: block
       position: absolute
       content: ''
-    $arrow-width: 16px
-    $arrow-height: 8px
     &:before
       $width: $arrow-width
       $height: $arrow-height
       bottom: -$height
-      left: 6px
+      left: 10px
       border:
         left: $width/2 solid transparent
         right: $width/2 solid transparent
@@ -57,17 +61,13 @@
       $width: $arrow-width - 4px
       $height: $arrow-height - 2px
       bottom: -$height
-      left: 8px
+      left: 12px
       border:
         left: $width/2 solid transparent
         right: $width/2 solid transparent
         top: $height solid $c-background
-    &:hover
-      background: $border-color
-      text-decoration: none
-      color: $c-base--i
-      &:after
-        border-top-color: $border-color
+    &:hover:after
+      border-top-color: $border-color
   .pointer
     +scut-absolute(n n 48px -50px)
     background: $c-background--h
@@ -87,6 +87,9 @@
       +scut-absolute(5px n n 5px)
       +bsprite($sm-common, 'icon-close--small')
       cursor: pointer
+
+%article-header-building_map
+  @extend %article-header-building_map--base
   +respond-to(tablet)
     +article-header-building_map--tablet
   //+breakpoint(em(1400px))
@@ -437,6 +440,7 @@ $border-color: rgba($c-background--h, .2)
     overflow-y: visible
     +scut-clearfix
 %bundle-building
+  position: relative
   section.image
     @extend %section-image
   section.overview
@@ -448,8 +452,6 @@ $border-color: rgba($c-background--h, .2)
     @extend %section-numbers--h
   section.advantages
     @extend %section-advantages--h
-  +respond-to(tablet)
-    position: relative
 
 %bundle-building--hideable
   transition: max-height .5s, overflow 0s linear .5s
@@ -457,7 +459,7 @@ $border-color: rgba($c-background--h, .2)
   overflow: hidden
   &.active
     border-bottom: 1px solid $c-background--m
-    max-height: 1000px
+    max-height: 2000px
     overflow: visible
 
   $width:  130px
@@ -493,5 +495,5 @@ $border-color: rgba($c-background--h, .2)
     max-height: $height
     padding-top: 16px
 
-  +respond-to(mobile-only)
+  //+respond-to(mobile-only)
     display: none
