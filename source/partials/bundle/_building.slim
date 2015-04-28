@@ -29,15 +29,24 @@
       section.advantages
         ul.items
           -[\
-            ['infrastructure', 'Biznesam piemērota atrāšanas vieta un infrastruktūra'],
+            ['infrastructure', 'Biznesam piemērota atrāšanas vieta un infrastruktūra', 'height: 65px', true],
             ['room', 'Brīvs telpu plānojums', nil],
             ['guard24', 'Diennakts apsardze un novērošana', 'margin-top: 30px'],
             ['camera', 'Ventilācija kondicionēšana, videnovērošana', 'height: 65px'],
             ['projector', 'Konferenču telpas<br>un aprīkojums', nil],
-          ].each do |i|
-            li style=i[2]
-              i class= i[0]
-              .bubble: .vcenter: span= i[1]
+          ].each_with_index do |a,i|
+            - content_for "advantage_#{i}" do
+              i class= a[0]
+              .bubble: .vcenter: span= a[1]
+            - if a[3]
+              li.mobile-only style=a[2]
+                = yield_content "advantage_#{i}"
+              li.tablet style=a[3]
+                = yield_content "advantage_#{i}"
+            - else
+              li style=a[2]
+                = yield_content "advantage_#{i}"
+
         .centered
           = link_to 'Izvēlēties telpu', "spaces.html#filter_building_number=#{i+1}", class: 'button'
         .social
