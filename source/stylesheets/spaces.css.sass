@@ -185,6 +185,20 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
 
   .remodal-close
     transition: color .5s border-color .5s
+  .id
+    +scut-absolute(0 n n 0)
+    z-index: 1001
+    background: $c-background--ml
+    padding: 5px 20px 8px
+    .number
+      font-size: 2.5em
+      font-weight: 300
+      line-height: 1
+    .text
+      line-height: 1.125
+      font-size: 1.125em
+      sub, sup
+        font-size: .6em
   .image
     position: relative
     z-index: 0
@@ -194,34 +208,33 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
       +scut-absolute(70% 0 0 0)
       background: linear-gradient(transparent, rgba(0,0,0,.5))
       content: ''
-    div img
+    .item img
       display: none
-    div:first-child img
+    .item:first-child img
       display: block
   $social-height: 35px
-  .social
+  .image .social
     @extend %extra-social
     @extend %extra-social--i
-    $height: $social-height
-    position: relative
-    float: left
-    margin: (-10px - $height) 60px 0 10px
-    height: $height
+    +scut-absolute(n 60px 10px 10px)
+    z-index: 1002
     overflow: hidden
+    a
+      margin-top: 10px
     a.contact
       @extend %button
-      height: 100%
-      line-height: $height - 6px
-      font-size: 1em
+      height: $social-height
+      line-height: $social-height - 6px
+      font-size: .875em
 
   .image.slick-slider
     margin-bottom: 0
     +carousel-arrows--i(20px)
       z-index: 1001
-    div
+    .item
       float: left
       width: 100%
-    div img
+    .item img
       display: block
       margin: 0 auto
     button.plan
@@ -240,25 +253,20 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
         content: ''
     &:after
       z-index: 1001 // above carousel
-  .id
-    +scut-absolute(0 n n 0)
-    z-index: 1001
-    background: $c-background--ml
-    padding: 5px 20px 8px
-    .number
-      font-size: 2.5em
-      font-weight: 300
-      line-height: 1
-    .text
-      line-height: 1.125
-      font-size: 1.125em
-      sub, sup
-        font-size: .6em
   ul.info
     height: 80px
   +respond-to(tablet)
     .image:after
       top: 80%
+    .image .social
+      $height: 43px
+      right: 90px
+      bottom: 18px
+      left: 18px
+      a.contact
+        height: $height
+        line-height: $height - 6px
+        font-size: 1.25em
     .image.slick-slider
       button.plan
         right: 18px
@@ -267,13 +275,6 @@ $item-inner-height: $item-height - $item-padding*2 - 2px // 2px - border
           display: block
           margin: 5px 0 5px 4px
           +bsprite($sm-spaces, 'modal-image-plan--tablet')
-    .social
-      $height: 43px
-      margin: (-18px - $height) 90px 0 18px
-      height: $height
-      a.contact
-        line-height: $height - 6px
-        font-size: 1.25em
     ul.info
       float: left
       width: 45%

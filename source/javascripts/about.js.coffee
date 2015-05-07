@@ -14,22 +14,33 @@ $ ->
     matched: ->
       backgroundContainers = items
 
-  background.useBackgroundImage (image)->
-    bgcs = backgroundContainers
-    bgc = bgcs.first()
+  resizeToImageSize = ->
+    background.useBackgroundImage (image)->
+      bgcs = backgroundContainers
+      bgc = bgcs.first()
 
-    targetContainerHeight = bgc.width() / image.width * image.height
-    bgcs.css('height', "#{targetContainerHeight}px") if bgc.height() < targetContainerHeight
+      targetContainerHeight = bgc.width() / image.width * image.height
+      bgcs.css('height', "#{targetContainerHeight}px") if bgc.height() < targetContainerHeight
 
+  resizeToImageSize()
 
   # - carousel
-  items.slick
-    autoplay: true
-    autoplaySpeed: 6000
-    arrows: true
-    fade: true
-    fadeIn: true
-    cssEase: 'linear'
+  initCarousel = ->
+    items.slick
+      autoplay: true
+      autoplaySpeed: 6000
+      arrows: true
+      fade: true
+      fadeIn: true
+      cssEase: 'linear'
+
+  initCarousel()
+
+  $(window).on 'resize', ->
+    backgroundContainers.attr('style', '')
+    items.slick('unslick')
+    initCarousel()
+    resizeToImageSize()
 
 
 # TRASH

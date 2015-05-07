@@ -181,15 +181,15 @@ section.spaces
         .number 191
         .text ID telpa
       .image
-        div= image_tag 'spaces/1-big.jpg'
-        div= image_tag 'spaces/2-big.jpg'
+        div.item= image_tag 'spaces/1-big.jpg'
+        div.item= image_tag 'spaces/2-big.jpg'
         /test resizing:
         /div= image_tag 'spaces/2-big.jpg', style: 'height: 190px'
-        div.plan= image_tag 'spaces/3-big.jpg'
-      button.plan-template title="title"
-      .social
-        = partial 'components/social'
-        a.contact href="#contact" Sazināties ar mums
+        div.item.plan= image_tag 'spaces/3-big.jpg'
+        button.plan-template title="title"
+        .social
+          = partial 'components/social'
+          a.contact href="#contact" Sazināties ar mums
       ul.info
         li.area
           .number 200

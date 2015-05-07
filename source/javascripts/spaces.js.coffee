@@ -156,11 +156,11 @@ $ ->
     container = $(this).children('.image')
     firstPlanItem = container.children('div.plan').first()
     firstPlanItemIndex = container.children().index(firstPlanItem)
-    if $(this).width() < parseInt $(this).css('max-width')
+    if container.width() < parseInt $(this).css('max-width')
       container.css('width',  "#{$(window).width() }px")
     container.on 'init', ->
       if firstPlanItem.length
-        button_template = container.siblings('.plan-template')
+        button_template = container.children('.plan-template')
         button = button_template.length && button_template.attr('class','plan') || $('<button class="plan"/>')
         button.appendTo container
         button.click ->
@@ -181,6 +181,7 @@ $ ->
         modal.removeClass 'inverse'
 
     container.slick
+      slide: '.item'
       autoplay: true
       autoplaySpeed: 6000
       pauseOnHover: false
