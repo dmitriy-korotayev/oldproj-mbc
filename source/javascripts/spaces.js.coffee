@@ -152,12 +152,14 @@ $ ->
   # --- Modal: space - carousel ---
 
   modal = $('.remodal.space')
+  socialBackup = null
   modal.on 'opened', ->
     container = $(this).children('.image')
     firstPlanItem = container.children('div.plan').first()
     firstPlanItemIndex = container.children().index(firstPlanItem)
-    if container.width() < parseInt $(this).css('max-width')
+    if $(window).width() < parseInt $(this).css('max-width')
       container.css('width',  "#{$(window).width() }px")
+    container.append(socialBackup) if socialBackup
     container.on 'init', ->
       if firstPlanItem.length
         button_template = container.children('.plan-template')
@@ -192,5 +194,7 @@ $ ->
 
   modal.on 'closed', ->
     container.find('button.plan').remove()
+    socialBackup = container.find('div.slick-list').siblings('.social')
+    socialBackup.insertBefore(container)
     container.slick('unslick')
 
