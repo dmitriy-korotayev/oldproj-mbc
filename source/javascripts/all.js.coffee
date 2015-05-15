@@ -46,6 +46,7 @@ $ ->
 
   # Mailable forms
   window.mailableLocale = $('html').attr('lang') || 'en'
-  $('.remodal form.mailable').mailable
-    url: window.env == 'dev' && 'http://localhost:3000/mail' || 'http://mbc-mailer.herokuapp.com/mail'
+  $('.remodal').on 'opened', ->
+    $(@).find('form.mailable').mailable
+      url: window.env == 'dev' && 'http://localhost:3000/mail' || 'http://mbc-mailer.herokuapp.com/mail'
 
