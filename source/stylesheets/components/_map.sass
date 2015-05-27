@@ -33,9 +33,9 @@ $absolute-padding: 35px
       $gradient-bottom-color: rgba(darken($c-background, 16), .21)
       background: linear-gradient($c-background, $gradient-bottom-color) $c-background
     // opacity on hover
-    button[type=reset]:after, input[type=submit], button.locate:after
+    button[type=reset]:after, [type=submit], button.locate:after
       opacity: .4
-    button[type=reset]:hover:after, input[type=submit]:hover, button.locate:hover:after
+    button[type=reset]:hover:after, [type=submit]:hover, button.locate:hover:after
       opacity: .7
     // aside buttons
     button[type=reset], button.locate
@@ -56,7 +56,7 @@ $absolute-padding: 35px
       width: 100%
       padding: 0 50px 0 1em
       font-size: 1.125em
-    input[type=submit]
+    [type=submit]
       position: absolute
       right: 11px + $button-width + 1px
 

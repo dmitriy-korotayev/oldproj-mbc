@@ -10,7 +10,7 @@
     itemErrorClass: 'has-error'
 
 
-  Mailable = (element, options) ->
+  Mailable = (element, options = {}) ->
     this.options = $.extend( {}, defaults, options)
 
     this._defaults = defaults
@@ -82,31 +82,28 @@
 
       return result
 
-    validate: (renderErrors = true, slice = null)->
+    validate: (renderErrors = true, slice = null, callback = (->))->
       t = this
       valid = false
-      slice_whole = false
 
-      if !slice
-        slice_whole = true
+      callback ?= (valid)->
 
       this._request this._url+'/validate', this._formData(slice), (response)->
         if response.type == 'success'
           valid = true
-        else if response.type == 'error' && !slice_whole
+        else if response.type == 'error' && slice
           error_keys = Object.keys(response.errors)
           slice_keys = Object.keys(t._formData(slice))
           intersecting_keys = error_keys.filter (n)->
             return slice_keys.indexOf(n) != -1
           valid = intersecting_keys.length == 0
-
-        if valid
-          t._clearErrors(slice)
-        else
-          t._renderErrors(response.errors, slice)
-
         valid = true if $(this._e).hasClass('mailable-debug')
-        return valid
+
+        if renderErrors
+          if valid then t._clearErrors(slice) else t._renderErrors(response.errors, slice)
+
+        callback(valid)
+
 
     #non-ajax getErrors: (cached = false, slice = null)->
       #if !cached
@@ -163,6 +160,7 @@
           if successCallback
             successCallback(t)
           else
+            $(t._e).trigger "success"
             t.displaySuccess()
             setTimeout (->
               t.resetForm()
@@ -175,8 +173,10 @@
       $(this._e).find('.result.success').hide()
 
     resetForm: ()->
-      $(this._e).trigger "reset"
-      $(this._e).find('.select2-offscreen').select2('val','')
+      $(@_e).trigger 'reset'
+      @hideSuccess()
+      select2Offscreen = $(@_e).find('.select2-offscreen')
+      select2Offscreen.select2('val','') if select2Offscreen.length
     #_renderResult: ()->
       #result_wrapper = $(t).children(".result").html("")
       #result_container = $("<div class=\"" + response.type + "\"></div>").appendTo(result_wrapper)

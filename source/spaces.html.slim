@@ -223,6 +223,10 @@ section.spaces
         ' Sūtīt ziņojumu par telpu
         strong 191
       form.mailable novalidate=true data-mailable-id="mbc_contact"
+        .result.success
+          strong> Отлично!
+          span Сообщение отправлено
+        input type="hidden" name="id" id="id" value="191"
         .row
           input type="text" name="name" id="name" placeholder="Vārds" value=""
           .error
@@ -235,4 +239,4 @@ section.spaces
         .row
           textarea name="message" id="message" placeholder="Ziņojums" value="" style="height: 250px"
           .error
-        input type="submit" name="submit" id="submit" value="Sūtīt"
+        button type="submit" name="submit" id="submit" Sūtīt
