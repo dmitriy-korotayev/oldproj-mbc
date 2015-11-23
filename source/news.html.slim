@@ -1,3 +1,4 @@
+input.scroll-to-id type="hidden" value="1"
 header
   .text.single
     h1 Jaunumi
@@ -7,7 +8,7 @@ section.news
       li class=(year=='2014' ? 'active' : '') : a href="#" ="#{year}."
   .items
     - 2.times do |i|
-      .item
+      .item data-id=i
         .date= "10.#{format('%02d', i+9)}.2014"
         h2 Uzbūvētā jaunā A klases 15 000 m2 ēka
         - if i+1 != 1
