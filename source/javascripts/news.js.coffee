@@ -6,11 +6,13 @@ $ ->
   items = $('.items .item')
   items.readmoreable()
 
-  scrollTo = $('input.scroll-to-id')
-  if scrollTo.length
-    item = items.filter("[data-id=#{scrollTo.val()}]")
+
+  id = window.location.pathname.split('/').pop()
+  if idIsPresentAndNumeric = id.length && !isNaN(id)
+    item = items.filter("[data-id=#{id}]")
     if item.length
+      item.addClass 'open'
       setTimeout ->
         top = item.position().top
         $(window).scrollTop top
-      , 1000
+      , 500
