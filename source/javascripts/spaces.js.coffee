@@ -52,6 +52,7 @@ $ ->
     dataFilter: (data, formData) ->
       f = formData
 
+      # Filtering
       data = $.map data, (item,i)->
         if f.building_class && f.building_class != '0'
           return null if f.building_class.constructor == String && f.building_class != item.building_class
@@ -73,23 +74,28 @@ $ ->
           return null if item.area > parseInt(f.limit_area_max)
         item
 
+      # Sort by id
+      data = data.sort (a,b)-> b.id-a.id
+
       sort = {}
 
       sort.area  = f.sort_area  if f.sort_price
       sort.price = f.sort_price if f.sort_price
-      if f.sort # mobile
+
+      # Mobile, custom sorting
+      if f.sort
         a_o = f.sort.split('_')
         attribute = a_o[0]
         order = a_o[1]
         sort[attribute] = order
 
-      $.each sort, (attribute,order)->
-        if order != '0'
-          data = data.sort (a,b)->
-            return if order == 'asc'
-              a[attribute] - b[attribute]
-            else
-              b[attribute] - a[attribute]
+        $.each sort, (attribute,order)->
+          if order != '0'
+            data = data.sort (a,b)->
+              return if order == 'asc'
+                a[attribute] - b[attribute]
+              else
+                b[attribute] - a[attribute]
 
       data
 

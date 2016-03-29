@@ -7,7 +7,7 @@ $ ->
   items.readmoreable()
 
 
-  id = window.location.pathname.split('/').pop()
+  id = window.location.hash.substring 1
   if idIsPresentAndNumeric = id.length && !isNaN(id)
     item = items.filter("[data-id=#{id}]")
     if item.length
